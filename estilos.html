@@ -23,6 +23,7 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
 <link rel="stylesheet" href="css/lesson.css">
 <link rel="stylesheet" href="css/activities.css">
 <link rel="stylesheet" href="css/estados.css">
+<link rel="stylesheet" href="css/charts.css">
 <style>
 /* Estilos propios de esta página de referencia (solo maquetan la vitrina) */
 .ds{max-width:1200px;margin:0 auto;padding:var(--app-space-4) var(--app-space-4) var(--app-space-10)}
@@ -71,7 +72,7 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
   <h1 style="font:var(--md-sys-typescale-headline-large);margin-top:var(--app-space-4)">Tokens y componentes</h1>
   <p class="lead">Referencia viva del sistema de diseño del Taller - IA, basado en Material Design 3 Expressive. Todo sale de <code>css/tokens.css</code>. Cambiá el tema y el contraste arriba para revisar cada esquema. <a href="index.html#/inicio">Volver al entorno</a>.</p>
   <nav class="toc" aria-label="Secciones de esta página">
-    <a class="btn btn-outlined" href="#color">Color</a><a class="btn btn-outlined" href="#tipografia">Tipografía</a><a class="btn btn-outlined" href="#forma">Forma y elevación</a><a class="btn btn-outlined" href="#espacio">Espacio y movimiento</a><a class="btn btn-outlined" href="#componentes">Componentes</a><a class="btn btn-outlined" href="#estados">Estados</a>
+    <a class="btn btn-outlined" href="#color">Color</a><a class="btn btn-outlined" href="#tipografia">Tipografía</a><a class="btn btn-outlined" href="#forma">Forma y elevación</a><a class="btn btn-outlined" href="#espacio">Espacio y movimiento</a><a class="btn btn-outlined" href="#componentes">Componentes</a><a class="btn btn-outlined" href="#graficos">Gráficos</a><a class="btn btn-outlined" href="#estados">Estados</a>
   </nav>
 
   <h2 id="color">Color</h2>
@@ -186,6 +187,14 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
     <div class="card"><div class="empty-state"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="var(--md-sys-color-surface-container-highest)"/><rect x="34" y="38" width="52" height="46" rx="12" fill="var(--md-sys-color-surface)" stroke="var(--md-sys-color-outline-variant)" stroke-width="2"/><rect x="42" y="50" width="36" height="6" rx="3" fill="var(--md-sys-color-primary)" opacity=".6"/><rect x="42" y="63" width="24" height="6" rx="3" fill="var(--md-sys-color-outline-variant)"/></svg><h4 style="font:var(--md-sys-typescale-title-medium);color:var(--md-sys-color-on-surface)">Todavía no guardaste prompts</h4><p>Una línea que explica para qué sirve la sección.</p><button class="btn btn-filled" type="button">Primera acción</button></div></div>
     <div class="card" style="padding:var(--app-space-4);display:grid;gap:var(--app-space-3)" aria-hidden="true"><div class="sk" style="height:28px;width:60%"></div><div class="sk" style="height:14px"></div><div class="sk" style="height:14px;width:90%"></div><div class="sk" style="height:120px;border-radius:var(--md-sys-shape-corner-large)"></div></div>
   </div>
+  <h2 id="graficos">Gráficos</h2>
+  <p class="lead">Paleta categórica en orden fijo, validada para daltonismo y contraste en los dos modos. Cada gráfico tiene leyenda (si hay más de una serie), etiquetas directas, detalle al pasar el cursor y una tabla con los mismos datos.</p>
+  <div class="row" style="margin-bottom:var(--app-space-3)" aria-label="Paleta categórica" role="group">
+    <span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:3px;background:var(--app-chart-1)"></i>Serie 1</span><span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:3px;background:var(--app-chart-2)"></i>Serie 2</span>
+    <span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:3px;background:var(--app-chart-3)"></i>Serie 3</span><span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:3px;background:var(--app-chart-4)"></i>Serie 4</span>
+  </div>
+  <div class="two" id="dsGraficos"></div>
+
   <h2 id="estados">Estados de carga, espera y error</h2>
   <p class="lead">Cada espera dice qué se está haciendo; a los 3 segundos el mensaje se actualiza y a los 10 ofrece una salida. Para verlos en el entorno: <a href="index.html?simular=lento#/inicio">?simular=lento</a>, <a href="index.html?simular=error#/inicio">?simular=error</a>, <a href="index.html?simular=error-leccion#/modulo/prueba/paso/2">?simular=error-leccion</a> y <a href="index.html?simular=sin-conexion#/modulo/prueba/paso/4">?simular=sin-conexion</a>.</p>
   <div class="two">
@@ -227,6 +236,7 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
 <script type="module">
 import { tema } from "./js/theme.js";
 import { aviso, confirmar, iniciarTooltips } from "./js/ui.js";
+import { graficoHTML, montarGrafico } from "./js/charts.js";
 
 tema.aplicar();
 iniciarTooltips();
@@ -273,6 +283,10 @@ document.getElementById("dsDlg").addEventListener("click", async () => {
   const ok = await confirmar({ icono: "delete", titulo: "¿Eliminar esta tarea?", texto: "<b>Leer el capítulo 2</b><br>Se quita de tus pendientes. No se puede deshacer.", ok: "Eliminar", peligro: true });
   aviso(ok ? "Elegiste Eliminar" : "Elegiste Cancelar");
 });
+const GRAFICOS = [{"tipo": "grafico", "id": "autodiag", "forma": "mancuernas", "titulo": "Autodiagnóstico: antes y después (datos de ejemplo)", "unidad": "nivel de confianza, de 1 a 5", "max": 5, "min": 1, "ejeCategorias": "Pregunta", "resumen": "Gráfico de antes y después con datos de ejemplo: la confianza sube en las cinco preguntas, sobre todo en escribir prompts (de 2 a 4). Los valores están en la tabla que sigue.", "categorias": ["Entiendo cómo funciona la IA", "Escribo prompts claros", "Detecto errores de la IA", "Cuido los datos personales", "Uso IA en mi trabajo"], "series": [{"nombre": "Al empezar", "valores": [2, 2, 1, 3, 2]}, {"nombre": "Al terminar", "valores": [4, 4, 3, 4, 4]}]}, {"tipo": "grafico", "id": "bloques", "forma": "barras", "titulo": "Módulos completados por bloque (datos de ejemplo)", "unidad": "módulos", "ejeCategorias": "Bloque", "categorias": ["Comprender", "Criterio: el marco 4D", "Ética y datos", "Asistentes", "Crear con IA", "Automatizar", "Aplicar"], "series": [{"nombre": "Completados", "valores": [4, 3, 1, 0, 0, 0, 0]}]}, {"tipo": "grafico", "id": "semanas", "forma": "lineas", "titulo": "Lo que completaste por semana (datos de ejemplo)", "unidad": "cantidad por semana", "ejeCategorias": "Semana", "categorias": ["Semana 1", "Semana 2", "Semana 3", "Semana 4", "Semana 5", "Semana 6"], "series": [{"nombre": "Actividades", "valores": [3, 5, 4, 7, 6, 8]}, {"nombre": "Lecturas", "valores": [2, 2, 3, 3, 5, 4]}]}];
+const cont = document.getElementById("dsGraficos");
+cont.innerHTML = GRAFICOS.map((g, i) => `<div class="panel">${graficoHTML(g, "ds-g" + i, 3)}</div>`).join("");
+cont.querySelectorAll(".chart").forEach((f, i) => montarGrafico(f, GRAFICOS[i]));
 document.querySelector(".skip").addEventListener("click", e => { e.preventDefault(); document.getElementById("ds").focus(); });
 </script>
 </body>

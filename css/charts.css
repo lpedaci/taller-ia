@@ -1,0 +1,50 @@
+/* =====================================================================
+   Taller - IA | Gráficos
+   Paleta categórica en orden fijo (nunca se recorre en ciclo): azul, naranja, violeta, verde.
+   Claro: tono 40 de cada paleta (los mismos valores de css/tokens.css: primary y acentos de eventos).
+   Oscuro: tono 57 de las mismas paletas, generado con @material/material-color-utilities.
+   Validada con el script de la skill de visualización (banda de luminosidad, croma,
+   separación para daltonismo, visión normal y contraste 3:1 sobre la tarjeta) el 2026-11-18.
+   ===================================================================== */
+:root,:root[data-theme="light"]{--app-chart-1:#005eb1;--app-chart-2:#ac3400;--app-chart-3:#732ee4;--app-chart-4:#006d30}
+:root[data-theme="dark"]{--app-chart-1:#498ae0;--app-chart-2:#e65d2c;--app-chart-3:#9d6bff;--app-chart-4:#409a57}
+
+.chart{margin:0;display:grid;gap:var(--app-space-3);min-width:0;position:relative}
+.chart-head h4,.chart-head h5{font:var(--md-sys-typescale-title-medium)}
+.chart-head p{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+.chart-legend{display:flex;flex-wrap:wrap;gap:var(--app-space-2) var(--app-space-4);font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);list-style:none;margin:0;padding:0}
+.chart-legend li{display:inline-flex;align-items:center;gap:6px}
+.chart-legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.chart-legend i.dot{border-radius:50%}
+.chart-plot{position:relative;min-height:120px}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{font-family:var(--md-ref-typeface-plain)}
+.chart .ax-lbl{font-size:12px;fill:var(--md-sys-color-on-surface-variant)}
+.chart .cat-lbl{font-size:13px;fill:var(--md-sys-color-on-surface)}
+.chart .val-lbl{font-size:12px;fill:var(--md-sys-color-on-surface);font-weight:600}
+.chart .grid{stroke:var(--md-sys-color-outline-variant);stroke-width:1}
+.chart .base{stroke:var(--md-sys-color-outline);stroke-width:1}
+.chart .s1{fill:var(--app-chart-1);stroke:var(--app-chart-1)}.chart .s2{fill:var(--app-chart-2);stroke:var(--app-chart-2)}
+.chart .s3{fill:var(--app-chart-3);stroke:var(--app-chart-3)}.chart .s4{fill:var(--app-chart-4);stroke:var(--app-chart-4)}
+.chart-legend .s1{background:var(--app-chart-1)}.chart-legend .s2{background:var(--app-chart-2)}.chart-legend .s3{background:var(--app-chart-3)}.chart-legend .s4{background:var(--app-chart-4)}
+.chart .line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.chart .bar{stroke:none}
+.chart .dot{stroke:var(--app-color-card);stroke-width:2}
+.chart .link{stroke:var(--md-sys-color-outline);stroke-width:2}
+.chart .hit{fill:transparent;stroke:none;cursor:default}
+.chart .cross{stroke:var(--md-sys-color-on-surface-variant);stroke-width:1;stroke-dasharray:3 3}
+.chart .is-dim{opacity:.35}
+/* Animación breve al aparecer los datos (se apaga con movimiento reducido) */
+.chart .grow{transform-box:fill-box;transform-origin:left center;animation:chart-grow var(--md-sys-motion-spring-default-spatial) both}
+@keyframes chart-grow{from{transform:scaleX(0)}}
+.chart .fade{animation:chart-fade var(--md-sys-motion-spring-default-effects) both}
+@keyframes chart-fade{from{opacity:0}}
+.chart-tip{position:absolute;z-index:5;pointer-events:none;min-width:120px;max-width:240px;padding:var(--app-space-2) var(--app-space-3);border-radius:var(--md-sys-shape-corner-small);background:var(--md-sys-color-inverse-surface);color:var(--md-sys-color-inverse-on-surface);font:var(--md-sys-typescale-body-small);box-shadow:var(--md-sys-elevation-level2);opacity:0;transition:opacity var(--md-sys-motion-spring-fast-effects)}
+.chart-tip.show{opacity:1}
+.chart-tip b{display:block;font:var(--md-sys-typescale-label-large);margin-bottom:2px}
+.chart-tip span{display:flex;align-items:center;gap:6px}
+.chart-tip i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.chart-src{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);overflow-wrap:anywhere}
+.chart-sk{display:grid;gap:10px;padding:var(--app-space-2) 0}
+.chart-sk .sk{height:16px}
+@media (prefers-reduced-motion: reduce){ .chart .grow,.chart .fade{animation:none} }

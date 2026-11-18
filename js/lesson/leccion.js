@@ -11,6 +11,7 @@ import { dibujar } from "./bloques.js";
 import "../activities/evaluadas.js";
 import "../activities/produccion.js";
 import "../activities/video.js";
+import "../charts.js";
 import { demoraSimulada, errorSimulado, tarjetaError, esperaConMensaje } from "../estados.js";
 import { crearLector, disponible as puedeLeer } from "../escuchar.js";
 

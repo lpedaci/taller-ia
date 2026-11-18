@@ -33,6 +33,8 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-025 | 2026-11-18 | Motor de lecciones por pasos, barra flotante, Escuchar y lección de prueba | Vigente |
 | D-026 | 2026-11-18 | Doce tipos de actividad con feedback explicativo, borradores y layout para mobile | Vigente |
 | D-027 | 2026-11-18 | Estados de carga, espera, error y sin conexión; video con fachada; eventos propios en la Agenda | Vigente |
+| D-028 | 2026-11-18 | Componente de gráficos en SVG con paleta validada y tabla alternativa | Vigente |
+| D-029 | 2026-11-18 | Guion de la animación piloto (predicción de tokens), pendiente de aprobación | Vigente |
 
 ---
 
@@ -477,3 +479,66 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 **Pendientes o riesgos:**
 - El contador de eventos de hoy en el riel se calcula al cargar la página: si se agrega un evento para hoy, se actualiza al recargar.
 - La descarga de la Agenda en `.ics` queda para la etapa 9 (transversales).
+
+## D-028 | 2026-11-18 | Etapa 2, parte 4: componente de gráficos
+
+**Solicitado:** el componente de gráficos de la sección 5: SVG propio, título, unidad, fuente, leyenda solo con más de una serie, etiquetas directas, alternativa en tabla, colores de los tokens validados en los dos modos, contraste 3:1 y versión simplificada en mobile.
+
+**Decisión y motivo:**
+- **Método:** se siguió la skill de visualización de datos instalada (D-005): forma según la pregunta, color al final, paleta validada con su script y no a ojo.
+- **Formas:**
+  - Barras para comparar. Siempre horizontales: los nombres largos (bloques, competencias) se leen bien y en mobile no hay que girar nada.
+  - Líneas para evolución.
+  - Mancuernas para el antes y el después (el autodiagnóstico de los Módulos 0 y 20).
+  - No hay tortas ni efectos 3D.
+- **Paleta categórica en orden fijo** (nunca se recorre en ciclo): azul, naranja, violeta y verde.
+  - En modo claro son los mismos valores de los tokens (`primary` y los acentos de los eventos).
+  - En modo oscuro, los acentos de los tokens fallaban (demasiado claros y apagados para un gráfico). Se generaron los tonos 57 de las mismas paletas con `@material/material-color-utilities`, la librería oficial que generó los tokens, instalada solo para desarrollo.
+  - El orden se eligió para que el verde no quede al lado del naranja: juntos, quedaban en el mínimo para daltonismo.
+  - Resultado del validador: todo aprobado en los dos modos, sobre el color de la tarjeta. Los valores están en `css/charts.css` como `--app-chart-1` a `--app-chart-4`.
+- **Marcas:**
+  - barras de 16 px con la esquina redondeada solo en el extremo del dato;
+  - líneas de 2 px;
+  - en las mancuernas, "antes" es un anillo neutro y "después" un punto de color, así no dependen solo del color;
+  - grilla y ejes recesivos;
+  - el texto siempre con los colores de texto, nunca con el de la serie;
+  - etiquetas directas selectivas: el valor al final de cada barra y solo el último punto de cada línea.
+- **Interacción:** detalle al pasar el cursor por cada barra o fila, y en las líneas una guía vertical con todas las series de esa semana.
+- **Accesibilidad:**
+  - el SVG tiene `role="img"` y un resumen que remite a la tabla;
+  - "Ver como tabla" muestra los mismos datos;
+  - la leyenda aparece solo con más de una serie;
+  - con "reducir movimiento" los datos aparecen sin animación.
+- **Mobile:** el nombre de cada categoría va arriba de su barra, la grilla se dibuja solo en la franja de cada barra, el eje de las líneas muestra solo las etiquetas que entran sin pisarse, y el gráfico se redibuja al cambiar el ancho.
+- **Escalas fijas:** con una escala corta (como de 1 a 5) se marca cada entero; las mancuernas aceptan un mínimo distinto de 0.
+- **Carga:** con `?simular=lento` se ve el *skeleton* con la forma del gráfico antes de los datos.
+- **Dónde se ve:** un paso nuevo de la lección de prueba ("Gráficos", con tres ejemplos marcados como "datos de ejemplo") y la sección "Gráficos" de `estilos.html`. En Mi aprendizaje se suma cuando haya datos reales del autodiagnóstico (etapas 3 y 8).
+
+**Archivos afectados:** `js/charts.js`, `css/charts.css`, `content/modulo-prueba.json`, `estilos.html`, `index.html`, `js/lesson/leccion.js`, `package.json` (dependencia de desarrollo), `scripts/verificar.mjs`.
+
+**Verificación realizada:**
+- Prueba de gráficos: 8 de 8. Cubre `role="img"` con resumen, tabla en cada gráfico, detalle en barras y líneas, leyenda solo con más de una serie, redibujo al cambiar el ancho y ningún error.
+- Capturas en 1280 y 360 px, claro y oscuro. A partir de ellas se corrigieron la escala de 1 a 5, las etiquetas del eje que se pisaban y la grilla que cruzaba los nombres en mobile.
+- Pruebas de actividades y estados sin cambios. `npm run verificar` completo: 348 capturas (29 pantallas, ahora con el paso de gráficos), sin problemas de axe-core, sin scroll, sin errores de consola, sin animaciones con movimiento reducido y con las áreas táctiles en regla.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-029 | 2026-11-18 | Etapa 2, parte 5: guion de la animación piloto
+
+**Solicitado:** escribir primero el guion y el storyboard de la animación piloto (cómo un modelo predice el próximo token) y anotar en este registro qué se va a animar, antes de construirla (sección 5, "Proceso").
+
+**Decisión y motivo:** el guion está en `animaciones/guiones/01-prediccion-de-tokens.md`. Son 5 escenas en unos 75 segundos:
+
+1. una frase incompleta;
+2. el texto se parte en tokens;
+3. cada continuación tiene una probabilidad (valores ilustrativos, y la pantalla lo dice);
+4. elige, suma y repite;
+5. por qué varía y por qué se equivoca ("Probable no es lo mismo que verdadero").
+
+Cada escena tiene texto en pantalla, qué se mueve, narración y descripción para lectores de pantalla. También están definidos los controles, la versión fija para "reducir movimiento", el diseño con los tokens y el proceso para el MP4 de facilitadores.
+
+**Archivos afectados:** `animaciones/guiones/01-prediccion-de-tokens.md`.
+
+**Verificación realizada:** revisión del texto: voseo moderado, sin rayas largas ni puntos medios, sin personajes ni metáforas de robots.
+
+**Pendientes o riesgos:** **la animación y su motor por escenas se construyen después de que Lourdes apruebe el guion.** El MP4 se genera cuando apruebe la animación terminada.
