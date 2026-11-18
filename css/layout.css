@@ -15,7 +15,8 @@
    ===================================================================== */
 .rail{display:none;flex-direction:column;flex:none;overflow-x:hidden;width:var(--app-rail-collapsed-width);background:var(--app-color-chrome);position:sticky;top:0;height:100vh;height:100dvh;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;transition:width var(--md-sys-motion-spring-default-spatial);z-index:35}
 .rail.sin-anim,.rail.sin-anim *{transition:none!important}
-.rail-top{display:flex;flex-direction:column;align-items:center;padding:var(--app-space-3) 0 var(--app-space-2)}
+/* El botón de menú queda centrado en la misma línea que la barra superior (32 px desde arriba); la cabecera sigue midiendo 68 px más su margen */
+.rail-top{display:flex;flex-direction:column;align-items:center;padding:var(--app-space-1) 0 var(--app-space-4)}
 .rail-head{display:flex;flex-direction:column;align-items:center;gap:2px;height:68px}
 .rail-menu{width:56px;height:56px;border-radius:var(--md-sys-shape-corner-full);border:0;background:transparent;color:var(--md-sys-color-on-surface-variant);display:grid;place-items:center;cursor:pointer;flex:none}
 .menu-lbl{font:var(--md-sys-typescale-label-medium);color:var(--md-sys-color-on-surface-variant);margin-top:-6px}
@@ -43,7 +44,7 @@
 
 /* Riel expandido */
 .rail.expanded{width:var(--app-rail-expanded-width)}
-.rail.expanded .rail-top{align-items:flex-start;padding:var(--app-space-3) 0 var(--app-space-2) 20px}
+.rail.expanded .rail-top{align-items:flex-start;padding:var(--app-space-1) 0 var(--app-space-4) 20px}
 .rail.expanded .rail-head{flex-direction:row;align-items:flex-start;gap:var(--app-space-1)}
 .rail.expanded .menu-lbl{font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-on-surface);margin-top:0;line-height:56px}
 .rail.expanded .rail-group,.rail.expanded .rail-group .rail-items{align-items:stretch}
@@ -81,7 +82,7 @@
 .top-brand::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--md-sys-color-on-surface);opacity:0;z-index:-1;transition:opacity var(--md-sys-motion-spring-fast-effects)}
 .top-brand:hover::after{opacity:var(--md-sys-state-hover-opacity)}
 .top-brand:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:0}
-.brand-mark{width:32px;height:32px;flex:none}
+.brand-mark{width:var(--app-size-brand);height:var(--app-size-brand);flex:none}
 .brand-name{font:var(--md-sys-typescale-title-medium);font-weight:var(--md-sys-typescale-emphasized-weight);white-space:nowrap}
 .top-div{width:1px;height:32px;background:var(--md-sys-color-outline-variant);flex:none;margin:0 var(--app-space-2)}
 .topbar.no-title .top-div{display:none}
@@ -92,15 +93,18 @@
 .topbar .sub{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* En Inicio, título y subtítulo se ocultan solo visualmente: el saludo identifica la pantalla */
 .topbar.no-title .titles>*{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.top-actions{display:flex;align-items:center;gap:var(--app-space-1);flex:none}
+/* Acciones de la barra: cada una ocupa un lugar de 48 px, sin espacio extra entre ellas (ritmo parejo) */
+.top-actions{display:flex;align-items:center;gap:0;flex:none}
+.top-cta{margin-right:var(--app-space-2)}
 /* Acción principal: botón relleno S (40 px), separado del buscador por 24 px */
 .top-cta{flex:none;padding:0 16px 0 12px;gap:6px}
-.search{display:none;align-items:center;gap:var(--app-space-2);height:56px;padding:0 var(--app-space-4);background:var(--app-color-card);box-shadow:inset 0 0 0 1px var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-full);width:auto;flex:0 1 360px;min-width:168px;position:relative}
+/* 48 px: el mismo lugar que el resto de las acciones de la barra */
+.search{display:none;align-items:center;gap:var(--app-space-2);height:var(--app-size-target);padding:0 var(--app-space-4);background:var(--app-color-card);box-shadow:inset 0 0 0 1px var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-full);width:auto;flex:0 1 360px;min-width:168px;position:relative}
 .search input{border:0;background:transparent;outline:none;flex:1;min-width:0;font:var(--md-sys-typescale-body-large);color:var(--md-sys-color-on-surface)}
 .search input::placeholder{color:var(--md-sys-color-on-surface-variant);opacity:1}
 .search input::-webkit-search-cancel-button{display:none}
 .search:focus-within{outline:3px solid var(--md-sys-color-primary);outline-offset:2px}
-.search-results{position:absolute;top:64px;left:0;right:0;background:var(--md-sys-color-surface-container);border-radius:var(--md-sys-shape-corner-large);box-shadow:var(--md-sys-elevation-level2);padding:var(--app-space-2);max-height:360px;overflow:auto;z-index:25}
+.search-results{position:absolute;top:56px;left:0;right:0;background:var(--md-sys-color-surface-container);border-radius:var(--md-sys-shape-corner-large);box-shadow:var(--md-sys-elevation-level2);padding:var(--app-space-2);max-height:360px;overflow:auto;z-index:25}
 .search-results a{display:flex;gap:var(--app-space-3);align-items:center;min-height:48px;padding:var(--app-space-2) var(--app-space-3);border-radius:var(--md-sys-shape-corner-medium);text-decoration:none;color:var(--md-sys-color-on-surface);font:var(--md-sys-typescale-body-medium)}
 .search-results a:hover,.search-results a:focus{background:var(--md-sys-color-surface-container-highest);outline:none}
 .search-results a:focus-visible{box-shadow:inset 0 0 0 2px var(--md-sys-color-primary)}
@@ -465,7 +469,9 @@ a.cell:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offse
   .top-brand .brand-name,.topbar .titles>*{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .top-brand{padding-right:8px}
   .top-div{display:none}
-  .top-cta{width:40px;min-width:40px;padding:0}
+  /* Solo ícono: botón relleno de 40 px con ícono de 24, centrado en un lugar de 48 como los demás */
+  .top-cta{width:var(--app-size-control);min-width:var(--app-size-control);padding:0;margin:0 var(--app-space-1)}
+  .top-cta .ms{font-size:var(--app-size-icon)}
   .top-cta::before{left:50%;right:auto;width:48px;transform:translate(-50%,-50%)}
   .top-cta .cta-t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}
   .topbar{gap:var(--app-space-1);padding:var(--app-space-2) var(--app-space-2) var(--app-space-2) var(--app-space-4)}

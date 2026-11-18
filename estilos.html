@@ -107,6 +107,9 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
   <h2 id="espacio">Espacio y movimiento</h2>
   <h3>Escala de espaciado (4 px)</h3>
   <div class="panel" style="display:grid;gap:var(--app-space-2)" id="spaces"></div>
+  <h3>Tamaños de componentes</h3>
+  <p class="lead">Todo elemento interactivo ocupa un lugar de 48 px; lo visible se centra adentro. Así las barras tienen un ritmo parejo.</p>
+  <div class="panel" style="display:grid;gap:var(--app-space-2)" id="sizes"></div>
   <h3>Movimiento (springs de M3 Expressive)</h3>
   <p class="lead">Con "reducir movimiento" activado, los cambios son instantáneos.</p>
   <div class="panel" style="display:grid;gap:var(--app-space-3)">
@@ -224,6 +227,7 @@ const ESCALA = ["display-large","display-medium","display-small","headline-large
 document.getElementById("typeScale").innerHTML = ESCALA.map(n => `<div class="type-row"><code>${n}</code><span style="font:var(--md-sys-typescale-${n});overflow-wrap:anywhere">Aprender con criterio</span></div>`).join("") +
   `<div class="type-row"><code>enfático (650)</code><span style="font:var(--md-sys-typescale-headline-small);font-weight:var(--md-sys-typescale-emphasized-weight)">13 de 38</span></div>`;
 document.getElementById("shapes").innerHTML = ["none","extra-small","small","medium","large","large-increased","extra-large","extra-large-increased","extra-extra-large","full"].map(n => `<div class="shape" style="border-radius:var(--md-sys-shape-corner-${n})">${n}</div>`).join("");
+document.getElementById("sizes").innerHTML = [["target","Área táctil y lugar en barras"],["control","Botón S y botón de ícono relleno"],["icon","Ícono en barras y navegación"],["icon-sm","Ícono dentro de un botón S"],["avatar","Avatar en la barra superior"],["avatar-lg","Avatar en el menú"],["brand","Logo"]].map(([n, t]) => `<div class="space"><code style="width:160px">app-size-${n}</code><i style="width:var(--app-size-${n});height:var(--app-size-${n});border-radius:var(--md-sys-shape-corner-small);opacity:.8"></i><span>${css("--app-size-" + n)} | ${t}</span></div>`).join("");
 document.getElementById("spaces").innerHTML = [1,2,3,4,5,6,8,10].map(n => `<div class="space"><code style="width:96px">app-space-${n}</code><i style="width:var(--app-space-${n})"></i><span>${css("--app-space-" + n)}</span></div>`).join("");
 
 document.getElementById("ctrlTema").addEventListener("click", e => { const b = e.target.closest("button"); if (b) tema.setPreferencia(b.dataset.v); });

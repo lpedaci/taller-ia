@@ -4,6 +4,19 @@
    Base: referencia/prototipo-entorno.html y referencia/design-system.
    ===================================================================== */
 
+/* ---------- Tokens de tamaño de componentes (medidas de M3) ----------
+   Se definen acá porque css/tokens.css no tiene una familia de tamaños y no se edita a mano.
+   Regla: todo elemento interactivo ocupa un lugar de 48 px; lo visible se centra adentro. */
+:root{
+  --app-size-target:48px;      /* área táctil y lugar en barras */
+  --app-size-control:40px;     /* botón S, botón de ícono relleno */
+  --app-size-icon:24px;        /* ícono en barras, navegación y botones de ícono */
+  --app-size-icon-sm:20px;     /* ícono dentro de un botón con texto S */
+  --app-size-avatar:32px;      /* avatar en la barra superior */
+  --app-size-avatar-lg:40px;   /* avatar en el encabezado del menú */
+  --app-size-brand:32px;       /* logo */
+}
+
 /* ---------- Base ---------- */
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -57,7 +70,7 @@ img,svg{max-width:100%}
 .btn[disabled]::after{display:none}
 
 /* Botón de ícono: 48 x 48 */
-.icon-btn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:0;background:transparent;color:var(--md-sys-color-on-surface-variant);cursor:pointer;position:relative;isolation:isolate;flex:none;text-decoration:none}
+.icon-btn{width:var(--app-size-target);height:var(--app-size-target);border-radius:50%;display:grid;place-items:center;border:0;background:transparent;color:var(--md-sys-color-on-surface-variant);cursor:pointer;position:relative;isolation:isolate;flex:none;text-decoration:none}
 .icon-btn .dot{position:absolute;top:10px;right:11px;width:8px;height:8px;border-radius:50%;background:var(--md-sys-color-error)}
 .icon-btn.tonal{background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container)}
 
@@ -195,13 +208,13 @@ textarea.field{height:auto;min-height:112px;padding:var(--app-space-3);resize:ve
 .menu-title{font:var(--md-sys-typescale-title-small);padding:var(--app-space-2) var(--app-space-4) var(--app-space-1)}
 
 /* ---------- Avatar ---------- */
-.avatar{position:relative;isolation:isolate;overflow:hidden;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--md-sys-color-tertiary-container);color:var(--md-sys-color-on-tertiary-container);font:var(--md-sys-typescale-label-large);font-weight:700;border:0;cursor:pointer;flex:none;text-decoration:none}
+.avatar{position:relative;isolation:isolate;overflow:hidden;width:var(--app-size-avatar);height:var(--app-size-avatar);border-radius:50%;display:grid;place-items:center;background:var(--md-sys-color-tertiary-container);color:var(--md-sys-color-on-tertiary-container);font:var(--md-sys-typescale-label-medium);font-weight:700;border:0;cursor:pointer;flex:none;text-decoration:none}
 .avatar::after{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;z-index:-1;transition:opacity var(--md-sys-motion-spring-fast-effects)}
 .avatar:hover::after{opacity:var(--md-sys-state-hover-opacity)}
 .avatar[aria-expanded="true"]{box-shadow:0 0 0 2px var(--md-sys-color-primary)}
-.avatar.lg{width:48px;height:48px;font:var(--md-sys-typescale-title-medium);cursor:default}
+.avatar.lg{width:var(--app-size-avatar-lg);height:var(--app-size-avatar-lg);font:var(--md-sys-typescale-label-large);font-weight:700;cursor:default}
 /* El botón del avatar ocupa 48 px de área táctil */
-.avatar-btn{width:48px;height:48px;display:grid;place-items:center;border:0;background:transparent;padding:0;cursor:pointer;border-radius:50%}
+.avatar-btn{width:var(--app-size-target);height:var(--app-size-target);display:grid;place-items:center;border:0;background:transparent;padding:0;cursor:pointer;border-radius:50%}
 .avatar-btn:focus-visible{outline:none}
 .avatar-btn:focus-visible .avatar{outline:3px solid var(--md-sys-color-primary);outline-offset:2px}
 .avatar-btn:hover .avatar::after{opacity:var(--md-sys-state-hover-opacity)}

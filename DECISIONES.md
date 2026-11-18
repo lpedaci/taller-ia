@@ -28,6 +28,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-020 | 2026-11-18 | Bloque terminado en verde, con tilde y "Bloque completado" | Vigente |
 | D-021 | 2026-11-18 | Mobile: módulos de cada bloque en un desplegable | Vigente |
 | D-022 | 2026-11-18 | Etapa 1 aprobada y subida a GitHub | Vigente |
+| D-023 | 2026-11-18 | Tokens de tamaño de componentes y barra superior equilibrada | Vigente |
 
 ---
 
@@ -320,3 +321,30 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 **Verificación realizada:** ver D-021.
 
 **Pendientes o riesgos:** siguen abiertas las consultas de D-009 (título de la barra entre 600 y 680 px) y D-013 (ruta "Taller completo").
+
+## D-023 | 2026-11-18 | Tamaños de componentes: tokens y barra superior equilibrada
+
+**Solicitado:** **Cambio:** equilibrar los tamaños de la barra superior y fijarlos en el sistema de diseño. En mobile, el logo (32 px), el botón "Continuar" (40 px con ícono de 20), los íconos (24 en lugares de 48) y el avatar (40 px) no seguían una misma regla. Además, los espacios entre las acciones no eran parejos. En desktop, el buscador medía 56 px al lado de controles de 40, y el botón "Menú" del riel quedaba 8 px más abajo que la línea de la barra. **Alcance:** barra superior y riel en las 4 clases de ventana; modo claro y oscuro.
+
+**Decisión y motivo:**
+- Se agregaron tokens de tamaño de componentes en `css/components.css` (`css/tokens.css` no tiene esa familia y no se edita a mano): `--app-size-target` (48), `--app-size-control` (40), `--app-size-icon` (24), `--app-size-icon-sm` (20), `--app-size-avatar` (32), `--app-size-avatar-lg` (40) y `--app-size-brand` (32).
+- Regla del sistema: todo elemento interactivo ocupa un lugar de 48 px y lo visible se centra adentro.
+- Mobile:
+  - "Continuar" es un botón relleno de 40 px con ícono de 24, centrado en su lugar de 48;
+  - el avatar mide 32 px (medida de M3 para la barra superior);
+  - las acciones van una al lado de la otra, sin espacio extra;
+  - el logo y el avatar quedan a 16 px de cada borde.
+- Desktop:
+  - el buscador mide 48 px;
+  - el botón "Menú" del riel queda centrado en la misma línea que la barra (32 px desde arriba), sin cambiar la geometría del resto del riel;
+  - el avatar del menú de usuario mide 40 px.
+- Los tamaños se muestran en `estilos.html`, sección "Tamaños de componentes".
+
+**Archivos afectados:** `css/components.css`, `css/layout.css`, `estilos.html`.
+
+**Verificación realizada:**
+- Medición en 360 y 1280 px: todos los elementos de la barra centrados en y = 32 px; 24 px entre el buscador y "Continuar".
+- `npm run verificar` completo sin problemas (156 capturas).
+- Teclado 45 de 45 y riel 9 de 9.
+
+**Pendientes o riesgos:** ninguno.
