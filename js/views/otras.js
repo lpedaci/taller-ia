@@ -70,7 +70,7 @@ export function simple(id) {
 
 export function ayuda() {
   return `<div class="view-head"><div class="vh-txt"><h2>Ayuda</h2><p>Cómo usar el entorno</p></div></div>` +
-    `<div class="card" style="padding:var(--app-space-5)"><div class="prose">` +
+    `<div class="card prose-card" style="padding:var(--app-space-5)"><div class="prose">` +
       `<h3>Cómo se organiza</h3><p>El taller tiene 21 módulos en 7 bloques. El orden va de lo general a lo particular, pero los módulos no se bloquean: podés elegir tu camino. En <a href="${href("recorrido")}">Mi recorrido</a> elegís una ruta sugerida.</p>` +
       `<h3>Dónde se guarda tu progreso</h3><p>En este navegador. No hay cuentas ni se envían datos a ningún servidor. Para cambiar de dispositivo, usá "Exportar mi progreso" e "Importar progreso" desde el menú de tu avatar o desde <a href="${href("ajustes")}">Ajustes</a>.</p>` +
       `<h3>Retomar donde dejaste</h3><p>El botón "Continuar", arriba a la derecha, te lleva al último módulo que visitaste.</p>` +

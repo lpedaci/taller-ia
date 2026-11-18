@@ -180,8 +180,9 @@ export function pintarPersona() {
 export function marcarActual(id) {
   actual = id;
   const g = RUTAS[id].g;
+  // Se abre la sección de la página actual. Inicio no pertenece a ninguna: se abre Aprender, que es el siguiente paso natural.
   gruposAbiertos = { main: false, res: false, sup: false };
-  if (g !== "top") gruposAbiertos[g] = true;
+  gruposAbiertos[g === "top" ? "main" : g] = true;
   const destino = RUTAS[id].padre || id;
   qsa("[data-route]").forEach(a => a.dataset.route === destino ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
   // En la barra inferior, "Más" se marca si la página está en Recursos o Soporte
@@ -218,8 +219,10 @@ export function iniciarShell({ render }) {
   qs("#railGroups").addEventListener("click", e => {
     const b = e.target.closest("[data-group-btn]"); if (!b) return;
     const g = b.dataset.groupBtn;
-    if (!rail.classList.contains("expanded")) { gruposAbiertos[g] = true; setRail(true, true); qs(`#grp-${g} a`)?.focus(); }
-    else { gruposAbiertos[g] = !gruposAbiertos[g]; pintarGrupos(); }
+    // Acordeón: abrir una sección pliega las demás, salvo la que contiene la página actual
+    const abrir = g => { const activa = RUTAS[actual].g; Object.keys(gruposAbiertos).forEach(k => { if (k !== activa) gruposAbiertos[k] = false; }); gruposAbiertos[g] = true; };
+    if (!rail.classList.contains("expanded")) { abrir(g); setRail(true, true); qs(`#grp-${g} a`)?.focus(); }
+    else { if (gruposAbiertos[g]) gruposAbiertos[g] = false; else abrir(g); pintarGrupos(); }
   });
   // Vista previa: solo con mouse, con el riel colapsado y desde 600 px
   const conMouse = matchMedia("(hover: hover) and (pointer: fine)");

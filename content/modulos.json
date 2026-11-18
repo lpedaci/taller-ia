@@ -43,10 +43,10 @@
   ],
   "niveles": ["Sin evidencia", "Inicial", "En desarrollo", "Logrado"],
   "rutas": [
-    { "id": "esencial", "titulo": "Ruta esencial", "descripcion": "Bloques 1, 2 y 3, más los módulos 11 y 12.", "bloques": [1, 2, 3], "modulos": [11, 12] },
-    { "id": "creativa", "titulo": "Ruta creativa", "descripcion": "Bloques 1 y 2, más los módulos 15 a 17.", "bloques": [1, 2], "modulos": [15, 16, 17] },
-    { "id": "tecnica", "titulo": "Ruta técnica", "descripcion": "Bloques 1 y 2, más los módulos 14 y 18.", "bloques": [1, 2], "modulos": [14, 18] },
-    { "id": "idiomas", "titulo": "Ruta idiomas y accesibilidad", "descripcion": "Bloques 1 y 2, más los módulos 10 y 12.", "bloques": [1, 2], "modulos": [10, 12] },
+    { "id": "esencial", "titulo": "Ruta esencial", "descripcion": "Los bloques 1, 2 y 3, más los módulos 11 y 12.", "bloques": [1, 2, 3], "modulos": [11, 12] },
+    { "id": "creativa", "titulo": "Ruta creativa", "descripcion": "Los bloques 1 y 2, más los módulos 15 a 17.", "bloques": [1, 2], "modulos": [15, 16, 17] },
+    { "id": "tecnica", "titulo": "Ruta técnica", "descripcion": "Los bloques 1 y 2, más los módulos 14 y 18.", "bloques": [1, 2], "modulos": [14, 18] },
+    { "id": "idiomas", "titulo": "Ruta idiomas y accesibilidad", "descripcion": "Los bloques 1 y 2, más los módulos 10 y 12.", "bloques": [1, 2], "modulos": [10, 12] },
     { "id": "formadores", "titulo": "Ruta formadores", "descripcion": "La ruta esencial más el bloque 7.", "bloques": [1, 2, 3, 7], "modulos": [11, 12] },
     { "id": "completo", "titulo": "Taller completo", "descripcion": "Los 21 módulos, en el orden sugerido.", "bloques": [1, 2, 3, 4, 5, 6, 7], "modulos": [] }
   ]

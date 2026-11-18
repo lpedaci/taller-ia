@@ -132,6 +132,21 @@ document.documentElement.setAttribute("data-theme",matchMedia("(prefers-color-sc
   <div class="dlg-actions"><button class="btn btn-outlined" type="button" data-r="cancelar">Cancelar</button><button class="btn btn-filled" type="button" data-r="ok">Aceptar</button></div>
 </dialog>
 
+<dialog class="dialog dlg-form dlg-ruta" id="dlgRuta" aria-labelledby="dlgRT" aria-describedby="dlgRD">
+  <form id="formRuta">
+    <div class="dlg-head">
+      <button class="icon-btn dlg-close" type="button" data-ruta-act="cancelar" aria-label="Cerrar sin cambiar"><span class="ms" aria-hidden="true">close</span></button>
+      <h2 id="dlgRT">Elegí tu ruta</h2>
+      <button class="btn btn-text dlg-save-top" type="submit">Elegir</button>
+    </div>
+    <div class="dlg-body">
+      <p class="dlg-sub" id="dlgRD">Las rutas sirven para cursar el taller por partes o para armar una clase o un curso corto. Podés cambiarla cuando quieras: tu progreso no se pierde.</p>
+      <fieldset class="route-opts" id="rutaOpts"></fieldset>
+    </div>
+    <div class="dlg-actions"><button class="btn btn-outlined" type="button" data-ruta-act="cancelar">Cancelar</button><button class="btn btn-filled" type="submit">Elegir ruta</button></div>
+  </form>
+</dialog>
+
 <dialog class="dialog dlg-form" id="dlgTarea" aria-labelledby="dlgTT">
   <form id="formTarea" novalidate>
     <div class="dlg-head">

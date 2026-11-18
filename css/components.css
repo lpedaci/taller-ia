@@ -273,7 +273,7 @@ textarea.field{height:auto;min-height:112px;padding:var(--app-space-3);resize:ve
 .empty-state{display:grid;justify-items:center;text-align:center;gap:var(--app-space-3);padding:var(--app-space-8) var(--app-space-4);color:var(--md-sys-color-on-surface-variant)}
 .empty-state svg{width:112px;height:112px}
 .empty-state h3{font:var(--md-sys-typescale-title-medium);color:var(--md-sys-color-on-surface)}
-.empty-state p{font:var(--md-sys-typescale-body-medium);max-width:48ch}
+.empty-state p{font:var(--md-sys-typescale-body-medium)}
 
 /* ---------- Skeleton ---------- */
 .sk{background:linear-gradient(90deg,var(--md-sys-color-surface-container-high) 0%,var(--md-sys-color-surface-container-highest) 50%,var(--md-sys-color-surface-container-high) 100%);background-size:200% 100%;animation:sk-shimmer 1.4s linear infinite;border-radius:var(--md-sys-shape-corner-small)}

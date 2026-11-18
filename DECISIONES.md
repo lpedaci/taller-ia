@@ -21,6 +21,9 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-013 | 2026-11-18 | Ruta "Taller completo" sumada a las rutas sugeridas | Vigente |
 | D-014 | 2026-11-18 | Herramientas de verificación y modo `?diagnostico=1` | Vigente |
 | D-015 | 2026-11-18 | Cierre de la etapa 1: verificación completa | Vigente |
+| D-016 | 2026-11-18 | Los textos explicativos ocupan el ancho de su contenedor | Vigente |
+| D-017 | 2026-11-18 | Tarjeta "Tu ruta" rediseñada, con diálogo para elegir la ruta | Vigente |
+| D-018 | 2026-11-18 | Riel: Aprender abierta en Inicio y secciones en acordeón (reemplaza en parte una regla del brief) | Vigente |
 
 ---
 
@@ -211,3 +214,45 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 - Lo automático detecta solo una parte de los problemas: falta una prueba con lector de pantalla (NVDA en Windows) y con personas usuarias.
 - Dos consultas para Lourdes: el título de la barra entre 600 y 680 px (D-009) y la sexta ruta "Taller completo" (D-013).
 - Corregir la tabla de la paleta terciaria en el README del design system (D-004).
+
+## D-016 | 2026-11-18 | Ancho de los textos explicativos
+
+**Solicitado:** **Cambio:** los párrafos que explican algo (descripciones de tarjetas, textos de ayuda, estados vacíos, introducciones de sección) ocupan todo el ancho de su contenedor, en lugar de cortar la línea antes (en 48, 68 o 72 caracteres) y dejar un hueco a la derecha. **Alcance:** todas las pantallas, las 4 clases de ventana y los dos modos. **Motivo inferido:** el corte anticipado deja el texto desalineado con el resto del contenido de la tarjeta (chips, botones, barras) y genera cortes de línea innecesarios que dificultan la lectura. **Verificación:** que ninguna línea quede excesivamente larga en 1920 px.
+
+**Decisión y motivo:** se quitó el ancho máximo de los párrafos. Para que las líneas no se vuelvan demasiado largas, lo que limita el ancho de lectura es el contenedor, no el párrafo: Ajustes (760 px), la página de cada módulo (880 px) y Ayuda (960 px, nuevo). Con el mismo criterio, el texto de las lecciones de la etapa 3 (el brief pide entre 60 y 75 caracteres por línea) se va a resolver con el ancho de la tarjeta de lectura, no con el del párrafo.
+
+**Archivos afectados:** `css/components.css`, `css/layout.css`, `js/views/otras.js`, `estilos.html`.
+
+**Verificación realizada:** `npm run verificar` completo (156 capturas, axe-core sin problemas, sin scroll ni elementos cortados). Revisión de capturas de Mi recorrido en 360, 768 y 1280 px.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-017 | 2026-11-18 | Tarjeta "Tu ruta" en Mi recorrido
+
+**Solicitado:** **Cambio:** rediseñar la tarjeta de la ruta en Mi recorrido. **Problemas que tenía:** el título repetía la palabra ruta ("Tu ruta: Ruta esencial"); un solo párrafo mezclaba qué incluye la ruta, el avance y una instrucción; las 6 rutas aparecían como chips sin explicar qué incluye cada una, así que se elegía a ciegas; y la leyenda de estados (Completado, En curso) estaba dentro de la tarjeta, aunque explica el mapa de módulos. **Alcance:** Mi recorrido, las 4 clases de ventana y los dos modos.
+
+**Decisión y motivo:**
+- **Encabezado:** "Tu ruta" como texto de apoyo y el nombre de la ruta como título, con el ícono de ruta en un contenedor `primary-container`.
+- **Contenido:** qué incluye la ruta, en una oración, y el avance como dato destacado ("6 de 13 módulos completados") con su barra de progreso. En pantallas anchas, texto y avance van en dos columnas.
+- **Cambiar de ruta:** botón tonal, como acción de la tarjeta (arriba a la derecha en tablet y desktop; abajo y a todo el ancho en mobile). Abre el diálogo "Elegí tu ruta" con las 6 rutas como lista de opciones, cada una con qué incluye y cuántos módulos tiene, y un texto que aclara que el progreso no se pierde. Cancelar y Elegir ruta; en mobile, diálogo de pantalla completa (patrón M3). Al elegir, aviso "Ruta cambiada".
+- **Leyenda:** pasó fuera de la tarjeta, justo antes del mapa de módulos.
+- "Cambiar de ruta" del menú del avatar abre directamente el mismo diálogo.
+- Se corrigió también un error del prototipo: en mobile, el título del bloque se superponía con "4 de 4 módulos completados".
+
+**Archivos afectados:** `js/views/recorrido.js`, `index.html` (diálogo), `css/layout.css`, `content/modulos.json` (descripciones de las rutas: "Los bloques..." en lugar de "Bloques...").
+
+**Verificación realizada:** capturas en 360, 768 y 1280 px; diálogo con teclado (flechas entre opciones, Escape, foco de vuelta en "Cambiar de ruta"); `npm run verificar` completo sin problemas.
+
+**Pendientes o riesgos:** sigue abierta la consulta de D-013 sobre la ruta "Taller completo".
+
+## D-018 | 2026-11-18 | Secciones del riel: Aprender abierta en Inicio y comportamiento de acordeón
+
+**Solicitado:** **Cambio:** (1) en Inicio, la sección Aprender del riel aparece desplegada; (2) al abrir una sección, se pliega la que estaba abierta, salvo la sección que contiene la página actual, que siempre queda abierta. **Alcance:** riel expandido en Large, riel modal en Medium y Expanded, y riel colapsado (los íconos de Recursos y Soporte expanden el riel con esa sección abierta). **Motivo inferido:** Inicio no pertenece a ninguna sección y el riel quedaba con todo plegado, sin mostrar el camino principal; y abrir varias secciones a la vez alarga el riel y diluye la ubicación.
+
+**Decisión y motivo:** reemplaza en parte a la regla del brief: "La persona puede abrir otra sección a mano, pero eso no se recuerda". Se mantiene que no se recuerda; ahora, además, abrir una sección pliega las otras, salvo la activa. Tocar una sección abierta la pliega.
+
+**Archivos afectados:** `js/shell.js`.
+
+**Verificación realizada:** prueba automática de 9 casos (Inicio, Glosario y Agenda; desktop y tablet), todos correctos. Prueba de teclado completa (45 de 45).
+
+**Pendientes o riesgos:** ninguno.

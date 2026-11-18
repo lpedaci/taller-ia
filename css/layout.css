@@ -324,16 +324,55 @@ details.alt summary{cursor:pointer;color:var(--md-sys-color-primary);font:var(--
 /* =====================================================================
    MI RECORRIDO
    ===================================================================== */
-.route-intro{display:grid;gap:var(--app-space-3);padding:var(--app-space-4);margin-bottom:var(--app-space-6)}
-.route-intro h3{font:var(--md-sys-typescale-title-medium)}
-.route-intro p{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant);max-width:72ch}
-.route-legend{display:flex;flex-wrap:wrap;gap:var(--app-space-4);font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+/* Tarjeta "Tu ruta": qué ruta es, qué incluye, cuánto llevás y cómo cambiarla */
+/* Desktop: ícono, título y acción arriba; contenido abajo. Mobile: la acción va al final, a todo el ancho */
+.route-card{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"ic tit btn" "body body body";align-items:center;gap:var(--app-space-4);padding:var(--app-space-5);margin-bottom:var(--app-space-4)}
+.rc-head{display:contents}
+.rc-head .ic{grid-area:ic}
+.rc-tit{grid-area:tit}
+#cambiarRuta{grid-area:btn}
+.rc-body{grid-area:body}
+@media (max-width:599px){
+  .route-card{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"ic tit" "body body" "btn btn"}
+  #cambiarRuta{width:100%}
+}
+.rc-head .ic{width:48px;height:48px;border-radius:var(--md-sys-shape-corner-large);display:grid;place-items:center;flex:none;background:var(--md-sys-color-primary-container);color:var(--md-sys-color-on-primary-container)}
+.rc-tit{min-width:0;display:grid;gap:2px}
+.rc-over{font:var(--md-sys-typescale-label-medium);color:var(--md-sys-color-on-surface-variant)}
+.rc-tit h3{font:var(--md-sys-typescale-title-large)}
+.rc-desc{font:var(--md-sys-typescale-body-large);color:var(--md-sys-color-on-surface-variant)}
+.rc-prog{display:grid;gap:var(--app-space-2);font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+.rc-prog b{font:var(--md-sys-typescale-title-medium);font-weight:var(--md-sys-typescale-emphasized-weight);color:var(--md-sys-color-on-surface)}
+@container rc (min-width:720px){
+  .rc-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,1fr);gap:var(--app-space-6);align-items:end}
+}
+.rc-body{display:grid;gap:var(--app-space-4)}
+.route-card{container-type:inline-size;container-name:rc}
+/* Selector de ruta: lista de opciones con su descripción */
+.route-opts{display:grid;gap:2px;margin:var(--app-space-4) 0 0;padding:0;border:0;min-width:0}
+.route-opt{position:relative;isolation:isolate;display:flex;gap:var(--app-space-4);align-items:flex-start;min-height:72px;padding:var(--app-space-3) var(--app-space-4);background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-extra-small);cursor:pointer}
+.route-opts .route-opt:first-of-type{border-top-left-radius:var(--md-sys-shape-corner-large);border-top-right-radius:var(--md-sys-shape-corner-large)}
+.route-opts .route-opt:last-of-type{border-bottom-left-radius:var(--md-sys-shape-corner-large);border-bottom-right-radius:var(--md-sys-shape-corner-large)}
+.route-opt::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--md-sys-color-on-surface);opacity:0;z-index:-1;transition:opacity var(--md-sys-motion-spring-fast-effects)}
+.route-opt:hover::after{opacity:var(--md-sys-state-hover-opacity)}
+.route-opt:has(input:checked){background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container)}
+.route-opt:has(input:focus-visible){outline:3px solid var(--md-sys-color-primary);outline-offset:-3px}
+.route-opt input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--md-sys-color-primary);cursor:pointer}
+.route-opt input:focus-visible{outline:none}
+.route-opt .ro-txt{display:grid;gap:2px;min-width:0}
+.route-opt b{font:var(--md-sys-typescale-title-small)}
+.route-opt small{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+.route-opt:has(input:checked) small{color:var(--md-sys-color-on-secondary-container)}
+.dlg-ruta{width:min(560px,calc(100vw - 48px))}
+.dlg-ruta .dlg-sub{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+@media (max-width:599px){ .dlg-ruta{width:100vw} .dlg-ruta .dlg-body{overflow:auto} }
+.route-legend{display:flex;flex-wrap:wrap;gap:var(--app-space-2) var(--app-space-4);margin:0 0 var(--app-space-6);font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
 .route-legend span{display:inline-flex;align-items:center;gap:6px}
 .route-legend .ms{font-size:18px}
 .route{display:grid;gap:var(--app-space-6)}
 .route-block{position:relative}
 .route-block>header{display:flex;flex-wrap:wrap;align-items:center;gap:var(--app-space-3);margin-bottom:var(--app-space-3)}
-.route-block h3{font:var(--md-sys-typescale-title-large);display:flex;gap:var(--app-space-3);align-items:center;flex:1;min-width:0}
+.route-block h3{font:var(--md-sys-typescale-title-large);display:flex;gap:var(--app-space-3);align-items:center;flex:1 1 auto;min-width:0}
 .route-block h3 .n{width:36px;height:36px;border-radius:var(--md-sys-shape-corner-medium);background:var(--md-sys-color-primary-container);color:var(--md-sys-color-on-primary-container);display:grid;place-items:center;font:var(--md-sys-typescale-title-small);flex:none}
 .route-block .rb-sum{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
 .mod.off-route{border-style:dashed}
@@ -346,7 +385,7 @@ details.alt summary{cursor:pointer;color:var(--md-sys-color-primary);font:var(--
 .module-hero{padding:var(--app-space-5)}
 .module-hero .chip{margin-bottom:var(--app-space-3)}
 .module-hero h2{font:var(--md-sys-typescale-headline-medium);margin-bottom:var(--app-space-2)}
-.module-hero p{font:var(--md-sys-typescale-body-large);color:var(--md-sys-color-on-surface-variant);max-width:68ch}
+.module-hero p{font:var(--md-sys-typescale-body-large);color:var(--md-sys-color-on-surface-variant)}
 .module-hero .mh-prog{display:grid;gap:var(--app-space-2);margin-top:var(--app-space-4);max-width:420px;font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
 .step-list{list-style:none;margin:0;padding:0;display:grid;gap:2px;counter-reset:paso}
 
@@ -381,12 +420,14 @@ a.cell:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offse
 .month .dots{display:none}
 .learn-grid{display:grid;gap:var(--app-space-4);grid-template-columns:minmax(0,1fr)}
 .settings{display:grid;gap:var(--app-space-4);max-width:760px}
+.prose-card{max-width:960px}
 .setting{display:flex;flex-wrap:wrap;gap:var(--app-space-3);align-items:center;justify-content:space-between;padding:var(--app-space-4)}
 .setting>div:first-child{flex:1 1 240px;min-width:0}
 .setting h3{font:var(--md-sys-typescale-title-medium)}
 .setting p{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
 .setting .actions{display:flex;flex-wrap:wrap;gap:var(--app-space-2)}
-.prose{max-width:72ch;display:grid;gap:var(--app-space-3);font:var(--md-sys-typescale-body-large)}
+/* Los textos explicativos ocupan el ancho de su contenedor; el que limita la lectura es el contenedor */
+.prose{display:grid;gap:var(--app-space-3);font:var(--md-sys-typescale-body-large)}
 .prose h3{font:var(--md-sys-typescale-title-medium);margin-top:var(--app-space-2)}
 .prose ul{margin:0;padding-left:1.25em;display:grid;gap:var(--app-space-2)}
 
