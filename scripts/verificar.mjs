@@ -23,14 +23,19 @@ const MODOS = ["light", "dark"];
 const PANTALLAS = [
   { id: "inicio", url: "index.html#/inicio" },
   { id: "inicio-ejemplo", url: "index.html?demo=1#/inicio" },
+  { id: "agenda-vacia", url: "index.html#/agenda" },
+  { id: "estado-error", url: "index.html?simular=error#/inicio" },
+  { id: "estado-error-leccion", url: "index.html?simular=error-leccion#/modulo/prueba/paso/2" },
+  { id: "estado-sin-conexion", url: "index.html?simular=sin-conexion#/modulo/prueba/paso/4", clic: ".video-play" },
   { id: "leccion", url: "index.html#/modulo/prueba/paso/3" },
-  { id: "act-chequeo", url: "index.html#/modulo/prueba/paso/4" },
-  { id: "act-clasificar", url: "index.html#/modulo/prueba/paso/5" },
-  { id: "act-escenario", url: "index.html#/modulo/prueba/paso/6" },
-  { id: "act-constructor", url: "index.html#/modulo/prueba/paso/7" },
-  { id: "act-comparar", url: "index.html#/modulo/prueba/paso/8" },
-  { id: "act-disenar", url: "index.html#/modulo/prueba/paso/9" },
-  { id: "act-reflexion", url: "index.html#/modulo/prueba/paso/10" },
+  { id: "video", url: "index.html#/modulo/prueba/paso/4" },
+  { id: "act-chequeo", url: "index.html#/modulo/prueba/paso/5" },
+  { id: "act-clasificar", url: "index.html#/modulo/prueba/paso/6" },
+  { id: "act-escenario", url: "index.html#/modulo/prueba/paso/7" },
+  { id: "act-constructor", url: "index.html#/modulo/prueba/paso/8" },
+  { id: "act-comparar", url: "index.html#/modulo/prueba/paso/9" },
+  { id: "act-disenar", url: "index.html#/modulo/prueba/paso/10" },
+  { id: "act-reflexion", url: "index.html#/modulo/prueba/paso/11" },
   { id: "leccion-fin", url: "index.html#/modulo/prueba/completado" },
   { id: "recorrido", url: "index.html#/recorrido" },
   { id: "agenda-semana", url: "index.html#/agenda/semana" },
@@ -87,6 +92,7 @@ for (const modo of MODOS) {
     for (const p of PANTALLAS) {
       const { page, errores } = await abrir(contexto, p.url);
       const caso = `${p.id} | ${ancho} px | ${modo === "light" ? "claro" : "oscuro"}`;
+      if (p.clic) { await page.click(p.clic); await page.waitForTimeout(300); }
 
       // Captura de página completa
       await page.screenshot({ path: join(CAPTURAS, `${p.id}-${ancho}-${modo === "light" ? "claro" : "oscuro"}.png`), fullPage: true });

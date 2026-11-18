@@ -10,6 +10,8 @@ import { dibujar } from "./bloques.js";
 // Las actividades se registran como tipos de bloque al importarse
 import "../activities/evaluadas.js";
 import "../activities/produccion.js";
+import "../activities/video.js";
+import { demoraSimulada, errorSimulado, tarjetaError, esperaConMensaje } from "../estados.js";
 import { crearLector, disponible as puedeLeer } from "../escuchar.js";
 
 const MOMENTOS = { gancho: "Para empezar", objetivo: "Qué vas a lograr", activacion: "Lo que ya sabés", contenido: "Contenido", practica: "Práctica guiada", feedback: "Revisión", evaluacion: "Chequeo", transferencia: "En tu trabajo o en tu aula", cierre: "Cierre" };
@@ -21,6 +23,8 @@ let lector = null;
 const archivo = id => `content/modulo-${/^\d+$/.test(String(id)) ? pad2(id) : id}.json`;
 async function cargarLeccion(id) {
   if (cache.has(id)) return cache.get(id);
+  await demoraSimulada(2500);
+  errorSimulado("la lección", "error-leccion");
   const l = await leerJSON(archivo(id));
   cache.set(id, l); return l;
 }
@@ -33,7 +37,7 @@ function metaDe(id, l) {
 
 /* ---------- Esqueleto mientras carga (misma forma que la lección: sin saltos de layout) ---------- */
 export function esqueleto() {
-  return `<div class="lesson" aria-hidden="true"><div class="lesson-main"><div class="card lesson-head"><div class="sk" style="height:24px;width:160px"></div><div class="sk" style="height:32px;width:70%;margin-top:12px"></div><div class="sk" style="height:8px;margin-top:16px"></div></div>` +
+  return `<div id="lecEspera" class="lec-espera"></div><div class="lesson" aria-hidden="true"><div class="lesson-main"><div class="card lesson-head"><div class="sk" style="height:24px;width:160px"></div><div class="sk" style="height:32px;width:70%;margin-top:12px"></div><div class="sk" style="height:8px;margin-top:16px"></div></div>` +
     `<div class="card lesson-step"><div class="sk" style="height:16px;width:120px"></div><div class="sk" style="height:28px;width:60%;margin:12px 0 20px"></div>` +
     `<div class="sk" style="height:14px"></div><div class="sk" style="height:14px;margin-top:10px"></div><div class="sk" style="height:14px;width:80%;margin-top:10px"></div><div class="sk" style="height:160px;margin-top:24px;border-radius:var(--md-sys-shape-corner-large)"></div></div></div>` +
     `<div class="card lesson-side"><div class="sk" style="height:20px;width:60%"></div>${'<div class="sk" style="height:40px;margin-top:12px"></div>'.repeat(5)}</div></div>`;
@@ -46,13 +50,25 @@ export async function mostrar(main, args) {
   // Los módulos sin lección todavía no piden archivo (evita un error 404 en la consola)
   if (modulo(id) && !modulo(id).leccion) return enConstruccion(main, modulo(id));
   let leccion = null;
-  if (!cache.has(id)) { main.innerHTML = esqueleto(); main.setAttribute("aria-busy", "true"); }
+  let cancelar = () => {};
+  if (!cache.has(id)) {
+    main.innerHTML = esqueleto(); main.setAttribute("aria-busy", "true");
+    cancelar = esperaConMensaje(qs("#lecEspera"), { texto: "Preparando la lección: pasos y actividades.", despues: "Ya casi está, preparando las actividades.", salida: `<div class="act-actions"><a class="btn btn-outlined" href="${href("recorrido")}">${icono("route")}Volver a Mi recorrido</a></div>` });
+  }
   try { leccion = await cargarLeccion(id); }
   catch (e) {
+    cancelar();
     if (e.status === 404 && modulo(id)) return enConstruccion(main, modulo(id));
     if (e.status === 404) return noEncontrado(main);
-    throw e;
+    // Error de carga: explica qué pasó, qué hacer, y ofrece seguir con otra cosa
+    main.innerHTML = tarjetaError({
+      titulo: "No se pudo cargar la lección",
+      texto: "Puede ser un problema de conexión. Tu progreso guardado no se pierde.",
+      acciones: `<button class="btn btn-filled" type="button" data-reintentar>${icono("refresh")}Reintentar</button><a class="btn btn-outlined" href="${href("recorrido")}">${icono("route")}Volver a Mi recorrido</a>`
+    });
+    return { titulo: modulo(id) ? "Módulo " + id : "Lección", sub: "No se pudo cargar", foco: "[data-reintentar]" };
   }
+  cancelar();
   const meta = metaDe(id, leccion);
   if (args[1] === "completado") return completado(main, meta, leccion);
   let paso = args[1] === "paso" ? parseInt(args[2], 10) : NaN;

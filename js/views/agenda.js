@@ -1,7 +1,7 @@
 /* Taller - IA | Agenda completa: vistas Día, Semana y Mes, navegación y filtros por tipo */
 import { esc, cap, hoy, mismoDia, sumarDias, inicioSemana, hhmm, fechaLarga, DIAS_C, MESES, MESES_C, isoDia, desdeIsoDia, plural, qs } from "../util.js";
-import { eventos, terminado, TIPOS, GRUPOS_EVENTO } from "../state.js";
-import { icono, chipTipo, vacio } from "../ui.js";
+import { eventos, terminado, TIPOS, GRUPOS_EVENTO, tieneCohorte, agregarEvento, eliminarEvento } from "../state.js";
+import { icono, chipTipo, vacio, abrirDialogo, confirmar, aviso } from "../ui.js";
 import { href } from "../routes.js";
 
 let vista = "semana", ref = hoy();
@@ -28,7 +28,8 @@ function cuerpo() {
     return `<div class="card"><div class="card-body" style="padding-top:16px"><ol class="timeline">` + evs.map(e => {
       const T = TIPOS[e.tipo];
       return `<li><time datetime="${e.inicio.toISOString()}">${hhmm(e.inicio)}</time><div class="evt k-${T.k}${terminado(e) ? " past" : ""}"><h3>${esc(e.titulo)}</h3>` +
-        `<div class="meta">${chipTipo(e.tipo)}<span>${e.fin ? hhmm(e.inicio) + " a " + hhmm(e.fin) : "a las " + hhmm(e.inicio)}</span>${finTag(e)}</div></div></li>`;
+        `<div class="meta">${chipTipo(e.tipo)}<span>${e.fin ? hhmm(e.inicio) + " a " + hhmm(e.fin) : "a las " + hhmm(e.inicio)}</span>${finTag(e)}${e.propio ? '<span class="own">Propio</span>' : ""}</div>` +
+        (e.propio ? `<button class="icon-btn evt-del" type="button" data-del-evento="${esc(e.id)}" aria-label="Eliminar el evento: ${esc(e.titulo)}" data-tip="Eliminar">${icono("delete")}</button>` : "") + `</div></li>`;
     }).join("") + `</ol></div></div>`;
   }
   if (vista === "semana") {
@@ -60,8 +61,15 @@ function cuerpo() {
   return h + `</div>`;
 }
 
+export const botonEvento = (clase = "btn-tonal") => `<button class="btn ${clase}" type="button" data-nuevo-evento aria-haspopup="dialog">${icono("add")}Agregar evento</button>`;
+
 export function render() {
-  return `<div class="view-head"><div class="vh-txt"><h2>Agenda</h2><p>Los eventos que ya pasaron se ven atenuados y marcados como finalizados.</p></div>` +
+  // Modo autoasistido sin eventos: estado vacío con la primera acción
+  if (!tieneCohorte() && !eventos().length) {
+    return `<div class="view-head"><div class="vh-txt"><h2>Agenda</h2><p>Fechas, entregas y encuentros.</p></div></div>` +
+      `<div class="card">${vacio("Tu agenda está vacía", "Estás cursando en modo autoasistido, sin fechas de una cohorte. Podés agregar tus propios eventos: un encuentro, una entrega o un recordatorio para avanzar con un módulo.", botonEvento("btn-filled"))}</div>`;
+  }
+  return `<div class="view-head"><div class="vh-txt"><h2>Agenda</h2><p>Los eventos que ya pasaron se ven atenuados y marcados como finalizados.</p></div>` + botonEvento() +
     `<div class="connected" role="group" aria-label="Vista de agenda">${[["dia", "Día"], ["semana", "Semana"], ["mes", "Mes"]].map(v => `<button type="button" data-vista="${v[0]}" aria-pressed="${vista === v[0]}">${v[1]}</button>`).join("")}</div></div>` +
     `<div class="view-head" style="margin-top:0"><div class="cal-nav">` +
       `<button class="icon-btn" type="button" data-cal="-1" aria-label="${vista === "dia" ? "Día anterior" : vista === "semana" ? "Semana anterior" : "Mes anterior"}" data-tip="Anterior">${icono("chevron_left")}</button>` +
@@ -73,7 +81,41 @@ export function render() {
 }
 
 /** Interacciones de la Agenda */
-export function iniciar() {
+export function iniciar(rerender) {
+  // Diálogo "Nuevo evento"
+  const dlg = qs("#dlgEvento"), form = qs("#formEvento"), tit = qs("#evTitulo"), err = qs("#evErr");
+  const limpiar = () => { tit.removeAttribute("aria-invalid"); tit.removeAttribute("aria-describedby"); err.hidden = true; };
+  document.addEventListener("click", async e => {
+    if (e.target.closest("[data-nuevo-evento]")) {
+      form.reset(); limpiar();
+      qs("#evFecha").value = isoDia(ref || hoy()); qs("#evInicio").value = "18:00";
+      abrirDialogo(dlg, tit); return;
+    }
+    const del = e.target.closest("[data-del-evento]");
+    if (del) {
+      const ev = eventos().find(x => x.id === del.dataset.delEvento); if (!ev) return;
+      if (await confirmar({ icono: "delete", titulo: "¿Eliminar este evento?", texto: `<b>${esc(ev.titulo)}</b><br>Se quita de tu agenda. No se puede deshacer.`, ok: "Eliminar", peligro: true })) {
+        eliminarEvento(ev.id); rerender(); qs("[data-nuevo-evento]")?.focus(); aviso("Evento eliminado");
+      }
+    }
+  });
+  dlg.addEventListener("click", e => { if (e.target.closest('[data-evento="cancelar"]')) dlg.close(); });
+  tit.addEventListener("input", () => { if (tit.value.trim()) limpiar(); });
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    if (!tit.value.trim()) { tit.setAttribute("aria-invalid", "true"); tit.setAttribute("aria-describedby", "evErr"); err.hidden = false; tit.focus(); return; }
+    const f = qs("#evFecha").value || isoDia(hoy());
+    const [y, mo, d] = f.split("-").map(Number);
+    const hora = s => { const [h, m] = (s || "00:00").split(":").map(Number); return new Date(y, mo - 1, d, h, m).getTime(); };
+    const fin = qs("#evFin").value;
+    agregarEvento({ titulo: tit.value.trim(), tipo: qs("#evTipo").value, inicio: hora(qs("#evInicio").value || "09:00"), fin: fin ? hora(fin) : null });
+    ref = new Date(y, mo - 1, d);
+    dlg.dataset.sinRetorno = "1"; dlg.close();
+    if (location.hash.startsWith("#/agenda")) { history.replaceState(null, "", href("agenda", "dia", f)); vista = "dia"; }
+    rerender();
+    qs("[data-nuevo-evento]")?.focus();
+    aviso("Evento agregado a tu agenda");
+  });
   document.addEventListener("click", e => {
     if (!qs("#calBody")) return;
     const v = e.target.closest("[data-vista]");

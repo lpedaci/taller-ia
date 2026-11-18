@@ -40,12 +40,13 @@ export async function leerJSON(ruta) {
 
 /** Carga el contenido y el estado guardado. Lanza error si el contenido no está disponible. */
 export async function cargar() {
-  const [mod, demo, agenda] = await Promise.all([
+  const [mod, demo, agenda, videos] = await Promise.all([
     leerJSON("content/modulos.json"),
     leerJSON("content/demo.json"),
-    leerJSON("content/agenda.json").catch(() => ({ cohortes: [] }))
+    leerJSON("content/agenda.json").catch(() => ({ cohortes: [] })),
+    leerJSON("content/videos.json").catch(() => ({ videos: [] }))
   ]);
-  Object.assign(datos, mod, { demo, agenda });
+  Object.assign(datos, mod, { demo, agenda, videos: videos.videos || [] });
   est = normalizar(store.get(CLAVE, null));
   return est;
 }
@@ -63,7 +64,8 @@ function inicial() {
     evidencias: [],               // [{ id, titulo, detalle, modulo, fecha }]
     objetivos: [],
     diario: [],                   // [{ id, modulo, pregunta, texto, fecha }]
-    prompts: []                   // [{ id, nombre, etiquetas, texto, modulo, origen, fecha }]
+    prompts: [],                  // [{ id, nombre, etiquetas, texto, modulo, origen, fecha }]
+    eventosPropios: []            // [{ id, titulo, tipo, inicio, fin }] (marcas de tiempo)
   };
   if (!DEMO) return base;
   const d = datos.demo;
@@ -210,8 +212,16 @@ export function eventos() {
     const coh = (datos.agenda?.cohortes || []).find(c => c.id === est.perfil.cohorte);
     lista = (coh?.eventos || []).map(e => ({ titulo: e.titulo, tipo: e.tipo, modulo: e.modulo ?? null, enlace: e.enlace || null, inicio: new Date(e.inicio), fin: e.fin ? new Date(e.fin) : null }));
   }
-  cacheEventos = lista.filter(e => !isNaN(e.inicio)).sort((a, b) => a.inicio - b.inicio);
+  const propios = (est.eventosPropios || []).map(e => ({ id: e.id, titulo: e.titulo, tipo: e.tipo, modulo: null, propio: true, inicio: new Date(e.inicio), fin: e.fin ? new Date(e.fin) : null }));
+  cacheEventos = lista.concat(propios).filter(e => !isNaN(e.inicio)).sort((a, b) => a.inicio - b.inicio);
   return cacheEventos;
+}
+export const tieneCohorte = () => DEMO || !!(datos.agenda?.cohortes || []).find(c => c.id === est.perfil.cohorte);
+export function agregarEvento(ev) {
+  (est.eventosPropios ||= []).push({ ...ev, id: "e" + Date.now() }); cacheEventos = null; guardar();
+}
+export function eliminarEvento(id) {
+  est.eventosPropios = (est.eventosPropios || []).filter(e => e.id !== id); cacheEventos = null; guardar();
 }
 export const terminado = e => (e.fin || e.inicio) < new Date();
 
@@ -274,10 +284,10 @@ export function importar(obj) {
   if (!obj || obj.app !== "taller-ia" || typeof obj.datos !== "object") return "El archivo no es un progreso exportado del Taller - IA.";
   if (obj.version > VERSION) return "El archivo es de una versión más nueva del taller. Actualizá la página e intentá de nuevo.";
   Object.entries(obj.datos).forEach(([k, v]) => store.set(k, v));
-  est = normalizar(store.get(CLAVE, null));
+  est = normalizar(store.get(CLAVE, null)); cacheEventos = null;
   return null;
 }
 export function borrarTodo() {
   store.borrarTodo();
-  est = inicial();
+  est = inicial(); cacheEventos = null;
 }

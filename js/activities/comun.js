@@ -24,6 +24,9 @@ export function guardarResultado(ctx, b, datos) {
 }
 export function guardarParcial(ctx, b, respuesta) {
   const id = idDe(ctx, b);
+  // Indicador discreto "Guardado": no interrumpe ni mueve el foco
+  const ind = document.querySelector(`[data-act="${CSS.escape(id)}"] .act-guardado`);
+  if (ind) { ind.textContent = ""; requestAnimationFrame(() => { ind.innerHTML = `<span class="ms" aria-hidden="true">cloud_done</span>Guardado`; }); }
   if (esPrueba(ctx)) { memoria.set(id, { ...memoria.get(id), respuesta }); return; }
   guardarBorrador(id, respuesta, { modulo: ctx.meta.id });
 }
@@ -41,7 +44,7 @@ export function marco(tipo, b, ctx, cuerpo) {
   const [ic, etiqueta] = TIPOS[tipo] || ["task", "Actividad"];
   const hid = "t-" + idDe(ctx, b);
   return `<section class="act act-${tipo}" aria-labelledby="${hid}" data-act="${esc(idDe(ctx, b))}">` +
-    `<header class="act-head"><span class="act-ic">${icono(ic)}</span><div><p class="act-tipo">Actividad | ${etiqueta}</p><h4 id="${hid}">${esc(b.titulo || etiqueta)}</h4></div></header>` +
+    `<header class="act-head"><span class="act-ic">${icono(ic)}</span><div><p class="act-tipo">Actividad | ${etiqueta}</p><h4 id="${hid}">${esc(b.titulo || etiqueta)}</h4></div><span class="act-guardado" role="status"></span></header>` +
     (b.consigna ? `<div class="act-consigna">${md(b.consigna)}</div>` : "") +
     `<div class="act-cuerpo">${cuerpo}</div>` +
     `<div class="act-fb" role="status" aria-live="polite"></div></section>`;

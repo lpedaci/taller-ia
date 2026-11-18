@@ -1,6 +1,6 @@
 /* Taller - IA | Inicio: saludo, resumen, agenda, continuar, competencias, pendientes, registro y módulos */
 import { esc, cap, hoy, ahora, mismoDia, sumarDias, diasDesdeHoy, hhmm, fechaLarga, DIAS, MESES, isoDia, plural, pad2, qs } from "../util.js";
-import { datos, perfil, evidenciasTotal, hayProgreso, pasosVistos, avance, completados, objetivosTotales, eventos, terminado, tareas, tareasAbiertas, marcarTarea, agregarTarea, eliminarTarea, TIPOS, GRUPOS_EVENTO } from "../state.js";
+import { tieneCohorte, datos, perfil, evidenciasTotal, hayProgreso, pasosVistos, avance, completados, objetivosTotales, eventos, terminado, tareas, tareasAbiertas, marcarTarea, agregarTarea, eliminarTarea, TIPOS, GRUPOS_EVENTO } from "../state.js";
 import { icono, cabecera, anillo, chipTipo, vacio, aviso, abrirDialogo, confirmar } from "../ui.js";
 import { tarjetaModulo, competenciasHTML, registroHTML, dibujarRegistro } from "./piezas.js";
 import { href } from "../routes.js";
@@ -15,7 +15,7 @@ function tarjetaResumen(ic, num, lbl, destino, enlace, tiempo) {
 /* ---------- Agenda: hoy ---------- */
 export function agendaHoyHTML() {
   const n = ahora(), evs = eventos().filter(e => mismoDia(e.inicio, hoy()));
-  if (!evs.length) return vacio("No tenés eventos hoy", "Cuando haya entregas, evaluaciones o encuentros, los vas a ver acá.");
+  if (!evs.length) return vacio("No tenés eventos hoy", tieneCohorte() ? "Cuando haya entregas, evaluaciones o encuentros, los vas a ver acá." : "En modo autoasistido podés agregar tus propios eventos y recordatorios.", tieneCohorte() ? "" : `<button class="btn btn-tonal" type="button" data-nuevo-evento aria-haspopup="dialog">${icono("add")}Agregar evento</button>`);
   let h = '<ol class="timeline">', marcada = false;
   const lineaAhora = () => `<li class="now-li"><div class="now-line">Ahora, ${hhmm(n)}</div></li>`;
   evs.forEach(e => {

@@ -6,6 +6,7 @@ import { tema } from "./theme.js";
 import { esc, norm, qs, qsa, mismoDia, hoy } from "./util.js";
 import { datos, eventos, moduloActual, pasoActual, hayProgreso, perfil, rutaActual, avisos, exportar, importar, borrarTodo, DEMO } from "./state.js";
 import { aviso, menu, confirmar, descargar, icono } from "./ui.js";
+import { SIMULAR, demoraSimulada, procesoDeterminado } from "./estados.js";
 
 const LARGE = 1200, MEDIUM = 600;
 const esLarge = () => innerWidth >= LARGE;
@@ -136,6 +137,13 @@ function conectarBusqueda(input, caja, estadoEl, alElegir) {
 /* ---------- Acciones globales (menú de usuario, Ajustes) ---------- */
 export async function accion(nombre) {
   if (nombre === "exportar-progreso") {
+    // Proceso con duración conocida: pasos con porcentaje. Hoy es instantáneo; con ?simular=lento se ve cada paso.
+    if (SIMULAR === "lento") {
+      const pasos = ["reuniendo tu progreso", "armando el archivo", "preparando la descarga"];
+      const p = procesoDeterminado("Exportando tu progreso", pasos);
+      for (let i = 0; i < pasos.length; i++) { p.paso(i); await demoraSimulada(1200); }
+      p.paso(pasos.length); await demoraSimulada(400); p.cerrar();
+    }
     const ok = descargar("taller-ia-progreso-" + new Date().toISOString().slice(0, 10) + ".json", JSON.stringify(exportar(), null, 2));
     aviso(ok ? "Se descargó tu progreso en un archivo JSON" : "No se pudo descargar el archivo. Probá desde otro navegador.");
   } else if (nombre === "importar-progreso") {

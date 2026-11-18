@@ -48,7 +48,9 @@ El comando levanta un servidor local, recorre las pantallas principales y:
 - revisa que no haya scroll horizontal ni elementos cortados, que las áreas táctiles en mobile midan 48 px, que no haya errores de consola, que "reducir movimiento" apague las animaciones y que no aparezcan rayas largas ni puntos medios como separadores;
 - escribe el resultado en español en `verificacion/reporte-accesibilidad.md`.
 
-`npm run verificar:rapido` hace lo mismo en 3 anchos (360, 768 y 1280 px).
+`npm run verificar:rapido` hace lo mismo en 3 anchos (360, 768 y 1280 px). La verificación completa tarda unos 11 minutos y la rápida, unos 5.
+
+Para revisar los estados de carga y error sin esperar a que pasen de verdad, agregá a la dirección `?simular=lento`, `?simular=error`, `?simular=error-leccion` o `?simular=sin-conexion`.
 
 ### Diagnóstico sin instalar nada
 

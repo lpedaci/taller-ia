@@ -24,11 +24,21 @@ document.documentElement.setAttribute("data-theme",matchMedia("(prefers-color-sc
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/lesson.css">
 <link rel="stylesheet" href="css/activities.css">
+<link rel="stylesheet" href="css/estados.css">
 <script type="module" src="js/app.js"></script>
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
 <div class="scrim" id="scrim"></div>
+<div class="splash" id="splash" hidden role="status" aria-live="polite">
+  <div class="splash-in">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo"/></svg>
+    <p class="splash-name">Taller - IA</p>
+    <div class="lin-ind" aria-hidden="true"></div>
+    <p class="splash-msg">Preparando tu panel: módulos, agenda y registro de actividad.</p>
+    <div class="splash-salida" hidden><p>Está tardando más de lo normal.</p><button class="btn btn-filled" type="button" data-recargar>Reintentar</button></div>
+  </div>
+</div>
 
 <div class="app" id="app">
   <nav class="rail" id="rail" aria-label="Navegación principal">
@@ -127,6 +137,12 @@ document.documentElement.setAttribute("data-theme",matchMedia("(prefers-color-sc
   <div class="search-results" id="q2Results" hidden></div>
 </dialog>
 
+<dialog class="dialog dlg-confirm" id="dlgProceso" aria-labelledby="dlgProcT">
+  <h2 id="dlgProcT"></h2>
+  <div class="lin" role="progressbar" aria-labelledby="dlgProcT" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="t"></span></div>
+  <p class="proc-msg" role="status" aria-live="polite"></p>
+</dialog>
+
 <dialog class="dialog dlg-confirm" id="dlgConfirmar" aria-labelledby="dlgConfT" aria-describedby="dlgConfD">
   <span class="ms dlg-ic" aria-hidden="true">help</span>
   <h2 id="dlgConfT"></h2>
@@ -146,6 +162,31 @@ document.documentElement.setAttribute("data-theme",matchMedia("(prefers-color-sc
       <fieldset class="route-opts" id="rutaOpts"></fieldset>
     </div>
     <div class="dlg-actions"><button class="btn btn-outlined" type="button" data-ruta-act="cancelar">Cancelar</button><button class="btn btn-filled" type="submit">Elegir ruta</button></div>
+  </form>
+</dialog>
+
+<dialog class="dialog dlg-form" id="dlgEvento" aria-labelledby="dlgET">
+  <form id="formEvento" novalidate>
+    <div class="dlg-head">
+      <button class="icon-btn dlg-close" type="button" data-evento="cancelar" aria-label="Cerrar sin guardar"><span class="ms" aria-hidden="true">close</span></button>
+      <h2 id="dlgET">Nuevo evento</h2>
+      <button class="btn btn-text dlg-save-top" type="submit">Agregar</button>
+    </div>
+    <div class="tf">
+      <label for="evTitulo">Evento</label>
+      <input class="field" id="evTitulo" autocomplete="off" required aria-required="true" placeholder="Por ejemplo: avanzar con el Módulo 3">
+      <span class="tf-err" id="evErr" hidden><span class="ms" aria-hidden="true">error</span>Escribí el nombre del evento para poder agregarlo.</span>
+    </div>
+    <div class="tf" style="margin-top:var(--app-space-4)">
+      <label for="evTipo">Tipo</label>
+      <select class="field" id="evTipo"><option value="videollamada">Encuentro o videollamada</option><option value="tutoria">Tutoría</option><option value="workshop">Workshop</option><option value="entrega">Entrega</option><option value="cierre">Cierre de actividad</option><option value="apertura">Apertura de evaluación</option><option value="parcial">Parcial</option><option value="final">Final</option></select>
+    </div>
+    <div class="tf" style="margin-top:var(--app-space-4)"><label for="evFecha">Fecha</label><span class="tf-wrap"><input class="field" id="evFecha" type="date"><span class="ms tf-ic" aria-hidden="true">calendar_today</span></span></div>
+    <div class="tf-row" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+      <div class="tf"><label for="evInicio">Desde</label><span class="tf-wrap"><input class="field" id="evInicio" type="time"><span class="ms tf-ic" aria-hidden="true">schedule</span></span></div>
+      <div class="tf"><label for="evFin">Hasta <span class="opc">(opcional)</span></label><span class="tf-wrap"><input class="field" id="evFin" type="time"><span class="ms tf-ic" aria-hidden="true">schedule</span></span></div>
+    </div>
+    <div class="dlg-actions"><button class="btn btn-outlined" type="button" data-evento="cancelar">Cancelar</button><button class="btn btn-filled" type="submit">Agregar</button></div>
   </form>
 </dialog>
 

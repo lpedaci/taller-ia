@@ -1,0 +1,71 @@
+/* =====================================================================
+   Taller - IA | Estados: carga, espera, error, sin conexión, guardado y video
+   ===================================================================== */
+
+/* Pantalla de inicio breve (solo si la carga tarda más de 300 ms) */
+.splash{position:fixed;inset:0;z-index:90;display:grid;place-items:center;background:var(--app-color-background);padding:var(--app-space-6)}
+.splash-in{display:grid;justify-items:center;gap:var(--app-space-4);width:min(320px,100%);text-align:center}
+.splash .brand-mark{width:56px;height:56px}
+.splash-name{font:var(--md-sys-typescale-headline-small);font-weight:var(--md-sys-typescale-emphasized-weight)}
+.splash .lin-ind{width:100%}
+.splash-msg{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+.splash-salida{display:grid;gap:var(--app-space-2);justify-items:center;font:var(--md-sys-typescale-body-medium)}
+
+/* Mensaje de espera: qué se está haciendo, se actualiza a los 3 s y ofrece una salida a los 10 s */
+.espera{display:grid;gap:var(--app-space-3);padding:var(--app-space-2) 0}
+.espera-t{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+.espera-salida:empty{display:none}
+.espera-salida p{font:var(--md-sys-typescale-body-medium);margin-bottom:var(--app-space-2)}
+.lec-espera,#esperaLista{max-width:760px;margin:0 auto var(--app-space-4)}
+
+/* Tarjeta de error */
+.estado-error{padding:var(--app-space-5);display:grid;gap:var(--app-space-4);max-width:760px;margin:0 auto}
+
+/* Indicador discreto de guardado automático */
+.act-guardado{margin-left:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:4px;font:var(--md-sys-typescale-label-small);color:var(--md-sys-color-on-surface-variant);white-space:nowrap}
+.act-guardado .ms{font-size:16px;color:var(--app-color-success)}
+.act-guardado:not(:empty){animation:fb-in var(--md-sys-motion-spring-default-effects) both}
+
+/* Proceso con duración conocida */
+.proc-msg{margin-top:var(--app-space-4);text-align:center}
+#dlgProceso h2{margin-bottom:var(--app-space-5)}
+
+/* Evento propio en la agenda: botón para eliminar */
+.evt{position:relative}
+.evt-del{position:absolute;top:4px;right:4px}
+.evt:has(.evt-del) h3,.evt:has(.evt-del) h4{padding-right:44px}
+
+/* ---------- Video con fachada ---------- */
+.video{margin:0;display:grid;gap:var(--app-space-4)}
+.video-guia{display:flex;gap:var(--app-space-3);align-items:flex-start;background:var(--app-color-info-container);color:var(--app-color-on-info-container);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-3) var(--app-space-4);font:var(--md-sys-typescale-body-medium)}
+.video-guia b{display:block;font:var(--md-sys-typescale-title-small)}
+.video-frame{position:relative;aspect-ratio:16/9;border-radius:var(--md-sys-shape-corner-large);overflow:hidden;background:var(--md-sys-color-inverse-surface);color:var(--md-sys-color-inverse-on-surface)}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* Portada propia: con los tokens, sin pedir nada a YouTube antes del clic */
+.video-play{position:absolute;inset:0;width:100%;height:100%;border:0;cursor:pointer;color:inherit;display:grid;align-content:end;justify-items:start;padding:var(--app-space-5);text-align:left;font:inherit;
+  background:radial-gradient(circle at 78% 30%,color-mix(in srgb,var(--md-sys-color-inverse-primary) 30%,transparent) 0 22%,transparent 23%),radial-gradient(circle at 70% 70%,color-mix(in srgb,var(--md-sys-color-inverse-primary) 18%,transparent) 0 30%,transparent 31%),var(--md-sys-color-inverse-surface)}
+.video-play::after{content:"";position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity var(--md-sys-motion-spring-fast-effects)}
+.video-play:hover::after{opacity:var(--md-sys-state-hover-opacity)}
+.video-play:focus-visible{outline:3px solid var(--md-sys-color-inverse-primary);outline-offset:-3px}
+.vp-ic{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:var(--md-sys-shape-corner-extra-large);display:grid;place-items:center;background:var(--md-sys-color-primary);color:var(--md-sys-color-on-primary);transition:border-radius var(--md-sys-motion-spring-fast-spatial)}
+.video-play:hover .vp-ic{border-radius:50%}
+.vp-ic .ms{font-size:40px}
+.vp-txt{display:grid;gap:2px;position:relative}
+.vp-t{font:var(--md-sys-typescale-title-large)}
+.vp-m{font:var(--md-sys-typescale-body-medium);opacity:.85}
+.video-carga{position:absolute;inset:0;z-index:1;display:grid;align-content:center;padding:var(--app-space-6);background:var(--md-sys-color-inverse-surface)}
+.video-carga .espera-t{color:var(--md-sys-color-inverse-on-surface)}
+.video-carga .lin-ind{background:color-mix(in srgb,var(--md-sys-color-inverse-on-surface) 25%,transparent)}
+.video-carga .lin-ind::before{background:var(--md-sys-color-inverse-primary)}
+.video-carga .btn-outlined{color:var(--md-sys-color-inverse-on-surface);border-color:var(--md-sys-color-inverse-on-surface)}
+.video-estado{position:absolute;inset:0;display:grid;align-content:center;justify-items:start;gap:var(--app-space-3);padding:var(--app-space-6);font:var(--md-sys-typescale-body-large)}
+.video-estado>.ms{font-size:40px}
+.video-estado .btn-tonal{background:var(--md-sys-color-inverse-on-surface);color:var(--md-sys-color-inverse-surface)}
+.video figcaption{display:grid;gap:var(--app-space-2);font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+.video-tags{display:flex;flex-wrap:wrap;gap:var(--app-space-2);align-items:center}
+.video-ref{overflow-wrap:anywhere}
+.video-resumen{background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-4) var(--app-space-5)}
+.video-resumen h4{display:flex;align-items:center;gap:var(--app-space-2);font:var(--md-sys-typescale-title-small);margin-bottom:var(--app-space-2)}
+.video-resumen ul{margin:0;padding-left:1.2em;display:grid;gap:var(--app-space-2);font:var(--md-sys-typescale-body-large)}
+@media (max-width:599px){ .video-play{padding:var(--app-space-3)} .vp-t{font:var(--md-sys-typescale-title-medium)} .vp-ic{width:56px;height:56px} .video-carga{padding:var(--app-space-4)} .video-estado{padding:var(--app-space-4);font:var(--md-sys-typescale-body-medium)} }
+@media (prefers-reduced-motion: reduce){ .act-guardado:not(:empty){animation:none} }

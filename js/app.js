@@ -14,6 +14,7 @@ import { ajustes, iniciarAjustes, simple, ayuda, misPrompts, iniciarPrompts } fr
 import * as leccion from "./lesson/leccion.js";
 import { DEMO } from "./state.js";
 import { dibujarRegistro } from "./views/piezas.js";
+import { SIMULAR, demoraSimulada, errorSimulado, splashSiTarda, cerrarSplash, vigilarConexion, esperaConMensaje } from "./estados.js";
 
 const main = qs("#contenido");
 let primera = true, ultimaRuta = "";
@@ -33,12 +34,24 @@ function vista(id, args) {
   }
 }
 
+/* Secciones con contenido largo: skeleton de tarjetas y lista mientras se prepara (se ve con ?simular=lento) */
+const LARGAS = { aprendizaje: "Preparando tu aprendizaje: competencias, objetivos y evidencias.", biblioteca: "Cargando la Biblioteca: fuentes y filtros.", glosario: "Cargando el glosario.", prompts: "Cargando tus prompts." };
+const esqueletoLista = () => `<div id="esperaLista"></div><div class="learn-grid" aria-hidden="true">` +
+  `<div class="card" style="padding:16px;display:grid;gap:12px"><div class="sk" style="height:24px;width:60%"></div><div class="sk" style="height:12px"></div><div class="sk" style="height:12px;width:80%"></div><div class="sk" style="height:96px"></div></div>`.repeat(3) + `</div>`;
+
 /** Dibuja la ruta actual. mantenerFoco: true cuando se vuelve a dibujar la misma pantalla. */
 let turno = 0;
 async function render(mantenerFoco) {
   const { id, args } = leerHash();
   const r = marcarActual(id);
-  const v = vista(id, args), mio = ++turno;
+  const mio = ++turno;
+  if (SIMULAR === "lento" && LARGAS[id] && !mantenerFoco) {
+    main.setAttribute("aria-busy", "true"); main.innerHTML = esqueletoLista();
+    const cancelar = esperaConMensaje(qs("#esperaLista"), { texto: LARGAS[id] });
+    await demoraSimulada(2500); cancelar();
+    if (mio !== turno) return;
+  }
+  const v = vista(id, args);
   let res = v;
   if (v.asincrono) {
     try { res = await v.asincrono() || {}; }
@@ -61,6 +74,7 @@ async function render(mantenerFoco) {
 }
 
 function error(msg) {
+  cerrarSplash();
   main.setAttribute("aria-busy", "false");
   const local = location.protocol === "file:";
   main.innerHTML = `<div class="card" style="padding:var(--app-space-6);max-width:640px" role="alert">` +
@@ -68,25 +82,31 @@ function error(msg) {
     `<p style="margin-bottom:var(--app-space-4)">${local
       ? "Abriste el archivo directamente desde la carpeta. El navegador no permite leer el contenido así. Abrilo con el comando <code>npm run servir</code> o desde la versión publicada en GitHub Pages."
       : "Revisá tu conexión e intentá de nuevo. Tu progreso guardado no se pierde."}</p>` +
-    `<button class="btn btn-filled" type="button" onclick="location.reload()">${icono("refresh")}Reintentar</button>` +
+    `<button class="btn btn-filled" type="button" data-recargar>${icono("refresh")}Reintentar</button>` +
     `<p class="muted" style="font:var(--md-sys-typescale-body-small);margin-top:var(--app-space-4)">Detalle técnico: ${msg}</p></div>`;
 }
 
 async function arrancar() {
   tema.aplicar();
-  try { await cargar(); }
+  document.addEventListener("click", e => { if (e.target.closest("[data-recargar]")) location.reload(); });
+  splashSiTarda();
+  try { await demoraSimulada(4500); errorSimulado("el contenido del taller"); await cargar(); }
   catch (e) { error(e.message); return; }
+  cerrarSplash();
   const rerender = () => render(true);
   iniciarShell({ render: rerender });
   iniciarTooltips();
   inicio.iniciar();
-  agenda.iniciar();
+  agenda.iniciar(rerender);
   recorrido.iniciar(rerender);
   leccion.iniciar();
   // Pie: el aviso de datos de ejemplo solo aparece en el modo de ejemplo
   if (!DEMO) qs("#foot").textContent = "© 2026 Lourdes Pedaci, Experience Designer";
   iniciarAjustes(rerender);
   iniciarPrompts(rerender);
+  vigilarConexion();
+  // Reintentar en una tarjeta de error: vuelve a dibujar la pantalla actual
+  document.addEventListener("click", e => { if (e.target.closest("[data-reintentar]")) render(false); });
   // El registro de actividad adapta las semanas al ancho disponible
   let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { dibujarRegistro("heatDash"); dibujarRegistro("heatFull"); }, 150); });
   addEventListener("hashchange", () => {

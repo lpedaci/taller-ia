@@ -32,6 +32,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-024 | 2026-11-18 | Estado real por defecto; datos de ejemplo solo con `?demo=1` | Vigente |
 | D-025 | 2026-11-18 | Motor de lecciones por pasos, barra flotante, Escuchar y lección de prueba | Vigente |
 | D-026 | 2026-11-18 | Doce tipos de actividad con feedback explicativo, borradores y layout para mobile | Vigente |
+| D-027 | 2026-11-18 | Estados de carga, espera, error y sin conexión; video con fachada; eventos propios en la Agenda | Vigente |
 
 ---
 
@@ -439,3 +440,40 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 - Teclado del entorno 45 de 45 y riel 9 de 9.
 
 **Pendientes o riesgos:** los contenidos de la lección de prueba son ejemplos; los textos reales de cada actividad se escriben en las etapas 3 a 8. En las capturas de página completa, el clasificador ocupa bastante alto en desktop con riel expandido (columnas apiladas, porque la lección mide unos 600 px): queda para revisar con contenido real.
+
+## D-027 | 2026-11-18 | Etapa 2, parte 3: estados, video con fachada y eventos propios
+
+**Solicitado:** los estados de carga, espera, error, sin conexión y vacíos de la sección 4, con el parámetro `?simular=` para revisarlos; el componente de video con fachada y `videos.json`; y la opción de agregar eventos propios en la Agenda sin cohorte (pendiente de D-024).
+
+**Decisión y motivo:**
+- **Primera carga:** la pantalla de inicio (nombre del taller e indicador lineal) aparece solo si la carga tarda más de 300 ms. A los 3 s el mensaje pasa a "Ya casi está"; a los 10 s ofrece Reintentar. Nunca se agrega una espera artificial.
+- **Lección:** mientras carga, *skeleton* con la forma real de la lección y un mensaje ("Preparando la lección: pasos y actividades") que se actualiza a los 3 s y a los 10 s ofrece volver a Mi recorrido. Si falla, una tarjeta de error explica qué pasó, que el progreso no se pierde, y ofrece Reintentar o volver.
+- **Contenido largo** (Mi aprendizaje, Biblioteca, Glosario, Mis prompts): *skeleton* de tarjetas con mensaje. Hoy carga al instante; se ve con `?simular=lento`.
+- **Proceso con duración conocida:** diálogo con barra determinada, porcentaje y "Paso N de M: qué se está haciendo". Se usa al exportar el progreso. Como hoy es instantáneo, se ve con `?simular=lento`; se va a usar de verdad al generar el portafolio y el certificado.
+- **Guardado automático:** indicador discreto "Guardado" en cada actividad, sin mover el foco.
+- **Sin conexión:** aviso al perder y recuperar la conexión. Si un video no puede cargar, el marco dice "Este video necesita conexión" y la lección sigue con el resumen en español.
+- **Parámetro de desarrollo:**
+  - `?simular=lento`: las demoras se aplican solo con este valor;
+  - `?simular=error`: falla la carga inicial;
+  - `?simular=error-leccion`: falla solo la lección (se separó para poder ver ese estado dentro del entorno);
+  - `?simular=sin-conexion`.
+- **Accesibilidad:** contenedores con `aria-busy` mientras cargan, mensajes de progreso con `role="status"` y errores con `role="alert"`. Al terminar, el foco va al contenido nuevo.
+- **Video con fachada:**
+  - Portada propia, hecha con los tokens: antes del clic no se pide nada a YouTube (ni miniatura), así no se cargan rastreadores.
+  - Al hacer clic se inserta `youtube-nocookie.com` con subtítulos en español cuando existen, y un indicador con mensaje ("Cargando el video de 3Blue1Brown, en inglés, 8 min") que a los 10 s ofrece abrirlo en YouTube.
+  - Lleva pregunta guía antes, etiquetas "En inglés", subtítulos y duración, título original con su `lang`, referencia APA, resumen propio en español y preguntas después (con la actividad de opción múltiple).
+- **Video verificado y registrado en `content/videos.json`:** "Large Language Models explained briefly", de 3Blue1Brown (canal oficial). Dura 7 min 58 s, se puede insertar y tiene subtítulos en español hechos por personas. Se verificó con oEmbed de YouTube y con los datos de la página del video el 2026-11-18. Está en la lección de prueba y es candidato para el Módulo 2.
+- **Agenda sin cohorte:** estado vacío "Tu agenda está vacía" con "Agregar evento". El diálogo pide nombre (obligatorio, con error en el campo), tipo, fecha y horario, y es de pantalla completa en mobile. Los eventos propios llevan la etiqueta "Propio" y se pueden eliminar con confirmación. En el inicio, el panel de agenda vacío también ofrece "Agregar evento".
+- **`estilos.html`:** suma la sección "Estados de carga, espera y error", con enlaces para forzar cada estado.
+
+**Archivos afectados:** `js/estados.js`, `js/activities/video.js`, `css/estados.css`, `content/videos.json`, `content/modulo-prueba.json` (paso de video), `js/app.js`, `js/lesson/leccion.js`, `js/activities/comun.js`, `js/state.js` (videos y eventos propios), `js/views/agenda.js`, `js/views/inicio.js`, `js/shell.js`, `index.html`, `estilos.html`, `scripts/verificar.mjs`.
+
+**Verificación realizada:**
+- Prueba automática de estados: 24 de 24, sin errores de JavaScript. Cubre pantalla de inicio solo si tarda, mensaje a los 3 s, error inicial y de lección, lección lenta, video sin conexión, ningún pedido a YouTube antes del clic, iframe de youtube-nocookie con subtítulos, preguntas después del video, Agenda vacía, crear y eliminar evento con foco y errores, proceso determinado con `aria-valuenow` y descarga final, e indicador de guardado.
+- Prueba de actividades sin cambios (todo correcto).
+- `npm run verificar` completo: 336 capturas (28 pantallas, ahora con la Agenda vacía, los estados de error, sin conexión y el paso de video). Encontró dos problemas, ya corregidos: en modo oscuro el botón Reintentar del video sin conexión tenía poco contraste (pasó a colores inversos) y el título del resumen del video saltaba un nivel de encabezado (pasó a h4). Después, `npm run verificar:rapido` sin problemas.
+- La verificación completa tarda unos 11 minutos; para cambios chicos alcanza con `npm run verificar:rapido` (unos 5 minutos).
+
+**Pendientes o riesgos:**
+- El contador de eventos de hoy en el riel se calcula al cargar la página: si se agrega un evento para hoy, se actualiza al recargar.
+- La descarga de la Agenda en `.ics` queda para la etapa 9 (transversales).

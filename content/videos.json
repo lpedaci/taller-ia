@@ -1,0 +1,23 @@
+{
+  "_nota": "Videos verificados: canal oficial, disponibilidad, permiso de inserción y duración. Cada lección los usa con { \"tipo\": \"video\", \"ref\": \"<id>\" }. Fechas de verificación en formato aaaa-mm-dd.",
+  "videos": [
+    {
+      "id": "llm-breve-3b1b",
+      "videoId": "LPZh9BOjkQs",
+      "titulo": "Los modelos de lenguaje grandes, explicados brevemente",
+      "tituloOriginal": "Large Language Models explained briefly",
+      "canal": "3Blue1Brown",
+      "autor": "Grant Sanderson",
+      "url": "https://www.youtube.com/watch?v=LPZh9BOjkQs",
+      "duracion": 478,
+      "inicio": null,
+      "fin": null,
+      "idioma": "en",
+      "subtitulos": "es",
+      "modulo": 2,
+      "verificado": "2026-11-18",
+      "verificacion": "oEmbed de YouTube: título y canal. Página del video: 478 segundos, playableInEmbed true, subtítulos en español (no automáticos).",
+      "apa": "3Blue1Brown. (2024, 20 de noviembre). *Large language models explained briefly* [Video]. YouTube. https://www.youtube.com/watch?v=LPZh9BOjkQs"
+    }
+  ]
+}

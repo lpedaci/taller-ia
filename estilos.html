@@ -22,6 +22,7 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/lesson.css">
 <link rel="stylesheet" href="css/activities.css">
+<link rel="stylesheet" href="css/estados.css">
 <style>
 /* Estilos propios de esta página de referencia (solo maquetan la vitrina) */
 .ds{max-width:1200px;margin:0 auto;padding:var(--app-space-4) var(--app-space-4) var(--app-space-10)}
@@ -70,7 +71,7 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
   <h1 style="font:var(--md-sys-typescale-headline-large);margin-top:var(--app-space-4)">Tokens y componentes</h1>
   <p class="lead">Referencia viva del sistema de diseño del Taller - IA, basado en Material Design 3 Expressive. Todo sale de <code>css/tokens.css</code>. Cambiá el tema y el contraste arriba para revisar cada esquema. <a href="index.html#/inicio">Volver al entorno</a>.</p>
   <nav class="toc" aria-label="Secciones de esta página">
-    <a class="btn btn-outlined" href="#color">Color</a><a class="btn btn-outlined" href="#tipografia">Tipografía</a><a class="btn btn-outlined" href="#forma">Forma y elevación</a><a class="btn btn-outlined" href="#espacio">Espacio y movimiento</a><a class="btn btn-outlined" href="#componentes">Componentes</a>
+    <a class="btn btn-outlined" href="#color">Color</a><a class="btn btn-outlined" href="#tipografia">Tipografía</a><a class="btn btn-outlined" href="#forma">Forma y elevación</a><a class="btn btn-outlined" href="#espacio">Espacio y movimiento</a><a class="btn btn-outlined" href="#componentes">Componentes</a><a class="btn btn-outlined" href="#estados">Estados</a>
   </nav>
 
   <h2 id="color">Color</h2>
@@ -185,7 +186,34 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
     <div class="card"><div class="empty-state"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="var(--md-sys-color-surface-container-highest)"/><rect x="34" y="38" width="52" height="46" rx="12" fill="var(--md-sys-color-surface)" stroke="var(--md-sys-color-outline-variant)" stroke-width="2"/><rect x="42" y="50" width="36" height="6" rx="3" fill="var(--md-sys-color-primary)" opacity=".6"/><rect x="42" y="63" width="24" height="6" rx="3" fill="var(--md-sys-color-outline-variant)"/></svg><h4 style="font:var(--md-sys-typescale-title-medium);color:var(--md-sys-color-on-surface)">Todavía no guardaste prompts</h4><p>Una línea que explica para qué sirve la sección.</p><button class="btn btn-filled" type="button">Primera acción</button></div></div>
     <div class="card" style="padding:var(--app-space-4);display:grid;gap:var(--app-space-3)" aria-hidden="true"><div class="sk" style="height:28px;width:60%"></div><div class="sk" style="height:14px"></div><div class="sk" style="height:14px;width:90%"></div><div class="sk" style="height:120px;border-radius:var(--md-sys-shape-corner-large)"></div></div>
   </div>
-  <p class="lead" style="margin-top:var(--app-space-6)">El riel de navegación, la barra inferior, la barra superior y el menú de usuario se ven funcionando en <a href="index.html#/inicio">el entorno</a>. Los estados de carga, error y sin conexión se suman en la etapa 2.</p>
+  <h2 id="estados">Estados de carga, espera y error</h2>
+  <p class="lead">Cada espera dice qué se está haciendo; a los 3 segundos el mensaje se actualiza y a los 10 ofrece una salida. Para verlos en el entorno: <a href="index.html?simular=lento#/inicio">?simular=lento</a>, <a href="index.html?simular=error#/inicio">?simular=error</a>, <a href="index.html?simular=error-leccion#/modulo/prueba/paso/2">?simular=error-leccion</a> y <a href="index.html?simular=sin-conexion#/modulo/prueba/paso/4">?simular=sin-conexion</a>.</p>
+  <div class="two">
+    <div class="panel" style="display:grid;gap:var(--app-space-3);justify-items:center;text-align:center;padding:var(--app-space-8) var(--app-space-4)">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" style="width:48px;height:48px"><use href="#logo"/></svg>
+      <p style="font:var(--md-sys-typescale-title-large);font-weight:var(--md-sys-typescale-emphasized-weight)">Taller - IA</p>
+      <div class="lin-ind" style="width:100%;max-width:280px" aria-hidden="true"></div>
+      <p class="muted" style="font:var(--md-sys-typescale-body-medium)">Pantalla de inicio breve: solo aparece si la carga tarda más de 300 ms.</p>
+    </div>
+    <div class="panel" style="display:grid;gap:var(--app-space-3)">
+      <div class="espera"><div class="lin-ind" aria-hidden="true"></div><p class="espera-t">Preparando la lección: pasos y actividades.</p></div>
+      <div aria-hidden="true" style="display:grid;gap:10px"><div class="sk" style="height:24px;width:55%"></div><div class="sk" style="height:12px"></div><div class="sk" style="height:12px;width:85%"></div><div class="sk" style="height:96px;border-radius:var(--md-sys-shape-corner-large)"></div></div>
+      <p class="muted" style="font:var(--md-sys-typescale-body-small)">Skeleton con la forma real del contenido y un mensaje que dice qué va a aparecer.</p>
+    </div>
+    <div class="card estado-error" style="margin:0"><div class="status status-error"><span class="ms fill" aria-hidden="true">error</span><div><b>No se pudo cargar la lección</b><p>Puede ser un problema de conexión. Tu progreso guardado no se pierde.</p></div></div>
+      <div class="act-actions"><button class="btn btn-filled" type="button"><span class="ms" aria-hidden="true">refresh</span>Reintentar</button><button class="btn btn-outlined" type="button"><span class="ms" aria-hidden="true">route</span>Volver a Mi recorrido</button></div></div>
+    <div class="video-frame"><div class="video-estado"><span class="ms" aria-hidden="true">cloud_off</span><p><b>Este video necesita conexión.</b> Podés seguir con la lección y verlo después: abajo tenés el resumen en español.</p></div></div>
+    <div class="panel" style="display:grid;gap:var(--app-space-3)">
+      <p style="font:var(--md-sys-typescale-title-small)">Exportando tu progreso</p>
+      <div class="lin" role="progressbar" aria-label="Ejemplo de proceso con pasos" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"><span class="a" style="width:66%"></span><span class="t"></span></div>
+      <p class="muted" style="font:var(--md-sys-typescale-body-medium)">Paso 3 de 3: preparando la descarga</p>
+    </div>
+    <div class="panel" style="display:grid;gap:var(--app-space-3)">
+      <div class="act-head"><span class="act-ic"><span class="ms" aria-hidden="true">edit</span></span><div><p class="act-tipo">Actividad | Reflexión</p><p style="font:var(--md-sys-typescale-title-large)">Tu diario</p></div><span class="act-guardado"><span class="ms" aria-hidden="true">cloud_done</span>Guardado</span></div>
+      <p class="muted" style="font:var(--md-sys-typescale-body-small)">Guardado automático: indicador discreto que no interrumpe.</p>
+    </div>
+  </div>
+  <p class="lead" style="margin-top:var(--app-space-6)">El riel de navegación, la barra inferior, la barra superior y el menú de usuario se ven funcionando en <a href="index.html#/inicio">el entorno</a>. Las actividades, en la <a href="index.html#/modulo/prueba">lección de prueba</a>.</p>
 </main>
 <footer class="foot" style="padding-bottom:var(--app-space-6)">© 2026 Lourdes Pedaci, Experience Designer</footer>
 
