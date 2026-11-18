@@ -120,11 +120,6 @@ function vistaPaso() {
           `<h2 class="lh-title">${meta.prueba ? "" : `Módulo ${meta.id} | `}${esc(meta.titulo)}</h2>` +
           `<div class="lh-prog"><span>Paso ${paso} de ${total}</span>${lineal(paso / total * 100, `Paso ${paso} de ${total}`)}</div></header>` +
         (meta.prueba ? `<div class="status status-info" role="note">${icono("science")}<span><b>Lección de prueba</b>Sirve para revisar el motor de lecciones y las actividades. Lo que hagas acá no cuenta para tu progreso.</span></div>` : "") +
-        `<article class="card lesson-step" aria-labelledby="pasoT">` +
-          `<p class="step-moment">${esc(MOMENTOS[P.momento] || P.momento || "")}</p>` +
-          `<h3 id="pasoT" tabindex="-1">${esc(P.titulo)}</h3>` +
-          `<div class="step-body" id="pasoCuerpo">${cuerpo.html}</div>` +
-        `</article>` +
         `<div class="lesson-bar" role="toolbar" aria-label="Navegación de la lección">` +
           `<a class="btn btn-text lb-prev${paso === 1 ? " is-off" : ""}" ${paso === 1 ? 'aria-disabled="true" tabindex="-1"' : `href="${href("modulo", id, "paso", paso - 1)}"`} data-dir="atras">${icono("arrow_back")}<span class="lb-lbl">Anterior</span></a>` +
           (puedeLeer() ? `<div class="lb-listen" id="lbListen"><button class="btn btn-tonal" type="button" id="btnEscuchar" aria-pressed="false">${icono("volume_up")}<span class="lb-lbl">Escuchar</span></button></div>` : "") +
@@ -132,6 +127,11 @@ function vistaPaso() {
             ? `<a class="btn btn-filled lb-next" href="${href("modulo", id, "completado")}" data-terminar>${icono("flag")}Terminar módulo</a>`
             : `<a class="btn btn-filled lb-next" href="${href("modulo", id, "paso", paso + 1)}" data-dir="adelante" data-completa="${paso}">Siguiente${icono("arrow_forward")}</a>`) +
         `</div>` +
+        `<article class="card lesson-step" aria-labelledby="pasoT">` +
+          `<p class="step-moment">${esc(MOMENTOS[P.momento] || P.momento || "")}</p>` +
+          `<h3 id="pasoT" tabindex="-1">${esc(P.titulo)}</h3>` +
+          `<div class="step-body" id="pasoCuerpo">${cuerpo.html}</div>` +
+        `</article>` +
       `</div>` +
       `<aside class="card lesson-side" aria-labelledby="idxT"><h3 id="idxT">En este módulo</h3><ol class="step-list">${indice}</ol>` +
         (leccion.objetivos?.length ? `<details class="side-goals"><summary>${icono("flag", "sm")}Objetivos del módulo</summary><ul>${leccion.objetivos.map(o => `<li>${esc(o.texto)}</li>`).join("")}</ul></details>` : "") +

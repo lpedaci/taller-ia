@@ -35,6 +35,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-027 | 2026-11-18 | Estados de carga, espera, error y sin conexión; video con fachada; eventos propios en la Agenda | Vigente |
 | D-028 | 2026-11-18 | Componente de gráficos en SVG con paleta validada y tabla alternativa | Vigente |
 | D-029 | 2026-11-18 | Guion de la animación piloto (predicción de tokens), pendiente de aprobación | Vigente |
+| D-030 | 2026-11-18 | Barra de la lección arriba del paso, fija debajo de la barra superior | Vigente |
 
 ---
 
@@ -527,13 +528,13 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 
 **Solicitado:** escribir primero el guion y el storyboard de la animación piloto (cómo un modelo predice el próximo token) y anotar en este registro qué se va a animar, antes de construirla (sección 5, "Proceso").
 
-**Decisión y motivo:** el guion está en `animaciones/guiones/01-prediccion-de-tokens.md`. Son 5 escenas en unos 75 segundos:
+**Decisión y motivo:** el guion está en `animaciones/guiones/01-prediccion-de-tokens.md`. Sigue un caso concreto: Ana le pide a un asistente, a las 23:40, que la ayude a avisarle a su jefa que mañana llega tarde porque tiene turno con el médico. Son 5 escenas en unos 80 segundos:
 
-1. una frase incompleta;
-2. el texto se parte en tokens;
-3. cada continuación tiene una probabilidad (valores ilustrativos, y la pantalla lo dice);
-4. elige, suma y repite;
-5. por qué varía y por qué se equivoca ("Probable no es lo mismo que verdadero").
+1. el mensaje a las 23:40;
+2. el asistente lee en fragmentos (tokens);
+3. la respuesta empieza a escribirse, con la probabilidad de cada continuación (valores ilustrativos, y la pantalla lo dice);
+4. elige, suma y vuelve a calcular, hasta completar el mensaje;
+5. otra versión de la respuesta, y una tercera que inventa "un paro de colectivos" que nadie mencionó ("Probable no es lo mismo que verdadero").
 
 Cada escena tiene texto en pantalla, qué se mueve, narración y descripción para lectores de pantalla. También están definidos los controles, la versión fija para "reducir movimiento", el diseño con los tokens y el proceso para el MP4 de facilitadores.
 
@@ -542,3 +543,15 @@ Cada escena tiene texto en pantalla, qué se mueve, narración y descripción pa
 **Verificación realizada:** revisión del texto: voseo moderado, sin rayas largas ni puntos medios, sin personajes ni metáforas de robots.
 
 **Pendientes o riesgos:** **la animación y su motor por escenas se construyen después de que Lourdes apruebe el guion.** El MP4 se genera cuando apruebe la animación terminada.
+
+## D-030 | 2026-11-18 | Barra de la lección arriba del paso
+
+**Solicitado:** **Cambio:** ubicar la barra flotante de la lección (Anterior, Escuchar y Siguiente) arriba de la tarjeta del paso, en lugar de al pie. **Motivo inferido:** al pie, la barra cambiaba de lugar según el largo de cada paso (en los pasos cortos subía junto con el contenido) y había que buscarla cada vez. **Alcance:** lecciones, las 4 clases de ventana y los dos modos.
+
+**Decisión y motivo:** la barra va entre el encabezado de la lección y el paso, y queda fija debajo de la barra superior al hacer scroll. Así está siempre en el mismo lugar y visible. Para que el foco nunca quede tapado por las dos barras fijas (WCAG 2.4.11), `scroll-padding-top` pasó a 152 px (144 px en mobile).
+
+**Archivos afectados:** `js/lesson/leccion.js`, `css/lesson.css`.
+
+**Verificación realizada:** capturas en 1280 y 390 px con scroll: la barra queda fija debajo de la barra superior. `npm run verificar:rapido` sin problemas (174 capturas) y prueba del motor de lecciones completa.
+
+**Pendientes o riesgos:** ninguno.
