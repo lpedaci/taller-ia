@@ -22,8 +22,12 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-014 | 2026-11-18 | Herramientas de verificación y modo `?diagnostico=1` | Vigente |
 | D-015 | 2026-11-18 | Cierre de la etapa 1: verificación completa | Vigente |
 | D-016 | 2026-11-18 | Los textos explicativos ocupan el ancho de su contenedor | Vigente |
-| D-017 | 2026-11-18 | Tarjeta "Tu ruta" rediseñada, con diálogo para elegir la ruta | Vigente |
+| D-017 | 2026-11-18 | Tarjeta "Tu ruta" rediseñada, con diálogo para elegir la ruta | Vigente, ajustada por D-019 |
 | D-018 | 2026-11-18 | Riel: Aprender abierta en Inicio y secciones en acordeón (reemplaza en parte una regla del brief) | Vigente |
+| D-019 | 2026-11-18 | Tarjeta "Tu ruta": se quita la frase sobre la marca "En tu ruta" | Vigente |
+| D-020 | 2026-11-18 | Bloque terminado en verde, con tilde y "Bloque completado" | Vigente |
+| D-021 | 2026-11-18 | Mobile: módulos de cada bloque en un desplegable | Vigente |
+| D-022 | 2026-11-18 | Etapa 1 aprobada y subida a GitHub | Vigente |
 
 ---
 
@@ -256,3 +260,63 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 **Verificación realizada:** prueba automática de 9 casos (Inicio, Glosario y Agenda; desktop y tablet), todos correctos. Prueba de teclado completa (45 de 45).
 
 **Pendientes o riesgos:** ninguno.
+
+## D-019 | 2026-11-18 | Tarjeta "Tu ruta": sin la frase sobre la marca
+
+**Solicitado:** **Cambio:** quitar de la tarjeta "Tu ruta" la oración "Los módulos de tu ruta llevan la marca 'En tu ruta'". **Motivo inferido:** repite lo que ya dice la leyenda que está justo debajo y alarga la descripción. **Alcance:** Mi recorrido, todos los anchos.
+
+**Decisión y motivo:** la descripción queda en una sola oración: qué incluye la ruta. Ajusta D-017.
+
+**Archivos afectados:** `js/views/recorrido.js`.
+
+**Verificación realizada:** ver D-021.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-020 | 2026-11-18 | Bloque terminado en verde
+
+**Solicitado:** **Cambio:** cuando todos los módulos de un bloque están completos, el bloque se marca en verde. **Motivo inferido:** reconocer de un vistazo qué partes del recorrido ya están cerradas. **Alcance:** Mi recorrido, las 4 clases de ventana, modo claro y oscuro.
+
+**Decisión y motivo:**
+- El número del bloque se reemplaza por un tilde, sobre `app-color-success-container`.
+- "N de N módulos completados" pasa a "Bloque completado", con ícono y texto en `app-color-success`.
+- El verde es el color de estado positivo del sistema y siempre va con ícono y texto, nunca solo color.
+- Las tarjetas de módulo completas siguen en azul (progreso), como pide el brief.
+- Se cambió además la miniatura del bloque 7: era un tilde grande y se leía como "completado" en módulos sin empezar. Ahora es una forma abstracta.
+
+**Archivos afectados:** `js/views/recorrido.js`, `js/views/piezas.js`, `css/layout.css`.
+
+**Verificación realizada:** contraste AA del verde sobre las tarjetas en los 6 esquemas (axe-core sin problemas). Capturas en 360 y 1280 px, claro y oscuro.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-021 | 2026-11-18 | Mobile: módulos de cada bloque en un desplegable
+
+**Solicitado:** **Cambio:** en mobile (Compact, menos de 600 px), los módulos de cada bloque aparecen dentro de un desplegable. **Motivo inferido:** con 21 tarjetas a una columna, la pantalla se volvía muy larga y costaba ubicar un bloque. **Alcance:** solo Compact; desde 600 px los bloques se muestran abiertos, como antes.
+
+**Decisión y motivo:**
+- Cada bloque es una tarjeta cuyo encabezado entero es el botón: número (o tilde si está completo), nombre, avance y chevron. Mide 72 px de alto como mínimo.
+- El botón lleva `aria-expanded` y `aria-controls`, y se usa con Enter o Espacio.
+- Al entrar se abre solo el bloque del módulo en curso, para que "Continuar" y el recorrido coincidan. Lo que la persona abre o cierra se mantiene mientras navega, pero no se guarda.
+- Si la ventana cruza los 600 px, la vista cambia sola entre desplegables y bloques abiertos.
+
+**Archivos afectados:** `js/views/recorrido.js`, `css/layout.css`.
+
+**Verificación realizada:**
+- `npm run verificar` completo: 156 capturas, sin problemas de axe-core, sin scroll ni elementos cortados, sin errores de consola, áreas táctiles en regla.
+- Prueba del desplegable: al entrar, el bloque 2 abierto y el resto cerrado; Enter y Espacio abren y cierran; en 1024 px no hay desplegables.
+- Prueba de teclado del entorno (45 de 45) y del riel (9 de 9).
+
+**Pendientes o riesgos:** ninguno.
+
+## D-022 | 2026-11-18 | Etapa 1 aprobada
+
+**Solicitado:** Lourdes aprobó la etapa 1 y pidió subirla a GitHub.
+
+**Decisión y motivo:** push de la rama `main` a `github.com/lpedaci/taller-ia` (D-002). Para publicar el sitio falta activar GitHub Pages desde la configuración del repositorio (instrucciones en el README).
+
+**Archivos afectados:** ninguno.
+
+**Verificación realizada:** ver D-021.
+
+**Pendientes o riesgos:** siguen abiertas las consultas de D-009 (título de la barra entre 600 y 680 px) y D-013 (ruta "Taller completo").

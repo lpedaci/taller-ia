@@ -12,7 +12,7 @@ const MINIATURAS = [
   '<rect x="14" y="40" width="100" height="60" rx="30" fill="var(--md-sys-color-secondary-container)"/><circle cx="46" cy="70" r="11" fill="var(--md-sys-color-secondary)"/><circle cx="82" cy="70" r="11" fill="var(--md-sys-color-secondary)" opacity=".5"/>',
   '<circle cx="50" cy="60" r="34" fill="var(--md-sys-color-secondary-container)"/><circle cx="86" cy="82" r="34" fill="var(--md-sys-color-primary-container)"/>',
   '<path d="M16 92 C40 30, 80 122, 122 50" stroke="var(--md-sys-color-primary)" stroke-width="10" fill="none" stroke-linecap="round" opacity=".55"/><circle cx="16" cy="92" r="11" fill="var(--md-sys-color-primary)"/><circle cx="122" cy="50" r="11" fill="var(--md-sys-color-primary)"/>',
-  '<rect x="26" y="26" width="88" height="88" rx="30" fill="var(--md-sys-color-secondary-container)"/><path d="M50 72 l14 14 l28 -30" stroke="var(--md-sys-color-secondary)" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+  '<rect x="26" y="26" width="88" height="88" rx="30" fill="var(--md-sys-color-secondary-container)"/><rect x="52" y="52" width="36" height="36" rx="10" fill="var(--md-sys-color-secondary)" opacity=".45"/>'
 ];
 
 const ESTADO_MOD = {
