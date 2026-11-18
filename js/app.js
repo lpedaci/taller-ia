@@ -10,7 +10,7 @@ import * as inicio from "./views/inicio.js";
 import * as agenda from "./views/agenda.js";
 import * as recorrido from "./views/recorrido.js";
 import * as aprendizaje from "./views/aprendizaje.js";
-import { ajustes, iniciarAjustes, simple, ayuda } from "./views/otras.js";
+import { ajustes, iniciarAjustes, simple, ayuda, misPrompts, iniciarPrompts } from "./views/otras.js";
 import * as leccion from "./lesson/leccion.js";
 import { DEMO } from "./state.js";
 import { dibujarRegistro } from "./views/piezas.js";
@@ -27,6 +27,7 @@ function vista(id, args) {
     case "aprendizaje": aprendizaje.preparar(args); return { html: aprendizaje.render(), despues: aprendizaje.despues };
     case "ajustes": return { html: ajustes() };
     case "ayuda": return { html: ayuda() };
+    case "prompts": return { html: misPrompts() };
     case "modulo": return { asincrono: () => leccion.mostrar(main, args) };
     default: return { html: simple(id), titulo: r.t, sub: r.s };
   }
@@ -85,6 +86,7 @@ async function arrancar() {
   // Pie: el aviso de datos de ejemplo solo aparece en el modo de ejemplo
   if (!DEMO) qs("#foot").textContent = "© 2026 Lourdes Pedaci, Experience Designer";
   iniciarAjustes(rerender);
+  iniciarPrompts(rerender);
   // El registro de actividad adapta las semanas al ancho disponible
   let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { dibujarRegistro("heatDash"); dibujarRegistro("heatFull"); }, 150); });
   addEventListener("hashchange", () => {

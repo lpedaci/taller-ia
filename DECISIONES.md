@@ -31,6 +31,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-023 | 2026-11-18 | Tokens de tamaño de componentes y barra superior equilibrada | Vigente |
 | D-024 | 2026-11-18 | Estado real por defecto; datos de ejemplo solo con `?demo=1` | Vigente |
 | D-025 | 2026-11-18 | Motor de lecciones por pasos, barra flotante, Escuchar y lección de prueba | Vigente |
+| D-026 | 2026-11-18 | Doce tipos de actividad con feedback explicativo, borradores y layout para mobile | Vigente |
 
 ---
 
@@ -396,3 +397,45 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 - `npm run verificar:rapido` sin problemas: 96 capturas, ahora con la lección, el cierre del módulo y el modo de ejemplo.
 
 **Pendientes o riesgos:** el enlace de UNESCO que se probó para la lección de prueba no respondió (tiempo agotado) y no se usó; se revisa en la etapa 3. La lectura en voz alta depende de las voces instaladas en cada dispositivo; conviene probarla en el celular de Lourdes.
+
+## D-026 | 2026-11-18 | Etapa 2, parte 2: actividades
+
+**Solicitado:** los tipos de actividad de la sección 6, configurables desde el contenido, accesibles por teclado y con layout propio en mobile. Feedback inmediato que siempre explica por qué. Microevaluaciones con reintento.
+
+**Decisión y motivo:**
+- **Doce actividades nuevas**, registradas como tipos de bloque de la lección:
+  - **Evaluadas:** opción múltiple, verdadero o falso con justificación, clasificador, marcar errores en un texto y escenario ramificado.
+  - **De producción:** constructor guiado (prompt, prompt visual y brief), reflexión para el diario, comparador antes y después, tabla comparativa editable, constructor de flujos, storyboard y mapa de impactos.
+  - La cita traducida ya estaba (D-025). El video con fachada va en la parte 3 y la animación por escenas, en la parte 5.
+- **Marco común:** tipo de actividad, título, consigna, cuerpo y una zona de feedback que se anuncia a los lectores de pantalla. El feedback por ítem lleva ícono y texto ("Correcto." o "Revisalo.") y nunca depende solo del color.
+- **Evaluadas:**
+  - "Comprobar" pide completar lo que falta y lleva el foco ahí.
+  - Después muestra el puntaje ("2 de 3"), la explicación de cada ítem y "Reintentar".
+  - Marcar errores distingue los errores encontrados, los que faltaron y las partes marcadas que estaban bien.
+  - El escenario muestra la consecuencia de cada decisión, el camino recorrido y un final con su tono.
+- **Arrastrar sin depender del arrastre:** el clasificador se puede usar arrastrando con el mouse o con el selector "Mover a" en cada tarjeta, que funciona con teclado y en pantallas táctiles.
+- **Producción:**
+  - Lo que se escribe se guarda como borrador mientras se escribe.
+  - El constructor arma el texto en vivo con una plantilla del contenido y omite las líneas vacías.
+  - Tiene "Copiar", "Abrir en" Claude, ChatGPT, Gemini o Copilot (copia y abre la web, sin API) y "Guardar en Mis prompts".
+  - El brief se descarga como `.md`.
+  - El flujo revisa que empiece con un disparador y que haya una persona que revise después de la IA, y se descarga como diagrama `.svg`.
+  - El storyboard se imprime o se guarda como PDF, solo él.
+  - El mapa ofrece "Ideas para comparar", sin una única respuesta correcta.
+- **Resultados:** en las lecciones reales, cada resultado alimenta las competencias (por objetivo), el registro de actividad y las evidencias del portafolio. La reflexión se guarda en el diario y los prompts, en Mis prompts. En la lección de prueba todo queda en memoria y no cuenta.
+- **Mis prompts:** muestra la lista real, con copiar y eliminar (con confirmación). La exportación en Markdown y JSON llega con el Módulo 5 (etapa 4).
+- **Mobile:**
+  - la tabla se convierte en tarjetas por fila;
+  - el clasificador, el mapa y el storyboard pasan a una columna;
+  - las actividades usan container queries, así se adaptan al ancho de la lección y no solo al de la ventana.
+- **Barra flotante:** con `scroll-padding`, el foco nunca queda debajo de la barra (WCAG 2.4.11).
+- **Enlaces "Abrir en":** verificados el 2026-11-18 (código 200). Copilot redirige a copilot.com. Pasan a `content/herramientas.json` en la etapa 6.
+
+**Archivos afectados:** `js/activities/comun.js`, `js/activities/evaluadas.js`, `js/activities/produccion.js`, `css/activities.css`, `js/state.js` (diario, prompts, evidencias y borradores), `js/views/otras.js` (Mis prompts), `js/app.js`, `content/modulo-prueba.json`, `scripts/verificar.mjs`, `README.md`, `index.html`, `estilos.html`.
+
+**Verificación realizada:**
+- Prueba de cada actividad en 1280, 768 y 360 px: 43 chequeos en cada ancho, más axe-core después de interactuar, con el feedback a la vista. Todo correcto. Arrastrar y soltar se comprobó con un movimiento real del mouse; el atajo de arrastre de la herramienta de prueba no dispara los eventos.
+- `npm run verificar` completo: 276 capturas (20 pantallas, ahora con cada paso de actividades), sin problemas.
+- Teclado del entorno 45 de 45 y riel 9 de 9.
+
+**Pendientes o riesgos:** los contenidos de la lección de prueba son ejemplos; los textos reales de cada actividad se escriben en las etapas 3 a 8. En las capturas de página completa, el clasificador ocupa bastante alto en desktop con riel expandido (columnas apiladas, porque la lección mide unos 600 px): queda para revisar con contenido real.

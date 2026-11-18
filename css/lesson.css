@@ -3,6 +3,9 @@
    Compact y Medium: una columna. Expanded y Large: lección e índice del módulo.
    El ancho de lectura lo limita el contenedor (760 px), no el párrafo (D-016).
    ===================================================================== */
+/* El foco nunca queda debajo de la barra superior ni de la barra flotante (WCAG 2.4.11) */
+html:has(.lesson-bar){scroll-padding-top:80px;scroll-padding-bottom:96px}
+@media (max-width:599px){ html:has(.lesson-bar){scroll-padding-bottom:160px} }
 .lesson{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--app-space-4);align-items:start}
 .lesson-main{display:grid;gap:var(--app-space-4);min-width:0;max-width:760px;width:100%;margin:0 auto}
 .lesson-head{padding:var(--app-space-5)}
@@ -13,7 +16,8 @@
 .step-moment{font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-primary);margin-bottom:var(--app-space-1)}
 .lesson-step h3{font:var(--md-sys-typescale-headline-small);margin-bottom:var(--app-space-5)}
 .lesson-step h3:focus{outline:none}
-.lesson-step h3:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:4px;border-radius:var(--md-sys-shape-corner-extra-small)}
+/* El título recibe el foco al cambiar de paso (para lectores de pantalla); no es interactivo, así que no lleva anillo */
+.lesson-step h3:focus-visible{outline:none}
 .step-body{display:grid;gap:var(--app-space-5)}
 /* Texto de lectura: body-large con interlineado amplio */
 .lesson-text{font:var(--md-sys-typescale-body-large);line-height:1.65}

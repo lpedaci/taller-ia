@@ -24,6 +24,13 @@ const PANTALLAS = [
   { id: "inicio", url: "index.html#/inicio" },
   { id: "inicio-ejemplo", url: "index.html?demo=1#/inicio" },
   { id: "leccion", url: "index.html#/modulo/prueba/paso/3" },
+  { id: "act-chequeo", url: "index.html#/modulo/prueba/paso/4" },
+  { id: "act-clasificar", url: "index.html#/modulo/prueba/paso/5" },
+  { id: "act-escenario", url: "index.html#/modulo/prueba/paso/6" },
+  { id: "act-constructor", url: "index.html#/modulo/prueba/paso/7" },
+  { id: "act-comparar", url: "index.html#/modulo/prueba/paso/8" },
+  { id: "act-disenar", url: "index.html#/modulo/prueba/paso/9" },
+  { id: "act-reflexion", url: "index.html#/modulo/prueba/paso/10" },
   { id: "leccion-fin", url: "index.html#/modulo/prueba/completado" },
   { id: "recorrido", url: "index.html#/recorrido" },
   { id: "agenda-semana", url: "index.html#/agenda/semana" },
@@ -104,6 +111,7 @@ for (const modo of MODOS) {
             const r = el.getBoundingClientRect();
             if (!r.width || !r.height || getComputedStyle(el).visibility === "hidden") continue;
             if (el.closest("[hidden], dialog:not([open]), .sheet:not(.open), .menu[hidden], .sr-only, .skip")) continue;
+            if (el.closest("details:not([open])") && !el.closest("summary")) continue; // dentro de una sección plegada
             if (el.matches("input[type=checkbox], input[type=radio]") && el.labels && el.labels[0]) {
               const lr = el.labels[0].getBoundingClientRect(); if (lr.height >= 24) continue;
             }
@@ -134,7 +142,9 @@ for (const modo of MODOS) {
       });
       malos.forEach(m => textos.push(`${caso}: ${m}`));
 
-      // axe-core
+      // axe-core. La barra flotante de la lección se fija en su lugar para medir el tamaño real de los objetivos:
+      // si no, axe cuenta como "tapado" lo que queda debajo de ella en el borde de la ventana.
+      await page.addStyleTag({ content: ".lesson-bar{position:static!important}" });
       const res = await new AxeBuilder({ page, axeSource }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"]).analyze();
       corridasAxe++;
       for (const v of res.violations) {
@@ -230,6 +240,8 @@ ${lista(movimiento, "Con \"reducir movimiento\" activado no quedan transiciones 
 ## Texto: rayas largas y puntos medios
 
 ${lista(textos, "No se encontraron.")}
+
+Nota: durante el análisis de axe-core, la barra flotante de las lecciones se fija en su lugar, para que no cuente como "tapado" el contenido que queda debajo de ella en el borde de la ventana. Para el teclado, el sitio usa \`scroll-padding\`: el elemento con foco siempre queda visible por encima de la barra.
 
 ## Qué se revisa a mano
 

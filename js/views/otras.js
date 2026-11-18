@@ -1,6 +1,6 @@
 /* Taller - IA | Ajustes y accesibilidad, página base de cada módulo y secciones que se completan en etapas posteriores */
 import { esc, qs } from "../util.js";
-import { perfil, setNombre } from "../state.js";
+import { perfil, setNombre, prompts, eliminarPrompt } from "../state.js";
 import { store } from "../storage.js";
 import { tema } from "../theme.js";
 import { icono, cabecera, vacio, aviso } from "../ui.js";
@@ -52,6 +52,30 @@ const PROXIMAMENTE = {
   glosario: ["El glosario se arma en la etapa 9", "Va a tener entre 30 y 40 términos, con su original en inglés, una definición propia y un buscador."],
   facilitadores: ["La guía para facilitadores se arma en la etapa 9", "Para cada módulo: duración sugerida, objetivos, secuencia de clase, preguntas para debatir y dinámicas para clases online."]
 };
+export function misPrompts() {
+  const ps = prompts();
+  const cab = `<div class="view-head"><div class="vh-txt"><h2>Mis prompts</h2><p>Los prompts que guardaste en las actividades, para copiarlos cuando los necesites.</p></div></div>`;
+  if (!ps.length) return cab + `<div class="card">${vacio("Todavía no guardaste prompts", "Cuando guardes un prompt en el laboratorio del Módulo 5 o en otras actividades, aparece acá con su nombre y sus etiquetas.", `<a class="btn btn-filled" href="${href("modulo", 5)}">Ir al laboratorio de prompts</a>`)}</div>`;
+  return cab + `<div class="prompt-list">${ps.slice().reverse().map(p => `<article class="card prompt-card" aria-labelledby="pp-${esc(p.id)}"><h3 id="pp-${esc(p.id)}">${esc(p.nombre)}</h3>` +
+    (p.etiquetas?.length ? `<div class="tags">${p.etiquetas.map(t => `<span class="chip chip-neutral">${esc(t)}</span>`).join("")}</div>` : "") +
+    `<pre>${esc(p.texto)}</pre><div class="card-actions" style="padding:0"><button class="btn btn-tonal" type="button" data-copiar-prompt="${esc(p.id)}">${icono("content_copy")}Copiar</button>` +
+    `<button class="btn btn-text" type="button" data-borrar-prompt="${esc(p.id)}" style="color:var(--md-sys-color-error)">${icono("delete")}Eliminar</button></div></article>`).join("")}</div>`;
+}
+export function iniciarPrompts(rerender) {
+  document.addEventListener("click", async e => {
+    const c = e.target.closest("[data-copiar-prompt]");
+    if (c) { const p = prompts().find(x => x.id === c.dataset.copiarPrompt); const { copiar } = await import("../activities/comun.js"); aviso(await copiar(p.texto) ? "Copiado al portapapeles" : "No se pudo copiar"); return; }
+    const d = e.target.closest("[data-borrar-prompt]");
+    if (d) {
+      const { confirmar } = await import("../ui.js");
+      const p = prompts().find(x => x.id === d.dataset.borrarPrompt);
+      if (await confirmar({ icono: "delete", titulo: "¿Eliminar este prompt?", texto: `<b>${esc(p.nombre)}</b><br>Se quita de tu biblioteca. No se puede deshacer.`, ok: "Eliminar", peligro: true })) {
+        eliminarPrompt(p.id); rerender(); qs("#contenido").focus(); aviso("Prompt eliminado");
+      }
+    }
+  });
+}
+
 export function simple(id) {
   const r = RUTAS[id], p = PROXIMAMENTE[id];
   const accion = id === "prompts" ? `<a class="btn btn-filled" href="${href("modulo", 5)}">Ir al laboratorio de prompts</a>` : `<a class="btn btn-outlined" href="${href("recorrido")}">Ver Mi recorrido</a>`;

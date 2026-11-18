@@ -33,10 +33,182 @@
       ]
     },
     {
+      "titulo": "Chequeo rápido",
+      "momento": "evaluacion",
+      "bloques": [
+        {
+          "tipo": "quiz", "id": "quiz", "titulo": "¿Qué recordás de este recorrido?", "competencia": "comprender",
+          "consigna": "Elegí una respuesta en cada pregunta y después tocá **Comprobar**.",
+          "preguntas": [
+            { "texto": "¿Dónde se guarda tu progreso en el taller?", "opciones": [
+              { "texto": "En un servidor del taller, asociado a tu cuenta.", "feedback": "El taller no tiene cuentas ni servidor: nada sale de tu navegador." },
+              { "texto": "En este navegador, y lo podés exportar a otro dispositivo.", "correcta": true, "feedback": "Así es: se guarda en el navegador, y con Exportar e Importar lo llevás a otro dispositivo." },
+              { "texto": "No se guarda: hay que empezar de nuevo cada vez.", "feedback": "Sí se guarda: al volver, Continuar te lleva al último paso." }
+            ] },
+            { "texto": "¿Qué mide tu nivel en una competencia?", "opciones": [
+              { "texto": "El tiempo que pasaste en la plataforma.", "feedback": "El taller no mide tiempo: estar más tiempo no indica cuánto se aprende." },
+              { "texto": "La cantidad de páginas que leíste.", "feedback": "Leer es importante, pero el nivel sale de lo que demostrás en actividades evaluadas." },
+              { "texto": "Las actividades evaluadas y las evidencias que sumás.", "correcta": true, "feedback": "Correcto: se mide lo que completás y producís." }
+            ] },
+            { "texto": "Si un dato cambia seguido, como el precio de una herramienta, ¿dónde va?", "opciones": [
+              { "texto": "En una tarjeta con fecha, separada del texto.", "correcta": true, "feedback": "Exacto: así se actualiza en un solo lugar y queda claro de cuándo es el dato." },
+              { "texto": "En el texto de la lección, para tenerlo a mano.", "feedback": "En el texto quedaría desactualizado pronto. Va en una tarjeta con fecha." }
+            ] }
+          ]
+        },
+        {
+          "tipo": "vf", "id": "vf", "titulo": "¿Verdadero o falso?", "competencia": "discernimiento",
+          "consigna": "Decidí si cada afirmación es verdadera o falsa y justificá en una oración.",
+          "afirmaciones": [
+            { "texto": "Un asistente de IA puede dar una respuesta segura y bien escrita que sea falsa.", "verdadero": true, "explicacion": "Los modelos generan texto plausible, no verificado. Por eso hay que revisar lo que producen." },
+            { "texto": "Si la respuesta cita una fuente, la fuente existe.", "verdadero": false, "explicacion": "Un modelo puede inventar referencias con formato correcto. Hay que buscarlas y comprobarlas." },
+            { "texto": "Pedirle a la IA que mejore un prompt es una técnica válida.", "verdadero": true, "explicacion": "Se llama meta-prompting y es útil, siempre que revises el resultado con tu criterio." }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Clasificar y corregir",
+      "momento": "practica",
+      "bloques": [
+        {
+          "tipo": "clasificador", "id": "clasificador", "titulo": "¿Quién hace cada tarea?", "competencia": "delegacion",
+          "consigna": "Ubicá cada tarea de una coordinadora de capacitación en la columna que te parezca mejor.",
+          "categorias": [
+            { "id": "yo", "titulo": "Lo hago yo", "descripcion": "Requiere criterio o trato personal." },
+            { "id": "con-ia", "titulo": "Lo hago con IA", "descripcion": "La IA ayuda y yo reviso." },
+            { "id": "ia", "titulo": "Lo delego a la IA", "descripcion": "Tarea repetitiva y de bajo riesgo." }
+          ],
+          "items": [
+            { "texto": "Dar una devolución a una persona del equipo sobre su desempeño.", "categoria": "yo", "feedback": "Es una conversación delicada, con datos personales y vínculo: conviene hacerla vos." },
+            { "texto": "Escribir un primer borrador del programa de un curso.", "categoria": "con-ia", "feedback": "La IA acelera el borrador, pero el diseño final necesita tu revisión y tu conocimiento del grupo." },
+            { "texto": "Pasar a formato de tabla una lista de fechas ya confirmadas.", "categoria": "ia", "feedback": "Es mecánico, con datos que ya revisaste: se puede delegar y verificar de un vistazo." },
+            { "texto": "Proponer tres ideas de actividades para romper el hielo.", "categoria": "con-ia", "feedback": "Sirve para inspirarte; vos elegís la que va con tu grupo." }
+          ]
+        },
+        {
+          "tipo": "errores", "id": "errores", "titulo": "Corregí a la IA", "competencia": "discernimiento",
+          "consigna": "Este resumen fue escrito para el taller como ejemplo. Tiene **tres errores** escondidos. Encontralos y explicá cada uno.",
+          "segmentos": [
+            { "t": "El informe trimestral muestra que las inscripciones al curso crecieron respecto del trimestre anterior." },
+            { "t": "Según el informe, el crecimiento fue del 300 %,", "error": { "tipo": "Dato falso", "explicacion": "El informe de ejemplo no da ningún porcentaje: la IA lo inventó." } },
+            { "t": "y la mayoría de las personas inscriptas trabaja en el sector público." },
+            { "t": "Como dijo la directora en la última reunión: \"la capacitación es nuestra prioridad absoluta\".", "error": { "tipo": "Cita inventada", "explicacion": "No hay registro de esa frase. Las citas siempre se verifican en la fuente original." } },
+            { "t": "Los hombres suelen aprovechar mejor los cursos técnicos,", "error": { "tipo": "Sesgo", "explicacion": "Es una generalización sin datos que refuerza un estereotipo de género." } },
+            { "t": "por eso se propone sumar dos comisiones nuevas." }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Una decisión con consecuencias",
+      "momento": "practica",
+      "bloques": [
+        {
+          "tipo": "escenario", "id": "escenario", "titulo": "La planilla de participantes", "competencia": "diligencia",
+          "inicio": "n1",
+          "nodos": {
+            "n1": { "texto": "Sos capacitadora y tenés una planilla con nombre, correo y empresa de 40 participantes (datos inventados para el ejemplo). Querés que la IA te ayude a armar los grupos de trabajo.", "pregunta": "¿Qué hacés?", "opciones": [
+              { "texto": "Pego la planilla completa en el chat.", "tono": "negativo", "consecuencia": "Compartiste datos personales de terceros en una herramienta externa, sin base legal ni consentimiento.", "destino": "n2" },
+              { "texto": "Reemplazo los nombres por códigos y quito los correos antes de pegarla.", "tono": "positivo", "consecuencia": "Anonimizaste los datos: la IA puede ayudarte con la tarea sin exponer a nadie.", "destino": "fin-bien" }
+            ] },
+            "n2": { "texto": "Te das cuenta del problema después de enviar el mensaje.", "pregunta": "¿Y ahora?", "opciones": [
+              { "texto": "Borro la conversación, reviso la configuración de privacidad y aviso a mi organización.", "tono": "atencion", "consecuencia": "Limitaste el daño y seguiste el procedimiento. La próxima vez, anonimizá antes de cargar.", "destino": "fin-aprendizaje" },
+              { "texto": "Sigo como si nada: total, ya está.", "tono": "negativo", "consecuencia": "Los datos quedaron cargados y nadie en tu organización lo sabe.", "destino": "fin-mal" }
+            ] },
+            "fin-bien": { "final": true, "tono": "positivo", "titulo": "Buena práctica", "texto": "Anonimizar antes de cargar es la forma más simple de cuidar los datos de otras personas." },
+            "fin-aprendizaje": { "final": true, "tono": "atencion", "titulo": "Error corregido a tiempo", "texto": "Reconocer el error y avisar es parte de usar la IA con responsabilidad." },
+            "fin-mal": { "final": true, "tono": "negativo", "titulo": "Riesgo sin atender", "texto": "Callar un incidente con datos personales agrava el problema. Siempre conviene avisar." }
+          }
+        }
+      ]
+    },
+    {
+      "titulo": "Construir un prompt",
+      "momento": "practica",
+      "bloques": [
+        {
+          "tipo": "constructor", "id": "prompt", "titulo": "Laboratorio de prompts", "modo": "prompt", "competencia": "descripcion", "evidencia": "Prompt guardado en la lección de prueba",
+          "consigna": "Completá los campos. El prompt se arma abajo a medida que escribís.",
+          "campos": [
+            { "id": "tarea", "etiqueta": "Tarea", "obligatorio": true, "ayuda": "Qué querés que haga, con un verbo claro.", "ejemplo": "Escribí un correo para invitar a un taller de dos horas." },
+            { "id": "contexto", "etiqueta": "Contexto", "multilinea": true, "ayuda": "Para quién es y qué tiene que saber.", "ejemplo": "Es para el equipo administrativo de una escuela técnica; nunca usaron IA." },
+            { "id": "rol", "etiqueta": "Rol", "ayuda": "Desde qué lugar responde.", "ejemplo": "Actuá como una capacitadora con experiencia en personas adultas." },
+            { "id": "formato", "etiqueta": "Formato de salida", "ayuda": "Cómo querés el resultado.", "ejemplo": "Un correo de no más de 120 palabras, con asunto." },
+            { "id": "restricciones", "etiqueta": "Restricciones", "ayuda": "Qué evitar.", "ejemplo": "Sin tecnicismos ni promesas exageradas." }
+          ],
+          "plantilla": "{rol}\n\n{tarea}\n\nContexto: {contexto}\n\nFormato: {formato}\n\nEvitá: {restricciones}"
+        },
+        {
+          "tipo": "constructor", "id": "brief", "titulo": "Tu primer brief", "modo": "brief", "archivo": "brief-landing",
+          "consigna": "Un brief claro ayuda a que un agente de programación construya lo que necesitás. Completalo y descargalo.",
+          "campos": [
+            { "id": "proyecto", "etiqueta": "Qué querés construir", "obligatorio": true, "ayuda": "En una oración.", "ejemplo": "Una página para presentar mi emprendimiento de clases de cerámica." },
+            { "id": "publico", "etiqueta": "Para quién es", "multilinea": true, "ejemplo": "Personas adultas de mi barrio que buscan una actividad creativa." },
+            { "id": "secciones", "etiqueta": "Secciones", "multilinea": true, "ejemplo": "Inicio, horarios, precios y contacto por WhatsApp." }
+          ],
+          "plantilla": "Proyecto: {proyecto}\n\nPúblico: {publico}\n\nSecciones: {secciones}"
+        }
+      ]
+    },
+    {
+      "titulo": "Comparar y registrar",
+      "momento": "practica",
+      "bloques": [
+        {
+          "tipo": "comparador", "id": "comparador", "titulo": "Un prompt antes y después",
+          "antes": { "titulo": "Prompt pobre", "texto": "Haceme un resumen." },
+          "despues": { "titulo": "Prompt mejorado", "texto": "Resumí este documento en cinco puntos para el equipo directivo.\nUsá lenguaje simple y terminá con una recomendación.\nNo agregues datos que no estén en el texto." },
+          "cambios": [
+            { "titulo": "Tarea concreta", "texto": "Dice cuántos puntos y para quién, en lugar de un pedido genérico." },
+            { "titulo": "Formato", "texto": "Pide lenguaje simple y una recomendación al final." },
+            { "titulo": "Restricción", "texto": "Prohíbe inventar datos, lo que reduce las alucinaciones." }
+          ]
+        },
+        {
+          "tipo": "tabla", "id": "tabla", "titulo": "Misma tarea, distintos asistentes",
+          "consigna": "Probá la consigna en los asistentes que tengas y anotá las diferencias.",
+          "columnas": [ { "id": "claridad", "titulo": "Claridad" }, { "id": "precision", "titulo": "Precisión" }, { "id": "formato", "titulo": "Respetó el formato" } ],
+          "filas": [ { "id": "a", "titulo": "Asistente A" }, { "id": "b", "titulo": "Asistente B" } ]
+        }
+      ]
+    },
+    {
+      "titulo": "Diseñar",
+      "momento": "practica",
+      "bloques": [
+        {
+          "tipo": "flujo", "id": "flujo", "titulo": "Diseñá tu flujo",
+          "consigna": "Armá un flujo de 3 a 5 pasos para una tarea repetitiva de tu trabajo. Marcá dónde interviene la IA y dónde revisa una persona."
+        },
+        {
+          "tipo": "storyboard", "id": "storyboard", "titulo": "Storyboard de una cápsula",
+          "consigna": "Planificá un video corto en 4 a 6 escenas."
+        },
+        {
+          "tipo": "mapa", "id": "mapa", "titulo": "Mapa de impactos",
+          "caso": "Una empresa usa IA para **preseleccionar currículums** de personas que se postulan a un puesto administrativo.",
+          "columnas": [
+            { "id": "actores", "titulo": "Actores afectados", "ayuda": "Quiénes reciben el impacto." },
+            { "id": "beneficios", "titulo": "Beneficios", "ayuda": "Qué mejora." },
+            { "id": "riesgos", "titulo": "Riesgos", "ayuda": "Qué puede salir mal y a quién afecta." },
+            { "id": "salvaguardas", "titulo": "Salvaguardas", "ayuda": "Qué medidas reducen los riesgos." }
+          ],
+          "ideas": {
+            "actores": ["Personas que se postulan", "Equipo de selección", "La empresa"],
+            "beneficios": ["Menos tiempo en tareas repetitivas"],
+            "riesgos": ["Sesgos heredados de contrataciones anteriores", "Descartar perfiles valiosos sin revisión"],
+            "salvaguardas": ["Revisión humana de los descartes", "Auditoría periódica de sesgos", "Informar a quienes se postulan"]
+          }
+        }
+      ]
+    },
+    {
       "titulo": "¿Cómo lo usarías en tu trabajo?",
       "momento": "transferencia",
       "bloques": [
-        { "tipo": "texto", "md": "Cada lección termina conectando lo aprendido con tu trabajo o con tu aula. En las lecciones reales, este paso tiene una reflexión que se guarda en tu diario de aprendizaje.\n\nPensá en una tarea de tu semana que podrías organizar en pasos cortos, como esta lección." }
+        { "tipo": "texto", "md": "Cada lección termina conectando lo aprendido con tu trabajo o con tu aula." },
+        { "tipo": "reflexion", "id": "reflexion", "titulo": "Tu diario de aprendizaje", "pregunta": "¿Qué tarea de tu semana podrías organizar en pasos cortos, como esta lección?" }
       ]
     },
     {

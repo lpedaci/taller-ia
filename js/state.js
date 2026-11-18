@@ -60,8 +60,10 @@ function inicial() {
     actividades: {},              // { [id]: { modulo, competencia, objetivo, resultado, puntaje, intentos, fecha, respuesta } }
     registro: {},                 // { "aaaa-mm-dd": cantidad completada ese día }
     tareas: { hechas: {}, propias: [], ocultas: [] },
-    evidencias: [],
-    objetivos: []
+    evidencias: [],               // [{ id, titulo, detalle, modulo, fecha }]
+    objetivos: [],
+    diario: [],                   // [{ id, modulo, pregunta, texto, fecha }]
+    prompts: []                   // [{ id, nombre, etiquetas, texto, modulo, origen, fecha }]
   };
   if (!DEMO) return base;
   const d = datos.demo;
@@ -132,6 +134,27 @@ export function registrarActividad(id, datosAct) {
   guardar();
 }
 export const actividadGuardada = id => est.actividades[id] || null;
+/** Guarda un borrador sin contar como completada (respuestas a medio hacer) */
+export function guardarBorrador(id, respuesta, extra = {}) {
+  est.actividades[id] = { ...(est.actividades[id] || { intentos: 0 }), ...extra, respuesta, borrador: !est.actividades[id]?.resultado };
+  guardar();
+}
+
+/* ---------- Evidencias, diario y biblioteca de prompts ---------- */
+const reemplazar = (lista, item) => { const i = lista.findIndex(x => x.id === item.id); i > -1 ? lista.splice(i, 1, item) : lista.push(item); };
+export function agregarEvidencia(id, titulo, detalle, modulo) {
+  reemplazar(est.evidencias, { id, titulo, detalle, modulo, fecha: new Date().toISOString() }); guardar();
+}
+export function guardarDiario(id, modulo, pregunta, texto) {
+  reemplazar(est.diario, { id, modulo, pregunta, texto, fecha: new Date().toISOString() }); guardar();
+}
+export const diario = () => est.diario;
+export function guardarPrompt(p) {
+  const item = { ...p, id: p.id || "p" + Date.now(), fecha: new Date().toISOString() };
+  reemplazar(est.prompts, item); guardar(); return item;
+}
+export const prompts = () => est.prompts;
+export function eliminarPrompt(id) { est.prompts = est.prompts.filter(p => p.id !== id); guardar(); }
 function sumarRegistro() { const k = isoDia(hoy()); est.registro[k] = (est.registro[k] || 0) + 1; }
 
 /* ---------- Rutas sugeridas ---------- */

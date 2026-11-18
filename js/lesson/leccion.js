@@ -7,6 +7,9 @@ import { datos, modulo, bloque, avance, pasosVistos, registrarVisita, completarP
 import { icono, lineal, vacio, aviso } from "../ui.js";
 import { href } from "../routes.js";
 import { dibujar } from "./bloques.js";
+// Las actividades se registran como tipos de bloque al importarse
+import "../activities/evaluadas.js";
+import "../activities/produccion.js";
 import { crearLector, disponible as puedeLeer } from "../escuchar.js";
 
 const MOMENTOS = { gancho: "Para empezar", objetivo: "Qué vas a lograr", activacion: "Lo que ya sabés", contenido: "Contenido", practica: "Práctica guiada", feedback: "Revisión", evaluacion: "Chequeo", transferencia: "En tu trabajo o en tu aula", cierre: "Cierre" };

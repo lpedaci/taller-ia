@@ -6,7 +6,7 @@ Es un sitio de HTML, CSS y JavaScript sin paso de compilación. Funciona publica
 
 ## Estado del proyecto
 
-Etapa 1 de 10: esqueleto y sistema de diseño Material 3 Expressive. El inicio usa datos de ejemplo (`content/demo.json`). El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
+Etapa 2 de 10, en curso: motor de lecciones y actividades. El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
 
 ## Ver el taller en tu computadora
 
@@ -70,9 +70,30 @@ El contenido está separado del código, en la carpeta `content/`:
 |---|---|
 | `modulos.json` | Bloques, módulos (título, descripción, pasos, minutos), competencias, niveles y rutas sugeridas |
 | `agenda.json` | Fechas de la cursada por cohorte. Hoy está vacío: tiene un ejemplo del formato |
-| `demo.json` | Datos de ejemplo del panel de inicio (etapa 1) |
+| `demo.json` | Datos de ejemplo que se ven con `?demo=1` |
+| `modulo-XX.json` | La lección de cada módulo (ver abajo). `modulo-prueba.json` muestra todos los tipos de bloque |
 
 Para cambiar un texto, pedíselo a Claude Code con tus palabras: Claude reformula el pedido, lo registra en `DECISIONES.md`, hace el cambio y lo verifica.
+
+### Cómo se escribe una lección
+
+Cada módulo es un archivo `content/modulo-XX.json` (por ejemplo, `modulo-03.json`). En `modulos.json`, el módulo lleva `"leccion": true` cuando su archivo ya existe.
+
+```json
+{
+  "objetivos": [{ "id": "m3-o1", "texto": "Explicar por qué un modelo se equivoca.", "competencia": "comprender" }],
+  "pasos": [
+    { "titulo": "Una respuesta muy segura", "momento": "gancho", "bloques": [
+      { "tipo": "texto", "md": "Texto con **negrita**, listas y un término del {{glosario}}." }
+    ] }
+  ]
+}
+```
+
+- **Momentos** (eventos de Gagné): `gancho`, `objetivo`, `activacion`, `contenido`, `practica`, `feedback`, `evaluacion`, `transferencia` y `cierre`.
+- **Bloques de contenido:** `texto`, `nota` (con `estado`: info, atencion, positivo o error), `objetivos`, `cita` (cita traducida) y `profundizar`.
+- **Actividades:** `quiz`, `vf`, `clasificador`, `errores`, `escenario`, `constructor` (con `modo`: prompt, visual o brief), `reflexion`, `comparador`, `tabla`, `flujo`, `storyboard` y `mapa`. Cada actividad lleva un `id` único dentro del módulo y, si es evaluada, la `competencia` y el `objetivo` a los que suma.
+- La lección de prueba (`content/modulo-prueba.json`) tiene un ejemplo de cada uno.
 
 ## Estructura
 
