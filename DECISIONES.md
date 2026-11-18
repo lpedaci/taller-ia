@@ -34,8 +34,11 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-026 | 2026-11-18 | Doce tipos de actividad con feedback explicativo, borradores y layout para mobile | Vigente |
 | D-027 | 2026-11-18 | Estados de carga, espera, error y sin conexión; video con fachada; eventos propios en la Agenda | Vigente |
 | D-028 | 2026-11-18 | Componente de gráficos en SVG con paleta validada y tabla alternativa | Vigente |
-| D-029 | 2026-11-18 | Guion de la animación piloto (predicción de tokens), pendiente de aprobación | Vigente |
+| D-029 | 2026-11-18 | Guion de la animación piloto (predicción de tokens) | Vigente |
 | D-030 | 2026-11-18 | Barra de la lección arriba del paso, fija debajo de la barra superior | Vigente |
+| D-031 | 2026-11-18 | Motor de animaciones por escenas y animación piloto, pendiente de aprobación | Vigente |
+| D-032 | 2026-11-18 | Alineación de actividades y orden de botones según el design system | Vigente |
+| D-033 | 2026-11-18 | Cierre de la etapa 2: verificación completa | Vigente |
 
 ---
 
@@ -555,3 +558,104 @@ Cada escena tiene texto en pantalla, qué se mueve, narración y descripción pa
 **Verificación realizada:** capturas en 1280 y 390 px con scroll: la barra queda fija debajo de la barra superior. `npm run verificar:rapido` sin problemas (174 capturas) y prueba del motor de lecciones completa.
 
 **Pendientes o riesgos:** ninguno.
+
+## D-031 | 2026-11-18 | Etapa 2, parte 5: motor de animaciones y animación piloto
+
+**Solicitado:** construir el motor de animaciones explicativas por escenas y la animación piloto (cómo un asistente escribe prediciendo el próximo token), según el guion de D-029, para que Lourdes la revise antes de producir las demás.
+
+**Decisión y motivo:**
+- **Contenido separado del dibujo:**
+  - los textos de cada escena (texto en pantalla, narración, descripción y duración) y los datos del ejemplo están en `content/animaciones/prediccion-tokens.json`;
+  - el dibujo está en `js/animaciones/prediccion-tokens.js`. Cada escena devuelve una función que dibuja su estado para un avance de 0 a 1. Así se puede pausar, saltar de escena y, más adelante, grabar el MP4 cuadro a cuadro.
+- **Reproductor:**
+  - Reproducir y pausar, escena anterior y siguiente, una barra dividida en 5 escenas que también sirve para saltar, velocidad (0,75; 1 y 1,25) y "Narración" con la voz del navegador.
+  - Con narración, cada escena espera a que termine de hablar antes de pasar a la siguiente.
+  - No empieza sola y no se repite en bucle: al final ofrece "Ver de nuevo".
+  - Antes de reproducir, se ve la primera escena completa como portada.
+  - Al saltar de escena en pausa, la escena se muestra completa.
+- **Accesibilidad:**
+  - el SVG tiene `role="img"` y su nombre es el título más la descripción de la escena actual;
+  - la descripción se anuncia al cambiar de escena (`aria-live="polite"`);
+  - la transcripción completa está debajo;
+  - todos los controles funcionan con teclado y tienen área táctil de 48 px;
+  - con "reducir movimiento", se muestran las escenas fijas y completas, con las flechas para avanzar y sin reproducción.
+- **Diseño:** usa los tokens del sistema, así que funciona en modo claro y oscuro. El lienzo es horizontal (16:9) cuando el reproductor mide 600 px o más, y vertical (4:5) en pantallas angostas, con la letra más grande. El movimiento usa curvas que aproximan los springs de M3.
+- **Dónde se ve:** un paso nuevo de la lección de prueba ("Una animación para explicar"). Una vez aprobada, va al Módulo 2.
+- **Ajustes después de revisar las capturas:** los recuadros de los tokens se pisaban (más separación entre filas y columnas); el espacio por completar quedaba fuera de la burbuja; el ícono de advertencia salía como texto; la letra del lienzo horizontal era chica; el movimiento de los dos pedazos de "médico" pisaba a los vecinos y se reemplazó por la nota "una palabra, dos fragmentos".
+
+**Archivos afectados:** `js/animacion.js`, `js/animaciones/prediccion-tokens.js`, `content/animaciones/prediccion-tokens.json`, `css/animacion.css`, `content/modulo-prueba.json`, `js/lesson/leccion.js`, `index.html`, `estilos.html`, `scripts/verificar.mjs`.
+
+**Verificación realizada:**
+- Prueba del reproductor: 16 de 16. Cubre portada, reproducir, pausar, foco, velocidad, escena anterior y siguiente, salto desde la barra, descripción anunciada, transcripción, nombre accesible, "Ver de nuevo" al final, teclado, versión fija con movimiento reducido y ningún error.
+- Capturas de las 5 escenas en 390, 1280 y 1600 px, en claro y oscuro, terminadas y a mitad del movimiento.
+- `npm run verificar` completo: ver D-033.
+
+**Pendientes o riesgos:** **la animación espera la aprobación de Lourdes.** Después: llevarla al Módulo 2, generar el MP4 con subtítulos para facilitadores y producir las otras nueve animaciones con el mismo motor.
+
+## D-032 | 2026-11-18 | Alineación de actividades según el design system
+
+**Solicitado:** **Cambio:** corregir desalineaciones en las actividades y ordenar los botones por prioridad, según el design system. Problemas señalados:
+- en el clasificador, los selectores "Mover a" quedaban a distinta altura según el largo del texto de cada tarjeta;
+- en el comparador, los títulos de los paneles tenían un espacio de más arriba;
+- en el constructor de flujos, el selector de tipo no alineaba con los botones de ícono;
+- las filas de botones no seguían un orden ni una alineación común.
+
+**Alcance:** todas las actividades, las 4 clases de ventana y los dos modos.
+
+**Decisión y motivo:**
+- **Clasificador:** cada tarjeta es una columna con el selector anclado abajo; en una misma fila, los selectores quedan a la misma altura.
+- **Títulos de nivel 5 y 6:** el reset de márgenes del sistema cubría solo de h1 a h4, así que los títulos de los paneles (h5) tenían el margen por defecto del navegador. El reset ahora incluye h5 y h6. Corrige el comparador y los encabezados de las columnas del clasificador.
+- **Campos:** 56 px de alto, como indica el design system para todos los campos. Se aplicó a los selectores del clasificador y del flujo, y al campo del mapa de impactos. Quedan centrados con los botones de ícono de 48 px.
+- **Botones** (design system, Button y Dialog):
+  - el ancho sigue al contenido (la única excepción sigue siendo "Agregar tarea");
+  - las acciones van alineadas al final;
+  - hay un solo botón relleno por actividad, ubicado último, a la derecha; antes quedan las acciones de menor prioridad.
+- **Orden resultante:**
+
+| Actividad | Orden (de izquierda a derecha) |
+|---|---|
+| Constructor de prompt | Vaciar, Completar con el ejemplo; abajo: Abrir en Claude, ChatGPT, Gemini o Copilot, Copiar |
+| Brief | Vaciar, Completar con el ejemplo; abajo: Copiar, Descargar |
+| Constructor de flujos | Descargar diagrama, Agregar paso, Revisar mi flujo |
+| Storyboard | Imprimir o guardar como PDF, Agregar escena |
+| Mapa de impactos | Ver ideas para comparar, Guardar mapa |
+| Error de lección | Volver a Mi recorrido, Reintentar |
+| Comparador | "Ver qué cambió y por qué" alineado a la derecha |
+| Ajustes, Tus datos | Borrar mis datos, Importar progreso, Exportar mi progreso |
+| Mis prompts | Eliminar, Copiar |
+| Cierre del módulo | Repasar desde el principio, Volver a Mi recorrido, Ir al módulo siguiente |
+
+**Archivos afectados:** `css/components.css`, `css/activities.css`, `css/layout.css`, `js/activities/produccion.js`, `js/lesson/leccion.js`, `js/views/otras.js`, `estilos.html`.
+
+Se revisaron todas las filas de botones del sitio. Las filas con una sola acción visible (Comprobar o Reintentar, Continuar, Guardar) y la navegación (Anterior y Siguiente, módulo anterior y siguiente) ya cumplían la regla.
+
+**Verificación realizada:**
+- Medición de la posición de los selectores del clasificador en 1440, 1280 y 390 px: alineados en cada fila.
+- Capturas de los pasos de actividades en 1440, 1280 y 390 px.
+- Pruebas de actividades, estados, gráficos y animación sin cambios.
+- `npm run verificar` completo: ver el resultado al cierre de la etapa 2 (D-033).
+
+**Pendientes o riesgos:** ninguno.
+
+## D-033 | 2026-11-18 | Cierre de la etapa 2: verificación
+
+**Solicitado:** verificar el producto completo antes de presentar la etapa 2 (motor de lecciones, actividades, estados, video, gráficos y animación piloto).
+
+**Decisión y motivo:** la etapa 2 se presenta a Lourdes. Queda pendiente su aprobación de la animación piloto (D-031) antes de producir las demás y de pasar a la etapa 3.
+
+**Archivos afectados:** todos los de la etapa 2.
+
+**Verificación realizada:**
+- `npm run verificar` completo: 360 capturas (30 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, sin scroll horizontal, sin errores de consola, sin animaciones con movimiento reducido y sin rayas largas ni puntos medios. Encontró un problema, ya corregido: en mobile, los botones de las escenas de la animación medían 40 px de ancho; ahora la barra de escenas va en su propia fila. Después, `npm run verificar:rapido` sin problemas (180 capturas).
+- Pruebas automáticas:
+  - teclado del entorno: 45 de 45;
+  - riel: 9 de 9;
+  - motor de lecciones: completo;
+  - actividades en 1280, 768 y 390 px: completas (arrastrar y soltar se comprobó con un movimiento real del mouse);
+  - estados: 24 de 24;
+  - gráficos: 8 de 8;
+  - reproductor de la animación: 16 de 16.
+
+**Pendientes o riesgos:**
+- Lo automático detecta solo una parte de los problemas de accesibilidad: falta probar con un lector de pantalla (NVDA en Windows) y con personas usuarias.
+- Consultas abiertas: D-009 (título de la barra entre 600 y 680 px) y D-013 (ruta "Taller completo").

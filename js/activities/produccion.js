@@ -37,12 +37,14 @@ registrar("constructor", {
       `<div class="con-campos">${b.campos.map(c => `<div class="tf"><label for="${fid(ctx, b, c.id)}">${esc(c.etiqueta)}${c.obligatorio ? "" : ' <span class="opc">(opcional)</span>'}</label>` +
         `<textarea class="field" id="${fid(ctx, b, c.id)}" data-campo="${esc(c.id)}" rows="${c.multilinea ? 3 : 1}" aria-describedby="${fid(ctx, b, c.id)}-h"></textarea>` +
         `<span class="tf-help" id="${fid(ctx, b, c.id)}-h">${esc(c.ayuda || "")}${c.ejemplo ? ` Por ejemplo: ${esc(c.ejemplo)}` : ""}</span></div>`).join("")}</div>` +
-      acciones(boton("ejemplo", "Completar con el ejemplo", "btn-text", "auto_fix_high"), boton("limpiar", "Vaciar", "btn-text", "backspace")) +
+      acciones(boton("limpiar", "Vaciar", "btn-text", "backspace"), boton("ejemplo", "Completar con el ejemplo", "btn-text", "auto_fix_high")) +
       `<div class="con-salida"><div class="con-salida-head"><h5 id="${fid(ctx, b, "out")}">${salida}</h5><span class="chip chip-neutral con-cuenta"></span></div>` +
       `<pre class="con-texto" aria-labelledby="${fid(ctx, b, "out")}" tabindex="0"></pre></div>` +
-      acciones(boton("copiar", "Copiar", "btn-filled", "content_copy"),
-        b.modo === "brief" || b.descargar ? boton("descargar", "Descargar (.md)", "btn-tonal", "download") : "",
-        b.modo !== "brief" ? `<div class="con-abrir" role="group" aria-label="Copiar y abrir en un asistente">${ASISTENTES.map(a => `<a class="btn btn-outlined" href="${a.url}" target="_blank" rel="noopener" data-abrir>${a.n}<span class="sr-only"> (copia el texto y se abre en otra pestaña)</span>${icono("open_in_new")}</a>`).join("")}</div>` : "") +
+      (b.modo === "brief" || b.descargar
+        // Brief: la acción principal es descargarlo
+        ? acciones(boton("copiar", "Copiar", "btn-tonal", "content_copy"), boton("descargar", "Descargar (.md)", "btn-filled", "download"))
+        // Prompt: abrir en un asistente es secundario; copiar es la acción principal
+        : acciones(`<div class="con-abrir" role="group" aria-label="Copiar y abrir en un asistente">${ASISTENTES.map(a => `<a class="btn btn-outlined" href="${a.url}" target="_blank" rel="noopener" data-abrir>${a.n}<span class="sr-only"> (copia el texto y se abre en otra pestaña)</span>${icono("open_in_new")}</a>`).join("")}</div>`, boton("copiar", "Copiar", "btn-filled", "content_copy"))) +
       (b.modo !== "brief" ? `<details class="con-guardar"><summary>${icono("bookmark_add", "sm")}Guardar en Mis prompts</summary>` +
         `<div class="con-guardar-in"><div class="tf"><label for="${fid(ctx, b, "nom")}">Nombre</label><input class="field" id="${fid(ctx, b, "nom")}" autocomplete="off"></div>` +
         `<div class="tf"><label for="${fid(ctx, b, "tags")}">Etiquetas <span class="opc">(separadas por coma)</span></label><input class="field" id="${fid(ctx, b, "tags")}" autocomplete="off"></div>` +
@@ -150,7 +152,7 @@ const TIPOS_FLUJO = { disparador: ["Disparador", "bolt"], accion: ["Acción", "p
 registrar("flujo", {
   render: (b, ctx) => marco("flujo", b, ctx,
     `<ol class="flujo" aria-label="Pasos del flujo"></ol>` +
-    acciones(boton("agregar", "Agregar paso", "btn-tonal", "add"), boton("revisar", "Revisar mi flujo", "btn-filled", "fact_check"), boton("svg", "Descargar diagrama", "btn-text", "download"))),
+    acciones(boton("svg", "Descargar diagrama", "btn-text", "download"), boton("agregar", "Agregar paso", "btn-tonal", "add"), boton("revisar", "Revisar mi flujo", "btn-filled", "fact_check"))),
   montar(el, b, ctx) {
     const max = b.maximo || 5, min = b.minimo || 3;
     let pasos = leer(ctx, b)?.respuesta || [{ tipo: "disparador", texto: "" }];
@@ -210,7 +212,7 @@ function svgFlujo(titulo, pasos) {
 const CAMPOS_ESCENA = [["visual", "Descripción visual"], ["texto", "Texto en pantalla"], ["voz", "Voz o narración"], ["prompt", "Prompt para generar la escena"]];
 registrar("storyboard", {
   render: (b, ctx) => marco("storyboard", b, ctx,
-    `<div class="sb"></div>` + acciones(boton("agregar", "Agregar escena", "btn-tonal", "add"), boton("imprimir", "Imprimir o guardar como PDF", "btn-outlined", "print"))),
+    `<div class="sb"></div>` + acciones(boton("imprimir", "Imprimir o guardar como PDF", "btn-outlined", "print"), boton("agregar", "Agregar escena", "btn-tonal", "add"))),
   montar(el, b, ctx) {
     const min = b.minimo || 4, max = b.maximo || 6;
     let escenas = leer(ctx, b)?.respuesta || Array.from({ length: min }, () => ({}));
@@ -248,7 +250,7 @@ registrar("mapa", {
       `<form class="mapa-add" data-col="${esc(c.id)}"><label class="sr-only" for="${fid(ctx, b, c.id + "-in")}">Agregar en ${esc(c.titulo)}</label><input class="field" id="${fid(ctx, b, c.id + "-in")}" autocomplete="off" placeholder="Escribí y agregá">` +
       `<button class="icon-btn tonal" type="submit" aria-label="Agregar en ${esc(c.titulo)}">${icono("add")}</button></form>` +
       `<div class="mapa-ideas" hidden><p>Ideas para comparar:</p><ul>${(b.ideas?.[c.id] || []).map(x => `<li>${esc(x)}</li>`).join("")}</ul></div></section>`).join("")}</div>` +
-    acciones(boton("guardar", "Guardar mapa", "btn-filled", "save"), boton("ideas", "Ver ideas para comparar", "btn-outlined", "lightbulb"))),
+    acciones(boton("ideas", "Ver ideas para comparar", "btn-outlined", "lightbulb"), boton("guardar", "Guardar mapa", "btn-filled", "save"))),
   montar(el, b, ctx) {
     const datos = leer(ctx, b)?.respuesta || {};
     b.columnas.forEach(c => { datos[c.id] = datos[c.id] || []; });

@@ -1,0 +1,57 @@
+{
+  "id": "prediccion-tokens",
+  "titulo": "Cómo escribe un asistente: de a un fragmento por vez",
+  "guion": "animaciones/guiones/01-prediccion-de-tokens.md",
+  "nota": "Las personas y el mensaje son inventados. Las probabilidades son valores ilustrativos, no de un modelo real.",
+  "datos": {
+    "hora": "23:40",
+    "pedido": "Ayudame a avisarle a mi jefa que mañana llego más tarde. Tengo turno con el médico a las 8.",
+    "tokens": ["Ayud", "ame", " a", " avis", "arle", " a", " mi", " jefa", " que", " mañana", " llego", " más", " tarde", ".", " Tengo", " turno", " con", " el", " méd", "ico", " a", " las", " 8", "."],
+    "partido": [18, 19],
+    "inicioRespuesta": "Hola, Laura. Mañana voy a llegar",
+    "candidatos": [ { "t": "un", "p": 38 }, { "t": "más", "p": 27 }, { "t": "tarde", "p": 21 }, { "t": "a", "p": 8 }, { "t": "otros", "p": 6 } ],
+    "continuacion": ["poco", "más", "tarde", "porque", "tengo", "turno", "con", "el", "médico", "a", "las", "8.", "Gracias."],
+    "versiones": [
+      { "texto": "Laura, mañana llego cerca de las 10: tengo un turno médico." },
+      { "texto": "Laura, mañana llego tarde", "inventado": "por el paro de colectivos.", "nota": "Nadie habló de un paro" }
+    ],
+    "cierre": "Probable no es lo mismo que verdadero."
+  },
+  "escenas": [
+    {
+      "titulo": "Un mensaje a las 23:40",
+      "duracion": 14,
+      "pantalla": "",
+      "narracion": "Son casi las doce de la noche. Ana tiene turno con el médico mañana temprano y le pide a un asistente que la ayude a avisarle a su jefa. Mientras la respuesta aparece en la pantalla, ¿qué está pasando del otro lado?",
+      "descripcion": "Una burbuja de chat a las 23:40 con el pedido de Ana: ayuda para avisarle a su jefa que mañana llega más tarde porque tiene turno con el médico a las 8."
+    },
+    {
+      "titulo": "El asistente lee en fragmentos",
+      "duracion": 14,
+      "pantalla": "El asistente no lee palabras: lee fragmentos, llamados tokens.",
+      "narracion": "Lo primero que hace es cortar el mensaje en fragmentos. A veces un fragmento es una palabra entera y a veces, un pedazo. Para el modelo, cada uno es un número.",
+      "descripcion": "El mensaje se divide en recuadros, uno por fragmento. La palabra médico queda partida en dos."
+    },
+    {
+      "titulo": "La respuesta empieza a escribirse",
+      "duracion": 18,
+      "pantalla": "¿Qué sigue?",
+      "narracion": "La respuesta se escribe de a un fragmento. En cada paso, el modelo estima qué es más probable que siga, según millones de textos parecidos que vio al entrenarse. No sabe qué le pasa a Ana: sabe cómo suelen seguir mensajes como este.",
+      "descripcion": "La respuesta dice: Hola, Laura. Mañana voy a llegar. Cinco barras muestran opciones para seguir; la más probable es un, con 38 por ciento."
+    },
+    {
+      "titulo": "Elige, suma y vuelve a empezar",
+      "duracion": 16,
+      "pantalla": "Elige un fragmento, lo suma y vuelve a calcular.",
+      "narracion": "Elige una opción, la agrega y vuelve a calcular con todo lo que ya está escrito. Así, fragmento a fragmento, aparece un mensaje que suena natural y que Ana podría mandar.",
+      "descripcion": "La palabra un se suma a la respuesta, que se completa: Hola, Laura. Mañana voy a llegar un poco más tarde porque tengo turno con el médico a las 8. Gracias."
+    },
+    {
+      "titulo": "Otra versión, y un detalle que nadie dijo",
+      "duracion": 18,
+      "pantalla": "Probable no es lo mismo que verdadero.",
+      "narracion": "Si Ana vuelve a pedirlo, puede recibir otra versión, porque el modelo elige entre opciones probables. Y a veces completa con algo que suena creíble pero no es cierto, como un paro que nunca existió. Por eso, antes de enviar, se lee y se revisa.",
+      "descripcion": "Aparecen dos versiones más del mensaje. Una dice que Ana llega tarde por un paro de colectivos, algo que nadie mencionó, y queda marcada. Cierra el texto: probable no es lo mismo que verdadero."
+    }
+  ]
+}

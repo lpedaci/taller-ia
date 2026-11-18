@@ -253,6 +253,20 @@
       ]
     },
     {
+      "titulo": "Una animación para explicar",
+      "momento": "contenido",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "md": "Cuando algo se entiende mejor viéndolo pasar, el taller usa animaciones cortas. Vos manejás el ritmo: podés pausar, ir escena por escena o activar la narración."
+        },
+        {
+          "tipo": "animacion",
+          "ref": "prediccion-tokens"
+        }
+      ]
+    },
+    {
       "titulo": "Chequeo rápido",
       "momento": "evaluacion",
       "bloques": [

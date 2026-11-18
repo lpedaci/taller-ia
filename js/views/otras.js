@@ -23,9 +23,9 @@ export function ajustes() {
       `<p class="muted" style="font:var(--md-sys-typescale-body-medium);margin-bottom:var(--app-space-4)">Todo queda en este navegador: no hay cuentas ni se envía nada a ningún servidor. Para seguir en otro dispositivo, exportá tu progreso y después importalo allá.</p>` +
       (store.persistente ? "" : `<div class="status status-warning" role="status" style="margin-bottom:var(--app-space-4)">${icono("warning")}<span><b>Tu navegador no permite guardar datos</b>Lo que hagas se mantiene solo mientras esta pestaña esté abierta. Exportá tu progreso antes de cerrarla.</span></div>`) +
       `<div class="setting" style="padding:0"><div class="actions">` +
-        `<button class="btn btn-tonal" type="button" data-action="exportar-progreso">${icono("download")}Exportar mi progreso</button>` +
-        `<button class="btn btn-outlined" type="button" data-action="importar-progreso">${icono("upload")}Importar progreso</button>` +
         `<button class="btn btn-text" type="button" data-action="borrar" style="color:var(--md-sys-color-error)">${icono("delete")}Borrar mis datos</button>` +
+        `<button class="btn btn-outlined" type="button" data-action="importar-progreso">${icono("upload")}Importar progreso</button>` +
+        `<button class="btn btn-tonal" type="button" data-action="exportar-progreso">${icono("download")}Exportar mi progreso</button>` +
       `</div></div></div></section>` +
   `</div>`;
 }
@@ -58,8 +58,8 @@ export function misPrompts() {
   if (!ps.length) return cab + `<div class="card">${vacio("Todavía no guardaste prompts", "Cuando guardes un prompt en el laboratorio del Módulo 5 o en otras actividades, aparece acá con su nombre y sus etiquetas.", `<a class="btn btn-filled" href="${href("modulo", 5)}">Ir al laboratorio de prompts</a>`)}</div>`;
   return cab + `<div class="prompt-list">${ps.slice().reverse().map(p => `<article class="card prompt-card" aria-labelledby="pp-${esc(p.id)}"><h3 id="pp-${esc(p.id)}">${esc(p.nombre)}</h3>` +
     (p.etiquetas?.length ? `<div class="tags">${p.etiquetas.map(t => `<span class="chip chip-neutral">${esc(t)}</span>`).join("")}</div>` : "") +
-    `<pre>${esc(p.texto)}</pre><div class="card-actions" style="padding:0"><button class="btn btn-tonal" type="button" data-copiar-prompt="${esc(p.id)}">${icono("content_copy")}Copiar</button>` +
-    `<button class="btn btn-text" type="button" data-borrar-prompt="${esc(p.id)}" style="color:var(--md-sys-color-error)">${icono("delete")}Eliminar</button></div></article>`).join("")}</div>`;
+    `<pre>${esc(p.texto)}</pre><div class="card-actions" style="padding:0"><button class="btn btn-text" type="button" data-borrar-prompt="${esc(p.id)}" style="color:var(--md-sys-color-error)">${icono("delete")}Eliminar</button>` +
+    `<button class="btn btn-tonal" type="button" data-copiar-prompt="${esc(p.id)}">${icono("content_copy")}Copiar</button></div></article>`).join("")}</div>`;
 }
 export function iniciarPrompts(rerender) {
   document.addEventListener("click", async e => {

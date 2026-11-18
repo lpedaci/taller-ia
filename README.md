@@ -94,6 +94,7 @@ Cada módulo es un archivo `content/modulo-XX.json` (por ejemplo, `modulo-03.jso
 
 - **Momentos** (eventos de Gagné): `gancho`, `objetivo`, `activacion`, `contenido`, `practica`, `feedback`, `evaluacion`, `transferencia` y `cierre`.
 - **Bloques de contenido:** `texto`, `nota` (con `estado`: info, atencion, positivo o error), `objetivos`, `cita` (cita traducida) y `profundizar`.
+- **Video y animación:** `video` (con `ref` al registro de `content/videos.json`), `animacion` (con `ref` a `content/animaciones/<id>.json`) y `grafico` (barras, líneas o mancuernas).
 - **Actividades:** `quiz`, `vf`, `clasificador`, `errores`, `escenario`, `constructor` (con `modo`: prompt, visual o brief), `reflexion`, `comparador`, `tabla`, `flujo`, `storyboard` y `mapa`. Cada actividad lleva un `id` único dentro del módulo y, si es evaluada, la `competencia` y el `objetivo` a los que suma.
 - La lección de prueba (`content/modulo-prueba.json`) tiene un ejemplo de cada uno.
 

@@ -12,6 +12,7 @@ import "../activities/evaluadas.js";
 import "../activities/produccion.js";
 import "../activities/video.js";
 import "../charts.js";
+import "../animacion.js";
 import { demoraSimulada, errorSimulado, tarjetaError, esperaConMensaje } from "../estados.js";
 import { crearLector, disponible as puedeLeer } from "../escuchar.js";
 
@@ -65,7 +66,7 @@ export async function mostrar(main, args) {
     main.innerHTML = tarjetaError({
       titulo: "No se pudo cargar la lección",
       texto: "Puede ser un problema de conexión. Tu progreso guardado no se pierde.",
-      acciones: `<button class="btn btn-filled" type="button" data-reintentar>${icono("refresh")}Reintentar</button><a class="btn btn-outlined" href="${href("recorrido")}">${icono("route")}Volver a Mi recorrido</a>`
+      acciones: `<a class="btn btn-outlined" href="${href("recorrido")}">${icono("route")}Volver a Mi recorrido</a><button class="btn btn-filled" type="button" data-reintentar>${icono("refresh")}Reintentar</button>`
     });
     return { titulo: modulo(id) ? "Módulo " + id : "Lección", sub: "No se pudo cargar", foco: "[data-reintentar]" };
   }
@@ -147,9 +148,9 @@ function completado(main, meta, leccion) {
   main.innerHTML = `<div class="lesson-done card"><div class="badge-morph" aria-hidden="true">${icono("workspace_premium", "fill")}</div>` +
     `<h2 id="finT" tabindex="-1">${meta.prueba ? "Terminaste la lección de prueba" : `Completaste el Módulo ${meta.id}`}</h2>` +
     `<p>${esc(meta.titulo)}${meta.prueba ? "" : ". La insignia del módulo queda en Mi aprendizaje."}</p>` +
-    `<div class="done-actions">` + (sig ? `<a class="btn btn-filled" href="${href("modulo", sig.id)}">Ir al Módulo ${sig.id}${icono("arrow_forward")}</a>` : "") +
+    `<div class="done-actions"><a class="btn btn-text" href="${href("modulo", meta.id, "paso", 1)}">${icono("replay")}Repasar desde el principio</a>` +
     `<a class="btn btn-outlined" href="${href("recorrido")}">${icono("route")}Volver a Mi recorrido</a>` +
-    `<a class="btn btn-text" href="${href("modulo", meta.id, "paso", 1)}">${icono("replay")}Repasar desde el principio</a></div></div>`;
+    (sig ? `<a class="btn btn-filled" href="${href("modulo", sig.id)}">Ir al Módulo ${sig.id}${icono("arrow_forward")}</a>` : "") + `</div></div>`;
   return { titulo: meta.prueba ? meta.titulo : "Módulo " + meta.id, sub: meta.titulo, foco: "#finT" };
 }
 

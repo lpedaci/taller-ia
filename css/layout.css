@@ -450,7 +450,7 @@ a.cell:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offse
 .setting>div:first-child{flex:1 1 240px;min-width:0}
 .setting h3{font:var(--md-sys-typescale-title-medium)}
 .setting p{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
-.setting .actions{display:flex;flex-wrap:wrap;gap:var(--app-space-2)}
+.setting .actions{display:flex;flex-wrap:wrap;gap:var(--app-space-2);justify-content:flex-end;margin-left:auto}
 /* Los textos explicativos ocupan el ancho de su contenedor; el que limita la lectura es el contenedor */
 .prose{display:grid;gap:var(--app-space-3);font:var(--md-sys-typescale-body-large)}
 .prose h3{font:var(--md-sys-typescale-title-medium);margin-top:var(--app-space-2)}

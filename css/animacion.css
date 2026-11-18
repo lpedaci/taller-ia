@@ -1,0 +1,58 @@
+/* =====================================================================
+   Taller - IA | Animaciones explicativas por escenas
+   Colores, tipografía y movimiento salen de los tokens: funcionan en modo claro y oscuro.
+   ===================================================================== */
+.anim{margin:0;display:grid;gap:var(--app-space-3);border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-extra-large);padding:clamp(var(--app-space-3),3vw,var(--app-space-5));background:var(--app-color-card)}
+.anim-head{display:grid;gap:var(--app-space-2);justify-items:start}
+.anim-head h4{font:var(--md-sys-typescale-title-large)}
+.anim-stage{position:relative;border-radius:var(--md-sys-shape-corner-large);overflow:hidden;background:var(--app-color-card-item);aspect-ratio:16/9}
+.anim-stage svg{display:block;width:100%;height:100%}
+@container (max-width:599px){ .anim-stage{aspect-ratio:4/5} }
+.anim{container-type:inline-size}
+.anim-slot .anim-stage{aspect-ratio:16/9}
+.anim-play-big{position:absolute;inset:0;margin:auto;width:88px;height:88px;border-radius:var(--md-sys-shape-corner-extra-large);border:0;background:var(--md-sys-color-primary);color:var(--md-sys-color-on-primary);display:grid;place-items:center;cursor:pointer;box-shadow:var(--md-sys-elevation-level2);transition:border-radius var(--md-sys-motion-spring-fast-spatial)}
+.anim-play-big:hover{border-radius:50%}
+.anim-play-big .ms{font-size:48px}
+.anim-ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:var(--app-space-2)}
+.anim-seg{list-style:none;margin:0;padding:0;display:flex;gap:4px;flex:1 1 160px;min-width:120px}
+.anim-seg li{flex:1}
+.anim-seg button{position:relative;width:100%;height:var(--app-size-target);border:0;background:transparent;cursor:pointer;padding:0}
+.anim-seg button::before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;transform:translateY(-50%);border-radius:3px;background:var(--md-sys-color-secondary-container)}
+.anim-seg .seg-fill{position:absolute;left:0;right:0;top:50%;height:6px;margin-top:-3px;border-radius:3px;background:var(--md-sys-color-primary);transform-origin:left;transform:scaleX(0)}
+.anim-seg button.is-done .seg-fill{transform:scaleX(1)}
+.anim-seg button[aria-current] ::after{content:""}
+.anim-seg button[aria-current]::after{content:"";position:absolute;left:50%;top:calc(50% + 8px);width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--md-sys-color-primary)}
+.anim-seg button:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:-2px;border-radius:var(--md-sys-shape-corner-small)}
+.anim-nar[aria-pressed="true"]{background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container);border-color:transparent}
+.anim-desc{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant);min-height:40px}
+.anim-trans{margin:var(--app-space-2) 0 0;padding-left:1.4em;display:grid;gap:var(--app-space-2);font:var(--md-sys-typescale-body-large)}
+.anim-nota{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);margin-top:var(--app-space-3)}
+.anim.is-static .anim-seg .seg-fill{transition:none}
+/* En pantallas angostas, la barra de escenas va en su propia fila: cada escena conserva 48 px de área táctil */
+@container (max-width:599px){ .anim-seg{flex:1 1 100%;order:-1} }
+@media (max-width:599px){ .anim-ctrl .anim-vel{order:5} .anim-pp span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)} .anim-pp{width:var(--app-size-target);padding:0} }
+
+/* Dibujo */
+.an-fondo{fill:var(--app-color-card-item)}
+.anim text{font-family:var(--md-ref-typeface-plain)}
+.an-muted{fill:var(--md-sys-color-on-surface-variant)}
+.an-cap{fill:var(--md-sys-color-on-surface);font-weight:500}
+.an-bub{transition:none}
+.an-user{fill:var(--md-sys-color-secondary-container)}
+.an-user-t{fill:var(--md-sys-color-on-secondary-container)}
+.an-bot{fill:var(--app-color-card);stroke:var(--md-sys-color-outline-variant);stroke-width:2}
+.an-bot-t{fill:var(--md-sys-color-on-surface)}
+.an-tok{fill:var(--md-sys-color-surface-container-highest);stroke:var(--md-sys-color-outline-variant);stroke-width:2}
+.an-tok-t{fill:var(--md-sys-color-on-surface)}
+.an-split{stroke:var(--md-sys-color-primary);stroke-width:3}
+.an-split-t{fill:var(--md-sys-color-primary);font-weight:600}
+.an-hueco{fill:none;stroke:var(--md-sys-color-outline);stroke-width:2;stroke-dasharray:8 6}
+.an-cand{fill:var(--md-sys-color-on-surface)}
+.an-pct{fill:var(--md-sys-color-on-surface-variant)}
+.an-bar{fill:var(--md-sys-color-secondary)}
+.an-bar-sel{fill:var(--md-sys-color-primary)}
+.an-elegido-t{fill:var(--md-sys-color-primary);font-weight:700}
+.an-inv{fill:var(--app-color-warning-container)}
+.an-inv-t{fill:var(--app-color-on-warning-container);font-weight:600}
+.anim .an-warn-ic{font-family:"Material Symbols Rounded";fill:var(--app-color-warning)}
+.an-warn-t{fill:var(--app-color-warning);font-weight:600}
