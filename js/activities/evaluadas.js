@@ -188,7 +188,7 @@ registrar("errores", {
         const res = encontrados === errores.length && !falsos ? "correcto" : encontrados ? "parcial" : "incorrecto";
         guardarResultado(ctx, b, { resultado: res, puntaje: encontrados, total: errores.length, respuesta: [...marcadas].map(([i, j]) => ({ i, j })) });
         mostrarFeedback(el, res, `Encontraste ${encontrados} de ${errores.length} errores`,
-          (faltan.length ? `<p>Te ${faltan.length === 1 ? "faltó" : "faltaron"}:</p><ul>${faltan.map(i => `<li><b>${esc(b.segmentos[i].error.tipo)}</b> en "${esc(b.segmentos[i].t.replace(/[.,;:\s]+$/, ""))}". ${esc(b.segmentos[i].error.explicacion)}</li>`).join("")}</ul>` : "") +
+          (faltan.length ? `<p>Te ${faltan.length === 1 ? "faltó" : "faltaron"}:</p><ul>${faltan.map(i => `<li><b>${esc(b.segmentos[i].error.tipo)}</b> en «${esc(b.segmentos[i].t.replace(/[.,;:\s]+$/, ""))}». ${esc(b.segmentos[i].error.explicacion)}</li>`).join("")}</ul>` : "") +
           (falsos ? `<p>${falsos === 1 ? "Una parte marcada estaba bien" : `${falsos} partes marcadas estaban bien`}: revisá la explicación de cada una.</p>` : ""));
         qs('[data-a="comprobar"]', el).hidden = true; reintentar.hidden = false; reintentar.focus();
       }
