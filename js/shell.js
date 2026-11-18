@@ -4,7 +4,7 @@ import { RUTAS, GRUPOS, destinos, href } from "./routes.js";
 import { store } from "./storage.js";
 import { tema } from "./theme.js";
 import { esc, norm, qs, qsa, mismoDia, hoy } from "./util.js";
-import { datos, estado, eventos, moduloActual, exportar, importar, borrarTodo } from "./state.js";
+import { datos, eventos, moduloActual, pasoActual, hayProgreso, perfil, rutaActual, avisos, exportar, importar, borrarTodo, DEMO } from "./state.js";
 import { aviso, menu, confirmar, descargar, icono } from "./ui.js";
 
 const LARGE = 1200, MEDIUM = 600;
@@ -164,16 +164,20 @@ function pintarTema() {
 
 /** Actualiza el botón "Continuar: Módulo X" y los datos de la persona en la barra */
 export function pintarPersona() {
-  const m = moduloActual(), p = estado().perfil;
+  const m = moduloActual(), p = perfil(), empezo = hayProgreso();
+  // Sin progreso, la acción principal invita a empezar; después, a continuar
+  const verbo = empezo ? "Continuar" : "Empezar";
   const cta = qs("#topCta");
-  cta.href = href("modulo", m.id);
-  cta.setAttribute("aria-label", "Continuar: Módulo " + m.id);
+  cta.href = empezo ? href("modulo", m.id, "paso", pasoActual()) : href("modulo", m.id);
+  cta.setAttribute("aria-label", verbo + ": Módulo " + m.id);
+  qs("#topCta .cta-s").textContent = verbo;
   qs("#ctaNum").textContent = ": Módulo " + m.id;
-  qsa("[data-iniciales]").forEach(el => { el.textContent = p.iniciales; });
-  qs("#userBtn").setAttribute("aria-label", p.iniciales + ", menú de usuario de " + p.nombreCompleto);
-  qs("#mhName").textContent = p.nombreCompleto;
-  const ruta = datos.rutas.find(r => r.id === estado().ruta);
-  qs("#mhSub").textContent = p.cohorte + " | " + (ruta ? ruta.titulo : "");
+  // Sin nombre, el avatar muestra un ícono de persona
+  qsa("[data-iniciales]").forEach(el => { el.innerHTML = p.iniciales ? esc(p.iniciales) : icono("person"); });
+  qs("#userBtn").setAttribute("aria-label", (p.iniciales ? p.iniciales + ", menú" : "Menú") + " de usuario" + (p.nombreCompleto ? " de " + p.nombreCompleto : ""));
+  qs("#mhName").textContent = p.nombreCompleto || "Tu perfil";
+  const ruta = rutaActual();
+  qs("#mhSub").textContent = (p.cohorte || "Modo autoasistido") + " | " + (ruta ? ruta.titulo : "");
 }
 
 /* ---------- Al cambiar de página ---------- */
@@ -264,7 +268,7 @@ export function iniciarShell({ render }) {
   // Menús
   menu(qs("#userBtn"), qs("#userMenu"));
   menu(qs("#avisosBtn"), qs("#avisosMenu"));
-  const av = datos.demo.avisos || [];
+  const av = avisos();
   qs("#avisosItems").innerHTML = av.length
     ? av.map(a => `<a role="menuitem" href="${esc(a.href)}" tabindex="-1">${icono(a.icono)}<span class="mi-txt">${esc(a.titulo)}<small>${esc(a.detalle)}</small></span></a>`).join("")
     : `<p class="menu-title">No tenés avisos nuevos.</p>`;

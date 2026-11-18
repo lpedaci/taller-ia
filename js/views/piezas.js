@@ -1,6 +1,6 @@
 /* Taller - IA | Piezas compartidas entre vistas: tarjeta de módulo, competencias y registro de actividad */
 import { esc, cap, sumarDias, hoy, mismoDia, fechaLarga, MESES, MESES_C, plural } from "../util.js";
-import { datos, avance, competencias, objetivosTotales, actividad, enRuta } from "../state.js";
+import { datos, avance, competencias, objetivosTotales, actividad, enRuta, sugerencia, DEMO } from "../state.js";
 import { icono, lineal } from "../ui.js";
 import { href } from "../routes.js";
 
@@ -37,14 +37,17 @@ export function tarjetaModulo(m, { marcarRuta = false } = {}) {
 export function competenciasHTML(completo) {
   const N = datos.niveles, cs = competencias(), o = objetivosTotales();
   const lista = completo ? cs : cs.filter((c, i) => c.nivel > 0 || i < 5);
-  const sug = datos.demo.sugerencia;
-  return `<div class="comp-sum"><b>${o.logrados} de ${o.total}</b><span>objetivos de aprendizaje demostrados con evidencias</span></div>` +
-    lineal(o.logrados / o.total * 100, "Objetivos de aprendizaje demostrados") +
+  const sug = sugerencia();
+  const paso = sug ? `<div class="next-step">${icono("tips_and_updates")}<span><b>Próximo paso sugerido:</b> ${esc(sug.texto)} <a href="${href("modulo", sug.modulo)}">Ir al Módulo ${sug.modulo}</a></span></div>` : "";
+  // Sin objetivos evaluados todavía: se explica cómo se calcula, en lugar de mostrar todo en cero
+  if (!o.total && !cs.some(c => c.evidencias)) return `<p class="muted" style="font:var(--md-sys-typescale-body-medium)">Tu nivel en cada competencia se calcula con las actividades evaluadas y las evidencias que vayas sumando, no con las páginas que leas. Va a aparecer acá a medida que avances.</p>` + paso;
+  return `<div class="comp-sum"><b>${o.logrados} de ${o.total || 0}</b><span>objetivos de aprendizaje demostrados con evidencias</span></div>` +
+    lineal(o.total ? o.logrados / o.total * 100 : 0, "Objetivos de aprendizaje demostrados") +
     `<div class="scale" aria-hidden="true">${N.map((n, i) => `<span><i class="s${i}"></i>${n}</span>`).join("")}</div>` +
     `<ul class="comp-list">${lista.map(c => `<li><span class="name">${esc(c.titulo)}</span><span class="lvl lvl-${c.nivel}">${N[c.nivel]}</span>` +
       `<span class="steps" role="img" aria-label="${esc(c.titulo)}: nivel ${N[c.nivel]}, ${c.objetivos[0]} de ${c.objetivos[1]} objetivos, ${plural(c.evidencias, "evidencia", "evidencias")}">` +
       [1, 2, 3].map(i => `<i class="${c.nivel >= i ? "on" + i : ""}"></i>`).join("") + `</span></li>`).join("")}</ul>` +
-    (sug ? `<div class="next-step">${icono("tips_and_updates")}<span><b>Próximo paso sugerido:</b> ${esc(sug.texto)} <a href="${href("modulo", sug.modulo)}">Ir al Módulo ${sug.modulo}</a></span></div>` : "");
+    paso;
 }
 
 /* ---------- Registro de actividad (cuadrícula estilo GitHub) ---------- */

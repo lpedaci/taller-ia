@@ -1,9 +1,10 @@
 /* Taller - IA | Ajustes y accesibilidad, página base de cada módulo y secciones que se completan en etapas posteriores */
 import { esc, qs } from "../util.js";
-import { datos, modulo, bloque, avance, registrarVisita } from "../state.js";
+import { perfil, setNombre } from "../state.js";
 import { store } from "../storage.js";
 import { tema } from "../theme.js";
-import { icono, cabecera, lineal, vacio } from "../ui.js";
+import { icono, cabecera, vacio, aviso } from "../ui.js";
+import { pintarPersona } from "../shell.js";
 import { RUTAS, href } from "../routes.js";
 
 /* ---------- Ajustes y accesibilidad ---------- */
@@ -13,6 +14,8 @@ const grupo = (nombre, etiqueta, opciones, actual) =>
 export function ajustes() {
   const reducido = matchMedia("(prefers-reduced-motion: reduce)").matches;
   return `<div class="view-head"><div class="vh-txt"><h2>Ajustes y accesibilidad</h2><p>Los ajustes se guardan en este navegador.</p></div></div><div class="settings">` +
+    `<form class="card setting" id="formNombre" novalidate><div><h3><label for="tuNombre">Tu nombre</label></h3><p id="tuNombreAyuda">Opcional. Se usa en el saludo, en el avatar y en el certificado. No sale de este navegador.</p></div>` +
+      `<div class="actions" style="flex:1 1 280px"><input class="field" id="tuNombre" autocomplete="given-name" aria-describedby="tuNombreAyuda" value="${esc(perfil().nombreCompleto)}" style="flex:1;min-width:0"><button class="btn btn-tonal" type="submit" style="align-self:center">Guardar</button></div></form>` +
     `<div class="card setting"><div><h3 id="hTema">Tema</h3><p>Automático sigue la configuración de tu dispositivo.</p></div>${grupo("tema", "Tema", [["system", "Automático"], ["light", "Claro"], ["dark", "Oscuro"]], tema.preferencia)}</div>` +
     `<div class="card setting"><div><h3>Contraste</h3><p>Más contraste en textos, bordes y colores.</p></div>${grupo("contraste", "Contraste", [["standard", "Estándar"], ["medium", "Medio"], ["high", "Alto"]], tema.contraste)}</div>` +
     `<div class="card setting"><div><h3>Movimiento</h3><p>Se respeta la opción "reducir movimiento" de tu sistema. ${reducido ? "Ahora está activada: las animaciones se reemplazan por cambios instantáneos." : "Ahora está desactivada."}</p></div><span class="chip chip-neutral">${icono(reducido ? "motion_photos_off" : "animation")}Según el sistema</span></div>` +
@@ -27,32 +30,19 @@ export function ajustes() {
   `</div>`;
 }
 export function iniciarAjustes(rerender) {
+  document.addEventListener("submit", e => {
+    if (e.target.id !== "formNombre") return;
+    e.preventDefault();
+    setNombre(qs("#tuNombre").value);
+    pintarPersona();
+    aviso(perfil().nombre ? "Guardamos tu nombre" : "Quitamos tu nombre");
+  });
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-pref]"); if (!b) return;
     if (b.dataset.pref === "tema") tema.setPreferencia(b.dataset.val); else tema.setContraste(b.dataset.val);
     rerender();
     qs(`[data-pref="${b.dataset.pref}"][data-val="${b.dataset.val}"]`)?.focus();
   });
-}
-
-/* ---------- Página de un módulo (estructura base; el motor de lecciones llega en la etapa 2) ---------- */
-export function moduloVista(args) {
-  const m = modulo(args[0]);
-  if (!m) return { titulo: "Módulo no encontrado", sub: "", html: `<div class="card">${vacio("No encontramos ese módulo", "Puede que el enlace esté incompleto. Volvé al recorrido para elegir un módulo.", `<a class="btn btn-filled" href="${href("recorrido")}">Ir a Mi recorrido</a>`)}</div>` };
-  const a = avance(m), b = bloque(m.bloque);
-  registrarVisita(m.id, Math.min(a.hechos + 1, a.pasos));
-  return {
-    titulo: "Módulo " + m.id, sub: esc(m.titulo),
-    html: `<div class="module-page">` +
-      `<section class="card module-hero" aria-labelledby="hMod"><span class="chip chip-neutral">Bloque ${m.bloque} | ${esc(b.titulo)}</span>` +
-        `<h2 id="hMod">Módulo ${m.id} | ${esc(m.titulo)}</h2><p>${esc(m.descripcion)}</p>` +
-        `<div class="mh-prog"><span>${a.hechos} de ${a.pasos} pasos completados | alrededor de ${m.minutos} minutos</span>${lineal(a.pct, "Avance del módulo " + m.id)}</div></section>` +
-      `<div class="status status-info" role="note">${icono("info")}<span><b>Lección en construcción</b>Las lecciones, con sus pasos, actividades y evaluación, se construyen a partir de la etapa 2. Esta página ya registra el módulo como tu último lugar visitado, para el botón "Continuar".</span></div>` +
-      `<div style="display:flex;flex-wrap:wrap;gap:var(--app-space-2);justify-content:space-between">` +
-        (m.id > 0 ? `<a class="btn btn-outlined" href="${href("modulo", m.id - 1)}">${icono("arrow_back")}Módulo ${m.id - 1}</a>` : "<span></span>") +
-        (m.id < datos.modulos.length - 1 ? `<a class="btn btn-filled" href="${href("modulo", m.id + 1)}">Módulo ${m.id + 1}${icono("arrow_forward")}</a>` : "") +
-      `</div></div>`
-  };
 }
 
 /* ---------- Secciones que se completan en etapas posteriores ---------- */

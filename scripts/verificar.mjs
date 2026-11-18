@@ -22,12 +22,15 @@ const ANCHOS = rapido ? [360, 768, 1280] : [360, 412, 768, 1024, 1280, 1920];
 const MODOS = ["light", "dark"];
 const PANTALLAS = [
   { id: "inicio", url: "index.html#/inicio" },
+  { id: "inicio-ejemplo", url: "index.html?demo=1#/inicio" },
+  { id: "leccion", url: "index.html#/modulo/prueba/paso/3" },
+  { id: "leccion-fin", url: "index.html#/modulo/prueba/completado" },
   { id: "recorrido", url: "index.html#/recorrido" },
   { id: "agenda-semana", url: "index.html#/agenda/semana" },
   { id: "agenda-mes", url: "index.html#/agenda/mes" },
   { id: "agenda-dia", url: "index.html#/agenda/dia" },
   { id: "aprendizaje", url: "index.html#/aprendizaje" },
-  { id: "modulo", url: "index.html#/modulo/6" },
+  { id: "modulo-sin-leccion", url: "index.html#/modulo/6" },
   { id: "biblioteca", url: "index.html#/biblioteca" },
   { id: "glosario", url: "index.html#/glosario" },
   { id: "facilitadores", url: "index.html#/facilitadores" },
@@ -105,7 +108,7 @@ for (const modo of MODOS) {
               const lr = el.labels[0].getBoundingClientRect(); if (lr.height >= 24) continue;
             }
             // Excepción de WCAG 2.5.8: enlaces dentro de un texto corrido
-            if (getComputedStyle(el).display === "inline" && el.closest("p, li, .next-step, .lead")) continue;
+            if (getComputedStyle(el).display === "inline" && el.closest("p, li, .next-step, .lead, .status")) continue;
             el.scrollIntoView({ block: "center", inline: "center" });
             const r2 = el.getBoundingClientRect();
             const toca = (x, y) => { const t = document.elementFromPoint(x, y); return t && (t === el || el.contains(t)); };

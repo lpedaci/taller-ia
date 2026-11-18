@@ -212,6 +212,8 @@ textarea.field{height:auto;min-height:112px;padding:var(--app-space-3);resize:ve
 .avatar::after{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;z-index:-1;transition:opacity var(--md-sys-motion-spring-fast-effects)}
 .avatar:hover::after{opacity:var(--md-sys-state-hover-opacity)}
 .avatar[aria-expanded="true"]{box-shadow:0 0 0 2px var(--md-sys-color-primary)}
+.avatar .ms{font-size:20px}
+.avatar.lg .ms{font-size:24px}
 .avatar.lg{width:var(--app-size-avatar-lg);height:var(--app-size-avatar-lg);font:var(--md-sys-typescale-label-large);font-weight:700;cursor:default}
 /* El botón del avatar ocupa 48 px de área táctil */
 .avatar-btn{width:var(--app-size-target);height:var(--app-size-target);display:grid;place-items:center;border:0;background:transparent;padding:0;cursor:pointer;border-radius:50%}

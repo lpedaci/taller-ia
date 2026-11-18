@@ -10,7 +10,9 @@ import * as inicio from "./views/inicio.js";
 import * as agenda from "./views/agenda.js";
 import * as recorrido from "./views/recorrido.js";
 import * as aprendizaje from "./views/aprendizaje.js";
-import { ajustes, iniciarAjustes, moduloVista, simple, ayuda } from "./views/otras.js";
+import { ajustes, iniciarAjustes, simple, ayuda } from "./views/otras.js";
+import * as leccion from "./lesson/leccion.js";
+import { DEMO } from "./state.js";
 import { dibujarRegistro } from "./views/piezas.js";
 
 const main = qs("#contenido");
@@ -25,26 +27,36 @@ function vista(id, args) {
     case "aprendizaje": aprendizaje.preparar(args); return { html: aprendizaje.render(), despues: aprendizaje.despues };
     case "ajustes": return { html: ajustes() };
     case "ayuda": return { html: ayuda() };
-    case "modulo": { const v = moduloVista(args); return { html: v.html, titulo: v.titulo, sub: v.sub, despues: pintarPersona }; }
+    case "modulo": return { asincrono: () => leccion.mostrar(main, args) };
     default: return { html: simple(id), titulo: r.t, sub: r.s };
   }
 }
 
 /** Dibuja la ruta actual. mantenerFoco: true cuando se vuelve a dibujar la misma pantalla. */
-function render(mantenerFoco) {
+let turno = 0;
+async function render(mantenerFoco) {
   const { id, args } = leerHash();
   const r = marcarActual(id);
-  const v = vista(id, args);
-  main.innerHTML = v.html;
+  const v = vista(id, args), mio = ++turno;
+  let res = v;
+  if (v.asincrono) {
+    try { res = await v.asincrono() || {}; }
+    catch (e) { if (mio === turno) error(e.message); return; }
+    if (mio !== turno) return; // la persona ya fue a otra pantalla
+    pintarPersona();
+  } else main.innerHTML = v.html;
   main.setAttribute("aria-busy", "false");
-  setTitulos(v.titulo || r.t, v.sub ?? r.s);
-  v.despues && v.despues();
+  setTitulos(res.titulo || r.t, res.sub ?? r.s);
+  res.despues && res.despues();
   const clave = location.hash;
   if (!primera && !mantenerFoco && clave !== ultimaRuta) {
-    // Al cambiar de pantalla, el foco va al contenido y la página vuelve arriba
-    if (!(id === "recorrido" && args[0] === "rutas") && !(id === "aprendizaje" && args[0])) { main.focus({ preventScroll: true }); scrollTo({ top: 0 }); }
+    // Al cambiar de pantalla, el foco va al título del contenido nuevo (o al contenido) y la página vuelve arriba
+    if (!(id === "recorrido" && args[0] === "rutas") && !(id === "aprendizaje" && args[0])) {
+      const f = res.foco && qs(res.foco);
+      (f || main).focus({ preventScroll: true }); scrollTo({ top: 0 });
+    }
   }
-  ultimaRuta = clave; primera = false;
+  ultimaRuta = location.hash; primera = false;
 }
 
 function error(msg) {
@@ -69,6 +81,9 @@ async function arrancar() {
   inicio.iniciar();
   agenda.iniciar();
   recorrido.iniciar(rerender);
+  leccion.iniciar();
+  // Pie: el aviso de datos de ejemplo solo aparece en el modo de ejemplo
+  if (!DEMO) qs("#foot").textContent = "© 2026 Lourdes Pedaci, Experience Designer";
   iniciarAjustes(rerender);
   // El registro de actividad adapta las semanas al ancho disponible
   let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { dibujarRegistro("heatDash"); dibujarRegistro("heatFull"); }, 150); });

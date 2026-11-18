@@ -1,6 +1,6 @@
 /* Taller - IA | Inicio: saludo, resumen, agenda, continuar, competencias, pendientes, registro y módulos */
 import { esc, cap, hoy, ahora, mismoDia, sumarDias, diasDesdeHoy, hhmm, fechaLarga, DIAS, MESES, isoDia, plural, pad2, qs } from "../util.js";
-import { datos, estado, avance, completados, objetivosTotales, eventos, terminado, tareas, tareasAbiertas, marcarTarea, agregarTarea, eliminarTarea, TIPOS, GRUPOS_EVENTO } from "../state.js";
+import { datos, perfil, evidenciasTotal, hayProgreso, pasosVistos, avance, completados, objetivosTotales, eventos, terminado, tareas, tareasAbiertas, marcarTarea, agregarTarea, eliminarTarea, TIPOS, GRUPOS_EVENTO } from "../state.js";
 import { icono, cabecera, anillo, chipTipo, vacio, aviso, abrirDialogo, confirmar } from "../ui.js";
 import { tarjetaModulo, competenciasHTML, registroHTML, dibujarRegistro } from "./piezas.js";
 import { href } from "../routes.js";
@@ -97,12 +97,13 @@ function repintarPendientes(foco) {
 }
 function resumenDia() {
   const r = restantesHoy(), p = tareasAbiertas();
+  if (!r && !p) return `${cap(fechaLarga(hoy()))}. No tenés eventos ni tareas pendientes para hoy.`;
   return `${cap(fechaLarga(hoy()))}. Tenés ${plural(r, "evento", "eventos")} más hoy y ${plural(p, "tarea pendiente", "tareas pendientes")}.`;
 }
 
 /* ---------- Vista ---------- */
 export function render() {
-  const p = estado().perfil, o = objetivosTotales();
+  const p = perfil(), o = objetivosTotales();
   const proxCierre = eventos().find(e => e.inicio >= ahora() && TIPOS[e.tipo].k === "entrega");
   const enCurso = datos.modulos.filter(m => avance(m).estado === "en-curso");
   const recientes = enCurso.concat(completados().slice(-2).reverse()).slice(0, 4);
@@ -110,21 +111,22 @@ export function render() {
   const proximos = datos.modulos.filter(m => avance(m).estado !== "completado").slice(0, 2);
 
   return `<div class="home"><div class="home-main">` +
-    `<div class="greet"><div><h2>${saludo}, <span class="u-name">${esc(p.nombre)}</span></h2><p id="greetSub">${resumenDia()}</p></div></div>` +
+    `<div class="greet"><div><h2>${p.nombre ? `${saludo}, <span class="u-name">${esc(p.nombre)}</span>` : saludo}</h2><p id="greetSub">${resumenDia()}</p></div></div>` +
     `<section class="stats" aria-label="Resumen">` +
       tarjetaResumen("task_alt", `${completados().length}<small> de ${datos.modulos.length}</small>`, "Módulos completados", href("recorrido"), "Ver recorrido") +
-      tarjetaResumen("verified", `${o.logrados}<small> de ${o.total}</small>`, "Objetivos demostrados", href("aprendizaje"), "Ver competencias") +
-      tarjetaResumen("folder_special", String(datos.demo.evidenciasTotal), "Evidencias en tu portafolio", href("aprendizaje", "portafolio"), "Ver evidencias") +
-      tarjetaResumen("alarm", proxCierre ? `${mismoDia(proxCierre.inicio, hoy()) ? "Hoy" : cap(DIAS[proxCierre.inicio.getDay()])}<small> ${hhmm(proxCierre.inicio)}</small>` : "Nada", "Próximo cierre", href("agenda"), "Ver agenda", true) +
+      tarjetaResumen("verified", o.total ? `${o.logrados}<small> de ${o.total}</small>` : "0", "Objetivos demostrados", href("aprendizaje"), "Ver competencias") +
+      tarjetaResumen("folder_special", String(evidenciasTotal()), "Evidencias en tu portafolio", href("aprendizaje", "portafolio"), "Ver evidencias") +
+      tarjetaResumen("alarm", proxCierre ? `${mismoDia(proxCierre.inicio, hoy()) ? "Hoy" : cap(DIAS[proxCierre.inicio.getDay()])}<small> ${hhmm(proxCierre.inicio)}</small>` : "Sin fechas", "Próximo cierre", href("agenda"), "Ver agenda", true) +
     `</section>` +
     `<div class="dash"><div class="dash-grid"><div class="dash-col">` +
       `<section class="card a-cont" aria-labelledby="hCont">${cabecera("history", "Continuar donde dejaste", "", "hCont")}<div class="card-body">` +
         (recientes.length ? `<ul class="list">` + recientes.map(m => {
           const a = avance(m);
-          return `<li><a class="list-item" href="${href("modulo", m.id)}">${anillo(a.pct)}<span class="li-text"><span class="li-head">${esc(m.titulo)}</span>` +
+          const ultimo = Math.min(a.pasos, Math.max(1, ...pasosVistos(m.id).map(n => n + 1)));
+          return `<li><a class="list-item" href="${a.pct >= 100 ? href("modulo", m.id, "paso", 1) : href("modulo", m.id, "paso", ultimo)}">${anillo(a.pct)}<span class="li-text"><span class="li-head">${esc(m.titulo)}</span>` +
             `<span class="li-sup">Bloque ${m.bloque} | ${a.pct >= 100 ? "Completado, repasar" : "Paso " + (a.hechos + 1) + " de " + a.pasos} (${a.pct}%)</span></span>` +
             `<span class="li-trail">${icono(a.pct >= 100 ? "replay" : "chevron_right")}</span></a></li>`;
-        }).join("") + `</ul>` : vacio("Todavía no empezaste ningún módulo", "Empezá por la bienvenida: ahí ves cómo funciona el entorno.", `<a class="btn btn-filled" href="${href("modulo", 0)}">Ir al Módulo 0</a>`)) +
+        }).join("") + `</ul>` : vacio("Todavía no empezaste ningún módulo", "Empezá por la bienvenida: ahí ves cómo funciona el entorno y hacés tu autodiagnóstico.", `<a class="btn btn-filled" href="${href("modulo", 0)}">${icono("play_arrow")}Empezar el Módulo 0</a>`)) +
       `</div></section>` +
       `<section class="card a-comp" aria-labelledby="hComp">${cabecera("psychology", "Dominio de competencias", `<a class="btn btn-text" href="${href("aprendizaje")}">Ver todo</a>`, "hComp")}<div class="card-body">${competenciasHTML(false)}</div></section>` +
     `</div><div class="dash-col">` +

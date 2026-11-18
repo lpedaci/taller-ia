@@ -12,7 +12,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-004 | 2026-11-18 | La terciaria es "miel" y se usa para lo relacionado con el tiempo | Vigente |
 | D-005 | 2026-11-18 | Las skills de diseño instaladas se usan como apoyo; ante conflicto manda el brief | Vigente |
 | D-006 | 2026-11-18 | Etapa 1: arquitectura sin build, módulos ES y contenido en JSON | Vigente |
-| D-007 | 2026-11-18 | Etapa 1: el inicio usa datos de ejemplo de `content/demo.json` | Vigente |
+| D-007 | 2026-11-18 | Etapa 1: el inicio usa datos de ejemplo de `content/demo.json` | Reemplazada por D-024 |
 | D-008 | 2026-11-18 | Niveles de competencia en la escala azul, sin terciaria | Vigente |
 | D-009 | 2026-11-18 | Campo de búsqueda en la barra desde 1200 px; botón de búsqueda debajo | Vigente |
 | D-010 | 2026-11-18 | Eventos que ya pasaron: se atenúan con color, no con opacidad | Vigente |
@@ -29,6 +29,8 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-021 | 2026-11-18 | Mobile: módulos de cada bloque en un desplegable | Vigente |
 | D-022 | 2026-11-18 | Etapa 1 aprobada y subida a GitHub | Vigente |
 | D-023 | 2026-11-18 | Tokens de tamaño de componentes y barra superior equilibrada | Vigente |
+| D-024 | 2026-11-18 | Estado real por defecto; datos de ejemplo solo con `?demo=1` | Vigente |
+| D-025 | 2026-11-18 | Motor de lecciones por pasos, barra flotante, Escuchar y lección de prueba | Vigente |
 
 ---
 
@@ -348,3 +350,49 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 - Teclado 45 de 45 y riel 9 de 9.
 
 **Pendientes o riesgos:** ninguno.
+
+## D-024 | 2026-11-18 | Etapa 2, parte 1: estado real y modo de ejemplo
+
+**Solicitado:** reemplazar los datos de ejemplo del inicio por el progreso real de la persona (etapa 2, D-007), sin perder la posibilidad de revisar el diseño con datos.
+
+**Decisión y motivo:**
+- Por defecto, todo sale de lo que la persona completa y produce: pasos, actividades, evidencias y tareas propias. Para quien recién empieza, cada panel tiene su estado vacío con la primera acción:
+  - Continuar donde dejaste: "Empezar el Módulo 0".
+  - Competencias: una línea que explica cómo se calcula el nivel.
+  - Objetivos y evidencias: para qué sirven y dónde se completan.
+- La acción principal de la barra dice "Empezar: Módulo 0" hasta que hay progreso; después, "Continuar: Módulo X" y lleva al último paso visitado.
+- Sin nombre, el avatar muestra un ícono de persona. En Ajustes se puede cargar el nombre (opcional), que se usa en el saludo, el avatar y, más adelante, el certificado. Las iniciales son la primera letra del primer y del último nombre.
+- Modo de ejemplo: con `?demo=1` el entorno muestra los datos del prototipo (`content/demo.json`) para revisar el diseño. Lo que se hace en ese modo se guarda aparte (`tia.estado-demo`), no se mezcla con el progreso real y no se exporta. El pie con "los datos de esta pantalla son de ejemplo" aparece solo en ese modo.
+- El progreso guardado en la etapa 1 (datos de ejemplo) se descarta: el estado pasó a la versión 2.
+
+**Archivos afectados:** `js/state.js`, `js/shell.js`, `js/app.js`, `js/views/inicio.js`, `js/views/aprendizaje.js`, `js/views/piezas.js`, `js/views/otras.js`.
+
+**Verificación realizada:** prueba automática del recorrido real: Empezar, Continuar, progreso por paso, módulo completado, persistencia al recargar, separación con el modo de ejemplo y nombre en Ajustes. `npm run verificar:rapido` sin problemas.
+
+**Pendientes o riesgos:** sin cohorte, la agenda queda vacía; la opción de agregar eventos propios desde ese estado vacío se suma en la parte 3 (estados).
+
+## D-025 | 2026-11-18 | Etapa 2, parte 1: motor de lecciones
+
+**Solicitado:** el motor que muestra cada lección por pasos (sección 4: "Paso 3 de 7", Anterior y Siguiente, Escuchar) con contenido separado del código (sección 6).
+
+**Decisión y motivo:**
+- **Contenido:** cada módulo es un archivo `content/modulo-XX.json` con objetivos y pasos. Cada paso indica su momento de Gagné y una lista de bloques. Bloques de esta parte: texto (Markdown mínimo, con términos del glosario y etiqueta "En inglés"), nota de estado, objetivos, cita traducida y "Para profundizar". En `modulos.json`, `"leccion": true` indica qué módulos ya tienen lección; los demás muestran "Lección en preparación" sin pedir el archivo.
+- **Rutas:** `#/modulo/N/paso/M`. `#/modulo/N` lleva al primer paso sin completar.
+- **Pantalla:**
+  - encabezado con bloque, título y "Paso N de M" con su barra;
+  - el paso en una tarjeta de lectura de hasta 760 px (D-016);
+  - índice del módulo al costado desde 840 px, y debajo de la lección en pantallas más chicas.
+- **Barra flotante** (M3 *floating toolbar*): Anterior, Escuchar y Siguiente. En mobile, Anterior y Escuchar van solo con ícono y conservan su nombre accesible. En el último paso, "Terminar módulo".
+- **Progreso:** un paso se completa al avanzar desde él. Terminar el módulo muestra una insignia con cambio de forma (M3 Expressive) y las acciones "Ir al módulo siguiente", "Volver a Mi recorrido" y "Repasar".
+- **Transición:** entre pasos, la transición muestra la dirección (View Transitions API). Con "reducir movimiento" el cambio es instantáneo. El foco va al título del paso nuevo.
+- **Escuchar:** lee el paso con la voz del navegador. Elige una voz en español (prioriza es-AR y es-419) y avisa si no hay. Tiene pausar, seguir, velocidad (1; 1,25; 1,5 y 0,75) y detener. Lee por oraciones, para no cortarse en textos largos.
+- **Lección de prueba** (`#/modulo/prueba`): muestra cada bloque con contenido de ejemplo y no cuenta para el progreso. Sus dos enlaces de "Para profundizar" se verificaron (Elements of AI y la guía de prompts de Anthropic, código 200).
+
+**Archivos afectados:** `js/lesson/leccion.js`, `js/lesson/bloques.js`, `js/lesson/markdown.js`, `js/escuchar.js`, `css/lesson.css`, `content/modulo-prueba.json`, `index.html`, `estilos.html`, `scripts/verificar.mjs`.
+
+**Verificación realizada:**
+- Prueba automática del motor: 20 de 20, sin errores de consola.
+- Con teclado: Tab hasta Siguiente y Enter avanza; el foco va al título del paso.
+- `npm run verificar:rapido` sin problemas: 96 capturas, ahora con la lección, el cierre del módulo y el modo de ejemplo.
+
+**Pendientes o riesgos:** el enlace de UNESCO que se probó para la lección de prueba no respondió (tiempo agotado) y no se usó; se revisa en la etapa 3. La lectura en voz alta depende de las voces instaladas en cada dispositivo; conviene probarla en el celular de Lourdes.

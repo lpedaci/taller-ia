@@ -1,0 +1,54 @@
+{
+  "_nota": "Lección de prueba de la etapa 2: muestra cada tipo de bloque y de actividad con contenido de ejemplo. No cuenta para el progreso. Los datos y las citas de esta lección son de prueba.",
+  "titulo": "Lección de prueba: el motor de lecciones",
+  "descripcion": "Un recorrido por los bloques y actividades que van a usar las lecciones del taller.",
+  "objetivos": [
+    { "id": "prueba-o1", "texto": "Reconocer cómo se organiza una lección: pasos, actividades y cierre.", "competencia": "comprender" },
+    { "id": "prueba-o2", "texto": "Usar los controles de la lección: Anterior, Siguiente y Escuchar.", "competencia": "comprender" }
+  ],
+  "pasos": [
+    {
+      "titulo": "Una lección en pocos minutos",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "texto", "md": "Imaginá que tenés diez minutos entre dos reuniones y querés avanzar con el taller. ¿Qué necesitás para retomar sin perderte?\n\nCada lección del taller está pensada para eso: pasos cortos, una idea por paso y una actividad para practicar. El progreso se guarda solo, en este navegador." },
+        { "tipo": "nota", "estado": "info", "titulo": "Cómo moverte", "md": "Usá **Siguiente** y **Anterior** en la barra de abajo, o elegí un paso en el índice del módulo. Con **Escuchar**, el navegador lee el paso en voz alta." }
+      ]
+    },
+    {
+      "titulo": "Qué vas a lograr",
+      "momento": "objetivo",
+      "bloques": [
+        { "tipo": "objetivos" },
+        { "tipo": "texto", "md": "Los objetivos de cada módulo se vinculan con una competencia del taller. Tu nivel en cada competencia sale de las actividades evaluadas y de las evidencias que vayas sumando, no de las páginas que leas." }
+      ]
+    },
+    {
+      "titulo": "Cómo se ve el contenido",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "El texto de lectura usa oraciones cortas y una idea por párrafo. Los términos técnicos se explican la primera vez y enlazan al glosario, por ejemplo {{token}} o {{alucinación}}.\n\nLas listas sirven para pasos o enumeraciones breves:\n\n- un concepto por paso;\n- ejemplos de la vida laboral de personas adultas;\n- una actividad para practicar." },
+        { "tipo": "cita", "es": "Este es un texto de ejemplo para mostrar cómo se ve una cita traducida al español.", "original": "This is sample text that shows how a translated quotation looks.", "lang": "en", "idioma": "inglés", "traduccion": "propia", "referencia": "Referencia de ejemplo en formato APA 7 (dato de prueba, no es una cita real)." },
+        { "tipo": "nota", "estado": "atencion", "titulo": "Datos que cambian", "md": "Los nombres de modelos, precios y límites de las herramientas no van en el texto de la lección: van en una tarjeta con fecha, porque cambian seguido." }
+      ]
+    },
+    {
+      "titulo": "¿Cómo lo usarías en tu trabajo?",
+      "momento": "transferencia",
+      "bloques": [
+        { "tipo": "texto", "md": "Cada lección termina conectando lo aprendido con tu trabajo o con tu aula. En las lecciones reales, este paso tiene una reflexión que se guarda en tu diario de aprendizaje.\n\nPensá en una tarea de tu semana que podrías organizar en pasos cortos, como esta lección." }
+      ]
+    },
+    {
+      "titulo": "Cierre y lecturas",
+      "momento": "cierre",
+      "bloques": [
+        { "tipo": "nota", "estado": "positivo", "titulo": "Terminaste el recorrido de prueba", "md": "Con **Terminar módulo** vas a ver la pantalla de cierre, con la insignia del módulo." },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Elements of AI: curso gratuito de introducción a la IA", "apa": "University of Helsinki y MinnaLearn. (s.f.). Elements of AI [Curso en línea].", "url": "https://www.elementsofai.com/es/", "idioma": "es", "nivel": "Inicial", "tipo": "curso" },
+          { "titulo": "Introducción a la ingeniería de prompts", "apa": "Anthropic. (s.f.). Prompt engineering overview. Documentación de Claude.", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" }
+        ] }
+      ]
+    }
+  ]
+}
