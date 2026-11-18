@@ -1,0 +1,16 @@
+{
+  "name": "taller-ia",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Taller - IA: entorno de aprendizaje. El sitio es HTML, CSS y JS sin build; estas dependencias son solo para verificar en desarrollo.",
+  "type": "module",
+  "scripts": {
+    "servir": "node scripts/servidor.mjs",
+    "verificar": "node scripts/verificar.mjs",
+    "verificar:rapido": "node scripts/verificar.mjs --rapido"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "playwright": "1.65.1"
+  }
+}

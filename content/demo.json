@@ -1,0 +1,64 @@
+{
+  "_nota": "Datos de ejemplo del prototipo. Las fechas son relativas a hoy (dia 0 = hoy, -1 = ayer). Se usan mientras la persona no tenga progreso propio. Se reemplazan por el estado real en la etapa 2.",
+  "perfil": {
+    "nombre": "Lourdes",
+    "nombreCompleto": "Lourdes Pedaci",
+    "iniciales": "LP",
+    "cohorte": "Cohorte noviembre 2026",
+    "ruta": "esencial"
+  },
+  "ultimo": { "modulo": 6, "paso": 4 },
+  "progreso": { "0": 4, "1": 6, "2": 7, "3": 6, "4": 6, "5": 8, "6": 3, "7": 1 },
+  "competencias": {
+    "comprender": { "nivel": 3, "evidencias": 5, "objetivos": [5, 5] },
+    "delegacion": { "nivel": 3, "evidencias": 3, "objetivos": [4, 4] },
+    "descripcion": { "nivel": 2, "evidencias": 4, "objetivos": [3, 6] },
+    "discernimiento": { "nivel": 1, "evidencias": 1, "objetivos": [1, 5] },
+    "diligencia": { "nivel": 0, "evidencias": 0, "objetivos": [0, 4] },
+    "etica": { "nivel": 0, "evidencias": 0, "objetivos": [0, 4] },
+    "crear": { "nivel": 0, "evidencias": 0, "objetivos": [0, 6] },
+    "formacion": { "nivel": 0, "evidencias": 0, "objetivos": [0, 4] }
+  },
+  "sugerencia": { "modulo": 7, "texto": "practicá Discernimiento. Te falta evidencia en evaluar e iterar respuestas." },
+  "evidencias": [
+    { "titulo": "Prompt mejorado en tres rondas", "detalle": "Módulo 6 | Descripción", "modulo": 6 },
+    { "titulo": "Clasificación de tareas para delegar", "detalle": "Módulo 4 | Delegación", "modulo": 4 },
+    { "titulo": "Autodiagnóstico inicial", "detalle": "Módulo 0 | Punto de partida", "modulo": 0 }
+  ],
+  "evidenciasTotal": 13,
+  "objetivos": [
+    { "titulo": "Usar IA para preparar mis clases", "logrado": true },
+    { "titulo": "Enseñar prompts a personas adultas", "logrado": false },
+    { "titulo": "Armar flujos simples de automatización", "logrado": false }
+  ],
+  "eventos": [
+    { "dia": -6, "inicio": "18:00", "fin": "19:30", "tipo": "workshop", "titulo": "Workshop: cómo funciona un modelo de lenguaje", "modulo": 2 },
+    { "dia": -3, "inicio": "19:00", "fin": "20:00", "tipo": "videollamada", "titulo": "Encuentro sincrónico: dudas del Bloque 1" },
+    { "dia": -1, "inicio": "23:59", "tipo": "entrega", "titulo": "Entrega: autodiagnóstico inicial", "modulo": 0 },
+    { "dia": 0, "inicio": "09:00", "tipo": "apertura", "titulo": "Abre la autoevaluación del Bloque 2" },
+    { "dia": 0, "inicio": "14:00", "fin": "15:00", "tipo": "videollamada", "titulo": "Encuentro sincrónico: ingeniería de prompts", "modulo": 6 },
+    { "dia": 0, "inicio": "18:30", "fin": "20:00", "tipo": "workshop", "titulo": "Workshop: IA para crear materiales" },
+    { "dia": 0, "inicio": "23:59", "tipo": "cierre", "titulo": "Cierra la actividad Corregí a la IA", "modulo": 7 },
+    { "dia": 1, "inicio": "19:00", "fin": "19:30", "tipo": "tutoria", "titulo": "Tutoría individual" },
+    { "dia": 2, "inicio": "23:59", "tipo": "entrega", "titulo": "Entrega: kit de prompts de trabajo", "modulo": 13 },
+    { "dia": 3, "inicio": "10:00", "tipo": "parcial", "titulo": "Abre el parcial del Bloque 2" },
+    { "dia": 5, "inicio": "23:59", "tipo": "parcial", "titulo": "Cierra el parcial del Bloque 2" },
+    { "dia": 7, "inicio": "18:00", "fin": "19:30", "tipo": "workshop", "titulo": "Workshop: modo de voz para practicar idiomas", "modulo": 12 },
+    { "dia": 9, "inicio": "20:00", "fin": "21:00", "tipo": "videollamada", "titulo": "Videollamada grupal: dudas del Bloque 3" },
+    { "dia": 14, "inicio": "23:59", "tipo": "final", "titulo": "Entrega del proyecto final, primera versión", "modulo": 20 },
+    { "dia": 16, "inicio": "09:00", "tipo": "final", "titulo": "Abre la evaluación final" },
+    { "dia": 23, "inicio": "23:59", "tipo": "final", "titulo": "Cierra la evaluación final" }
+  ],
+  "pendientes": [
+    { "id": 1, "titulo": "Terminar la actividad Corregí a la IA", "dia": 0, "hora": "23:59", "tipo": "cierre", "hecha": false },
+    { "id": 2, "titulo": "Preparar dos preguntas para la tutoría", "dia": 1, "hora": "19:00", "tipo": "tutoria", "hecha": false },
+    { "id": 3, "titulo": "Subir el kit de prompts de trabajo", "dia": 2, "hora": "23:59", "tipo": "entrega", "hecha": false },
+    { "id": 4, "titulo": "Leer: Mitchell, capítulo 1 (lectura recomendada)", "dia": 4, "hora": "12:00", "tipo": null, "hecha": false, "propia": true },
+    { "id": 5, "titulo": "Ver el video sobre modelos de lenguaje y responder las preguntas", "dia": -1, "hora": "20:00", "tipo": null, "hecha": true }
+  ],
+  "avisos": [
+    { "icono": "lock_open", "titulo": "Abre el parcial del Bloque 2", "detalle": "En 3 días, a las 10:00", "href": "#/agenda/semana" },
+    { "icono": "groups", "titulo": "Hoy hay un workshop", "detalle": "IA para crear materiales, a las 18:30", "href": "#/agenda/dia" }
+  ],
+  "actividad": { "semilla": 7 }
+}

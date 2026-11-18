@@ -1,0 +1,12 @@
+{
+  "_nota": "Fechas de la cursada por cohorte. Cada evento: titulo, tipo, inicio (fecha y hora ISO 8601 con zona horaria), fin opcional, enlace opcional y modulo opcional. Tipos: cierre, entrega, apertura, parcial, final, videollamada, tutoria, workshop. En modo autoasistido, sin cohorte, la agenda queda vacía y la persona puede agregar eventos propios.",
+  "actualizado": "2026-11-18",
+  "cohortes": [],
+  "ejemplo": {
+    "id": "2027-03",
+    "nombre": "Cohorte marzo 2027",
+    "eventos": [
+      { "titulo": "Encuentro sincrónico: bienvenida", "tipo": "videollamada", "inicio": "2027-03-02T19:00:00-03:00", "fin": "2027-03-02T20:00:00-03:00", "enlace": "", "modulo": 0 }
+    ]
+  }
+}

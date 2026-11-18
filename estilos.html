@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-contrast="standard">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estilos | Taller - IA</title>
+<meta name="description" content="Tokens y componentes Material 3 Expressive del Taller - IA, en modo claro y oscuro.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="assets/svg/logo.svg" type="image/svg+xml">
+<script>
+(function(){try{var g=function(k,d){var v=localStorage.getItem("tia."+k);return v===null?d:JSON.parse(v)};
+var t=g("tema","system"),c=g("contraste","standard");
+var m=t==="system"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):t;
+document.documentElement.setAttribute("data-theme",m);document.documentElement.setAttribute("data-contrast",c);}catch(e){}})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..750&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,300..600,0..1,0&display=block">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/layout.css">
+<style>
+/* Estilos propios de esta página de referencia (solo maquetan la vitrina) */
+.ds{max-width:1200px;margin:0 auto;padding:var(--app-space-4) var(--app-space-4) var(--app-space-10)}
+.ds-top{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:var(--app-space-3);padding:var(--app-space-3) var(--app-space-4);background:var(--app-color-chrome);box-shadow:var(--md-sys-elevation-level1)}
+.ds-top .grow{flex:1;min-width:0}
+.ds-top .brand-name{font:var(--md-sys-typescale-title-medium);font-weight:var(--md-sys-typescale-emphasized-weight)}
+.ds-ctrls{display:flex;flex-wrap:wrap;gap:var(--app-space-3)}
+.ds h2{font:var(--md-sys-typescale-headline-small);margin:var(--app-space-10) 0 var(--app-space-2)}
+.ds h3{font:var(--md-sys-typescale-title-medium);margin:var(--app-space-6) 0 var(--app-space-3)}
+.ds .lead{font:var(--md-sys-typescale-body-large);color:var(--md-sys-color-on-surface-variant);max-width:72ch}
+.ds nav.toc{display:flex;flex-wrap:wrap;gap:var(--app-space-2);margin-top:var(--app-space-4)}
+.sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--app-space-3)}
+.sw{border-radius:var(--md-sys-shape-corner-medium);padding:var(--app-space-3);min-height:88px;display:grid;align-content:space-between;gap:var(--app-space-2);font:var(--md-sys-typescale-label-medium);box-shadow:inset 0 0 0 1px var(--md-sys-color-outline-variant)}
+.sw code{font:var(--md-sys-typescale-body-small);font-family:ui-monospace,Consolas,monospace;opacity:.9;overflow-wrap:anywhere}
+.row{display:flex;flex-wrap:wrap;gap:var(--app-space-3);align-items:center}
+.panel{background:var(--app-color-card);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-4)}
+.type-row{display:grid;grid-template-columns:200px minmax(0,1fr);gap:var(--app-space-3);align-items:baseline;padding:var(--app-space-2) 0;border-bottom:1px solid var(--md-sys-color-outline-variant)}
+.type-row code{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+.shape{width:96px;height:72px;background:var(--md-sys-color-primary-container);color:var(--md-sys-color-on-primary-container);display:grid;place-items:center;font:var(--md-sys-typescale-label-small);text-align:center}
+.elev{width:140px;height:80px;background:var(--app-color-card);border-radius:var(--md-sys-shape-corner-medium);display:grid;place-items:center;font:var(--md-sys-typescale-label-medium)}
+.space{display:flex;align-items:center;gap:var(--app-space-3);font:var(--md-sys-typescale-body-small)}
+.space i{display:block;height:16px;background:var(--md-sys-color-primary);border-radius:2px}
+.motion-box{width:48px;height:48px;border-radius:var(--md-sys-shape-corner-medium);background:var(--md-sys-color-primary)}
+.motion-track{position:relative;height:56px;background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-medium);padding:4px;flex:1;min-width:200px}
+.motion-track .motion-box{position:absolute;left:4px;top:4px}
+.motion-track.go .motion-box{left:calc(100% - 52px)}
+.demo-menu{position:static;animation:none;max-width:320px}
+.demo-sheet{position:static;transform:none;max-width:420px;border-radius:var(--md-sys-shape-corner-extra-large)}
+.demo-snack{position:static;transform:none;opacity:1;display:inline-block}
+.two{display:grid;gap:var(--app-space-4);grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+@media (max-width:599px){.type-row{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<a class="skip" href="#ds">Saltar al contenido</a>
+<header class="ds-top">
+  <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo"/></svg>
+  <div class="grow"><span class="brand-name">Taller - IA | Estilos</span></div>
+  <div class="ds-ctrls">
+    <div class="connected" role="group" aria-label="Tema" id="ctrlTema"><button type="button" data-v="light">Claro</button><button type="button" data-v="dark">Oscuro</button><button type="button" data-v="system">Automático</button></div>
+    <div class="connected" role="group" aria-label="Contraste" id="ctrlContraste"><button type="button" data-v="standard">Estándar</button><button type="button" data-v="medium">Medio</button><button type="button" data-v="high">Alto</button></div>
+  </div>
+</header>
+
+<main class="ds" id="ds" tabindex="-1">
+  <h1 style="font:var(--md-sys-typescale-headline-large);margin-top:var(--app-space-4)">Tokens y componentes</h1>
+  <p class="lead">Referencia viva del sistema de diseño del Taller - IA, basado en Material Design 3 Expressive. Todo sale de <code>css/tokens.css</code>. Cambiá el tema y el contraste arriba para revisar cada esquema. <a href="index.html#/inicio">Volver al entorno</a>.</p>
+  <nav class="toc" aria-label="Secciones de esta página">
+    <a class="btn btn-outlined" href="#color">Color</a><a class="btn btn-outlined" href="#tipografia">Tipografía</a><a class="btn btn-outlined" href="#forma">Forma y elevación</a><a class="btn btn-outlined" href="#espacio">Espacio y movimiento</a><a class="btn btn-outlined" href="#componentes">Componentes</a>
+  </nav>
+
+  <h2 id="color">Color</h2>
+  <p class="lead">Semilla #1F5FA8, esquema Vibrant. Los valores se leen en vivo del esquema activo.</p>
+  <h3>Roles de M3</h3>
+  <div class="sw-grid" data-swatches="primary,on-primary|primary-container,on-primary-container|secondary,on-secondary|secondary-container,on-secondary-container|tertiary,on-tertiary|tertiary-container,on-tertiary-container|error,on-error|error-container,on-error-container|surface,on-surface|surface-container-lowest,on-surface|surface-container-low,on-surface|surface-container,on-surface|surface-container-high,on-surface|surface-container-highest,on-surface-variant|inverse-surface,inverse-on-surface|outline,surface|outline-variant,on-surface"></div>
+  <h3>Superficies del entorno</h3>
+  <div class="sw-grid" data-app="app-color-background,app-color-card,app-color-card-item,app-color-chrome"></div>
+  <h3>Estados (siempre con ícono y texto)</h3>
+  <div class="two">
+    <div class="status status-error"><span class="ms" aria-hidden="true">block</span><span><b>Prohibido o error</b>md-sys-color-error y su contenedor.</span></div>
+    <div class="status status-warning"><span class="ms" aria-hidden="true">warning</span><span><b>Atención</b>app-color-warning y su contenedor.</span></div>
+    <div class="status status-success"><span class="ms" aria-hidden="true">check_circle</span><span><b>Positivo o permitido</b>app-color-success y su contenedor.</span></div>
+    <div class="status status-info"><span class="ms" aria-hidden="true">info</span><span><b>Información</b>app-color-info y su contenedor.</span></div>
+    <div class="status status-disabled"><span class="ms" aria-hidden="true">do_not_disturb_on</span><span><b>Deshabilitado</b>on-surface al 38% y su contenedor al 12%.</span></div>
+  </div>
+  <p class="row" style="margin-top:var(--app-space-3);font:var(--md-sys-typescale-body-medium)"><span class="txt-error">Texto de error</span><span class="txt-warning">Texto de atención</span><span class="txt-success">Texto positivo</span><span class="txt-info">Texto informativo</span></p>
+  <h3>Categorías de eventos de la agenda</h3>
+  <div class="row"><span class="chip ev-entrega"><span class="ms" aria-hidden="true">upload_file</span>Entregas y cierres</span><span class="chip ev-eval"><span class="ms" aria-hidden="true">quiz</span>Evaluaciones</span><span class="chip ev-vivo"><span class="ms" aria-hidden="true">videocam</span>Videollamadas</span><span class="chip ev-workshop"><span class="ms" aria-hidden="true">groups</span>Workshops</span></div>
+
+  <h2 id="tipografia">Tipografía</h2>
+  <p class="lead">Roboto Flex con la escala base de M3. Los números clave usan el peso enfático (650).</p>
+  <div class="panel" id="typeScale"></div>
+
+  <h2 id="forma">Forma y elevación</h2>
+  <h3>Escala de esquinas</h3>
+  <div class="row" id="shapes"></div>
+  <h3>Elevación</h3>
+  <div class="row">
+    <div class="elev" style="box-shadow:var(--md-sys-elevation-level0);outline:1px solid var(--md-sys-color-outline-variant)">Nivel 0</div>
+    <div class="elev" style="box-shadow:var(--md-sys-elevation-level1)">Nivel 1</div>
+    <div class="elev" style="box-shadow:var(--md-sys-elevation-level2)">Nivel 2</div>
+    <div class="elev" style="box-shadow:var(--md-sys-elevation-level3)">Nivel 3</div>
+  </div>
+
+  <h2 id="espacio">Espacio y movimiento</h2>
+  <h3>Escala de espaciado (4 px)</h3>
+  <div class="panel" style="display:grid;gap:var(--app-space-2)" id="spaces"></div>
+  <h3>Movimiento (springs de M3 Expressive)</h3>
+  <p class="lead">Con "reducir movimiento" activado, los cambios son instantáneos.</p>
+  <div class="panel" style="display:grid;gap:var(--app-space-3)">
+    <div class="row"><button class="btn btn-tonal" type="button" id="playMotion"><span class="ms" aria-hidden="true">play_arrow</span>Reproducir</button></div>
+    <div class="row"><code style="min-width:240px">spring-fast-spatial (350 ms)</code><div class="motion-track" data-m="var(--md-sys-motion-spring-fast-spatial)"><div class="motion-box"></div></div></div>
+    <div class="row"><code style="min-width:240px">spring-default-spatial (500 ms)</code><div class="motion-track" data-m="var(--md-sys-motion-spring-default-spatial)"><div class="motion-box"></div></div></div>
+    <div class="row"><code style="min-width:240px">spring-default-effects (200 ms)</code><div class="motion-track" data-m="var(--md-sys-motion-spring-default-effects)"><div class="motion-box"></div></div></div>
+  </div>
+
+  <h2 id="componentes">Componentes</h2>
+
+  <h3>Botones (S de 40 px y M de 56 px)</h3>
+  <div class="panel" style="display:grid;gap:var(--app-space-4)">
+    <div class="row"><button class="btn btn-filled" type="button">Relleno</button><button class="btn btn-tonal" type="button">Tonal</button><button class="btn btn-outlined" type="button">Con borde</button><button class="btn btn-text" type="button">De texto</button><button class="btn btn-danger" type="button"><span class="ms" aria-hidden="true">delete</span>Eliminar</button><button class="btn btn-filled" type="button" disabled>Deshabilitado</button></div>
+    <div class="row"><button class="btn btn-filled btn-m" type="button"><span class="ms" aria-hidden="true">play_arrow</span>Continuar</button><button class="btn btn-tonal btn-m" type="button"><span class="ms" aria-hidden="true">add</span>Agregar tarea</button><button class="btn btn-outlined btn-m" type="button">Con borde M</button></div>
+    <div class="row"><button class="icon-btn" type="button" aria-label="Buscar" data-tip="Buscar"><span class="ms" aria-hidden="true">search</span></button><button class="icon-btn tonal" type="button" aria-label="Favorito" data-tip="Favorito"><span class="ms" aria-hidden="true">bookmark</span></button><button class="icon-btn" type="button" aria-label="Avisos, 2 nuevos" data-tip="Avisos"><span class="ms" aria-hidden="true">notifications</span><span class="dot" aria-hidden="true"></span></button><span class="muted" style="font:var(--md-sys-typescale-body-small)">Botones de ícono de 48 px, con tooltip al pasar el cursor o con el foco del teclado.</span></div>
+  </div>
+
+  <h3>Grupo de botones conectados</h3>
+  <div class="panel row"><div class="connected" role="group" aria-label="Vista de ejemplo" data-demo-group><button type="button" aria-pressed="true">Día</button><button type="button" aria-pressed="false">Semana</button><button type="button" aria-pressed="false">Mes</button></div></div>
+
+  <h3>Chips e insignias</h3>
+  <div class="panel" style="display:grid;gap:var(--app-space-3)">
+    <div class="row"><span class="chip chip-neutral">Bloque 2 | Módulo 6</span><span class="chip chip-primary"><span class="ms" aria-hidden="true">alt_route</span>En tu ruta</span><span class="lvl lvl-0">Sin evidencia</span><span class="lvl lvl-1">Inicial</span><span class="lvl lvl-2">En desarrollo</span><span class="lvl lvl-3">Logrado</span></div>
+    <div class="filter-chips" role="group" aria-label="Filtros de ejemplo"><button type="button" class="filter-chip" aria-pressed="true" data-demo-chip><span class="ms chk" aria-hidden="true">check</span>Seleccionado</button><button type="button" class="filter-chip" aria-pressed="false" data-demo-chip><span class="ms chk" aria-hidden="true">check</span>Sin seleccionar</button></div>
+    <div class="row"><span class="badge">3<span class="sr-only"> nuevos</span></span><span class="badge badge-dot" role="img" aria-label="Hay novedades"></span></div>
+  </div>
+
+  <h3>Tarjetas y listas</h3>
+  <div class="two">
+    <section class="card" aria-labelledby="dsCard"><div class="card-head"><span class="ic"><span class="ms" aria-hidden="true">history</span></span><h4 id="dsCard" style="font:var(--md-sys-typescale-title-medium);flex:1">Tarjeta con lista</h4><a class="btn btn-text" href="#componentes">Ver todo</a></div>
+      <div class="card-body"><ul class="list">
+        <li><a class="list-item" href="#componentes"><span class="li-lead-ic"><span class="ms" aria-hidden="true">description</span></span><span class="li-text"><span class="li-head">Ítem interactivo en toda la fila</span><span class="li-sup">Alto mínimo de 72 px</span></span><span class="li-trail"><span class="ms" aria-hidden="true">chevron_right</span></span></a></li>
+        <li><a class="list-item" href="#componentes"><span class="li-lead-ic"><span class="ms" aria-hidden="true">description</span></span><span class="li-text"><span class="li-head">Segundo ítem</span><span class="li-sup">Esquinas grandes en los extremos</span></span><span class="li-trail"><span class="ms" aria-hidden="true">chevron_right</span></span></a></li>
+      </ul></div>
+      <div class="card-actions"><button class="btn btn-text" type="button">Acción</button></div>
+    </section>
+    <section class="card outlined" aria-labelledby="dsCard2"><div class="card-head"><span class="ic"><span class="ms" aria-hidden="true">checklist</span></span><h4 id="dsCard2" style="font:var(--md-sys-typescale-title-medium);flex:1">Tarjeta delineada</h4></div>
+      <div class="card-body"><p style="font:var(--md-sys-typescale-body-medium)">Las acciones de una tarjeta son botones de texto alineados al final.</p><p class="note"><span class="ms" aria-hidden="true">info</span><span>Nota informativa dentro de una tarjeta.</span></p></div>
+    </section>
+  </div>
+
+  <h3>Indicadores de progreso</h3>
+  <div class="panel" style="display:grid;gap:var(--app-space-4)">
+    <div class="lin" role="progressbar" aria-label="Ejemplo determinado" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"><span class="a" style="width:60%"></span><span class="t"></span></div>
+    <div class="lin-ind" role="progressbar" aria-label="Ejemplo indeterminado"></div>
+    <div class="row">
+      <div class="ring" aria-hidden="true"><svg viewBox="0 0 48 48"><circle class="bg" cx="24" cy="24" r="20" fill="none" stroke-width="5"/><circle class="fg" cx="24" cy="24" r="20" fill="none" stroke-width="5" stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="71.6"/></svg><b>43%</b></div>
+      <svg class="spin" viewBox="0 0 40 40" role="progressbar" aria-label="Cargando"><circle cx="20" cy="20" r="16"/></svg>
+      <span class="muted" style="font:var(--md-sys-typescale-body-small)">Anillo determinado e indicador circular indeterminado.</span>
+    </div>
+  </div>
+
+  <h3>Campos de texto y switch</h3>
+  <div class="panel two">
+    <div class="tf"><label for="dsT1">Tarea</label><input class="field" id="dsT1" placeholder="Por ejemplo: leer el capítulo 2" aria-describedby="dsT1h"><span class="tf-help" id="dsT1h">Texto de ayuda debajo del campo.</span></div>
+    <div class="tf"><label for="dsT2">Con error</label><input class="field" id="dsT2" aria-invalid="true" aria-describedby="dsT2e"><span class="tf-err" id="dsT2e"><span class="ms" aria-hidden="true">error</span>Escribí la tarea para poder agregarla.</span></div>
+    <div class="tf"><label for="dsT3">Fecha límite</label><span class="tf-wrap"><input class="field" id="dsT3" type="date"><span class="ms tf-ic" aria-hidden="true">calendar_today</span></span></div>
+    <div><div class="switch-row"><label for="dsSw">Leer la lección en voz alta</label><input class="switch" type="checkbox" role="switch" id="dsSw" checked></div><div class="switch-row"><label for="dsSw2">Opción desactivada</label><input class="switch" type="checkbox" role="switch" id="dsSw2"></div></div>
+  </div>
+
+  <h3>Menú, hoja inferior y snackbar</h3>
+  <div class="two">
+    <div class="menu demo-menu"><p class="menu-title" id="dsMenuT">Menú de ejemplo</p><div role="menu" aria-labelledby="dsMenuT"><button role="menuitem" type="button"><span class="ms" aria-hidden="true">download</span>Exportar mi progreso</button><button role="menuitem" type="button"><span class="ms" aria-hidden="true">upload</span>Importar progreso</button><div class="menu-div" role="separator"></div><button role="menuitem" type="button" class="danger"><span class="ms" aria-hidden="true">delete</span>Borrar mis datos</button></div></div>
+    <div class="sheet demo-sheet" aria-label="Hoja inferior de ejemplo" role="region"><div class="handle" aria-hidden="true"></div><a href="#componentes"><span class="ms" aria-hidden="true">local_library</span>Biblioteca</a><a href="#componentes" aria-current="page"><span class="ms" aria-hidden="true">bookmarks</span>Mis prompts</a></div>
+  </div>
+  <div class="row" style="margin-top:var(--app-space-4)"><div class="snackbar demo-snack">Tarea agregada</div><button class="btn btn-tonal" type="button" id="dsSnack">Mostrar snackbar</button><button class="btn btn-outlined" type="button" id="dsDlg">Abrir diálogo</button></div>
+
+  <h3>Estado vacío y skeleton</h3>
+  <div class="two">
+    <div class="card"><div class="empty-state"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="var(--md-sys-color-surface-container-highest)"/><rect x="34" y="38" width="52" height="46" rx="12" fill="var(--md-sys-color-surface)" stroke="var(--md-sys-color-outline-variant)" stroke-width="2"/><rect x="42" y="50" width="36" height="6" rx="3" fill="var(--md-sys-color-primary)" opacity=".6"/><rect x="42" y="63" width="24" height="6" rx="3" fill="var(--md-sys-color-outline-variant)"/></svg><h4 style="font:var(--md-sys-typescale-title-medium);color:var(--md-sys-color-on-surface)">Todavía no guardaste prompts</h4><p>Una línea que explica para qué sirve la sección.</p><button class="btn btn-filled" type="button">Primera acción</button></div></div>
+    <div class="card" style="padding:var(--app-space-4);display:grid;gap:var(--app-space-3)" aria-hidden="true"><div class="sk" style="height:28px;width:60%"></div><div class="sk" style="height:14px"></div><div class="sk" style="height:14px;width:90%"></div><div class="sk" style="height:120px;border-radius:var(--md-sys-shape-corner-large)"></div></div>
+  </div>
+  <p class="lead" style="margin-top:var(--app-space-6)">El riel de navegación, la barra inferior, la barra superior y el menú de usuario se ven funcionando en <a href="index.html#/inicio">el entorno</a>. Los estados de carga, error y sin conexión se suman en la etapa 2.</p>
+</main>
+<footer class="foot" style="padding-bottom:var(--app-space-6)">© 2026 Lourdes Pedaci, Experience Designer</footer>
+
+<div class="snackbar" id="snack" role="status" aria-live="polite"></div>
+<dialog class="dialog dlg-confirm" id="dlgConfirmar" aria-labelledby="dlgConfT" aria-describedby="dlgConfD">
+  <span class="ms dlg-ic" aria-hidden="true">help</span><h2 id="dlgConfT"></h2><p id="dlgConfD"></p>
+  <div class="dlg-actions"><button class="btn btn-outlined" type="button" data-r="cancelar">Cancelar</button><button class="btn btn-filled" type="button" data-r="ok">Aceptar</button></div>
+</dialog>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="logo" viewBox="0 0 32 32"><rect width="32" height="32" rx="10" fill="var(--md-sys-color-primary)"/><path d="M8 8h7v7h-3a4 4 0 0 1-4-4z" fill="var(--md-sys-color-on-primary)"/><path d="M17 8h3a4 4 0 0 1 4 4v3h-7z" fill="var(--md-sys-color-primary-container)"/><path d="M8 17h7v7h-3a4 4 0 0 1-4-4z" fill="var(--md-sys-color-primary-container)"/><path d="M17 17h7v3a4 4 0 0 1-4 4h-3z" fill="var(--md-sys-color-on-primary)"/></symbol></defs></svg>
+
+<script type="module">
+import { tema } from "./js/theme.js";
+import { aviso, confirmar, iniciarTooltips } from "./js/ui.js";
+
+tema.aplicar();
+iniciarTooltips();
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+/* Convierte cualquier color calculado (también los que salen de color-mix) a #rrggbb */
+const hex = v => {
+  const el = document.createElement("i"); el.style.color = v; document.body.appendChild(el);
+  const c = getComputedStyle(el).color; el.remove();
+  let n = c.match(/[\d.]+/g)?.map(Number) || [0, 0, 0];
+  if (c.startsWith("color(")) n = n.map(x => x * 255);
+  return "#" + n.slice(0, 3).map(x => Math.round(x).toString(16).padStart(2, "0")).join("");
+};
+
+function pintar() {
+  document.querySelectorAll("[data-swatches]").forEach(g => {
+    g.innerHTML = g.dataset.swatches.split("|").map(p => { const [bg, fg] = p.split(",");
+      // Los roles de borde se muestran como borde, que es su uso real
+      if (bg.startsWith("outline")) return `<div class="sw" style="background:var(--md-sys-color-surface);color:var(--md-sys-color-on-surface);box-shadow:inset 0 0 0 4px var(--md-sys-color-${bg})"><span>${bg}</span><code>${hex(css("--md-sys-color-" + bg))}</code></div>`;
+      return `<div class="sw" style="background:var(--md-sys-color-${bg});color:var(--md-sys-color-${fg})"><span>${bg}</span><code>${hex(css("--md-sys-color-" + bg))}</code></div>`; }).join("");
+  });
+  document.querySelectorAll("[data-app]").forEach(g => {
+    g.innerHTML = g.dataset.app.split(",").map(n => `<div class="sw" style="background:var(--${n});color:var(--md-sys-color-on-surface)"><span>${n}</span><code>${hex(css("--" + n))}</code></div>`).join("");
+  });
+  [["ctrlTema", tema.preferencia], ["ctrlContraste", tema.contraste]].forEach(([id, v]) =>
+    document.querySelectorAll(`#${id} button`).forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === v))));
+}
+const ESCALA = ["display-large","display-medium","display-small","headline-large","headline-medium","headline-small","title-large","title-medium","title-small","body-large","body-medium","body-small","label-large","label-medium","label-small"];
+document.getElementById("typeScale").innerHTML = ESCALA.map(n => `<div class="type-row"><code>${n}</code><span style="font:var(--md-sys-typescale-${n});overflow-wrap:anywhere">Aprender con criterio</span></div>`).join("") +
+  `<div class="type-row"><code>enfático (650)</code><span style="font:var(--md-sys-typescale-headline-small);font-weight:var(--md-sys-typescale-emphasized-weight)">13 de 38</span></div>`;
+document.getElementById("shapes").innerHTML = ["none","extra-small","small","medium","large","large-increased","extra-large","extra-large-increased","extra-extra-large","full"].map(n => `<div class="shape" style="border-radius:var(--md-sys-shape-corner-${n})">${n}</div>`).join("");
+document.getElementById("spaces").innerHTML = [1,2,3,4,5,6,8,10].map(n => `<div class="space"><code style="width:96px">app-space-${n}</code><i style="width:var(--app-space-${n})"></i><span>${css("--app-space-" + n)}</span></div>`).join("");
+
+document.getElementById("ctrlTema").addEventListener("click", e => { const b = e.target.closest("button"); if (b) tema.setPreferencia(b.dataset.v); });
+document.getElementById("ctrlContraste").addEventListener("click", e => { const b = e.target.closest("button"); if (b) tema.setContraste(b.dataset.v); });
+tema.alCambiar(pintar); pintar();
+
+document.querySelectorAll(".motion-track").forEach(t => { t.querySelector(".motion-box").style.transition = "left " + t.dataset.m; });
+document.getElementById("playMotion").addEventListener("click", () => document.querySelectorAll(".motion-track").forEach(t => t.classList.toggle("go")));
+document.querySelector("[data-demo-group]").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; b.parentElement.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); });
+document.querySelectorAll("[data-demo-chip]").forEach(c => c.addEventListener("click", () => c.setAttribute("aria-pressed", String(c.getAttribute("aria-pressed") !== "true"))));
+document.getElementById("dsSnack").addEventListener("click", () => aviso("Tarea agregada"));
+document.getElementById("dsDlg").addEventListener("click", async () => {
+  const ok = await confirmar({ icono: "delete", titulo: "¿Eliminar esta tarea?", texto: "<b>Leer el capítulo 2</b><br>Se quita de tus pendientes. No se puede deshacer.", ok: "Eliminar", peligro: true });
+  aviso(ok ? "Elegiste Eliminar" : "Elegiste Cancelar");
+});
+document.querySelector(".skip").addEventListener("click", e => { e.preventDefault(); document.getElementById("ds").focus(); });
+</script>
+</body>
+</html>

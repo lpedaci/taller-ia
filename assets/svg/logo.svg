@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Ícono de la pestaña del navegador. Usa los valores de primary, on-primary y primary-container del modo claro (css/tokens.css), porque un favicon no puede leer variables CSS. -->
+  <rect width="32" height="32" rx="10" fill="#005eb1"/>
+  <path d="M8 8h7v7h-3a4 4 0 0 1-4-4z" fill="#ffffff"/>
+  <path d="M17 8h3a4 4 0 0 1 4 4v3h-7z" fill="#d5e3ff"/>
+  <path d="M8 17h7v7h-3a4 4 0 0 1-4-4z" fill="#d5e3ff"/>
+  <path d="M17 17h7v3a4 4 0 0 1-4 4h-3z" fill="#ffffff"/>
+</svg>
