@@ -6,7 +6,7 @@ Es un sitio de HTML, CSS y JavaScript sin paso de compilación. Funciona publica
 
 ## Estado del proyecto
 
-Etapa 2 de 10, en curso: motor de lecciones y actividades. El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
+Etapa 3 de 10, en curso: contenido de los módulos. El bloque 1 (Módulos 0 a 3) está completo. El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
 
 ## Ver el taller en tu computadora
 
@@ -56,6 +56,16 @@ Para revisar los estados de carga y error sin esperar a que pasen de verdad, agr
 
 Agregá `?diagnostico=1` a la dirección (por ejemplo, `https://lpedaci.github.io/taller-ia/?diagnostico=1`). Aparece un panel que analiza la pantalla actual con axe-core, en español, y un botón para ver el sitio en anchos de mobile, tablet y desktop. Solo se carga con ese parámetro.
 
+### Grabar una animación en video
+
+Cada animación se puede exportar a MP4 (1920 x 1080) con subtítulos en WebVTT, para proyectarla en clase o usarla sin conexión. Hace falta tener [ffmpeg](https://ffmpeg.org/download.html) instalado.
+
+```
+node scripts/grabar-animacion.mjs prediccion-tokens
+```
+
+El video y los subtítulos quedan en `assets/video/`.
+
 ## Publicar en GitHub Pages
 
 1. En GitHub, entrá al repositorio `taller-ia` y abrí **Settings > Pages**.
@@ -96,7 +106,9 @@ Cada módulo es un archivo `content/modulo-XX.json` (por ejemplo, `modulo-03.jso
 - **Bloques de contenido:** `texto`, `nota` (con `estado`: info, atencion, positivo o error), `objetivos`, `cita` (cita traducida) y `profundizar`.
 - **Video y animación:** `video` (con `ref` al registro de `content/videos.json`), `animacion` (con `ref` a `content/animaciones/<id>.json`) y `grafico` (barras, líneas o mancuernas).
 - **Actividades:** `quiz`, `vf`, `clasificador`, `errores`, `escenario`, `constructor` (con `modo`: prompt, visual o brief), `reflexion`, `comparador`, `tabla`, `flujo`, `storyboard` y `mapa`. Cada actividad lleva un `id` único dentro del módulo y, si es evaluada, la `competencia` y el `objetivo` a los que suma.
-- La lección de prueba (`content/modulo-prueba.json`) tiene un ejemplo de cada uno.
+- **Del inicio del taller:** `perfil` (nombre y ruta), `autodiagnostico` (con `momento`: inicial o final), `objetivos-personales`, `diagrama` (círculos concéntricos con definiciones) y `predictor` (predictor de palabras con datos fijos). Ejemplos en `modulo-00.json`, `modulo-01.json` y `modulo-02.json`.
+- En `profundizar`, un recurso sin `url` se muestra como libro (`"tipo": "libro"`).
+- La lección de prueba (`content/modulo-prueba.json`) tiene un ejemplo de cada tipo de bloque, salvo los del inicio del taller.
 
 ## Estructura
 
@@ -114,6 +126,7 @@ js/views/           una vista por sección
 js/diagnostico.js   panel de accesibilidad (?diagnostico=1)
 content/            contenido en JSON
 assets/svg/         ícono del sitio
-scripts/            servidor local y verificación (solo desarrollo)
+assets/video/       animaciones grabadas en MP4 con subtítulos, para facilitadores
+scripts/            servidor local, verificación y grabación de animaciones (solo desarrollo)
 referencia/         prototipo aprobado y design system (no forma parte del taller)
 ```

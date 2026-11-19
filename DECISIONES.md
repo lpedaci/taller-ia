@@ -18,7 +18,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-010 | 2026-11-18 | Eventos que ya pasaron: se atenúan con color, no con opacidad | Vigente |
 | D-011 | 2026-11-18 | Áreas táctiles de 48 px con extensión invisible; excepción en la grilla del mes | Vigente |
 | D-012 | 2026-11-18 | Rutas por hash con el formato `#/seccion/parametros` | Vigente |
-| D-013 | 2026-11-18 | Ruta "Taller completo" sumada a las rutas sugeridas | Vigente |
+| D-013 | 2026-11-18 | Ruta "Taller completo" sumada a las rutas sugeridas | Vigente, confirmada por Lourdes |
 | D-014 | 2026-11-18 | Herramientas de verificación y modo `?diagnostico=1` | Vigente |
 | D-015 | 2026-11-18 | Cierre de la etapa 1: verificación completa | Vigente |
 | D-016 | 2026-11-18 | Los textos explicativos ocupan el ancho de su contenedor | Vigente |
@@ -39,6 +39,10 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-031 | 2026-11-18 | Motor de animaciones por escenas y animación piloto, pendiente de aprobación | Vigente |
 | D-032 | 2026-11-18 | Alineación de actividades y orden de botones según el design system | Vigente |
 | D-033 | 2026-11-18 | Cierre de la etapa 2: verificación completa | Vigente |
+| D-034 | 2026-11-18 | Nombre del sitio en la barra superior con peso 400 | Vigente |
+| D-035 | 2026-11-18 | Animación piloto aprobada: va al Módulo 2 y se graba en MP4 con subtítulos | Vigente |
+| D-036 | 2026-11-18 | Etapa 3, bloque 1: componentes nuevos y Módulos 0 a 3 | Vigente |
+| D-037 | 2026-11-18 | Etapa 3, bloque 1: verificación | Vigente |
 
 ---
 
@@ -148,7 +152,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 
 **Verificación realizada:** capturas de la barra en 600, 840, 1024, 1200 y 1280 px. El verificador ahora también detecta elementos cortados a la derecha.
 
-**Pendientes o riesgos:** entre 600 y 680 px, fuera de Inicio, el título de la barra se ve muy corto ("Mi a..."). La pantalla repite su título grande en el contenido. **A consultar con Lourdes:** si prefiere ocultarlo en ese rango, como en mobile.
+**Pendientes o riesgos:** entre 600 y 680 px, fuera de Inicio, el título de la barra se ve muy corto ("Mi a..."). La pantalla repite su título grande en el contenido. **A consultar con Lourdes:** si prefiere ocultarlo en ese rango, como en mobile. **Actualización:** sobre la barra, Lourdes pidió aliviar el peso del nombre del sitio (D-034). El título entre 600 y 680 px se mantiene como está, salvo que pida otra cosa.
 
 ## D-010 | 2026-11-18 | Eventos que ya pasaron
 
@@ -196,7 +200,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 
 **Verificación realizada:** el selector se maneja con flechas (patrón de radio de ARIA) y la elección se recuerda.
 
-**Pendientes o riesgos:** **a consultar con Lourdes:** si quiere mantener esta sexta ruta.
+**Pendientes o riesgos:** ninguno. Lourdes confirmó la ruta: es para quien quiere recorrer el taller entero y en profundidad.
 
 ## D-014 | 2026-11-18 | Verificación y diagnóstico
 
@@ -658,4 +662,79 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 
 **Pendientes o riesgos:**
 - Lo automático detecta solo una parte de los problemas de accesibilidad: falta probar con un lector de pantalla (NVDA en Windows) y con personas usuarias.
-- Consultas abiertas: D-009 (título de la barra entre 600 y 680 px) y D-013 (ruta "Taller completo").
+- Consultas abiertas: D-009 (título de la barra entre 600 y 680 px) y D-013 (ruta "Taller completo"). Ambas respondidas después (D-034 y D-013).
+
+## D-034 | 2026-11-18 | Peso del nombre del sitio en la barra superior
+
+**Solicitado:** **Cambio:** bajar el peso tipográfico de "Taller - IA" en la barra superior a 400, o al valor disponible más cercano, porque con 500 la barra se ve pesada.
+
+**Alcance:** el nombre del sitio en la barra superior, en todas las clases de ventana y en los dos modos.
+
+**Decisión y motivo:** el nombre usa la escala Title Medium con peso 400 (la fuente lo tiene disponible, no hace falta aproximar). El tamaño y el interlineado no cambian, así que la barra no se mueve. El título de la pantalla, a la derecha del separador, conserva su peso: la jerarquía queda en la información de la página y no en la marca.
+
+**Archivos afectados:** `css/layout.css`.
+
+**Verificación realizada:** capturas de la barra en 1280 px, claro y oscuro; `npm run verificar` completo (ver D-037).
+
+**Pendientes o riesgos:** se interpretó que el pedido se refería al nombre del sitio. Si Lourdes se refería a otro texto de la barra (el título de la pantalla o el botón "Empezar"), se ajusta igual.
+
+## D-035 | 2026-11-18 | Animación piloto aprobada
+
+**Solicitado:** Lourdes aprobó la animación piloto de predicción de tokens (D-031) y pidió seguir.
+
+**Decisión y motivo:**
+- La animación pasa al Módulo 2 (paso 2, "Escribir de a un fragmento"); sigue también en la lección de prueba.
+- Se graba en MP4 con `scripts/grabar-animacion.mjs`: dibuja cada cuadro con el mismo motor del sitio (1920 x 1080, 25 cuadros por segundo), arma el video con ffmpeg (H.264, compatible con cualquier reproductor) y escribe los subtítulos en WebVTT con la narración de cada escena. El botón grande de reproducir se oculta en la grabación.
+- Resultado: `assets/video/prediccion-tokens.mp4` (1 MB) y `assets/video/prediccion-tokens.vtt`. Sirven a facilitadores que proyectan en clase o sin conexión; se van a ofrecer en la guía de facilitadores (etapa 9).
+- Las otras nueve animaciones se producen con el mismo motor a medida que aparecen en los módulos.
+
+**Archivos afectados:** `scripts/grabar-animacion.mjs`, `assets/video/`, `content/modulo-02.json`.
+
+**Verificación realizada:** revisión de cuadros del MP4 (sin el botón de reproducir superpuesto) y de los tiempos de los subtítulos contra las escenas.
+
+**Pendientes o riesgos:** grabar el MP4 requiere ffmpeg instalado en la máquina; el sitio no lo necesita.
+
+## D-036 | 2026-11-18 | Etapa 3, bloque 1: componentes y Módulos 0 a 3
+
+**Solicitado:** producir el contenido completo del bloque 1 (Módulos 0 a 3) según la sección 8 del brief, con actividades reales, fuentes verificadas y progreso real.
+
+**Decisión y motivo:**
+- **Estructura de cada módulo:** pasos según los momentos de Gagné (gancho, objetivos, activación, contenido, práctica, evaluación y transferencia). Cada módulo cierra con chequeo, entrada del diario y "Para profundizar".
+- **Componentes nuevos** (`js/activities/inicio-taller.js`):
+  - **Perfil:** nombre y ruta; el avatar toma las iniciales del nombre y del apellido.
+  - **Autodiagnóstico:** diez preguntas (escala de 1 a 5, opción única y opción múltiple). Se guarda como punto de partida; al final del taller se repite y "Mi aprendizaje" compara las dos respuestas en un gráfico de mancuernas. Hasta entonces muestra barras con el punto de partida.
+  - **Objetivos personales:** de 1 a 3, con ideas para empezar; aparecen en "Mi aprendizaje".
+  - **Diagrama de círculos:** IA, aprendizaje automático, aprendizaje profundo e IA generativa. Al pasar por un término de la lista se resalta su círculo, y al revés. Las etiquetas se ubican donde el círculo tiene ancho suficiente y todas cumplen AA en claro y oscuro (el tercer círculo se oscureció para lograrlo).
+  - **Predictor de palabras:** tres frases con datos fijos (se aclara que es una simulación). Se elige la palabra siguiente o se deja elegir al azar; "Más sorpresa" aplana las probabilidades para mostrar la idea de temperatura.
+- **Contenido:**
+  - Módulo 0, Bienvenida: perfil, autodiagnóstico, objetivos y primer registro en el diario.
+  - Módulo 1, ¿Qué es la IA?: verdadero o falso para activar, diagrama de círculos, una historia corta, clasificador de 8 casos y chequeo.
+  - Módulo 2, Cómo funciona un modelo de lenguaje: la animación, el predictor, el video de 3Blue1Brown con preguntas, la ventana de contexto y chequeo.
+  - Módulo 3, Capacidades, límites y riesgos: el caso de una respuesta impecable y falsa, lo que hace bien y mal, señales para verificar, comparador y clasificador de alucinaciones.
+- **Progreso real:** las competencias de Inicio y de "Mi aprendizaje" se calculan con los objetivos de `modulos.json` y con las actividades resueltas. Los módulos con lección se marcan con `"leccion": true`; los demás muestran su ficha sin pedir un archivo que no existe.
+- **Fuentes para profundizar** (enlaces comprobados): Elements of AI en español; Google Machine Learning Crash Course (es-419); Stephen Wolfram, *What Is ChatGPT Doing and Why Does It Work?* (2023); la charla de Andrej Karpathy *Intro to Large Language Models*; la documentación de Claude sobre ventanas de contexto; el curso AI Fluency de Anthropic. Libros sin enlace: Sigman y Bilinkis, *Artificial* (2023); Melanie Mitchell, *Artificial Intelligence: A Guide for Thinking Humans* (2019). Se descartaron un enlace de Microsoft Learn (404) y uno de OpenAI (403 para lectores automáticos).
+- **Ajustes de diseño durante el bloque:**
+  - "Para profundizar" acepta libros sin enlace, con ícono propio.
+  - En el predictor, los botones de frase dejan 8 px entre filas cuando no entran en una sola.
+  - En mobile, el botón "Terminar módulo" ya no tapa "Escuchar": las columnas laterales de la barra de la lección nunca quedan más angostas que su contenido.
+
+**Archivos afectados:** `content/modulo-00.json` a `content/modulo-03.json`, `content/modulos.json`, `js/activities/inicio-taller.js`, `js/activities/comun.js`, `js/lesson/leccion.js`, `js/lesson/bloques.js`, `js/state.js`, `js/views/aprendizaje.js`, `css/activities.css`, `css/lesson.css`.
+
+**Verificación realizada:** ver D-037.
+
+**Pendientes o riesgos:** el autodiagnóstico final se arma en el Módulo 20. Los objetivos personales se revisan al cerrar cada bloque a partir del bloque 2.
+
+## D-037 | 2026-11-18 | Etapa 3, bloque 1: verificación
+
+**Solicitado:** verificar el bloque 1 completo antes de subirlo.
+
+**Decisión y motivo:** el verificador suma nueve pantallas del bloque 1 (perfil, autodiagnóstico, objetivos, diagrama, clasificador, animación, predictor, comparador y cierre).
+
+**Archivos afectados:** `scripts/verificar.mjs`.
+
+**Verificación realizada:**
+- Prueba de punta a punta del bloque 1 en 1280, 768 y 390 px: los 23 pasos cargan; axe-core sin problemas; perfil, autodiagnóstico, objetivos y diario se guardan; clasificador 8 de 8; predictor; avance real en Inicio ("1 de 21"); gráfico en "Mi aprendizaje"; sin errores de consola. En 390 px encontró que "Terminar módulo" tapaba "Escuchar" (corregido, D-036).
+- Contraste de las etiquetas del diagrama medido en claro y oscuro: todas sobre 4.5:1.
+- `npm run verificar` completo: 468 capturas (39 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, sin scroll horizontal, sin errores de consola, sin animaciones con movimiento reducido y sin rayas largas ni puntos medios. Encontró un problema, ya corregido: en 360 y 412 px los botones de frase del predictor pasaban a dos filas sin separación y sus áreas táctiles se pisaban; ahora hay 8 px entre filas. Después, `npm run verificar:rapido` sin problemas (234 capturas).
+
+**Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.

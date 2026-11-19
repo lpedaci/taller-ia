@@ -54,7 +54,7 @@ a.term{text-decoration-style:dotted}
 /* ---------- Barra flotante de la lección (M3 floating toolbar): Anterior, Escuchar y Siguiente ---------- */
 /* Tres zonas: Anterior a la izquierda, Escuchar al centro y Siguiente a la derecha */
 /* Va arriba del paso y queda fija debajo de la barra superior: no cambia de lugar con el largo del contenido */
-.lesson-bar{position:sticky;top:calc(64px + var(--app-space-2));z-index:15;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--app-space-2);padding:var(--app-space-2);background:var(--app-color-chrome);border-radius:var(--md-sys-shape-corner-full);box-shadow:var(--md-sys-elevation-level2)}
+.lesson-bar{position:sticky;top:calc(64px + var(--app-space-2));z-index:15;display:grid;grid-template-columns:minmax(max-content,1fr) auto minmax(max-content,1fr);align-items:center;gap:var(--app-space-2);padding:var(--app-space-2);background:var(--app-color-chrome);border-radius:var(--md-sys-shape-corner-full);box-shadow:var(--md-sys-elevation-level2)}
 .lesson-bar .is-off{color:var(--app-color-disabled-content);pointer-events:none}
 .lb-prev{justify-self:start}
 .lb-listen{display:flex;justify-content:center;grid-column:2}
@@ -115,3 +115,6 @@ html[data-dir="atras"]{--dir:-1}
   ::view-transition-old(paso),::view-transition-new(paso){animation:none}
   .badge-morph{animation:none}
 }
+
+.list-item-static{cursor:default}
+.list-item-static::after{display:none}

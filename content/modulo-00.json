@@ -1,0 +1,64 @@
+{
+  "titulo": "Bienvenida y punto de partida",
+  "objetivos": [
+    { "id": "m0-o1", "texto": "Saber cómo funciona el entorno: cómo avanzar, dónde se guarda tu progreso y qué te llevás al final.", "competencia": null },
+    { "id": "m0-o2", "texto": "Registrar tu punto de partida y lo que querés lograr con la IA.", "competencia": null }
+  ],
+  "pasos": [
+    {
+      "titulo": "Antes de empezar",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "texto", "md": "Quizás ya probaste un asistente de IA. Le pediste un correo, un resumen o ideas para una clase, y la respuesta se veía bien. Tan bien que daban ganas de copiarla y mandarla así.\n\nEste taller es para el momento que viene después: cuando querés saber si esa respuesta es confiable, cómo pedir mejor, qué conviene no cargar y en qué tareas la IA te ayuda de verdad.\n\nNo hace falta saber programar ni tener formación técnica. Hace falta curiosidad y un poco de tiempo: cada módulo lleva entre 45 y 75 minutos, y podés hacerlo de a partes." },
+        { "tipo": "nota", "estado": "info", "titulo": "Cómo funciona este entorno", "md": "- Avanzás con **Siguiente** y **Anterior**, arriba de cada paso, o desde el índice del módulo.\n- Tu progreso se guarda solo, **en este navegador**. No hay cuentas ni se envía nada a ningún servidor.\n- Si cambiás de computadora, usá **Exportar mi progreso** en Ajustes y después lo importás en la otra.\n- Al volver, el botón **Continuar** te lleva al último paso donde estabas." },
+        { "tipo": "texto", "md": "Al terminar el taller te vas a llevar cosas que podés usar al día siguiente: tu biblioteca de prompts, un kit para tu trabajo, tu diario de aprendizaje y un portafolio con todo lo que produjiste." }
+      ]
+    },
+    {
+      "titulo": "Cómo está armado el recorrido",
+      "momento": "objetivo",
+      "bloques": [
+        { "tipo": "objetivos", "titulo": "En este módulo vas a:" },
+        { "tipo": "texto", "md": "El taller tiene 21 módulos en 7 bloques, y va de lo general a lo particular:\n\n1. **Comprender:** qué es la IA y cómo funciona por dentro.\n2. **Criterio:** decidir qué delegar, cómo pedir, cómo evaluar lo que devuelve y cómo usarla con responsabilidad.\n3. **Ética y datos:** los dilemas de la IA y el cuidado de los datos personales.\n4. **Asistentes:** ChatGPT, Claude, Gemini y Copilot, el modo de voz y el uso en el trabajo.\n5. **Crear con IA:** código, imagen, audio, música y video.\n6. **Automatizar:** de la conversación a los flujos de trabajo.\n7. **Aplicar:** diseñar formación con IA y tu proyecto final.\n\nEl orden es a propósito. Las herramientas cambian todo el tiempo: un botón se mueve, un plan cambia de precio, aparece un modelo nuevo. El criterio para usarlas, en cambio, te sirve con cualquiera. Por eso primero vemos cómo funciona y cómo pensar, y después las herramientas." },
+        { "tipo": "perfil", "id": "perfil", "titulo": "Elegí tu recorrido", "consigna": "Si vas a hacer el taller por partes, para una clase o un curso corto, elegí la ruta que más se acerca a lo que buscás. Si querés verlo todo, elegí **Taller completo**." }
+      ]
+    },
+    {
+      "titulo": "Tu punto de partida",
+      "momento": "activacion",
+      "bloques": [
+        { "tipo": "texto", "md": "Antes de arrancar, contanos desde dónde partís. Son diez preguntas cortas. No hay respuestas correctas: sirven para que al final del taller compares cómo cambió tu confianza en cada tema." },
+        {
+          "tipo": "autodiagnostico", "id": "autodiagnostico", "momento": "inicial", "titulo": "Autodiagnóstico inicial",
+          "preguntas": [
+            { "tipo": "multiple", "texto": "¿Qué asistentes de IA usaste alguna vez?", "opciones": ["ChatGPT", "Claude", "Gemini", "Copilot", "Otro", "Ninguno todavía"] },
+            { "tipo": "opcion", "texto": "¿Con qué frecuencia usás IA hoy?", "opciones": ["Nunca o casi nunca", "Alguna vez al mes", "Todas las semanas", "Todos los días"] },
+            { "tipo": "multiple", "texto": "¿Para qué la usás o te gustaría usarla?", "opciones": ["Escribir o corregir textos", "Buscar y resumir información", "Preparar clases o capacitaciones", "Analizar datos o planillas", "Crear imágenes, audio o video", "Programar o automatizar tareas"] },
+            { "tipo": "escala", "texto": "Entiendo qué hace un asistente de IA por dentro cuando me responde.", "corto": "Cómo funciona" },
+            { "tipo": "escala", "texto": "Sé escribir un pedido claro para obtener lo que necesito.", "corto": "Pedir bien" },
+            { "tipo": "escala", "texto": "Me doy cuenta cuando una respuesta tiene errores o datos inventados.", "corto": "Detectar errores" },
+            { "tipo": "escala", "texto": "Sé qué información no conviene cargar en un asistente.", "corto": "Cuidar los datos" },
+            { "tipo": "escala", "texto": "Sé decidir qué tareas hacer yo y cuáles hacer con IA.", "corto": "Decidir qué delegar" },
+            { "tipo": "escala", "texto": "Puedo explicar los dilemas éticos que plantea la IA.", "corto": "Ética" },
+            { "tipo": "escala", "texto": "Uso la IA en mi trabajo y los resultados me sirven.", "corto": "Uso en el trabajo" }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Para qué querés usar IA",
+      "momento": "transferencia",
+      "bloques": [
+        { "tipo": "texto", "md": "La IA rinde cuando la usamos para algo concreto. \"Aprender IA\" es un objetivo difícil de medir; \"preparar en la mitad de tiempo el material de mis capacitaciones, sin perder calidad\" se puede medir y revisar.\n\nDefiní de uno a tres objetivos personales. Los vas a ver en Mi aprendizaje y los vas a revisar al cerrar cada bloque." },
+        {
+          "tipo": "objetivos-personales", "id": "objetivos", "titulo": "Tus objetivos para el taller",
+          "ideas": ["Preparar mis clases o capacitaciones con IA", "Escribir mejores correos e informes", "Entender qué puedo cargar y qué no", "Automatizar una tarea repetitiva", "Enseñarle IA a mi equipo"]
+        },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Tu primer registro en el diario", "pregunta": "¿Para qué querés usar IA? Contá una situación concreta de tu trabajo o de tu vida donde te gustaría que te ayude.", "ayuda": "Por ejemplo: \"Todos los lunes armo un resumen de novedades para el equipo y me lleva toda la mañana\"." },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Elements of AI: curso gratuito de introducción a la IA", "apa": "University of Helsinki y MinnaLearn. (s.f.). *Elements of AI* [Curso en línea].", "url": "https://www.elementsofai.com/es/", "idioma": "es", "nivel": "Inicial", "tipo": "curso" }
+        ] }
+      ]
+    }
+  ]
+}

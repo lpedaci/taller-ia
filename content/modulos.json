@@ -1,53 +1,378 @@
 {
   "bloques": [
-    { "n": 1, "titulo": "Comprender", "descripcion": "Qué es la IA y cómo funciona." },
-    { "n": 2, "titulo": "Criterio: el marco 4D", "descripcion": "Delegación, Descripción, Discernimiento y Diligencia, con ingeniería de prompts." },
-    { "n": 3, "titulo": "Ética y datos", "descripcion": "Los dilemas de la IA y el cuidado de los datos personales." },
-    { "n": 4, "titulo": "Asistentes", "descripcion": "Los cuatro asistentes principales, el modo de voz y su uso en el trabajo." },
-    { "n": 5, "titulo": "Crear con IA", "descripcion": "Código, imagen, audio, música, video y animación." },
-    { "n": 6, "titulo": "Automatizar", "descripcion": "De la conversación a los flujos y agentes." },
-    { "n": 7, "titulo": "Aplicar", "descripcion": "Diseñar formación con IA y proyecto final." }
+    {
+      "n": 1,
+      "titulo": "Comprender",
+      "descripcion": "Qué es la IA y cómo funciona."
+    },
+    {
+      "n": 2,
+      "titulo": "Criterio: el marco 4D",
+      "descripcion": "Delegación, Descripción, Discernimiento y Diligencia, con ingeniería de prompts."
+    },
+    {
+      "n": 3,
+      "titulo": "Ética y datos",
+      "descripcion": "Los dilemas de la IA y el cuidado de los datos personales."
+    },
+    {
+      "n": 4,
+      "titulo": "Asistentes",
+      "descripcion": "Los cuatro asistentes principales, el modo de voz y su uso en el trabajo."
+    },
+    {
+      "n": 5,
+      "titulo": "Crear con IA",
+      "descripcion": "Código, imagen, audio, música, video y animación."
+    },
+    {
+      "n": 6,
+      "titulo": "Automatizar",
+      "descripcion": "De la conversación a los flujos y agentes."
+    },
+    {
+      "n": 7,
+      "titulo": "Aplicar",
+      "descripcion": "Diseñar formación con IA y proyecto final."
+    }
   ],
   "modulos": [
-    { "id": 0, "bloque": 1, "titulo": "Bienvenida y punto de partida", "descripcion": "Cómo funciona el entorno y tu autodiagnóstico inicial.", "pasos": 4, "minutos": 45 },
-    { "id": 1, "bloque": 1, "titulo": "¿Qué es la inteligencia artificial?", "descripcion": "IA, aprendizaje automático e IA generativa.", "pasos": 6, "minutos": 50 },
-    { "id": 2, "bloque": 1, "titulo": "Cómo funciona un modelo de lenguaje", "descripcion": "Tokens, entrenamiento y ventana de contexto.", "pasos": 7, "minutos": 60 },
-    { "id": 3, "bloque": 1, "titulo": "Capacidades, límites y riesgos", "descripcion": "Qué hace bien, qué hace mal y por qué alucina.", "pasos": 6, "minutos": 50 },
-    { "id": 4, "bloque": 2, "titulo": "Delegación", "descripcion": "Qué hacer vos, qué hacer con IA y qué delegar.", "pasos": 6, "minutos": 55 },
-    { "id": 5, "bloque": 2, "titulo": "Ingeniería de prompts I", "descripcion": "Componentes de un buen prompt y laboratorio guiado.", "pasos": 8, "minutos": 75 },
-    { "id": 6, "bloque": 2, "titulo": "Ingeniería de prompts II", "descripcion": "Ejemplos, razonamiento, estructura y plantillas.", "pasos": 7, "minutos": 70 },
-    { "id": 7, "bloque": 2, "titulo": "Discernimiento", "descripcion": "Evaluar e iterar lo que produce la IA.", "pasos": 6, "minutos": 60 },
-    { "id": 8, "bloque": 2, "titulo": "Diligencia", "descripcion": "Uso responsable, transparencia y autoría.", "pasos": 6, "minutos": 55 },
-    { "id": 9, "bloque": 3, "titulo": "Ética de la inteligencia artificial", "descripcion": "Sesgos, desinformación, autoría, trabajo y ambiente.", "pasos": 7, "minutos": 70 },
-    { "id": 10, "bloque": 3, "titulo": "Datos personales y marco legal", "descripcion": "Ley 25.326, AAIP y buenas prácticas.", "pasos": 7, "minutos": 70 },
-    { "id": 11, "bloque": 4, "titulo": "Los cuatro asistentes", "descripcion": "ChatGPT, Claude, Gemini y Copilot comparados.", "pasos": 6, "minutos": 60 },
-    { "id": 12, "bloque": 4, "titulo": "Conversar con la IA por voz", "descripcion": "Práctica de idiomas, accesibilidad y cuidados.", "pasos": 6, "minutos": 60 },
-    { "id": 13, "bloque": 4, "titulo": "IA aplicada al trabajo", "descripcion": "Casos por área y tu kit de prompts.", "pasos": 6, "minutos": 60 },
-    { "id": 14, "bloque": 5, "titulo": "IA para programar", "descripcion": "Del autocompletado a los agentes.", "pasos": 8, "minutos": 75 },
-    { "id": 15, "bloque": 5, "titulo": "IA para imagen", "descripcion": "Prompt visual, derechos y procedencia.", "pasos": 6, "minutos": 55 },
-    { "id": 16, "bloque": 5, "titulo": "IA para audio, voz y música", "descripcion": "Voz sintética, música generativa y consentimiento.", "pasos": 6, "minutos": 55 },
-    { "id": 17, "bloque": 5, "titulo": "IA para video y animación", "descripcion": "Del guion al video y su ética.", "pasos": 6, "minutos": 55 },
-    { "id": 18, "bloque": 6, "titulo": "De la conversación a la automatización", "descripcion": "Flujos, agentes y humano en el circuito.", "pasos": 7, "minutos": 70 },
-    { "id": 19, "bloque": 7, "titulo": "Diseñar formación con IA", "descripcion": "Actividades, materiales y evaluación.", "pasos": 7, "minutos": 70 },
-    { "id": 20, "bloque": 7, "titulo": "Proyecto final", "descripcion": "Integrá el marco 4D en un proyecto propio.", "pasos": 5, "minutos": 75 }
+    {
+      "id": 0,
+      "bloque": 1,
+      "titulo": "Bienvenida y punto de partida",
+      "descripcion": "Cómo funciona el entorno y tu autodiagnóstico inicial.",
+      "pasos": 4,
+      "minutos": 45,
+      "leccion": true,
+      "objetivos": []
+    },
+    {
+      "id": 1,
+      "bloque": 1,
+      "titulo": "¿Qué es la inteligencia artificial?",
+      "descripcion": "IA, aprendizaje automático e IA generativa.",
+      "pasos": 6,
+      "minutos": 50,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m1-o1",
+          "competencia": "comprender"
+        },
+        {
+          "id": "m1-o2",
+          "competencia": "comprender"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "bloque": 1,
+      "titulo": "Cómo funciona un modelo de lenguaje",
+      "descripcion": "Tokens, entrenamiento y ventana de contexto.",
+      "pasos": 7,
+      "minutos": 60,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m2-o1",
+          "competencia": "comprender"
+        },
+        {
+          "id": "m2-o2",
+          "competencia": "comprender"
+        },
+        {
+          "id": "m2-o3",
+          "competencia": "discernimiento"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "bloque": 1,
+      "titulo": "Capacidades, límites y riesgos",
+      "descripcion": "Qué hace bien, qué hace mal y por qué alucina.",
+      "pasos": 6,
+      "minutos": 50,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m3-o1",
+          "competencia": "comprender"
+        },
+        {
+          "id": "m3-o2",
+          "competencia": "discernimiento"
+        },
+        {
+          "id": "m3-o3",
+          "competencia": "comprender"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "bloque": 2,
+      "titulo": "Delegación",
+      "descripcion": "Qué hacer vos, qué hacer con IA y qué delegar.",
+      "pasos": 6,
+      "minutos": 55
+    },
+    {
+      "id": 5,
+      "bloque": 2,
+      "titulo": "Ingeniería de prompts I",
+      "descripcion": "Componentes de un buen prompt y laboratorio guiado.",
+      "pasos": 8,
+      "minutos": 75
+    },
+    {
+      "id": 6,
+      "bloque": 2,
+      "titulo": "Ingeniería de prompts II",
+      "descripcion": "Ejemplos, razonamiento, estructura y plantillas.",
+      "pasos": 7,
+      "minutos": 70
+    },
+    {
+      "id": 7,
+      "bloque": 2,
+      "titulo": "Discernimiento",
+      "descripcion": "Evaluar e iterar lo que produce la IA.",
+      "pasos": 6,
+      "minutos": 60
+    },
+    {
+      "id": 8,
+      "bloque": 2,
+      "titulo": "Diligencia",
+      "descripcion": "Uso responsable, transparencia y autoría.",
+      "pasos": 6,
+      "minutos": 55
+    },
+    {
+      "id": 9,
+      "bloque": 3,
+      "titulo": "Ética de la inteligencia artificial",
+      "descripcion": "Sesgos, desinformación, autoría, trabajo y ambiente.",
+      "pasos": 7,
+      "minutos": 70
+    },
+    {
+      "id": 10,
+      "bloque": 3,
+      "titulo": "Datos personales y marco legal",
+      "descripcion": "Ley 25.326, AAIP y buenas prácticas.",
+      "pasos": 7,
+      "minutos": 70
+    },
+    {
+      "id": 11,
+      "bloque": 4,
+      "titulo": "Los cuatro asistentes",
+      "descripcion": "ChatGPT, Claude, Gemini y Copilot comparados.",
+      "pasos": 6,
+      "minutos": 60
+    },
+    {
+      "id": 12,
+      "bloque": 4,
+      "titulo": "Conversar con la IA por voz",
+      "descripcion": "Práctica de idiomas, accesibilidad y cuidados.",
+      "pasos": 6,
+      "minutos": 60
+    },
+    {
+      "id": 13,
+      "bloque": 4,
+      "titulo": "IA aplicada al trabajo",
+      "descripcion": "Casos por área y tu kit de prompts.",
+      "pasos": 6,
+      "minutos": 60
+    },
+    {
+      "id": 14,
+      "bloque": 5,
+      "titulo": "IA para programar",
+      "descripcion": "Del autocompletado a los agentes.",
+      "pasos": 8,
+      "minutos": 75
+    },
+    {
+      "id": 15,
+      "bloque": 5,
+      "titulo": "IA para imagen",
+      "descripcion": "Prompt visual, derechos y procedencia.",
+      "pasos": 6,
+      "minutos": 55
+    },
+    {
+      "id": 16,
+      "bloque": 5,
+      "titulo": "IA para audio, voz y música",
+      "descripcion": "Voz sintética, música generativa y consentimiento.",
+      "pasos": 6,
+      "minutos": 55
+    },
+    {
+      "id": 17,
+      "bloque": 5,
+      "titulo": "IA para video y animación",
+      "descripcion": "Del guion al video y su ética.",
+      "pasos": 6,
+      "minutos": 55
+    },
+    {
+      "id": 18,
+      "bloque": 6,
+      "titulo": "De la conversación a la automatización",
+      "descripcion": "Flujos, agentes y humano en el circuito.",
+      "pasos": 7,
+      "minutos": 70
+    },
+    {
+      "id": 19,
+      "bloque": 7,
+      "titulo": "Diseñar formación con IA",
+      "descripcion": "Actividades, materiales y evaluación.",
+      "pasos": 7,
+      "minutos": 70
+    },
+    {
+      "id": 20,
+      "bloque": 7,
+      "titulo": "Proyecto final",
+      "descripcion": "Integrá el marco 4D en un proyecto propio.",
+      "pasos": 5,
+      "minutos": 75
+    }
   ],
   "competencias": [
-    { "id": "comprender", "titulo": "Comprender cómo funciona la IA" },
-    { "id": "delegacion", "titulo": "Delegación" },
-    { "id": "descripcion", "titulo": "Descripción (prompts)" },
-    { "id": "discernimiento", "titulo": "Discernimiento" },
-    { "id": "diligencia", "titulo": "Diligencia y uso responsable" },
-    { "id": "etica", "titulo": "Ética y datos personales" },
-    { "id": "crear", "titulo": "Crear y automatizar con IA" },
-    { "id": "formacion", "titulo": "Diseñar formación con IA" }
+    {
+      "id": "comprender",
+      "titulo": "Comprender cómo funciona la IA"
+    },
+    {
+      "id": "delegacion",
+      "titulo": "Delegación"
+    },
+    {
+      "id": "descripcion",
+      "titulo": "Descripción (prompts)"
+    },
+    {
+      "id": "discernimiento",
+      "titulo": "Discernimiento"
+    },
+    {
+      "id": "diligencia",
+      "titulo": "Diligencia y uso responsable"
+    },
+    {
+      "id": "etica",
+      "titulo": "Ética y datos personales"
+    },
+    {
+      "id": "crear",
+      "titulo": "Crear y automatizar con IA"
+    },
+    {
+      "id": "formacion",
+      "titulo": "Diseñar formación con IA"
+    }
   ],
-  "niveles": ["Sin evidencia", "Inicial", "En desarrollo", "Logrado"],
+  "niveles": [
+    "Sin evidencia",
+    "Inicial",
+    "En desarrollo",
+    "Logrado"
+  ],
   "rutas": [
-    { "id": "esencial", "titulo": "Ruta esencial", "descripcion": "Los bloques 1, 2 y 3, más los módulos 11 y 12.", "bloques": [1, 2, 3], "modulos": [11, 12] },
-    { "id": "creativa", "titulo": "Ruta creativa", "descripcion": "Los bloques 1 y 2, más los módulos 15 a 17.", "bloques": [1, 2], "modulos": [15, 16, 17] },
-    { "id": "tecnica", "titulo": "Ruta técnica", "descripcion": "Los bloques 1 y 2, más los módulos 14 y 18.", "bloques": [1, 2], "modulos": [14, 18] },
-    { "id": "idiomas", "titulo": "Ruta idiomas y accesibilidad", "descripcion": "Los bloques 1 y 2, más los módulos 10 y 12.", "bloques": [1, 2], "modulos": [10, 12] },
-    { "id": "formadores", "titulo": "Ruta formadores", "descripcion": "La ruta esencial más el bloque 7.", "bloques": [1, 2, 3, 7], "modulos": [11, 12] },
-    { "id": "completo", "titulo": "Taller completo", "descripcion": "Los 21 módulos, en el orden sugerido.", "bloques": [1, 2, 3, 4, 5, 6, 7], "modulos": [] }
+    {
+      "id": "esencial",
+      "titulo": "Ruta esencial",
+      "descripcion": "Los bloques 1, 2 y 3, más los módulos 11 y 12.",
+      "bloques": [
+        1,
+        2,
+        3
+      ],
+      "modulos": [
+        11,
+        12
+      ]
+    },
+    {
+      "id": "creativa",
+      "titulo": "Ruta creativa",
+      "descripcion": "Los bloques 1 y 2, más los módulos 15 a 17.",
+      "bloques": [
+        1,
+        2
+      ],
+      "modulos": [
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "tecnica",
+      "titulo": "Ruta técnica",
+      "descripcion": "Los bloques 1 y 2, más los módulos 14 y 18.",
+      "bloques": [
+        1,
+        2
+      ],
+      "modulos": [
+        14,
+        18
+      ]
+    },
+    {
+      "id": "idiomas",
+      "titulo": "Ruta idiomas y accesibilidad",
+      "descripcion": "Los bloques 1 y 2, más los módulos 10 y 12.",
+      "bloques": [
+        1,
+        2
+      ],
+      "modulos": [
+        10,
+        12
+      ]
+    },
+    {
+      "id": "formadores",
+      "titulo": "Ruta formadores",
+      "descripcion": "La ruta esencial más el bloque 7.",
+      "bloques": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "modulos": [
+        11,
+        12
+      ]
+    },
+    {
+      "id": "completo",
+      "titulo": "Taller completo",
+      "descripcion": "Los 21 módulos, en el orden sugerido.",
+      "bloques": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "modulos": []
+    }
   ]
 }

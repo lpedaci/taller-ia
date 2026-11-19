@@ -1,0 +1,267 @@
+{
+  "titulo": "Capacidades, límites y riesgos",
+  "objetivos": [
+    {
+      "id": "m3-o1",
+      "texto": "Distinguir las tareas en las que la IA generativa rinde de las que conviene no confiarle sin revisar.",
+      "competencia": "comprender"
+    },
+    {
+      "id": "m3-o2",
+      "texto": "Reconocer señales de una alucinación y decidir qué verificar antes de usar una respuesta.",
+      "competencia": "discernimiento"
+    },
+    {
+      "id": "m3-o3",
+      "texto": "Diferenciar un chatbot, un asistente con herramientas y un agente.",
+      "competencia": "comprender"
+    }
+  ],
+  "pasos": [
+    {
+      "titulo": "Una respuesta impecable, y falsa",
+      "momento": "gancho",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "md": "Marcela coordina un área de capacitación. Tiene que presentar un informe sobre programas de formación en otras empresas y le pide a un asistente tres ejemplos con su fuente. La respuesta llega en segundos: tres casos bien redactados, con nombre de la empresa, año y un enlace a cada estudio.\n\nAntes de pegarlos, Marcela abre los enlaces. Dos no existen. El tercero lleva a un artículo que habla de otra cosa.\n\nNo es un error raro ni un asistente \"malo\". Es lo que puede pasar cuando le pedimos a la IA algo que, por cómo funciona, no puede garantizar. En este módulo vas a aprender a anticiparlo."
+        },
+        {
+          "tipo": "objetivos"
+        }
+      ]
+    },
+    {
+      "titulo": "Lo que hace bien",
+      "momento": "contenido",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "md": "La IA generativa rinde especialmente cuando trabaja **con material que vos le das** o cuando lo que importa es la forma más que el dato exacto:\n\n- **Redactar:** un primer borrador de un correo, un informe o una convocatoria, que después ajustás.\n- **Resumir:** las ideas centrales de un documento largo que le adjuntás.\n- **Reformular:** pasar un texto técnico a un lenguaje simple, cambiar el tono, acortar.\n- **Generar ideas:** opciones para un título, actividades para una clase, preguntas para una entrevista.\n- **Programar:** fórmulas de planillas, pequeños programas, revisar errores en código.\n- **Analizar texto:** ordenar comentarios de una encuesta por tema o detectar qué se repite.\n\nEn todos estos casos, vos podés evaluar el resultado: sabés si el resumen refleja el documento o si el correo dice lo que querías decir."
+        },
+        {
+          "tipo": "nota",
+          "estado": "positivo",
+          "titulo": "Una regla práctica",
+          "md": "Cuanto más fácil te resulta revisar el resultado, más segura es la tarea para hacer con IA."
+        }
+      ]
+    },
+    {
+      "titulo": "Lo que hace mal",
+      "momento": "contenido",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "md": "Los problemas aparecen cuando le pedimos algo que no puede garantizar:\n\n- **Datos exactos sin fuente:** cifras, fechas, nombres, citas textuales. Si no están en lo que le diste, el modelo produce lo más probable, que puede ser falso.\n- **Hechos recientes:** después de su fecha de corte no sabe nada, salvo que la herramienta busque en internet.\n- **Cálculos:** sin una herramienta de cálculo, puede equivocarse en cuentas que parecen simples.\n- **Alucinaciones:** respuestas inventadas con total seguridad, como las referencias de Marcela. El modelo no distingue lo probable de lo verdadero.\n- **Sesgos:** aprendió de textos escritos por personas, con sus prejuicios. Puede repetir estereotipos de género, de origen o de edad sin que se lo pidas.\n\nEl riesgo no es que se equivoque (las personas también nos equivocamos). El riesgo es que **se equivoca con el mismo tono seguro con el que acierta**, y eso nos baja la guardia."
+        },
+        {
+          "tipo": "nota",
+          "estado": "atencion",
+          "titulo": "Señales para frenar y verificar",
+          "md": "- Cifras muy precisas sin fuente (\"el 73,4 % de las empresas...\").\n- Citas textuales, nombres de autores o títulos de estudios.\n- Enlaces o referencias que no pediste verificar.\n- Hechos de los últimos meses.\n- Afirmaciones sobre personas reales."
+        }
+      ]
+    },
+    {
+      "titulo": "Tres formas de usar la IA",
+      "momento": "contenido",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "md": "No toda la IA que usás funciona igual. Hay tres formas de uso, y cada una cambia lo que podés esperar:\n\n- **Chatbot:** conversás y responde con lo que aprendió en el entrenamiento y lo que hay en la conversación. Es el uso más básico.\n- **Asistente con herramientas:** además de conversar, puede buscar en internet, leer tus archivos, hacer cálculos o ejecutar código. Con búsqueda web, por ejemplo, puede responder sobre hechos recientes y mostrar fuentes (que igual conviene abrir).\n- **Agente:** recibe un objetivo y decide por su cuenta los pasos: busca, abre archivos, escribe, prueba y corrige, hasta terminar. Ahorra mucho trabajo, y por eso mismo exige revisar qué hizo.\n\nCuantas más herramientas tiene, más puede hacer, y más importante es saber qué hizo antes de confiar en el resultado. Volvemos sobre los agentes en los bloques 5 y 6."
+        },
+        {
+          "tipo": "comparador",
+          "id": "comparador",
+          "titulo": "La misma pregunta, con y sin herramientas",
+          "antes": {
+            "titulo": "Chatbot sin búsqueda",
+            "texto": "Pregunta: ¿Qué cambió este mes en las condiciones de uso de la herramienta X?\n\nRespuesta: Este mes, la herramienta X actualizó sus condiciones para incluir nuevas protecciones de privacidad y un plan gratuito más amplio."
+          },
+          "despues": {
+            "titulo": "Asistente con búsqueda web",
+            "texto": "Pregunta: ¿Qué cambió este mes en las condiciones de uso de la herramienta X?\n\nRespuesta: Encontré el aviso oficial publicado el día 3. Los cambios son dos: ... (con el enlace al aviso)."
+          },
+          "cambios": [
+            {
+              "titulo": "Sin búsqueda, inventa con seguridad",
+              "texto": "El chatbot no puede saber qué pasó este mes. Responde lo más probable, y suena creíble."
+            },
+            {
+              "titulo": "Con búsqueda, puede citar la fuente",
+              "texto": "El asistente trae el aviso y lo enlaza. Igual conviene abrir el enlace y confirmar que dice eso."
+            },
+            {
+              "titulo": "Lo que cambia para vos",
+              "texto": "Antes de preguntar algo reciente, fijate si la herramienta tiene la búsqueda activada."
+            }
+          ],
+          "competencia": "comprender",
+          "objetivo": "m3-o3"
+        }
+      ]
+    },
+    {
+      "titulo": "¿Verdadero o alucinación?",
+      "momento": "practica",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "md": "Estas respuestas fueron escritas para el taller, imitando lo que un asistente podría contestar. Para cada una, decidí qué harías antes de usarla."
+        },
+        {
+          "tipo": "clasificador",
+          "id": "alucinacion",
+          "titulo": "¿La usarías así?",
+          "competencia": "discernimiento",
+          "objetivo": "m3-o2",
+          "categorias": [
+            {
+              "id": "usar",
+              "titulo": "La puedo usar",
+              "descripcion": "Puedo revisarla por mi cuenta."
+            },
+            {
+              "id": "verificar",
+              "titulo": "Tengo que verificarla",
+              "descripcion": "Puede ser cierta, pero no lo sé."
+            },
+            {
+              "id": "inventada",
+              "titulo": "Es muy probable que esté inventada",
+              "descripcion": "Tiene señales de alucinación."
+            }
+          ],
+          "items": [
+            {
+              "texto": "Un resumen de cinco puntos del documento que le adjunté, y coincide con lo que leí.",
+              "categoria": "usar",
+              "feedback": "Trabajó sobre tu material y vos pudiste comparar. Es el mejor escenario para usar la IA."
+            },
+            {
+              "texto": "\"Según un estudio de la Universidad de Harvard de 2021, el 73,4 % de los adultos aprende mejor con videos.\"",
+              "categoria": "inventada",
+              "feedback": "Cifra muy precisa, institución prestigiosa y ningún enlace: combinación típica de una alucinación. Si te sirve el dato, buscá el estudio original."
+            },
+            {
+              "texto": "Tres ideas para una actividad de presentación en un taller con adultos.",
+              "categoria": "usar",
+              "feedback": "Son ideas: no hay un dato que pueda ser falso. Vos elegís si sirven para tu grupo."
+            },
+            {
+              "texto": "La fecha en que entró en vigor una ley de protección de datos.",
+              "categoria": "verificar",
+              "feedback": "Puede ser correcta, pero una fecha legal hay que confirmarla en la fuente oficial antes de usarla."
+            },
+            {
+              "texto": "Una cita textual de un autor famoso para abrir una presentación.",
+              "categoria": "verificar",
+              "feedback": "Las citas textuales se inventan o se atribuyen mal con frecuencia. Buscala en la obra original."
+            },
+            {
+              "texto": "La lista de \"los cinco libros más vendidos de este mes\", sin búsqueda web activada.",
+              "categoria": "inventada",
+              "feedback": "Sin búsqueda, el modelo no puede saber qué pasó este mes. Lo que responda es lo más probable, no lo real."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre",
+      "momento": "evaluacion",
+      "bloques": [
+        {
+          "tipo": "quiz",
+          "id": "chequeo",
+          "titulo": "¿Qué te llevás?",
+          "competencia": "comprender",
+          "objetivo": "m3-o1",
+          "preguntas": [
+            {
+              "texto": "¿En cuál de estas tareas es más seguro usar IA sin verificar cada dato?",
+              "opciones": [
+                {
+                  "texto": "Reformular en lenguaje simple un texto que yo escribí.",
+                  "correcta": true,
+                  "feedback": "Trabaja sobre tu material y vos podés comprobar que no cambió el sentido."
+                },
+                {
+                  "texto": "Buscar estadísticas para un informe.",
+                  "feedback": "Las cifras sin fuente son terreno fértil para las alucinaciones."
+                },
+                {
+                  "texto": "Conseguir citas textuales de expertos.",
+                  "feedback": "Las citas se inventan o se atribuyen mal con frecuencia. Siempre se verifican."
+                }
+              ]
+            },
+            {
+              "texto": "¿Por qué una alucinación es difícil de detectar?",
+              "opciones": [
+                {
+                  "texto": "Porque el modelo la escribe con el mismo tono seguro que una respuesta correcta.",
+                  "correcta": true,
+                  "feedback": "Ese es el problema: nada en el estilo te avisa."
+                },
+                {
+                  "texto": "Porque solo aparece en temas técnicos.",
+                  "feedback": "Puede aparecer en cualquier tema, sobre todo con datos exactos."
+                }
+              ]
+            },
+            {
+              "texto": "¿Qué distingue a un agente de un chatbot?",
+              "opciones": [
+                {
+                  "texto": "El agente decide por su cuenta varios pasos para cumplir un objetivo, usando herramientas.",
+                  "correcta": true,
+                  "feedback": "Exacto. Por eso hay que revisar qué hizo, no solo qué respondió."
+                },
+                {
+                  "texto": "El agente nunca se equivoca.",
+                  "feedback": "Se puede equivocar como cualquier modelo, y en más pasos."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tipo": "reflexion",
+          "id": "diario",
+          "titulo": "Para tu diario",
+          "pregunta": "Pensá en una tarea de tu trabajo que te gustaría hacer con IA. ¿Qué parte del resultado tendrías que verificar siempre, y cómo lo harías?"
+        },
+        {
+          "tipo": "profundizar",
+          "fuentes": [
+            {
+              "titulo": "AI Fluency: el marco de las 4D",
+              "apa": "Dakan, R., Feller, J. y Anthropic. (s.f.). *AI Fluency: Framework & Foundations* [Curso en línea]. Anthropic Academy.",
+              "url": "https://anthropic.skilljar.com/ai-fluency-framework-foundations",
+              "idioma": "en",
+              "nivel": "Inicial",
+              "tipo": "curso"
+            },
+            {
+              "titulo": "Artificial intelligence: a guide for thinking humans",
+              "apa": "Mitchell, M. (2019). *Artificial intelligence: A guide for thinking humans*. Farrar, Straus and Giroux.",
+              "idioma": "en",
+              "nivel": "Inicial",
+              "tipo": "libro"
+            },
+            {
+              "titulo": "Elements of AI, capítulo 6: implicaciones",
+              "apa": "University of Helsinki y MinnaLearn. (s.f.). *Elements of AI* [Curso en línea].",
+              "url": "https://www.elementsofai.com/es/",
+              "idioma": "es",
+              "nivel": "Inicial",
+              "tipo": "curso"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

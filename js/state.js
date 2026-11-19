@@ -65,7 +65,8 @@ function inicial() {
     objetivos: [],
     diario: [],                   // [{ id, modulo, pregunta, texto, fecha }]
     prompts: [],                  // [{ id, nombre, etiquetas, texto, modulo, origen, fecha }]
-    eventosPropios: []            // [{ id, titulo, tipo, inicio, fin }] (marcas de tiempo)
+    eventosPropios: [],           // [{ id, titulo, tipo, inicio, fin }] (marcas de tiempo)
+    autodiagnostico: {}           // { inicial: { fecha, respuestas }, final: { fecha, respuestas } }
   };
   if (!DEMO) return base;
   const d = datos.demo;
@@ -156,6 +157,17 @@ export function guardarPrompt(p) {
   reemplazar(est.prompts, item); guardar(); return item;
 }
 export const prompts = () => est.prompts;
+
+/* ---------- Objetivos personales y autodiagnóstico ---------- */
+export function setObjetivos(lista) {
+  est.objetivos = lista.map(t => String(t).trim()).filter(Boolean).slice(0, 3).map(titulo => ({ titulo, logrado: (est.objetivos.find(o => o.titulo === titulo) || {}).logrado || false }));
+  guardar();
+}
+export function marcarObjetivo(i, logrado) { if (est.objetivos[i]) { est.objetivos[i].logrado = logrado; guardar(); } }
+export function guardarAutodiagnostico(momento, respuestas, etiquetas = []) {
+  (est.autodiagnostico ||= {})[momento] = { fecha: new Date().toISOString(), respuestas, etiquetas }; guardar();
+}
+export const autodiagnostico = () => est.autodiagnostico || {};
 export function eliminarPrompt(id) { est.prompts = est.prompts.filter(p => p.id !== id); guardar(); }
 function sumarRegistro() { const k = isoDia(hoy()); est.registro[k] = (est.registro[k] || 0) + 1; }
 

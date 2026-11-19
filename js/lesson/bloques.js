@@ -52,8 +52,12 @@ registrar("cita", {
 /* Para profundizar: de 1 a 3 enlaces a fuentes oficiales, con su idioma y nivel */
 registrar("profundizar", {
   render: b => `<section class="deeper" aria-label="Para profundizar"><h4>${icono("menu_book", "sm")}Para profundizar</h4><ul class="list">` +
-    (b.fuentes || []).map(f => `<li><a class="list-item" href="${esc(f.url)}" target="_blank" rel="noopener"><span class="li-lead-ic">${icono(f.tipo === "video" ? "smart_display" : "description")}</span>` +
-      `<span class="li-text"><span class="li-head">${esc(f.titulo)}</span><span class="li-sup">${esc(f.apa || "")}</span>` +
-      `<span class="deeper-tags">${f.idioma === "en" ? '<span class="lang-tag">En inglés</span>' : ""}${f.nivel ? `<span class="chip chip-neutral">${esc(f.nivel)}</span>` : ""}</span></span>` +
-      `<span class="li-trail">${icono("open_in_new")}<span class="sr-only">(se abre en otra pestaña)</span></span></a></li>`).join("") + `</ul></section>`
+    (b.fuentes || []).map(f => {
+      const ic = f.tipo === "video" ? "smart_display" : f.tipo === "libro" ? "menu_book" : "description";
+      const txt = `<span class="li-lead-ic">${icono(ic)}</span><span class="li-text"><span class="li-head">${esc(f.titulo)}</span><span class="li-sup">${md(f.apa || "").replace(/^<p>|<\/p>$/g, "")}</span>` +
+        `<span class="deeper-tags">${f.idioma === "en" ? '<span class="lang-tag">En inglés</span>' : ""}${f.nivel ? `<span class="chip chip-neutral">${esc(f.nivel)}</span>` : ""}</span></span>`;
+      // Los libros se citan y se recomiendan, sin enlace de compra
+      return f.url ? `<li><a class="list-item" href="${esc(f.url)}" target="_blank" rel="noopener">${txt}<span class="li-trail">${icono("open_in_new")}<span class="sr-only">(se abre en otra pestaña)</span></span></a></li>`
+        : `<li><div class="list-item list-item-static">${txt}</div></li>`;
+    }).join("") + `</ul></section>`
 });

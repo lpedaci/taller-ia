@@ -83,7 +83,8 @@
 .top-brand:hover::after{opacity:var(--md-sys-state-hover-opacity)}
 .top-brand:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:0}
 .brand-mark{width:var(--app-size-brand);height:var(--app-size-brand);flex:none}
-.brand-name{font:var(--md-sys-typescale-title-medium);font-weight:var(--md-sys-typescale-emphasized-weight);white-space:nowrap}
+/* Peso 400: la barra superior queda liviana (D-034) */
+.brand-name{font:var(--md-sys-typescale-title-medium);font-weight:400;white-space:nowrap}
 .top-div{width:1px;height:32px;background:var(--md-sys-color-outline-variant);flex:none;margin:0 var(--app-space-2)}
 .topbar.no-title .top-div{display:none}
 /* El título tiene prioridad sobre el buscador: el buscador se achica primero */

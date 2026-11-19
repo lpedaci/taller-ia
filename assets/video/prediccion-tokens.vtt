@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.953
+Son casi las doce de la noche.
+
+2
+00:00:01.953 --> 00:00:08.856
+Ana tiene turno con el médico mañana temprano y le pide a un asistente que la ayude a avisarle a su jefa.
+
+3
+00:00:08.856 --> 00:00:14.000
+Mientras la respuesta aparece en la pantalla, ¿qué está pasando del otro lado?
+
+4
+00:00:14.040 --> 00:00:18.883
+Lo primero que hace es cortar el mensaje en fragmentos.
+
+5
+00:00:18.883 --> 00:00:24.606
+A veces un fragmento es una palabra entera y a veces, un pedazo.
+
+6
+00:00:24.606 --> 00:00:28.040
+Para el modelo, cada uno es un número.
+
+7
+00:00:28.080 --> 00:00:31.339
+La respuesta se escribe de a un fragmento.
+
+8
+00:00:31.339 --> 00:00:40.571
+En cada paso, el modelo estima qué es más probable que siga, según millones de textos parecidos que vio al entrenarse.
+
+9
+00:00:40.571 --> 00:00:46.080
+No sabe qué le pasa a Ana: sabe cómo suelen seguir mensajes como este.
+
+10
+00:00:46.120 --> 00:00:53.649
+Elige una opción, la agrega y vuelve a calcular con todo lo que ya está escrito.
+
+11
+00:00:53.649 --> 00:01:02.120
+Así, fragmento a fragmento, aparece un mensaje que suena natural y que Ana podría mandar.
+
+12
+00:01:02.160 --> 00:01:09.611
+Si Ana vuelve a pedirlo, puede recibir otra versión, porque el modelo elige entre opciones probables.
+
+13
+00:01:09.611 --> 00:01:16.767
+Y a veces completa con algo que suena creíble pero no es cierto, como un paro que nunca existió.
+
+14
+00:01:16.767 --> 00:01:20.160
+Por eso, antes de enviar, se lee y se revisa.

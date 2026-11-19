@@ -1,0 +1,115 @@
+{
+  "titulo": "¿Qué es la inteligencia artificial?",
+  "objetivos": [
+    { "id": "m1-o1", "texto": "Explicar con tus palabras cómo se relacionan la IA, el aprendizaje automático, el aprendizaje profundo y la IA generativa.", "competencia": "comprender" },
+    { "id": "m1-o2", "texto": "Reconocer qué tipo de IA hay detrás de herramientas que usás todos los días.", "competencia": "comprender" }
+  ],
+  "pasos": [
+    {
+      "titulo": "Hoy ya usaste IA",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "texto", "md": "Esta mañana desbloqueaste el celular con la cara o con la huella. Abriste el correo y no estaban los mensajes de premios falsos: un filtro los separó antes. El mapa te avisó que había tránsito y te propuso otro camino. A la noche, la plataforma de series te sugirió algo parecido a lo último que miraste.\n\nNada de eso se llamó \"inteligencia artificial\" en la pantalla, y sin embargo lo era. La IA está en nuestras rutinas desde hace años. Lo nuevo, desde hace poco, es otra cosa: programas que **escriben, dibujan, hablan y programan** a partir de un pedido en lenguaje común.\n\nEn este módulo ordenamos esas piezas, para que cuando alguien diga \"IA\" sepas de qué parte está hablando." }
+      ]
+    },
+    {
+      "titulo": "Lo que ya sabés",
+      "momento": "activacion",
+      "bloques": [
+        { "tipo": "objetivos" },
+        {
+          "tipo": "vf", "id": "previos", "titulo": "Antes de empezar, ¿qué te parece?", "competencia": "comprender",
+          "consigna": "No te preocupes si no estás segura o seguro: es para ver desde dónde partís. Después del contenido vas a poder volver.",
+          "afirmaciones": [
+            { "texto": "La inteligencia artificial apareció con los chatbots, hace unos pocos años.", "verdadero": false, "explicacion": "El término se usa desde 1956. Lo reciente es la IA generativa al alcance de cualquiera." },
+            { "texto": "El filtro que manda el correo basura a otra carpeta usa IA.", "verdadero": true, "explicacion": "Aprende a reconocer patrones en millones de correos marcados como basura. Es aprendizaje automático." },
+            { "texto": "Toda IA genera texto o imágenes nuevas.", "verdadero": false, "explicacion": "Mucha IA no genera nada: clasifica, predice o recomienda. La generativa es una parte." }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Cuatro círculos, uno dentro del otro",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Cuando se habla de IA se mezclan cuatro términos que no son sinónimos. La forma más clara de verlos es como círculos, uno dentro del otro: cada uno es una parte del anterior." },
+        {
+          "tipo": "diagrama", "titulo": "De lo más amplio a lo más específico",
+          "resumen": "Cuatro círculos concéntricos: el más grande es la inteligencia artificial; adentro, el aprendizaje automático; adentro, el aprendizaje profundo; y en el centro, la IA generativa. Las definiciones están en la lista que sigue.",
+          "capas": [
+            { "nombre": "Inteligencia artificial", "definicion": "Todo programa que hace tareas que asociamos con la inteligencia humana: reconocer, decidir, predecir, conversar. Incluye sistemas con reglas escritas a mano." },
+            { "nombre": "Aprendizaje automático", "definicion": "La parte de la IA que **aprende de ejemplos** en lugar de seguir reglas escritas una por una. El filtro de correo basura es un caso." },
+            { "nombre": "Aprendizaje profundo", "definicion": "Aprendizaje automático con **redes neuronales** de muchas capas. Es lo que permitió reconocer caras, voces e imágenes con mucha precisión." },
+            { "nombre": "IA generativa", "definicion": "Aprendizaje profundo que **crea contenido nuevo**: texto, imagen, audio, video o código, a partir de un pedido." }
+          ]
+        },
+        { "tipo": "texto", "md": "Un ejemplo para fijar la diferencia. Un programa que calcula tu sueldo neto con una fórmula sigue reglas: no aprende nada. Un sistema que estima si un pago con tarjeta es un fraude aprendió de millones de pagos anteriores: es {{aprendizaje automático}}. Un asistente que te escribe un correo de reclamo a partir de tres líneas tuyas es {{IA generativa}}." },
+        { "tipo": "nota", "estado": "info", "titulo": "¿Y los modelos de lenguaje?", "md": "Los asistentes como ChatGPT, Claude, Gemini o Copilot funcionan sobre **modelos de lenguaje grandes**, un tipo de IA generativa que trabaja con texto. Cómo funcionan por dentro es el tema del Módulo 2." }
+      ]
+    },
+    {
+      "titulo": "Un recorrido corto",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "La historia de la IA no fue una línea recta: tuvo entusiasmos, promesas que no se cumplieron y épocas de poca inversión. Estos son los cambios que importan para entender el presente:\n\n- **1956:** un grupo de investigadores reunido en Estados Unidos pone nombre al campo: \"inteligencia artificial\". La idea era describir la inteligencia con tanta precisión que una máquina pudiera imitarla.\n- **Las reglas escritas a mano:** durante décadas, la IA se programó con reglas del tipo \"si pasa esto, hacé aquello\". Funcionaba en temas acotados, pero el mundo real tiene demasiadas excepciones.\n- **Aprender de los datos:** en lugar de escribir las reglas, se le muestran al programa miles de ejemplos y él encuentra los patrones. Así se volvió útil para tareas como filtrar correo o recomendar productos.\n- **Hacia 2012, el aprendizaje profundo:** con más datos y computadoras más potentes, las redes neuronales de muchas capas empezaron a reconocer imágenes y voces mejor que cualquier método anterior.\n- **2017, el transformer:** un nuevo diseño de red neuronal que procesa el texto entero y relaciona cada palabra con su contexto. Es la base de los modelos de lenguaje actuales.\n- **Desde fines de 2022:** los asistentes conversacionales llegan a millones de personas. Por primera vez, cualquiera puede pedirle algo a una IA en su propio idioma.\n\nDe toda la lista, quedate con una idea: la IA actual no sigue instrucciones escritas por alguien para cada caso. **Aprendió de enormes cantidades de ejemplos**, y eso explica tanto lo que hace bien como sus errores." }
+      ]
+    },
+    {
+      "titulo": "¿Qué tipo de IA es?",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "La IA generativa se suele ordenar por lo que produce:\n\n- **Texto:** correos, resúmenes, informes, traducciones.\n- **Imagen:** ilustraciones, fotos que no existen, ediciones.\n- **Audio:** voces, música, transcripciones.\n- **Video:** escenas, animaciones, avatares que hablan.\n- **Código:** programas, fórmulas de planillas, páginas web.\n\nAhora probá distinguirla de los otros tipos en ejemplos de todos los días." },
+        {
+          "tipo": "clasificador", "id": "tipos-ia", "titulo": "Ordená los ejemplos", "competencia": "comprender", "objetivo": "m1-o2",
+          "consigna": "Ubicá cada ejemplo según lo que hace el sistema.",
+          "categorias": [
+            { "id": "reglas", "titulo": "Sigue reglas fijas", "descripcion": "No aprende: hace siempre lo mismo." },
+            { "id": "predice", "titulo": "Clasifica o recomienda", "descripcion": "Aprendió patrones de ejemplos." },
+            { "id": "genera", "titulo": "Genera contenido nuevo", "descripcion": "IA generativa." }
+          ],
+          "items": [
+            { "texto": "La plataforma de series te sugiere qué mirar.", "categoria": "predice", "feedback": "Aprendió de lo que miran millones de personas parecidas a vos para predecir qué te puede gustar." },
+            { "texto": "El correo manda a otra carpeta los mensajes sospechosos.", "categoria": "predice", "feedback": "Clasifica cada correo según patrones que aprendió de mensajes marcados como basura." },
+            { "texto": "Un asistente redacta una respuesta a un cliente enojado.", "categoria": "genera", "feedback": "Escribe un texto que no existía, a partir de tu pedido." },
+            { "texto": "Una herramienta crea la imagen de portada para un curso.", "categoria": "genera", "feedback": "Produce una imagen nueva desde una descripción en texto." },
+            { "texto": "La planilla calcula el total de horas trabajadas en el mes.", "categoria": "reglas", "feedback": "Aplica una fórmula fija: si cambian los datos, el cálculo es el mismo. No aprende." },
+            { "texto": "El banco frena un pago con tarjeta que parece fraude.", "categoria": "predice", "feedback": "Compara el pago con millones de operaciones anteriores y estima el riesgo." },
+            { "texto": "El despertador suena todos los días a las 7.", "categoria": "reglas", "feedback": "Hace exactamente lo que se programó. No hay aprendizaje." },
+            { "texto": "Un asistente arma el primer borrador de un programa de capacitación.", "categoria": "genera", "feedback": "Genera un texto nuevo y estructurado a partir de tu pedido. Lo revisás vos." }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre",
+      "momento": "evaluacion",
+      "bloques": [
+        {
+          "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "comprender", "objetivo": "m1-o1",
+          "preguntas": [
+            { "texto": "¿Qué distingue al aprendizaje automático de un programa tradicional?", "opciones": [
+              { "texto": "Aprende patrones a partir de ejemplos, en lugar de seguir reglas escritas una por una.", "correcta": true, "feedback": "Exacto: nadie le escribe cada regla; las encuentra en los datos." },
+              { "texto": "Es más rápido.", "feedback": "La velocidad no es lo que lo define. Un programa con reglas puede ser rapidísimo." },
+              { "texto": "Siempre genera texto o imágenes.", "feedback": "Eso describe a la IA generativa, que es solo una parte." }
+            ] },
+            { "texto": "Un asistente que escribe un informe a partir de tus notas es...", "opciones": [
+              { "texto": "Un programa de reglas fijas.", "feedback": "No: nadie escribió reglas para cada informe posible." },
+              { "texto": "IA generativa.", "correcta": true, "feedback": "Sí: produce un texto nuevo. Y por dentro usa aprendizaje profundo, que es aprendizaje automático, que es IA." },
+              { "texto": "Un sistema de recomendación.", "feedback": "Un recomendador elige entre opciones que ya existen; acá se crea un texto nuevo." }
+            ] },
+            { "texto": "¿Por qué importa saber que la IA actual aprendió de ejemplos?", "opciones": [
+              { "texto": "Porque explica que puede repetir lo que vio, incluidos errores y sesgos de esos ejemplos.", "correcta": true, "feedback": "Esa es la clave: aprende de lo que le mostraron, con lo bueno y lo malo." },
+              { "texto": "Porque significa que nunca se equivoca.", "feedback": "Al contrario: aprender de ejemplos también trae errores. Lo vemos en el Módulo 3." }
+            ] }
+          ]
+        },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "Pensá en tu semana: ¿dónde ya hay IA trabajando para vos sin que la llames así?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Elements of AI, capítulo 1: qué es la IA", "apa": "University of Helsinki y MinnaLearn. (s.f.). *Elements of AI* [Curso en línea].", "url": "https://www.elementsofai.com/es/", "idioma": "es", "nivel": "Inicial", "tipo": "curso" },
+          { "titulo": "Artificial: la nueva inteligencia y el contorno de lo humano", "apa": "Sigman, M. y Bilinkis, S. (2023). *Artificial: La nueva inteligencia y el contorno de lo humano*. Debate.", "idioma": "es", "nivel": "Inicial", "tipo": "libro" },
+          { "titulo": "Curso intensivo de aprendizaje automático de Google", "apa": "Google. (s.f.). *Machine Learning Crash Course* [Curso en línea, versión en español].", "url": "https://developers.google.com/machine-learning/crash-course?hl=es-419", "idioma": "es", "nivel": "Técnica (opcional)", "tipo": "curso" }
+        ] }
+      ]
+    }
+  ]
+}
