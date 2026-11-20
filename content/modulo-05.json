@@ -1,0 +1,129 @@
+{
+  "titulo": "Ingeniería de prompts I",
+  "objetivos": [
+    { "id": "m5-o1", "texto": "Describir el resultado, el proceso y el comportamiento que esperás de la IA.", "competencia": "descripcion" },
+    { "id": "m5-o2", "texto": "Reconocer los componentes de un buen prompt y detectar cuál falta en uno pobre.", "competencia": "descripcion" },
+    { "id": "m5-o3", "texto": "Escribir y guardar un prompt completo para una tarea real de tu trabajo.", "competencia": "descripcion" }
+  ],
+  "pasos": [
+    {
+      "titulo": "La misma tarea, dos pedidos",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "marco4d", "destacar": "descripcion", "compacto": true },
+        { "tipo": "texto", "md": "Sofía y Martín trabajan en la misma área y los dos le piden a la IA un correo para invitar a un taller.\n\nSofía escribe: \"Haceme un mail invitando al taller de Excel\". Recibe un texto entusiasta, con signos de exclamación, una agenda inventada y la promesa de \"llevar tus habilidades al siguiente nivel\". Lo tiene que reescribir casi entero.\n\nMartín escribe tres líneas más: para quién es (personal administrativo que le tiene miedo a las planillas), qué tono quiere (cercano, sin exagerar), qué datos tiene que incluir (fecha, lugar y que no hace falta saber nada) y cuánto tiene que medir (menos de 100 palabras). Lo envía con un retoque.\n\nLa diferencia no es un truco ni una palabra mágica: Martín **describió** lo que necesitaba. Eso es lo que vas a practicar." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "Describir qué, cómo y de qué manera",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Un buen pedido describe tres cosas. No siempre hacen falta las tres, pero conviene pensarlas:\n\n- **El resultado.** Qué querés recibir: un correo, una tabla, cinco ideas, un resumen. Para quién es, cuánto tiene que medir y con qué formato.\n- **El proceso.** Cómo querés que lo haga: que primero lea el documento entero, que compare dos opciones antes de recomendar, que te haga preguntas si le falta información.\n- **El comportamiento.** Cómo querés que se comporte con vos: que sea directa, que te contradiga si ves algo mal, que te avise cuando no esté segura en lugar de inventar.\n\nLa mayoría de las personas describe solo el resultado, y a medias. Sumar proceso y comportamiento es lo que convierte a la IA en una colaboradora y no en una máquina de respuestas genéricas." },
+        { "tipo": "nota", "estado": "positivo", "titulo": "Una prueba simple", "md": "Imaginá que le pasás el pedido a una persona muy capaz que acaba de entrar a tu organización y no sabe nada del tema. ¿Entendería qué hacer? Si le harías preguntas antes de empezar, esas respuestas tienen que estar en el prompt." }
+      ]
+    },
+    {
+      "titulo": "Los componentes de un buen prompt",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Hay seis componentes que aparecen una y otra vez en los buenos prompts. No es una receta: algunos pedidos necesitan los seis y otros, dos.\n\n1. **Tarea.** Qué tiene que hacer, con un verbo claro. \"Escribí\", \"resumí\", \"compará\", \"proponé tres opciones\".\n2. **Contexto.** Lo que sabés vos y ella no: para quién es, para qué se va a usar, qué pasó antes. Es el componente que más cambia el resultado.\n3. **Rol.** Desde qué lugar responde: \"como una capacitadora con experiencia en personas adultas\". Ayuda a fijar el nivel y el vocabulario.\n4. **Ejemplos.** Uno o dos modelos de lo que esperás. Valen más que cualquier adjetivo: en lugar de \"tono cálido\", mostrás un texto con ese tono.\n5. **Formato de salida.** Cómo querés recibirlo: viñetas, tabla, un párrafo, menos de 150 palabras, con títulos.\n6. **Restricciones.** Qué evitar: tecnicismos, datos que no estén en el texto, promesas, cierto tono.\n\nEl orden no es obligatorio. Lo que sí ayuda es separar las partes para que se lean bien, sobre todo cuando el prompt es largo." },
+        { "tipo": "quiz", "id": "falta", "titulo": "¿Qué le falta?", "competencia": "descripcion", "objetivo": "m5-o2", "preguntas": [
+          { "texto": "\"Escribí una actividad de cierre para mi curso. Que sea dinámica.\"", "opciones": [
+            { "texto": "Contexto: de qué es el curso, quiénes participan, si es presencial o virtual y cuánto dura el cierre.", "correcta": true, "feedback": "Sin contexto, \"dinámica\" puede ser cualquier cosa. Con quiénes, dónde y cuánto tiempo, la propuesta se vuelve usable." },
+            { "texto": "Un rol.", "feedback": "Podría ayudar, pero no es lo que más falta: sin saber de qué es el curso, ningún rol lo arregla." },
+            { "texto": "Nada: está completo.", "feedback": "Tiene tarea, pero le falta casi todo lo demás. La respuesta va a ser genérica." }
+          ] },
+          { "texto": "\"Sos especialista en comunicación. Para el equipo de ventas, que está desmotivado después de un mal trimestre, escribí un mensaje para el lunes.\"", "opciones": [
+            { "texto": "Formato de salida y restricciones: cuánto mide, por qué canal va y qué evitar.", "correcta": true, "feedback": "Tiene rol, tarea y contexto. Falta decir si es un correo o un mensaje de chat, cuánto mide y qué no tiene que hacer (por ejemplo, minimizar el mal trimestre)." },
+            { "texto": "Una tarea.", "feedback": "La tarea está: escribir un mensaje para el lunes." },
+            { "texto": "Contexto.", "feedback": "Tiene contexto valioso: equipo de ventas, desmotivado, mal trimestre." }
+          ] },
+          { "texto": "\"Resumí este informe en cinco puntos para el directorio, en lenguaje simple, sin agregar datos que no estén en el texto.\" (sin el informe pegado)", "opciones": [
+            { "texto": "El material: el informe en sí.", "correcta": true, "feedback": "El prompt es bueno, pero sin el texto la IA no tiene qué resumir. A veces inventa uno. Siempre pegá o adjuntá el material." },
+            { "texto": "Un ejemplo de resumen.", "feedback": "Podría sumar, pero el problema principal es otro: no hay informe." },
+            { "texto": "Un rol.", "feedback": "No hace falta para esta tarea; lo que falta es el material." }
+          ] }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Claro, directo y con el porqué",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Dos ideas de la documentación de Anthropic que cambian mucho los resultados:\n\n**Ser claro y directo.** Los modelos actuales siguen las instrucciones al pie de la letra. Si querés algo, pedilo explícitamente: \"incluí todas las secciones que puedas\" funciona mejor que esperar que lo adivine. Y si querés que haga algo en lugar de sugerirlo, decilo: \"modificá el texto\" en vez de \"¿podrías mejorar esto?\".\n\n**Explicar el porqué.** Una instrucción con su motivo se aplica mejor que una orden suelta, porque el modelo entiende qué estás buscando y lo extiende a casos parecidos." },
+        { "tipo": "comparador", "id": "porque", "titulo": "La misma instrucción, con y sin motivo", "antes": { "titulo": "Sin el porqué", "texto": "No uses abreviaturas.\nNo uses tablas." }, "despues": { "titulo": "Con el porqué", "texto": "Este material lo van a escuchar personas ciegas con un lector de pantalla, así que no uses abreviaturas ni tablas: el lector las lee mal o las vuelve difíciles de seguir." }, "cambios": [
+          { "titulo": "Entiende el objetivo", "texto": "Sabe que el texto es para escuchar. Probablemente también evite símbolos, emojis y listas muy largas, aunque no se lo pediste." },
+          { "titulo": "Aplica el criterio a casos nuevos", "texto": "Si aparece algo que tampoco funciona con un lector (por ejemplo, \"ver la imagen\"), lo resuelve igual." },
+          { "titulo": "Vos también ganás", "texto": "Escribir el motivo te obliga a pensar si la instrucción tiene sentido." }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Otras miradas sobre el mismo tema",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Cada empresa propone su forma de escribir prompts. Vale la pena conocerlas porque, más allá de los nombres, dicen casi lo mismo.\n\n**Google**, en su curso *Prompting Essentials* (2024), propone cinco pasos:\n\n1. **Tarea:** qué querés que haga, con un rol si sirve.\n2. **Contexto:** toda la información de fondo que puedas dar.\n3. **Referencias:** ejemplos del resultado que buscás.\n4. **Evaluar:** revisar si la respuesta es lo que necesitabas.\n5. **Iterar:** ajustar el pedido hasta llegar.\n\n**Microsoft**, en su guía para Copilot, habla de cuatro partes: **objetivo**, **contexto**, **fuentes** (en qué información basarse) y **expectativas** (cómo querés la respuesta).\n\n**Las coincidencias con lo que viste:**\n\n- La tarea, el contexto y los ejemplos aparecen en todas.\n- \"Expectativas\" de Microsoft equivale al formato de salida y las restricciones.\n- \"Evaluar\" e \"iterar\" de Google son el ciclo entre descripción y discernimiento del marco 4D. La diferencia es que acá se separan: describir es un momento y discernir es otro, con su propio módulo." },
+        { "tipo": "nota", "estado": "info", "titulo": "Lo que no cambia", "md": "Las interfaces y los nombres de los modelos cambian cada pocos meses. Estos principios, no. Si te los llevás, te sirven para la herramienta que uses." }
+      ]
+    },
+    {
+      "titulo": "Un prompt pobre y uno mejorado",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Mirá cómo cambia un pedido real cuando se le suman componentes. Antes de abrir la explicación, intentá identificar vos qué se agregó." },
+        { "tipo": "comparador", "id": "antes-despues", "titulo": "Una consigna de evaluación", "competencia": "descripcion", "objetivo": "m5-o2", "antes": { "titulo": "Prompt pobre", "texto": "Haceme una evaluación sobre atención al cliente." }, "despues": { "titulo": "Prompt mejorado", "texto": "Sos una capacitadora con experiencia en formación para comercios.\n\nArmá una evaluación final para un curso de atención al cliente de 8 horas. Lo hicieron 20 personas que trabajan en mostrador en farmacias; muchas no terminaron el secundario.\n\nQuiero 3 situaciones breves de atención (un reclamo, una consulta que no sabés responder y una persona apurada), cada una con una pregunta abierta: \"¿Qué le dirías?\".\n\nAl final, agregá una guía para corregir: qué tendría que aparecer en una buena respuesta.\n\nUsá un lenguaje cotidiano. No uses opciones múltiples ni términos técnicos de marketing." }, "cambios": [
+          { "titulo": "Rol", "texto": "Fija el nivel: alguien que conoce la formación en comercios." },
+          { "titulo": "Contexto", "texto": "Duración del curso, cantidad de personas, dónde trabajan y su nivel educativo. Cambia por completo el tipo de evaluación." },
+          { "titulo": "Tarea precisa", "texto": "Tres situaciones concretas con una pregunta abierta cada una, en lugar de \"una evaluación\"." },
+          { "titulo": "Formato", "texto": "Pide la guía de corrección al final, algo que sin pedirlo no aparece." },
+          { "titulo": "Restricciones", "texto": "Lenguaje cotidiano, sin opciones múltiples ni jerga. Evita una evaluación escolar que no sirve para ese grupo." }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Laboratorio de prompts",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Ahora te toca a vos. Pensá en algo que tengas que hacer esta semana y armá el prompt completo. Si no se te ocurre nada, usá el ejemplo para ver cómo funciona y después cambialo.\n\nCuando esté listo, copialo y probalo en el asistente que uses. Si la respuesta te sirve, guardalo en **Mis prompts**: ahí queda para la próxima vez, con nombre y etiquetas, y lo podés exportar." },
+        { "tipo": "constructor", "id": "laboratorio", "titulo": "Laboratorio de prompts", "modo": "prompt", "competencia": "descripcion", "objetivo": "m5-o3", "evidencia": "Prompt completo armado en el laboratorio", "consigna": "Completá los campos. El prompt se arma abajo a medida que escribís; los campos vacíos no aparecen.", "campos": [
+          { "id": "rol", "etiqueta": "Rol", "ayuda": "Desde qué lugar responde.", "ejemplo": "Sos una capacitadora con experiencia en personas adultas que vuelven a estudiar." },
+          { "id": "tarea", "etiqueta": "Tarea", "obligatorio": true, "ayuda": "Qué tiene que hacer, con un verbo claro.", "ejemplo": "Proponé tres actividades de 10 minutos para empezar la primera clase de un curso de herramientas digitales." },
+          { "id": "contexto", "etiqueta": "Contexto", "multilinea": true, "ayuda": "Para quién es, para qué se usa y lo que la IA no sabe.", "ejemplo": "El grupo tiene 15 personas de entre 40 y 60 años, del área administrativa de un municipio. Muchas sienten que \"no son de la tecnología\" y vienen porque se lo pidieron. La clase es presencial, con una computadora cada dos personas." },
+          { "id": "ejemplos", "etiqueta": "Ejemplos", "multilinea": true, "ayuda": "Un modelo de lo que esperás, si lo tenés.", "ejemplo": "Algo como: \"Cada persona cuenta qué tarea de su trabajo le gustaría hacer en la mitad de tiempo\"." },
+          { "id": "formato", "etiqueta": "Formato de salida", "ayuda": "Cómo querés recibir el resultado.", "ejemplo": "Para cada actividad: nombre, qué se hace paso a paso y qué materiales hacen falta. Menos de 250 palabras en total." },
+          { "id": "restricciones", "etiqueta": "Restricciones", "ayuda": "Qué evitar, y por qué.", "ejemplo": "Nada que exponga a alguien frente al grupo, porque muchas personas llegan con vergüenza. Sin juegos infantiles." }
+        ], "plantilla": "{rol}\n\n{tarea}\n\nContexto: {contexto}\n\nEjemplo de lo que busco: {ejemplos}\n\nFormato: {formato}\n\nEvitá: {restricciones}" }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "descripcion", "objetivo": "m5-o1", "preguntas": [
+          { "texto": "¿Qué componente suele cambiar más el resultado?", "opciones": [
+            { "texto": "El contexto.", "correcta": true, "feedback": "Es lo que vos sabés y la IA no. Sin contexto, la respuesta es para nadie en particular." },
+            { "texto": "Las palabras amables.", "feedback": "\"Por favor\" no molesta, pero no cambia la calidad. El contexto, sí." },
+            { "texto": "Que el prompt sea largo.", "feedback": "Un prompt largo y confuso rinde menos que uno corto y claro. Importa lo que dice, no cuánto mide." }
+          ] },
+          { "texto": "Querés que la IA te avise cuando no está segura. ¿Qué estás describiendo?", "opciones": [
+            { "texto": "El comportamiento.", "correcta": true, "feedback": "Es cómo querés que se comporte con vos, más allá del resultado." },
+            { "texto": "El formato de salida.", "feedback": "El formato es cómo se presenta el resultado, no cómo actúa." },
+            { "texto": "El rol.", "feedback": "El rol fija desde dónde responde, no cómo maneja la duda." }
+          ] },
+          { "texto": "¿Por qué conviene explicar el motivo de una instrucción?", "opciones": [
+            { "texto": "Porque el modelo entiende el objetivo y lo aplica también a casos que no mencionaste.", "correcta": true, "feedback": "Exacto: una regla con su porqué se generaliza mejor." },
+            { "texto": "Porque si no, no la cumple.", "feedback": "Suele cumplirla igual; con el porqué la cumple mejor y con más criterio." }
+          ] }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "Probá el prompt del laboratorio en un asistente. ¿Qué parte de la respuesta te sirvió tal cual y qué tuviste que corregir? ¿Qué le agregarías al prompt para la próxima vez?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Buenas prácticas para escribir prompts, de Anthropic", "apa": "Anthropic. (s.f.). *Prompting best practices*. Claude Docs.", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" },
+          { "titulo": "Cómo escribir prompts en Copilot", "apa": "Microsoft. (s.f.). *Get started writing prompts in Microsoft Copilot*. Microsoft Support.", "url": "https://support.microsoft.com/en-us/topic/learn-about-copilot-prompts-f6c3b467-f07c-4db1-ae54-ffac96184dd5", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Consejos para escribir prompts en Gemini", "apa": "Google. (s.f.). *Tips to write prompts for Gemini*. Google Workspace Learning Center.", "url": "https://support.google.com/a/users/answer/14200040", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Guía de prompts de OpenAI", "apa": "OpenAI. (s.f.). *Prompt engineering*. OpenAI API Docs.", "url": "https://developers.openai.com/api/docs/guides/prompt-engineering", "idioma": "en", "nivel": "Técnica (opcional)", "tipo": "documentacion" }
+        ] }
+      ]
+    }
+  ]
+}

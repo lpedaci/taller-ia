@@ -118,7 +118,22 @@
       "titulo": "Delegación",
       "descripcion": "Qué hacer vos, qué hacer con IA y qué delegar.",
       "pasos": 6,
-      "minutos": 55
+      "minutos": 55,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m4-o1",
+          "competencia": "delegacion"
+        },
+        {
+          "id": "m4-o2",
+          "competencia": "delegacion"
+        },
+        {
+          "id": "m4-o3",
+          "competencia": "delegacion"
+        }
+      ]
     },
     {
       "id": 5,
@@ -126,7 +141,22 @@
       "titulo": "Ingeniería de prompts I",
       "descripcion": "Componentes de un buen prompt y laboratorio guiado.",
       "pasos": 8,
-      "minutos": 75
+      "minutos": 75,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m5-o1",
+          "competencia": "descripcion"
+        },
+        {
+          "id": "m5-o2",
+          "competencia": "descripcion"
+        },
+        {
+          "id": "m5-o3",
+          "competencia": "descripcion"
+        }
+      ]
     },
     {
       "id": 6,
@@ -134,7 +164,22 @@
       "titulo": "Ingeniería de prompts II",
       "descripcion": "Ejemplos, razonamiento, estructura y plantillas.",
       "pasos": 7,
-      "minutos": 70
+      "minutos": 70,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m6-o1",
+          "competencia": "descripcion"
+        },
+        {
+          "id": "m6-o2",
+          "competencia": "descripcion"
+        },
+        {
+          "id": "m6-o3",
+          "competencia": "descripcion"
+        }
+      ]
     },
     {
       "id": 7,
@@ -142,7 +187,22 @@
       "titulo": "Discernimiento",
       "descripcion": "Evaluar e iterar lo que produce la IA.",
       "pasos": 6,
-      "minutos": 60
+      "minutos": 60,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m7-o1",
+          "competencia": "discernimiento"
+        },
+        {
+          "id": "m7-o2",
+          "competencia": "discernimiento"
+        },
+        {
+          "id": "m7-o3",
+          "competencia": "discernimiento"
+        }
+      ]
     },
     {
       "id": 8,
@@ -150,7 +210,22 @@
       "titulo": "Diligencia",
       "descripcion": "Uso responsable, transparencia y autoría.",
       "pasos": 6,
-      "minutos": 55
+      "minutos": 55,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m8-o1",
+          "competencia": "diligencia"
+        },
+        {
+          "id": "m8-o2",
+          "competencia": "diligencia"
+        },
+        {
+          "id": "m8-o3",
+          "competencia": "diligencia"
+        }
+      ]
     },
     {
       "id": 9,

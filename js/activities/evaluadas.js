@@ -152,6 +152,7 @@ registrar("clasificador", {
 /* ===================== Marcar errores en un texto ===================== */
 registrar("errores", {
   render: (b, ctx) => marco("errores", b, ctx,
+    (b.pedido ? `<div class="err-pedido"><p class="err-pedido-k">${icono("chat", "sm")}Lo que se le pidió a la IA</p>${md(b.pedido)}</div><p class="err-pedido-k">${icono("smart_toy", "sm")}Lo que respondió</p>` : "") +
     `<p class="act-ayuda">${icono("info", "sm")}Tocá cada parte del texto que tenga un error. Las partes marcadas aparecen abajo para que expliques el problema.</p>` +
     `<div class="err-texto">${b.segmentos.map((s, i) => `<button type="button" class="seg" data-s="${i}" aria-pressed="false">${esc(s.t)}</button>`).join(" ")}</div>` +
     `<div class="err-marcas" aria-live="polite"></div>` +

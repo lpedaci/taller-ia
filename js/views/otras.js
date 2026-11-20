@@ -3,7 +3,7 @@ import { esc, qs } from "../util.js";
 import { perfil, setNombre, prompts, eliminarPrompt } from "../state.js";
 import { store } from "../storage.js";
 import { tema } from "../theme.js";
-import { icono, cabecera, vacio, aviso } from "../ui.js";
+import { icono, cabecera, vacio, aviso, descargar } from "../ui.js";
 import { pintarPersona } from "../shell.js";
 import { RUTAS, href } from "../routes.js";
 
@@ -56,15 +56,28 @@ export function misPrompts() {
   const ps = prompts();
   const cab = `<div class="view-head"><div class="vh-txt"><h2>Mis prompts</h2><p>Los prompts que guardaste en las actividades, para copiarlos cuando los necesites.</p></div></div>`;
   if (!ps.length) return cab + `<div class="card">${vacio("Todavía no guardaste prompts", "Cuando guardes un prompt en el laboratorio del Módulo 5 o en otras actividades, aparece acá con su nombre y sus etiquetas.", `<a class="btn btn-filled" href="${href("modulo", 5)}">Ir al laboratorio de prompts</a>`)}</div>`;
-  return cab + `<div class="prompt-list">${ps.slice().reverse().map(p => `<article class="card prompt-card" aria-labelledby="pp-${esc(p.id)}"><h3 id="pp-${esc(p.id)}">${esc(p.nombre)}</h3>` +
+  const exp = `<div class="view-head"><div class="vh-txt"><h2>Mis prompts</h2><p>Los prompts que guardaste en las actividades, para copiarlos cuando los necesites.</p></div>` +
+    `<div class="actions"><button class="btn btn-outlined" type="button" data-exportar-prompts="json">${icono("data_object")}Exportar (.json)</button><button class="btn btn-tonal" type="button" data-exportar-prompts="md">${icono("download")}Exportar (.md)</button></div></div>`;
+  return exp + `<div class="prompt-list">${ps.slice().reverse().map(p => `<article class="card prompt-card" aria-labelledby="pp-${esc(p.id)}"><h3 id="pp-${esc(p.id)}">${esc(p.nombre)}</h3>` +
     (p.etiquetas?.length ? `<div class="tags">${p.etiquetas.map(t => `<span class="chip chip-neutral">${esc(t)}</span>`).join("")}</div>` : "") +
-    `<pre>${esc(p.texto)}</pre><div class="card-actions" style="padding:0"><button class="btn btn-text" type="button" data-borrar-prompt="${esc(p.id)}" style="color:var(--md-sys-color-error)">${icono("delete")}Eliminar</button>` +
+    `<pre tabindex="0" aria-label="Texto de ${esc(p.nombre)}">${esc(p.texto)}</pre><div class="card-actions" style="padding:0"><button class="btn btn-text" type="button" data-borrar-prompt="${esc(p.id)}" style="color:var(--md-sys-color-error)">${icono("delete")}Eliminar</button>` +
     `<button class="btn btn-tonal" type="button" data-copiar-prompt="${esc(p.id)}">${icono("content_copy")}Copiar</button></div></article>`).join("")}</div>`;
 }
 export function iniciarPrompts(rerender) {
   document.addEventListener("click", async e => {
     const c = e.target.closest("[data-copiar-prompt]");
     if (c) { const p = prompts().find(x => x.id === c.dataset.copiarPrompt); const { copiar } = await import("../activities/comun.js"); aviso(await copiar(p.texto) ? "Copiado al portapapeles" : "No se pudo copiar"); return; }
+    const x = e.target.closest("[data-exportar-prompts]");
+    if (x) {
+      const ps = prompts(), fecha = new Date().toISOString().slice(0, 10);
+      if (x.dataset.exportarPrompts === "json") descargar(`mis-prompts-${fecha}.json`, JSON.stringify(ps.map(({ nombre, etiquetas, texto, modulo, fecha }) => ({ nombre, etiquetas, texto, modulo, fecha })), null, 2), "application/json");
+      else {
+        const cerca = "`".repeat(3);
+        const bloque = p => [`## ${p.nombre}`, p.etiquetas?.length ? `Etiquetas: ${p.etiquetas.join(", ")}` : null, `${cerca}\n${p.texto}\n${cerca}`].filter(Boolean).join("\n\n");
+        descargar(`mis-prompts-${fecha}.md`, `# Mis prompts\n\nTaller - IA, exportado el ${fecha}.\n\n${ps.map(bloque).join("\n\n")}\n`, "text/markdown");
+      }
+      aviso(`Exportamos ${prompts().length === 1 ? "1 prompt" : prompts().length + " prompts"}`); return;
+    }
     const d = e.target.closest("[data-borrar-prompt]");
     if (d) {
       const { confirmar } = await import("../ui.js");

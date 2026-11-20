@@ -1,0 +1,117 @@
+{
+  "titulo": "Discernimiento",
+  "objetivos": [
+    { "id": "m7-o1", "texto": "Evaluar una respuesta de la IA en tres planos: el resultado, el proceso y el comportamiento.", "competencia": "discernimiento" },
+    { "id": "m7-o2", "texto": "Iterar con la IA en lugar de aceptar la primera respuesta.", "competencia": "discernimiento" },
+    { "id": "m7-o3", "texto": "Detectar datos falsos, citas inventadas, sesgos, omisiones y formatos incumplidos en un texto generado.", "competencia": "discernimiento" }
+  ],
+  "pasos": [
+    {
+      "titulo": "Lo que nadie revisó",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "marco4d", "destacar": "discernimiento", "compacto": true },
+        { "tipo": "texto", "md": "Roberto coordina la formación de una empresa de logística. Le pidió a la IA un resumen de la encuesta de un curso para presentarlo en la reunión de directorio. El resumen era claro y estaba bien escrito. Lo pegó en la presentación y se fue a almorzar.\n\nEn la reunión, la gerenta de recursos humanos, que había leído la encuesta completa, preguntó de dónde salía el 95 % de satisfacción. La encuesta decía 81 %. Nadie discutió el curso: se habló el resto de la reunión de por qué el informe no coincidía.\n\nRoberto hizo bien en usar la IA para resumir. Lo que faltó fue el paso siguiente: **evaluar lo que devolvió antes de usarlo**. Eso es el discernimiento." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "Tres cosas para evaluar",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Así como en la descripción pensaste en el resultado, el proceso y el comportamiento, el discernimiento evalúa esas mismas tres cosas:\n\n- **El resultado.** ¿Es correcto? ¿Está completo? ¿Es pertinente para lo que necesitabas? Un texto puede estar bien escrito y no servir.\n- **El proceso.** ¿Cómo llegó a eso? ¿Usó el documento que le diste o completó con lo que \"suena bien\"? Si razonó, ¿el razonamiento tiene sentido o hay un salto?\n- **El comportamiento.** ¿Respondió a lo que pediste? ¿Respetó el formato, el largo, el tono y las restricciones? ¿Te avisó cuando no estaba segura, o inventó con confianza?\n\nUna respuesta puede fallar en un solo plano. El resumen de Roberto tenía buen formato (comportamiento) pero un dato falso (resultado)." },
+        { "tipo": "nota", "estado": "positivo", "titulo": "Pedile que muestre su trabajo", "md": "Para evaluar el proceso, ayuda pedirle que indique de qué parte del documento sale cada dato, o que separe lo que está en el texto de lo que agrega por su cuenta." }
+      ]
+    },
+    {
+      "titulo": "Iterar en lugar de aceptar",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "La primera respuesta es un borrador. El ciclo es así: describís, evaluás lo que vuelve, y con eso describís mejor. Cada vuelta ajusta algo concreto.\n\nTres maneras de iterar:\n\n- **Señalar lo que falla y por qué.** \"El tono es muy formal: lo va a leer gente de planta que no usa estas palabras\".\n- **Pedir alternativas.** \"Dame dos versiones más: una más corta y una con un ejemplo\".\n- **Volver a empezar.** Si la conversación se fue para cualquier lado, a veces conviene abrir una nueva con un prompt mejor que seguir corrigiendo. El modelo arrastra todo lo anterior." },
+        { "tipo": "comparador", "id": "iterar", "titulo": "Un aviso en dos vueltas", "competencia": "discernimiento", "objetivo": "m7-o2", "antes": { "titulo": "Primera respuesta", "texto": "Estimados colaboradores:\n\nNos complace informarles que se llevará a cabo una capacitación en materia de prevención de riesgos laborales, la cual resultará de suma importancia para el fortalecimiento de una cultura organizacional orientada a la seguridad. Se ruega puntual asistencia." }, "despues": { "titulo": "Después de dos ajustes", "texto": "Hola, equipo:\n\nEl martes 12, de 9 a 11, hacemos una charla sobre cómo evitar cortes y golpes en el depósito. Es en el comedor y dura dos horas.\n\nVamos a ver casos reales de acá. Si tenés alguna situación que te preocupa, traela." }, "cambios": [
+          { "titulo": "Primer ajuste: el tono", "texto": "\"Esto lo lee personal de depósito. Usá palabras cotidianas y tuteá\". El texto dejó de sonar a circular." },
+          { "titulo": "Segundo ajuste: la información", "texto": "\"Faltan día, hora y lugar, y qué se va a ver en concreto\". La primera versión hablaba mucho y no decía nada útil." },
+          { "titulo": "Lo que hizo la persona", "texto": "Evaluó qué fallaba, explicó por qué y pidió algo concreto. Eso es el ciclo entre descripción y discernimiento." }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Fuentes, sesgos y contraste",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Hay tres hábitos que conviene tener siempre:\n\n**Verificar las fuentes.** Si la respuesta cita un estudio, una ley o una persona, abrí la fuente. Fijate que exista, que diga eso y que sea de quien dice. Las citas textuales y las cifras muy precisas son las que más se inventan.\n\n**Detectar sesgos.** Los modelos aprendieron de textos escritos por personas, con sus prejuicios. Prestá atención a generalizaciones sobre grupos (género, edad, origen, discapacidad), a ejemplos que siempre muestran a las mismas personas en los mismos roles y a lo que se presenta como \"normal\".\n\n**Contrastar con otras fuentes.** Para algo importante, compará con una fuente que no sea la IA: el documento original, un sitio oficial, una persona que sepa. Preguntarle lo mismo a otro asistente ayuda, pero no alcanza: pueden equivocarse igual." },
+        { "tipo": "vf", "id": "habitos", "titulo": "¿Qué harías?", "competencia": "discernimiento", "objetivo": "m7-o1", "afirmaciones": [
+          { "texto": "Si la respuesta incluye un enlace, la fuente es confiable.", "verdadero": false, "explicacion": "Los enlaces también se inventan o llevan a páginas que dicen otra cosa. Hay que abrirlos." },
+          { "texto": "Si dos asistentes distintos dan el mismo dato, conviene igual chequearlo en una fuente original cuando es importante.", "verdadero": true, "explicacion": "Pueden haber aprendido del mismo error. La coincidencia ayuda, pero no reemplaza la fuente." },
+          { "texto": "Si una respuesta habla de \"los jóvenes\" o \"las personas mayores\" como si fueran todos iguales, vale la pena revisar si hay un sesgo.", "verdadero": true, "explicacion": "Las generalizaciones sobre grupos son una de las formas más comunes de sesgo." },
+          { "texto": "Si la respuesta está bien redactada, es más probable que sea correcta.", "verdadero": false, "explicacion": "La redacción y la exactitud no tienen relación. Un texto impecable puede estar lleno de datos falsos." }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Corregí a la IA",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Este es el resumen que recibió Roberto, escrito para el taller. Arriba está lo que pidió y lo que decía el informe. El resumen tiene **cinco errores**, uno de cada tipo: un dato falso, una cita inventada, un sesgo, una omisión y un formato incumplido.\n\nTocá cada parte del texto que tenga un problema y escribí cuál es. Después comprobá." },
+        { "tipo": "errores", "id": "corregir", "titulo": "El resumen de la encuesta", "competencia": "discernimiento", "objetivo": "m7-o3",
+          "pedido": "\"Resumí este informe en **4 viñetas** para el directorio. Usá las cifras exactas del informe e incluí **las tres recomendaciones** del final.\"\n\nEl informe decía: respondieron 48 de las 60 personas; el 81 % calificó el curso como bueno o muy bueno; la principal queja fue el horario (viernes a la tarde). Recomendaciones: cambiar el horario, sumar casos prácticos y grabar las clases.",
+          "segmentos": [
+            { "t": "• Respondieron la encuesta 48 de las 60 personas que hicieron el curso.", "nota": "Coincide con el informe." },
+            { "t": "• El 95 % calificó el curso como bueno o muy bueno,", "error": { "tipo": "Dato falso", "explicacion": "El informe dice 81 %. La IA \"redondeó\" hacia lo que suena mejor." } },
+            { "t": "y la coordinadora del programa lo resumió así: «Es el curso mejor valorado de los últimos cinco años».", "error": { "tipo": "Cita inventada", "explicacion": "El informe no tiene ninguna cita. La frase no existe y, además, atribuye una opinión a una persona real." } },
+            { "t": "• La principal queja fue el horario de los viernes a la tarde,", "nota": "Coincide con el informe." },
+            { "t": "algo esperable porque las mujeres con hijos tienen menos disponibilidad para capacitarse.", "error": { "tipo": "Sesgo", "explicacion": "El informe no dice nada sobre quiénes se quejaron. Es una generalización de género que la IA agregó por su cuenta." } },
+            { "t": "• Recomendaciones: cambiar el horario y sumar casos prácticos.", "error": { "tipo": "Omisión", "explicacion": "Faltó \"grabar las clases\". Se pidieron las tres recomendaciones." } },
+            { "t": "En conclusión, el curso cumplió ampliamente sus objetivos y mostró un nivel de satisfacción excelente que confirma la calidad del diseño, por lo que se recomienda sostenerlo en su formato actual.", "error": { "tipo": "Formato incumplido", "explicacion": "Se pidieron 4 viñetas y agregó un párrafo de conclusión. Encima opina, y contradice las recomendaciones de cambio." } }
+          ] }
+      ]
+    },
+    {
+      "titulo": "Tu checklist y cierre",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "texto", "md": "Este checklist reúne lo del módulo para que lo tengas a mano. Podés usarlo acá con una respuesta real, descargarlo o imprimirlo." },
+        { "tipo": "checklist", "id": "checklist", "titulo": "Checklist para evaluar una respuesta de IA", "archivo": "checklist-evaluar-respuestas-ia", "competencia": "discernimiento", "evidencia": "Checklist de evaluación de respuestas", "intro": "Para revisar cualquier respuesta antes de usarla. No hace falta tildar todo: cuanto más importante es el uso, más puntos conviene revisar.", "grupos": [
+          { "titulo": "El resultado", "items": [
+            { "texto": "Los datos, cifras y fechas coinciden con la fuente original.", "ayuda": "Las cifras muy precisas sin fuente son las primeras a revisar." },
+            { "texto": "Está todo lo que pedí, sin omisiones.", "ayuda": "Compará punto por punto con el pedido." },
+            { "texto": "Sirve para mi objetivo y para el público al que va dirigido." }
+          ] },
+          { "titulo": "El proceso", "items": [
+            { "texto": "Sé de dónde sale cada dato: de mi material o de lo que agregó la IA." },
+            { "texto": "Si razonó, cada paso tiene sentido y no hay saltos." }
+          ] },
+          { "titulo": "El comportamiento", "items": [
+            { "texto": "Respetó el formato, el largo y el tono que pedí." },
+            { "texto": "Respetó las restricciones (lo que pedí que evitara)." },
+            { "texto": "No inventó con seguridad algo que no sabía." }
+          ] },
+          { "titulo": "Fuentes y sesgos", "items": [
+            { "texto": "Abrí los enlaces y las fuentes: existen y dicen eso.", "ayuda": "Las citas textuales se buscan en la obra original." },
+            { "texto": "No hay generalizaciones sobre grupos de personas." },
+            { "texto": "Contrasté lo importante con una fuente que no es la IA." }
+          ] }
+        ] },
+        { "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "discernimiento", "objetivo": "m7-o1", "preguntas": [
+          { "texto": "Una respuesta respeta el formato pedido, pero tiene una cifra inventada. ¿En qué plano falla?", "opciones": [
+            { "texto": "En el resultado.", "correcta": true, "feedback": "El contenido no es correcto, aunque el comportamiento (formato) haya sido el pedido." },
+            { "texto": "En el comportamiento.", "feedback": "El comportamiento estuvo bien: respetó el formato. Lo que falla es lo que dice." }
+          ] },
+          { "texto": "Después de cinco correcciones la conversación está enredada y las respuestas empeoran. ¿Qué conviene?", "opciones": [
+            { "texto": "Abrir una conversación nueva con un prompt que incluya lo que aprendiste.", "correcta": true, "feedback": "El modelo arrastra todo lo anterior. Empezar limpio con un mejor pedido suele resolverlo." },
+            { "texto": "Seguir corrigiendo en la misma conversación.", "feedback": "Puede funcionar, pero si ya empeora, lo anterior está pesando más que tus correcciones." }
+          ] },
+          { "texto": "¿Cuál es la señal más clara de que hay que verificar una respuesta?", "opciones": [
+            { "texto": "Que incluya cifras precisas, citas textuales o referencias que no le diste.", "correcta": true, "feedback": "Es lo que más se inventa, y lo que más daño hace si es falso." },
+            { "texto": "Que sea larga.", "feedback": "El largo no indica nada sobre la exactitud." }
+          ] }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "Pensá en la última vez que usaste una respuesta de IA tal cual. Con el checklist en la mano, ¿qué habrías revisado?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "AI snake oil: lo que la IA puede hacer y lo que se promete", "apa": "Narayanan, A. y Kapoor, S. (2024). *AI snake oil: What artificial intelligence can do, what it can't, and how to tell the difference*. Princeton University Press.", "idioma": "en", "nivel": "Profundización", "tipo": "libro" },
+          { "titulo": "AI Fluency: discernimiento", "apa": "Dakan, R., Feller, J. y Anthropic. (s.f.). *AI Fluency: Framework & Foundations* [Curso en línea]. Anthropic Academy.", "url": "https://anthropic.skilljar.com/ai-fluency-framework-foundations", "idioma": "en", "nivel": "Inicial", "tipo": "curso" }
+        ] }
+      ]
+    }
+  ]
+}

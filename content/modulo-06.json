@@ -1,0 +1,108 @@
+{
+  "titulo": "Ingeniería de prompts II",
+  "objetivos": [
+    { "id": "m6-o1", "texto": "Usar ejemplos, razonamiento paso a paso y estructura con etiquetas para mejorar un prompt.", "competencia": "descripcion" },
+    { "id": "m6-o2", "texto": "Dividir una tarea compleja en una cadena de prompts y convertir un buen prompt en una plantilla reutilizable.", "competencia": "descripcion" },
+    { "id": "m6-o3", "texto": "Elegir la técnica adecuada para cada situación.", "competencia": "descripcion" }
+  ],
+  "pasos": [
+    {
+      "titulo": "Cuando el prompt ya está bien, pero no alcanza",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "marco4d", "destacar": "descripcion", "compacto": true },
+        { "tipo": "texto", "md": "Carla arma todos los meses el boletín interno de su empresa. Ya aprendió a escribir prompts completos: tarea, contexto, formato, restricciones. Los resultados son correctos, pero cada mes el boletín suena distinto. Un mes es formal; otro, demasiado entusiasta. Y cuando le pasa cinco novedades juntas, la IA mezcla datos de una con otra.\n\nNo le falta información al prompt. Le faltan **técnicas**: mostrar ejemplos del estilo de siempre, separar el material de las instrucciones, dividir la tarea en partes. En este módulo vas a sumar esas herramientas, que sirven cuando lo básico ya no alcanza." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "Ejemplos y razonamiento",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "**Ejemplos múltiples.** En inglés se llama *few-shot*: le mostrás dos o tres ejemplos de lo que querés y el modelo copia el estilo, el largo y el formato. Es la forma más confiable de fijar un tono. Tres consejos:\n\n- Que los ejemplos se parezcan a tu caso real.\n- Que sean variados, para que no copie un detalle por accidente (si los tres empiezan con \"Hola, equipo\", todos los resultados van a empezar así).\n- Que estén marcados como ejemplos, separados del resto del pedido.\n\n**Razonar antes de responder.** Para tareas que requieren pensar (comparar opciones, resolver un problema, decidir), pedirle que razone paso a paso antes de dar la respuesta mejora los resultados. Lo mostró un estudio de Google de 2022 (Wei y otros), que lo llamó *chain of thought*, o cadena de razonamiento. Además, ver el razonamiento te deja revisar cómo llegó, no solo a qué llegó." },
+        { "tipo": "nota", "estado": "info", "titulo": "Los modelos de razonamiento", "md": "Muchos asistentes tienen ahora un modo de razonamiento (\"pensar más\", \"razonamiento extendido\") que hace esto por su cuenta. Con esos modos, suele alcanzar con pedir \"pensá bien antes de responder\" y dejar que el modelo organice su razonamiento." }
+      ]
+    },
+    {
+      "titulo": "Estructura y cadenas",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "**Estructurar prompts largos.** Cuando un prompt mezcla instrucciones, documentos y ejemplos, el modelo puede confundir uno con otro. La solución es separarlos con títulos o con etiquetas. Las etiquetas tipo XML funcionan muy bien:\n\n`<documento>` el informe que pegaste `</documento>`\n\n`<instrucciones>` qué hacer con él `</instrucciones>`\n\nNo hay etiquetas \"correctas\": lo importante es que tengan nombres claros y que las uses siempre igual. Así podés decir \"usá solo lo que está en `<documento>`\" y no hay dudas.\n\n**Encadenar prompts.** Una tarea compleja sale mejor dividida en etapas, cada una con su prompt. Por ejemplo, para el boletín de Carla:\n\n1. Resumí cada novedad en dos oraciones.\n2. Ordenalas de la más a la menos importante para el personal.\n3. Escribí el boletín con el estilo de estos ejemplos.\n\nEntre una etapa y otra, Carla revisa. Si algo salió mal, lo corrige ahí, sin rehacer todo. Es más lento que un único pedido, pero mucho más controlable." }
+      ]
+    },
+    {
+      "titulo": "Que la IA te ayude a pedir",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "**Meta-prompting.** Podés pedirle a la IA que mejore tu prompt o que lo escriba con vos: \"Quiero lograr esto. Haceme las preguntas que necesites para escribir un buen prompt\". Funciona bien, siempre que revises el resultado: a veces agrega supuestos que no son tuyos.\n\n**Plantillas con variables.** Cuando un prompt te sirvió, convertilo en plantilla reemplazando lo que cambia por variables entre llaves:\n\n\"Escribí el recordatorio del curso {nombre del curso} para {grupo}. Es el {día} a las {hora} en {lugar}...\"\n\nLa próxima vez solo completás las variables. Guardalas en **Mis prompts** con una etiqueta como \"plantilla\".\n\n**Instrucciones persistentes.** Los asistentes permiten guardar instrucciones que se aplican siempre: instrucciones personalizadas, proyectos con sus propios documentos, o asistentes a medida (en ChatGPT se llaman GPTs; en Gemini, Gems; en Claude, Projects). La idea general es la misma: escribís una vez el contexto que repetirías en cada conversación (quién sos, para quién trabajás, qué estilo usás) y el asistente lo tiene en cuenta siempre. Los nombres y los menús cambian seguido; el concepto, no." },
+        { "tipo": "nota", "estado": "atencion", "titulo": "Cuidado con lo que queda guardado", "md": "Lo que ponés en instrucciones persistentes o en un proyecto acompaña todas tus conversaciones. No incluyas datos personales de otras personas ni información confidencial. Lo vas a ver con detalle en el Módulo 8." }
+      ]
+    },
+    {
+      "titulo": "Subí de nivel",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Vas a tomar un prompt básico y mejorarlo en tres rondas, una técnica por ronda. Escribí tu versión en cada una. Si te trabás, mirá una versión posible: vas a ver resaltado lo que se agregó y por qué." },
+        { "tipo": "subir-nivel", "id": "subir", "titulo": "Preguntas para evaluar un curso", "competencia": "descripcion", "objetivo": "m6-o1", "evidencia": "Prompt mejorado en tres rondas (Subí de nivel)", "nombre": "Preguntas de evaluación con situaciones", "etiquetas": ["evaluación", "plantilla"],
+          "inicial": "Escribí preguntas para evaluar si el grupo entendió el curso de seguridad e higiene.",
+          "rondas": [
+            { "tecnica": "Mostrá ejemplos", "explicacion": "Sumá dos ejemplos de cómo querés que sean las preguntas. Así no tenés que explicar el estilo con adjetivos: lo mostrás.", "pista": "Por ejemplo, preguntas que partan de una situación concreta del trabajo, en lugar de \"¿Qué es un EPP?\".",
+              "referencia": "Escribí 5 preguntas para evaluar si el grupo entendió el curso de seguridad e higiene.\n\nQuiero preguntas como estas, que parten de una situación del trabajo:\n- Ves un charco de aceite cerca de la máquina de corte y tu supervisor no está. ¿Qué hacés primero?\n- Un compañero nuevo no se pone los guantes porque \"es un minuto nada más\". ¿Qué le decís?",
+              "porque": ["**Cantidad:** \"5 preguntas\" evita que decida por su cuenta.", "**Dos ejemplos de situaciones:** fijan el estilo mejor que pedir \"preguntas prácticas\". Sin ejemplos, lo más probable es que devuelva preguntas de definición.", "**Ejemplos distintos entre sí:** uno es sobre un riesgo y otro sobre una persona. Así no copia un solo patrón."] },
+            { "tecnica": "Separá las partes", "explicacion": "Ordená el prompt en secciones con etiquetas: la tarea, el contexto del curso y los ejemplos. Aprovechá para sumar el contexto que todavía falta.", "pista": "Usá etiquetas como <tarea>, <contexto> y <ejemplos>, cada una abierta y cerrada.",
+              "referencia": "<tarea>\nEscribí 5 preguntas para evaluar si el grupo entendió el curso de seguridad e higiene.\n</tarea>\n\n<contexto>\nEs personal de planta de una fábrica de alimentos. El curso duró 4 horas y trató sobre cortes, derrames, uso de guantes y protección auditiva. Muchas personas leen con dificultad, así que las preguntas se leen en voz alta.\n</contexto>\n\n<ejemplos>\nQuiero preguntas como estas, que parten de una situación del trabajo:\n- Ves un charco de aceite cerca de la máquina de corte y tu supervisor no está. ¿Qué hacés primero?\n- Un compañero nuevo no se pone los guantes porque \"es un minuto nada más\". ¿Qué le decís?\n</ejemplos>",
+              "porque": ["**Etiquetas:** separan qué hacer de qué saber y de cómo se ve. El modelo no confunde los ejemplos con el material del curso.", "**Contexto nuevo:** quiénes son, cuánto duró el curso y qué temas trató. Ahora las preguntas pueden cubrir esos temas y no otros.", "**Lectura en voz alta:** cambia el largo y el vocabulario de las preguntas, sin que tengas que pedirlo aparte."] },
+            { "tecnica": "Pedí que piense antes", "explicacion": "Pedile que, antes de escribir, haga una lista de los conceptos clave del curso y controle que cada pregunta evalúe uno distinto. Que te muestre esa lista.", "pista": "Podés agregar una sección <instrucciones> al final.",
+              "referencia": "<tarea>\nEscribí 5 preguntas para evaluar si el grupo entendió el curso de seguridad e higiene.\n</tarea>\n\n<contexto>\nEs personal de planta de una fábrica de alimentos. El curso duró 4 horas y trató sobre cortes, derrames, uso de guantes y protección auditiva. Muchas personas leen con dificultad, así que las preguntas se leen en voz alta.\n</contexto>\n\n<ejemplos>\nQuiero preguntas como estas, que parten de una situación del trabajo:\n- Ves un charco de aceite cerca de la máquina de corte y tu supervisor no está. ¿Qué hacés primero?\n- Un compañero nuevo no se pone los guantes porque \"es un minuto nada más\". ¿Qué le decís?\n</ejemplos>\n\n<instrucciones>\nAntes de escribir las preguntas, hacé una lista de los conceptos clave del curso y fijate que cada pregunta evalúe uno distinto. Mostrame primero la lista y después las preguntas.\n</instrucciones>",
+              "porque": ["**Pensar antes:** al listar los conceptos primero, evita cinco preguntas sobre el mismo tema.", "**Mostrar la lista:** te deja revisar el proceso. Si falta un tema del curso, lo ves antes de leer las preguntas.", "**Al final:** las instrucciones sobre cómo trabajar van después del material, donde el modelo las tiene más presentes."] }
+          ] }
+      ]
+    },
+    {
+      "titulo": "¿Qué técnica usarías?",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "quiz", "id": "tecnicas", "titulo": "Una técnica para cada situación", "competencia": "descripcion", "objetivo": "m6-o3", "preguntas": [
+          { "texto": "Cada semana escribís el mismo tipo de recordatorio para distintos cursos.", "opciones": [
+            { "texto": "Una plantilla con variables.", "correcta": true, "feedback": "Escribís el prompt una vez y cada semana completás curso, fecha y lugar." },
+            { "texto": "Pedirle que razone paso a paso.", "feedback": "Un recordatorio no necesita razonamiento: necesita repetirse igual." },
+            { "texto": "Encadenar prompts.", "feedback": "Es una tarea simple: dividirla no suma." }
+          ] },
+          { "texto": "Querés que los textos de la IA suenen como los que escribe tu equipo.", "opciones": [
+            { "texto": "Darle dos o tres ejemplos reales del estilo.", "correcta": true, "feedback": "Mostrar el estilo funciona mejor que describirlo con adjetivos." },
+            { "texto": "Pedirle que sea \"natural\".", "feedback": "\"Natural\" significa cosas distintas para cada persona y para cada modelo." },
+            { "texto": "Usar etiquetas XML.", "feedback": "Las etiquetas ordenan el prompt, pero no transmiten un estilo." }
+          ] },
+          { "texto": "Tenés que transformar un manual de 40 páginas en un curso de cuatro clases, con actividades y evaluación.", "opciones": [
+            { "texto": "Encadenar prompts: primero la estructura, después cada clase, después la evaluación, revisando en cada paso.", "correcta": true, "feedback": "Es una tarea grande: dividida en etapas, podés corregir a tiempo y no rehacer todo." },
+            { "texto": "Un solo prompt muy detallado.", "feedback": "Es posible, pero si algo sale mal no sabés dónde, y la calidad suele bajar al final." },
+            { "texto": "Pedir ejemplos.", "feedback": "Los ejemplos ayudan en cada etapa, pero no resuelven el tamaño de la tarea." }
+          ] },
+          { "texto": "Pegás una entrevista y unas instrucciones, y la IA responde como si las instrucciones fueran parte de la entrevista.", "opciones": [
+            { "texto": "Separar la entrevista y las instrucciones con etiquetas.", "correcta": true, "feedback": "Con <entrevista> y <instrucciones>, queda claro qué es material y qué es pedido." },
+            { "texto": "Escribir las instrucciones en mayúsculas.", "feedback": "Las mayúsculas no separan; a veces solo hacen que el modelo exagere esa instrucción." },
+            { "texto": "Pedir que razone paso a paso.", "feedback": "El problema no es el razonamiento, sino que el prompt mezcla dos cosas." }
+          ] }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "vf", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "descripcion", "objetivo": "m6-o2", "afirmaciones": [
+          { "texto": "Si los tres ejemplos que le das empiezan igual, es probable que la respuesta también empiece así.", "verdadero": true, "explicacion": "Los ejemplos se copian con mucha fidelidad, incluso en detalles que no quisiste fijar. Por eso conviene variarlos." },
+          { "texto": "Encadenar prompts es siempre más rápido que hacer un único pedido.", "verdadero": false, "explicacion": "Suele ser más lento, pero mucho más controlable: revisás en cada etapa." },
+          { "texto": "Lo que escribís en las instrucciones persistentes se aplica a todas tus conversaciones con ese asistente o proyecto.", "verdadero": true, "explicacion": "Por eso conviene poner ahí el contexto que repetís siempre, y nunca datos confidenciales." },
+          { "texto": "Cuando la IA te ayuda a escribir un prompt, el resultado se puede usar sin revisar.", "verdadero": false, "explicacion": "A veces agrega supuestos que no son tuyos. Revisalo como revisarías cualquier otra respuesta." }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "¿Qué tarea de tu trabajo repetís seguido y podrías convertir en una plantilla? Escribí cuáles serían sus variables." },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Visión general de la ingeniería de prompts, de Anthropic", "apa": "Anthropic. (s.f.). *Prompt engineering overview*. Claude Docs.", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" },
+          { "titulo": "El estudio sobre la cadena de razonamiento", "apa": "Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E., Le, Q. y Zhou, D. (2022). Chain-of-thought prompting elicits reasoning in large language models. *arXiv*. https://doi.org/10.48550/arXiv.2201.11903", "url": "https://arxiv.org/abs/2201.11903", "idioma": "en", "nivel": "Técnica (opcional)", "tipo": "articulo" },
+          { "titulo": "AI engineering, capítulos sobre prompts y evaluación", "apa": "Huyen, C. (2025). *AI engineering: Building applications with foundation models*. O'Reilly Media.", "idioma": "en", "nivel": "Técnica (opcional)", "tipo": "libro" }
+        ] }
+      ]
+    }
+  ]
+}

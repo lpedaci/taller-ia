@@ -12,6 +12,7 @@ import "../activities/evaluadas.js";
 import "../activities/produccion.js";
 import "../activities/video.js";
 import "../activities/inicio-taller.js";
+import "../activities/criterio.js";
 import "../charts.js";
 import "../animacion.js";
 import { demoraSimulada, errorSimulado, tarjetaError, esperaConMensaje } from "../estados.js";

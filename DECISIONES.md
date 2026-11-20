@@ -43,6 +43,10 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-035 | 2026-11-18 | Animación piloto aprobada: va al Módulo 2 y se graba en MP4 con subtítulos | Vigente |
 | D-036 | 2026-11-18 | Etapa 3, bloque 1: componentes nuevos y Módulos 0 a 3 | Vigente |
 | D-037 | 2026-11-18 | Etapa 3, bloque 1: verificación | Vigente |
+| D-038 | 2026-11-20 | Diagrama propio del marco 4D, reutilizable en todo el taller | Vigente |
+| D-039 | 2026-11-20 | Componentes del bloque 2: "Subí de nivel", checklist descargable, pedido en "Corregí a la IA" y exportación de Mis prompts | Vigente |
+| D-040 | 2026-11-20 | Etapa 3, bloque 2: Módulos 4 a 8 y fuentes | Vigente |
+| D-041 | 2026-11-20 | Etapa 3, bloque 2: verificación | Vigente |
 
 ---
 
@@ -736,5 +740,81 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 - Prueba de punta a punta del bloque 1 en 1280, 768 y 390 px: los 23 pasos cargan; axe-core sin problemas; perfil, autodiagnóstico, objetivos y diario se guardan; clasificador 8 de 8; predictor; avance real en Inicio ("1 de 21"); gráfico en "Mi aprendizaje"; sin errores de consola. En 390 px encontró que "Terminar módulo" tapaba "Escuchar" (corregido, D-036).
 - Contraste de las etiquetas del diagrama medido en claro y oscuro: todas sobre 4.5:1.
 - `npm run verificar` completo: 468 capturas (39 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, sin scroll horizontal, sin errores de consola, sin animaciones con movimiento reducido y sin rayas largas ni puntos medios. Encontró un problema, ya corregido: en 360 y 412 px los botones de frase del predictor pasaban a dos filas sin separación y sus áreas táctiles se pisaban; ahora hay 8 px entre filas. Después, `npm run verificar:rapido` sin problemas (234 capturas).
+
+**Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.
+
+## D-038 | 2026-11-20 | Diagrama del marco 4D
+
+**Solicitado:** presentar el marco 4D completo con un SVG propio que se retome en todo el taller (brief, Módulo 4).
+
+**Decisión y motivo:**
+- **Forma del diagrama:** Diligencia es el marco que envuelve todo el trabajo. Adentro, Delegación abre el trabajo y lleva a un ciclo entre Descripción y Discernimiento, con flechas de ida y vuelta y la leyenda "se repite hasta que sirve". Así el dibujo muestra la relación entre las dimensiones, no solo una lista de cuatro.
+- **Colores:** cada dimensión usa un color de la paleta categórica de los gráficos (D-028), en el mismo orden: azul, naranja, violeta y verde. Esa paleta ya está validada para daltonismo y contraste, en claro y en oscuro. Los textos van siempre en el color de texto, nunca en el de la dimensión.
+- **Dos dibujos:** horizontal desde 560 px de contenedor y vertical por debajo, para que la letra no se achique en mobile.
+- **Interacción:** al pasar el cursor o el foco por una dimensión de la lista se resalta su recuadro, y al revés.
+- **Variante destacada:** al empezar los Módulos 5 a 8 aparece el mismo diagrama, más chico, con la dimensión del módulo en color y las demás en gris, más una frase que dice qué se trabaja. Se puede usar en cualquier módulo posterior con `"destacar"`.
+- **Redacción de las subdimensiones:** propia, a partir del curso *AI Fluency*: entender el problema, conocer la herramienta y repartir el trabajo (Delegación); describir el resultado, el proceso y el comportamiento (Descripción); evaluar esas mismas tres cosas (Discernimiento); al crear, al declarar el uso y al publicar o compartir (Diligencia).
+
+**Archivos afectados:** `js/activities/criterio.js`, `css/activities.css`.
+
+**Verificación realizada:** prueba del bloque 2 (D-041): el diagrama que corresponde a cada ancho, el resaltado con el foco, axe-core sin problemas y capturas en claro y oscuro.
+
+**Pendientes o riesgos:** la página del curso *AI Fluency* no se deja leer por lectores automáticos (responde 403), así que la redacción se apoya en el conocimiento del curso y no en una cita textual. Conviene que Lourdes revise los nombres de las subdimensiones.
+
+## D-039 | 2026-11-20 | Componentes del bloque 2
+
+**Solicitado:** las actividades del bloque 2 que pide el brief: "Subí de nivel" (Módulo 6), "Corregí a la IA" con el pedido original y un checklist descargable (Módulo 7), y la biblioteca de prompts exportable en Markdown o JSON (Módulo 5).
+
+**Decisión y motivo:**
+- **Subí de nivel:**
+  - un prompt básico que se mejora en tres rondas, una técnica por ronda;
+  - en cada ronda la persona escribe su versión; no avanza si no cambió nada;
+  - "Ver una versión posible" muestra una referencia con lo agregado resaltado y la explicación de qué cambió y por qué;
+  - el resultado compara el prompt inicial con el final, resalta todo lo sumado y permite copiarlo o guardarlo en Mis prompts;
+  - recuerda la ronda y los textos si la persona sale y vuelve.
+- **Checklist:** casillas agrupadas, contador ("2 de 11 revisados"), "Desmarcar todo", "Imprimir" y "Descargar (.md)" como acción principal. El archivo descargado conserva lo tildado.
+- **Corregí a la IA:** el bloque de errores acepta un `pedido` que se muestra antes del texto ("Lo que se le pidió a la IA" y "Lo que respondió"). Sin el pedido no se pueden detectar la omisión ni el formato incumplido.
+- **Mis prompts:** "Exportar (.json)" y "Exportar (.md)". Al revisar se encontró que el recuadro de cada prompt tenía scroll vertical sin poder enfocarse con el teclado: ahora se enfoca y tiene nombre accesible.
+
+**Archivos afectados:** `js/activities/criterio.js`, `js/activities/comun.js`, `js/activities/evaluadas.js`, `js/lesson/leccion.js`, `js/views/otras.js`, `css/activities.css`.
+
+**Verificación realizada:** ver D-041.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-040 | 2026-11-20 | Etapa 3, bloque 2: Módulos 4 a 8
+
+**Solicitado:** producir el contenido completo del bloque 2 (Criterio: el marco 4D) según la sección 3 del brief.
+
+**Decisión y motivo:**
+- **Módulo 4, Delegación:** el caso de Julián; el marco 4D completo; automatización, aumentación y agencia, con un quiz de tres casos; las tres preguntas antes de delegar (el problema, la herramienta, tus capacidades); el clasificador de 12 tareas en tres columnas, con feedback que explica por qué.
+- **Módulo 5, Ingeniería de prompts I:** el caso de Sofía y Martín; describir el resultado, el proceso y el comportamiento; los seis componentes, con un quiz de "¿qué le falta?"; claro y directo y con el porqué; las miradas de Google (cinco pasos) y Microsoft (cuatro partes) con sus coincidencias; un prompt pobre y uno mejorado; el laboratorio con seis campos, "Copiar", "Abrir en" y "Guardar en Mis prompts".
+- **Módulo 6, Ingeniería de prompts II:** ejemplos múltiples y razonamiento paso a paso; estructura con etiquetas y cadenas de prompts; meta-prompting, plantillas con variables e instrucciones persistentes, explicadas en general y sin detalles de interfaz; "Subí de nivel"; un quiz de "¿qué técnica usarías?".
+- **Módulo 7, Discernimiento:** el caso de Roberto; evaluar el resultado, el proceso y el comportamiento; iterar con un ejemplo de dos ajustes; fuentes, sesgos y contraste; "Corregí a la IA" con cinco errores (un dato falso, una cita inventada, un sesgo, una omisión y un formato incumplido); el checklist descargable.
+- **Módulo 8, Diligencia:** el caso de Mariela; responsabilidad, transparencia y autoría, con un ejemplo de declaración de uso; qué no cargar, cuentas personales y corporativas en general, y un clasificador de "¿lo cargarías?"; el enfoque centrado en lo humano de la UNESCO; cuatro dilemas ramificados (los datos de las participantes, el informe para la gerencia, el trabajo final de un posgrado y la imagen para una campaña).
+- **Fuentes para profundizar** (enlaces comprobados el 2026-11-20): Anthropic, *Prompt engineering overview* y *Prompting best practices*; Microsoft, guía de prompts para Copilot; Google, consejos para escribir prompts en Gemini (Workspace); OpenAI, guía de prompt engineering (el enlace viejo redirige a developers.openai.com); Wei y otros (2022), en arXiv; UNESCO (2024), marcos de competencias en IA para docentes y para estudiantes; el curso *AI Fluency*. Libros sin enlace: Mollick (2024), Narayanan y Kapoor (2024) y Huyen (2025).
+- **Google Prompting Essentials:** la página del curso ahora promociona otro programa de Google y ya no muestra el marco de cinco pasos. Se presenta como el curso de 2024 (tarea, contexto, referencias, evaluar e iterar), sin enlace.
+- **Mollick:** se cita la edición original en inglés; no se pudo confirmar una edición en español.
+
+**Archivos afectados:** `content/modulo-04.json` a `content/modulo-08.json`, `content/modulos.json`.
+
+**Verificación realizada:** ver D-041.
+
+**Pendientes o riesgos:**
+- Lourdes puede querer revisar los cuatro dilemas del Módulo 8: son los textos con más matices del bloque.
+- La animación prioritaria 4 (el marco 4D y el ciclo entre descripción y discernimiento) queda para una parte siguiente: el diagrama interactivo ya cubre la idea en este bloque.
+
+## D-041 | 2026-11-20 | Etapa 3, bloque 2: verificación
+
+**Solicitado:** verificar el bloque 2 completo antes de subirlo.
+
+**Decisión y motivo:** el verificador suma nueve pantallas del bloque 2 (marco 4D, clasificador, marco destacado, laboratorio, "Subí de nivel", "Corregí a la IA", checklist, dilemas y Mis prompts).
+
+**Archivos afectados:** `scripts/verificar.mjs`.
+
+**Verificación realizada:**
+- Prueba de punta a punta del bloque 2 en 1280 px (claro y oscuro) y en 390 px (oscuro): los 33 pasos cargan y axe-core no encuentra problemas. Las actividades funcionan: clasificador 12 de 12, laboratorio guardado, las tres rondas de "Subí de nivel" (con foco, resaltado y memoria de la ronda), 5 de 5 errores, checklist descargado con lo tildado, un dilema hasta el final y exportación de Mis prompts en JSON y Markdown. Sin errores de consola.
+- En la prueba aparecieron tres problemas, ya corregidos: los dos dibujos del diagrama se mostraban a la vez, una variable que ya no existía impedía cargar la ronda de "Subí de nivel" y el recuadro de los prompts no se podía enfocar con el teclado.
+- `npm run verificar` completo: 576 capturas (48 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, sin scroll horizontal, con todas las áreas táctiles de 48 px, sin errores de consola, sin animaciones con movimiento reducido y sin rayas largas ni puntos medios.
 
 **Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.

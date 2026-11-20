@@ -1,0 +1,142 @@
+{
+  "titulo": "Diligencia",
+  "objetivos": [
+    { "id": "m8-o1", "texto": "Decidir cuándo y cómo declarar el uso de IA en un trabajo propio.", "competencia": "diligencia" },
+    { "id": "m8-o2", "texto": "Reconocer qué datos no cargar en una herramienta de IA y cómo anonimizar los que sí hacen falta.", "competencia": "diligencia" },
+    { "id": "m8-o3", "texto": "Tomar decisiones responsables en situaciones reales, teniendo en cuenta su impacto en otras personas.", "competencia": "diligencia" }
+  ],
+  "pasos": [
+    {
+      "titulo": "Quién responde",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "marco4d", "destacar": "diligencia", "compacto": true },
+        { "tipo": "texto", "md": "Mariela es docente en un instituto de formación profesional. Usó la IA para armar el cuadernillo de su materia: le ahorró semanas. Un estudiante encontró que uno de los ejercicios tenía una fórmula equivocada y lo publicó en el grupo del curso. La pregunta que le hicieron no fue \"¿qué IA usaste?\", sino \"¿usted no lo revisó?\".\n\nLa IA no firma nada. Lo que se publica, se entrega o se comparte con tu nombre es tuyo, con sus aciertos y sus errores. La **diligencia** es hacerte cargo de eso: de lo que creás, de cómo contás que usaste IA y de lo que pasa cuando lo compartís." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "Responsabilidad, transparencia y autoría",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "La diligencia tiene tres momentos:\n\n- **Al crear.** Elegir herramientas adecuadas, no cargar lo que no corresponde y revisar antes de usar.\n- **Al declarar.** Contar con honestidad qué hizo la IA y qué hiciste vos, cuando corresponde.\n- **Al publicar o compartir.** Verificar lo que sale con tu nombre y pensar en quiénes lo van a recibir.\n\n**¿Cuándo declarar el uso de IA?** No hay una regla única, pero sí algunas preguntas que ayudan:\n\n- ¿La institución, la empresa o la revista tiene una política? Si la tiene, manda.\n- ¿Quien lo recibe esperaría saberlo? En un trabajo académico, sí; en la corrección ortográfica de un correo, probablemente no.\n- ¿La IA aportó ideas, texto o imágenes que se presentan como tuyos? Cuanto más aportó, más importa declararlo.\n\n**¿Cómo?** Con una frase concreta que diga qué herramienta, para qué y quién revisó. Por ejemplo:\n\n\"Para este material usé un asistente de IA para ordenar las ideas iniciales y proponer ejemplos. La selección, la redacción final y la revisión de los datos son mías\".\n\nEvitá las declaraciones genéricas (\"se usó IA\"): no dicen nada sobre qué parte es tuya." },
+        { "tipo": "nota", "estado": "info", "titulo": "Autoría", "md": "Si la IA escribió buena parte del texto, presentarlo como enteramente propio es un problema de honestidad, aunque ninguna norma lo prohíba explícitamente. La pregunta útil es: ¿me sentiría cómoda o cómodo si quien lo lee supiera cómo lo hice?" }
+      ]
+    },
+    {
+      "titulo": "Lo que no se carga",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Todo lo que escribís o adjuntás en una herramienta de IA sale de tu computadora y queda en los servidores de otra empresa. Según la herramienta y la configuración, puede guardarse un tiempo, revisarse por seguridad o usarse para mejorar los modelos.\n\n**No cargues, salvo que tu organización lo autorice expresamente:**\n\n- datos personales de otras personas: nombres con notas, documentos, direcciones, teléfonos, salud, situaciones familiares;\n- datos de clientes, estudiantes o participantes;\n- información confidencial de la empresa: contratos, resultados no publicados, estrategias;\n- contraseñas, claves o códigos de acceso.\n\n**Cuentas personales y corporativas.** En general, las versiones para empresas e instituciones vienen con contratos que limitan el uso de los datos y con controles para la organización. Las cuentas personales, sobre todo las gratuitas, suelen tener condiciones más amplias. Antes de cargar algo de tu trabajo, averiguá qué herramienta autoriza tu organización y revisá la configuración de privacidad de tu cuenta.\n\n**Anonimizar** es la forma de usar la IA sin exponer a nadie: reemplazá nombres por códigos (\"Participante A\"), quitá lo que permita identificar y quedate solo con lo que la tarea necesita." },
+        { "tipo": "clasificador", "id": "cargar", "titulo": "¿Lo cargarías?", "competencia": "diligencia", "objetivo": "m8-o2", "categorias": [
+          { "id": "si", "titulo": "Lo puedo cargar", "descripcion": "No tiene datos sensibles." },
+          { "id": "anonimo", "titulo": "Solo anonimizado", "descripcion": "Sirve, pero sin datos que identifiquen." },
+          { "id": "no", "titulo": "No lo cargo", "descripcion": "No corresponde, ni siquiera anonimizado." }
+        ], "items": [
+          { "texto": "El programa de un curso que diseñaste vos.", "categoria": "si", "feedback": "Es tu material, sin datos de nadie. Si fuera de tu empresa y confidencial, revisá la política primero." },
+          { "texto": "Las respuestas abiertas de una encuesta, para agruparlas por tema.", "categoria": "anonimo", "feedback": "Quitá nombres, correos y cualquier detalle que permita identificar a alguien. La tarea se puede hacer igual." },
+          { "texto": "Una planilla con nombre, DNI y nota de cada participante.", "categoria": "no", "feedback": "Son datos personales de terceros. Si necesitás ayuda con el análisis, trabajá con datos agregados o con códigos en lugar de nombres." },
+          { "texto": "Un correo de una participante que cuenta un problema de salud.", "categoria": "no", "feedback": "Es información sensible y personal. Respondelo vos, sin pasar el mensaje por ninguna herramienta externa." },
+          { "texto": "Un texto público de una ley para que te lo explique.", "categoria": "si", "feedback": "Es información pública. Igual, verificá la explicación con la fuente oficial." },
+          { "texto": "La descripción de un conflicto en tu equipo, para pensar cómo abordarlo.", "categoria": "anonimo", "feedback": "Puede ayudarte a pensar, pero sin nombres ni detalles que identifiquen a las personas." },
+          { "texto": "El contrato con un cliente, para que lo resuma.", "categoria": "no", "feedback": "Es información confidencial de la empresa. Solo con una herramienta que tu organización haya autorizado para eso." }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Las personas en el centro",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "La IA puede reproducir sesgos que estaban en sus datos de entrenamiento: en los ejemplos que elige, en las imágenes que genera, en cómo describe a ciertos grupos. Cuando esos resultados se usan para decidir o comunicar algo sobre personas, el sesgo deja de ser un detalle técnico y pasa a tener efectos reales.\n\nLa UNESCO propone un **enfoque centrado en lo humano**: la IA tiene que ampliar lo que las personas pueden hacer, no reemplazar su criterio ni su responsabilidad. En sus marcos de competencias en IA de 2024, uno para docentes y otro para estudiantes, esta mirada es la primera dimensión, antes que cualquier contenido técnico.\n\nEn la práctica, antes de usar algo generado, preguntate:\n\n- ¿A quién afecta este resultado y cómo?\n- ¿Alguien podría sentirse excluido, estereotipado o expuesto?\n- ¿Hay una persona que revisa y responde por lo que se decide?\n\nLa ética de la IA tiene su propio bloque (Módulos 9 y 10). Acá alcanza con el hábito de hacerte estas preguntas." }
+      ]
+    },
+    {
+      "titulo": "Cuatro dilemas",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Cuatro situaciones breves, con datos inventados para el taller. En cada una elegís qué hacer y ves qué pasa. No hay trampa: algunas decisiones tienen arreglo y otras, no tanto. Podés volver a empezar cada dilema para ver otros caminos." },
+        { "tipo": "escenario", "id": "dilema-datos", "titulo": "1. Los datos de las participantes", "competencia": "diligencia", "objetivo": "m8-o2", "inicio": "n1", "nodos": {
+          "n1": { "texto": "Laura terminó un curso con 35 participantes. Tiene una planilla con nombre, DNI, correo y nota final de cada una, y quiere que la IA le escriba un mensaje personalizado para cada persona según su resultado.", "pregunta": "¿Qué hace Laura?", "opciones": [
+            { "texto": "Pega la planilla completa en su cuenta personal de un asistente.", "tono": "negativo", "consecuencia": "Treinta y cinco personas tienen ahora su DNI y su nota en una herramienta externa, sin haberlo consentido.", "destino": "n2" },
+            { "texto": "Le pide a la IA tres plantillas de mensaje (para quien aprobó con holgura, para quien aprobó justo y para quien no aprobó) y las completa ella.", "tono": "positivo", "consecuencia": "La IA hizo lo que sabe hacer (redactar) sin ver ningún dato. Laura personaliza con su conocimiento de cada persona.", "destino": "fin-bien" }
+          ] },
+          "n2": { "texto": "Al día siguiente, una compañera le comenta que la organización tiene una política que prohíbe cargar datos de participantes.", "pregunta": "¿Y ahora?", "opciones": [
+            { "texto": "Borra la conversación, revisa la configuración de privacidad y avisa a su coordinación.", "tono": "atencion", "consecuencia": "No puede deshacer lo cargado, pero actuó con transparencia y la organización puede evaluar qué hacer.", "destino": "fin-aprende" },
+            { "texto": "No dice nada: ya está hecho y nadie se va a enterar.", "tono": "negativo", "consecuencia": "Si el problema aparece después, va a ser mucho más grave haberlo ocultado.", "destino": "fin-mal" }
+          ] },
+          "fin-bien": { "final": true, "tono": "positivo", "titulo": "Buena práctica", "texto": "Separar la redacción (que puede hacer la IA) de los datos (que se quedan con vos) resuelve la mayoría de estos casos." },
+          "fin-aprende": { "final": true, "tono": "atencion", "titulo": "Error con arreglo", "texto": "Equivocarse pasa. Avisar a tiempo permite reducir el daño. La próxima vez: plantillas o datos anonimizados." },
+          "fin-mal": { "final": true, "tono": "negativo", "titulo": "El problema sigue ahí", "texto": "Los datos quedaron cargados y la organización no lo sabe. La diligencia también es hacerse cargo cuando algo sale mal." }
+        } },
+        { "tipo": "escenario", "id": "dilema-informe", "titulo": "2. El informe para la gerencia", "competencia": "diligencia", "objetivo": "m8-o3", "inicio": "n1", "nodos": {
+          "n1": { "texto": "Diego tiene que entregar el informe trimestral de su área. Usa la IA para redactarlo a partir de sus notas. El resultado es muy bueno y le ahorró un día. En una parte, la IA agregó una comparación con \"el promedio del sector\" que Diego no le había dado.", "pregunta": "¿Qué hace Diego?", "opciones": [
+            { "texto": "Lo deja: suena bien y le da más peso al informe.", "tono": "negativo", "consecuencia": "En la reunión le preguntan de dónde sale ese promedio. No lo sabe, porque probablemente no existe.", "destino": "fin-mal" },
+            { "texto": "Busca el dato. Como no encuentra una fuente, borra la comparación.", "tono": "positivo", "consecuencia": "El informe dice solo lo que Diego puede sostener.", "destino": "n2" }
+          ] },
+          "n2": { "texto": "La gerencia no tiene una política sobre el uso de IA en informes.", "pregunta": "¿Menciona que usó IA?", "opciones": [
+            { "texto": "Sí, con una línea al final: qué hizo la IA y que los datos y las conclusiones son suyos.", "tono": "positivo", "consecuencia": "Es transparente sin restarle mérito. Si alguien tiene dudas, sabe qué preguntar.", "destino": "fin-bien" },
+            { "texto": "No: el contenido es suyo y la IA solo redactó.", "tono": "atencion", "consecuencia": "Es una decisión posible si la IA solo dio forma a sus ideas. Conviene averiguar si hay una expectativa implícita en su organización.", "destino": "fin-gris" }
+          ] },
+          "fin-bien": { "final": true, "tono": "positivo", "titulo": "Responsable y transparente", "texto": "Verificó lo que agregó la IA y lo contó con claridad." },
+          "fin-gris": { "final": true, "tono": "atencion", "titulo": "Zona gris", "texto": "No siempre es obligatorio declarar, pero preguntar \"¿lo esperarían saber?\" ayuda a decidir." },
+          "fin-mal": { "final": true, "tono": "negativo", "titulo": "Un dato que no podía sostener", "texto": "Lo que la IA agrega por su cuenta hay que verificarlo o sacarlo. Con su nombre en el informe, el error es de Diego." }
+        } },
+        { "tipo": "escenario", "id": "dilema-posgrado", "titulo": "3. El trabajo final del posgrado", "competencia": "diligencia", "objetivo": "m8-o1", "inicio": "n1", "nodos": {
+          "n1": { "texto": "Valeria cursa un posgrado y tiene que entregar su trabajo final. Usó la IA para ordenar la bibliografía y para mejorar la redacción de algunos párrafos. El reglamento de la carrera dice que el uso de IA tiene que declararse.", "pregunta": "¿Qué hace Valeria?", "opciones": [
+            { "texto": "Agrega una nota que explica qué tareas hizo con IA y cuáles son propias.", "tono": "positivo", "consecuencia": "Cumple con el reglamento y deja claro que las ideas y el análisis son suyos.", "destino": "fin-bien" },
+            { "texto": "No lo declara: en definitiva, solo mejoró la redacción.", "tono": "negativo", "consecuencia": "El reglamento no distingue: pide declarar cualquier uso. Si se detecta, puede tener consecuencias académicas.", "destino": "fin-mal" },
+            { "texto": "Le pide a la IA que escriba la conclusión, para terminar a tiempo.", "tono": "negativo", "consecuencia": "La conclusión es donde se evalúa su pensamiento. Ya no es solo una cuestión de declarar.", "destino": "n2" }
+          ] },
+          "n2": { "texto": "Valeria lee la conclusión que escribió la IA. Está bien redactada, pero dice cosas que ella no sostendría del todo.", "pregunta": "¿Qué hace?", "opciones": [
+            { "texto": "La reescribe con sus propias palabras y declara cómo usó la IA en el resto del trabajo.", "tono": "atencion", "consecuencia": "Recuperó la autoría de la parte central. La próxima vez, mejor usar la IA para revisar su conclusión que para escribirla.", "destino": "fin-aprende" },
+            { "texto": "La entrega así.", "tono": "negativo", "consecuencia": "Presenta como propio un razonamiento que no es suyo y con el que ni siquiera está de acuerdo.", "destino": "fin-mal" }
+          ] },
+          "fin-bien": { "final": true, "tono": "positivo", "titulo": "Honestidad académica", "texto": "Declarar con detalle protege tu trabajo: muestra qué es tuyo." },
+          "fin-aprende": { "final": true, "tono": "atencion", "titulo": "A tiempo", "texto": "La IA puede ayudarte a pensar, pero la parte que se evalúa tiene que ser tuya." },
+          "fin-mal": { "final": true, "tono": "negativo", "titulo": "Un problema de autoría", "texto": "Más allá de las reglas, el trabajo final certifica lo que vos sabés hacer." }
+        } },
+        { "tipo": "escenario", "id": "dilema-imagen", "titulo": "4. La imagen para la campaña", "competencia": "diligencia", "objetivo": "m8-o3", "inicio": "n1", "nodos": {
+          "n1": { "texto": "Agustina hace la comunicación de una cooperativa de trabajo. Genera con IA una imagen para la campaña del Día de la Mujer Trabajadora. En las cuatro versiones que obtiene, todas las mujeres son jóvenes, delgadas y de piel clara, y están en oficinas. La cooperativa es de costureras y la mayoría tiene más de cuarenta años.", "pregunta": "¿Qué hace Agustina?", "opciones": [
+            { "texto": "Elige la que mejor quedó y la publica.", "tono": "negativo", "consecuencia": "Las propias trabajadoras no se ven en la campaña que habla de ellas. Varias lo comentan en las redes.", "destino": "fin-mal" },
+            { "texto": "Ajusta el pedido: describe a las trabajadoras reales, su edad, su taller y su ropa de trabajo.", "tono": "atencion", "consecuencia": "La nueva imagen se parece más, aunque tiene detalles raros en las manos y en las máquinas.", "destino": "n2" },
+            { "texto": "Propone hacer fotos reales en el taller, con permiso de las compañeras.", "tono": "positivo", "consecuencia": "Las trabajadoras se ven a sí mismas. Además, nadie se pregunta si la imagen es real.", "destino": "fin-bien" }
+          ] },
+          "n2": { "texto": "La imagen sirve, pero se nota que es generada.", "pregunta": "¿Cómo la publica?", "opciones": [
+            { "texto": "Con una aclaración breve: \"Imagen creada con IA\".", "tono": "positivo", "consecuencia": "Es transparente y evita que alguien la tome por una foto de personas reales.", "destino": "fin-aprende" },
+            { "texto": "Sin aclarar nada.", "tono": "atencion", "consecuencia": "Algunas personas creen que es una foto real del taller. Cuando se dan cuenta, desconfían del resto de la campaña.", "destino": "fin-mal" }
+          ] },
+          "fin-bien": { "final": true, "tono": "positivo", "titulo": "Las personas en el centro", "texto": "A veces la mejor decisión es no usar IA. Saber cuándo también es criterio." },
+          "fin-aprende": { "final": true, "tono": "positivo", "titulo": "Corrigió y declaró", "texto": "Detectó el sesgo, iteró y fue transparente. Es el marco 4D completo en una sola tarea." },
+          "fin-mal": { "final": true, "tono": "negativo", "titulo": "Un sesgo publicado", "texto": "Los generadores de imágenes reproducen estereotipos. Revisar a quién representa una imagen es parte del trabajo." }
+        } }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre del bloque",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "diligencia", "objetivo": "m8-o1", "preguntas": [
+          { "texto": "¿Cuál de estas declaraciones de uso de IA es la más útil?", "opciones": [
+            { "texto": "\"Usé un asistente de IA para ordenar las ideas y proponer ejemplos. La redacción final y la revisión de los datos son mías.\"", "correcta": true, "feedback": "Dice qué hizo la IA y qué hiciste vos. Quien lo lee sabe exactamente qué es tuyo." },
+            { "texto": "\"Se usó IA.\"", "feedback": "Es demasiado genérica: no dice para qué ni qué parte es tuya." },
+            { "texto": "\"Este trabajo fue hecho con IA, así que puede tener errores.\"", "feedback": "La responsabilidad no se traslada a la herramienta: lo que entregás es tuyo." }
+          ] },
+          { "texto": "Necesitás ayuda para analizar las respuestas de una encuesta con nombres. ¿Qué hacés?", "opciones": [
+            { "texto": "Quito los nombres y todo lo que identifique antes de cargarlas.", "correcta": true, "feedback": "Anonimizar te deja usar la IA sin exponer a nadie." },
+            { "texto": "Las cargo, porque es para un análisis interno.", "feedback": "Que el uso sea interno no cambia que los datos salen a una herramienta externa." }
+          ] },
+          { "texto": "¿Qué significa un enfoque de IA centrado en lo humano?", "opciones": [
+            { "texto": "Que la IA amplía lo que las personas pueden hacer, sin reemplazar su criterio ni su responsabilidad.", "correcta": true, "feedback": "Es la mirada de la UNESCO y la idea de fondo de la diligencia." },
+            { "texto": "Que la IA tiene que parecer humana.", "feedback": "No se trata de cómo suena la IA, sino de quién decide y quién responde." }
+          ] }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario, al cerrar el bloque", "pregunta": "Terminaste el marco 4D. ¿Cuál de las cuatro dimensiones te resulta más natural y cuál te cuesta más? Volvé a tus objetivos del Módulo 0: ¿cuánto avanzaste?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Marco de competencias en IA para docentes", "apa": "UNESCO. (2024). *AI competency framework for teachers*. UNESCO.", "url": "https://www.unesco.org/en/articles/ai-competency-framework-teachers", "idioma": "en", "nivel": "Inicial", "tipo": "documento" },
+          { "titulo": "Marco de competencias en IA para estudiantes", "apa": "UNESCO. (2024). *AI competency framework for students*. UNESCO.", "url": "https://www.unesco.org/en/articles/ai-competency-framework-students", "idioma": "en", "nivel": "Inicial", "tipo": "documento" },
+          { "titulo": "AI Fluency: diligencia", "apa": "Dakan, R., Feller, J. y Anthropic. (s.f.). *AI Fluency: Framework & Foundations* [Curso en línea]. Anthropic Academy.", "url": "https://anthropic.skilljar.com/ai-fluency-framework-foundations", "idioma": "en", "nivel": "Inicial", "tipo": "curso" }
+        ] }
+      ]
+    }
+  ]
+}

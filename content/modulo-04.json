@@ -1,0 +1,112 @@
+{
+  "titulo": "Delegación",
+  "objetivos": [
+    { "id": "m4-o1", "texto": "Explicar las cuatro dimensiones del marco 4D y cómo se relacionan entre sí.", "competencia": "delegacion" },
+    { "id": "m4-o2", "texto": "Distinguir automatización, aumentación y agencia, y reconocer cuál conviene en cada caso.", "competencia": "delegacion" },
+    { "id": "m4-o3", "texto": "Decidir qué hacer sin IA, qué hacer con IA y qué delegarle, teniendo en cuenta el problema, la herramienta y tus propias capacidades.", "competencia": "delegacion" }
+  ],
+  "pasos": [
+    {
+      "titulo": "El viernes de Julián",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "texto", "md": "Julián da cursos de atención al cliente en una cadena de farmacias. Un viernes a la tarde le quedan tres cosas: mandar el recordatorio del curso del lunes, armar la consigna de la práctica final y contestarle a una participante que le escribió preocupada porque desaprobó.\n\nLe pide a un asistente que resuelva las tres. El recordatorio sale perfecto. La consigna está bien, aunque genérica. Y la respuesta a la participante es correcta, prolija y fría: nombra la nota, ofrece \"oportunidades de mejora\" y cierra con un saludo de manual. Julián la lee y la borra. Esa respuesta la tenía que escribir él.\n\nNo se trata de usar más o menos IA, sino de saber **qué** darle, **cómo** trabajar con ella y **qué** quedarte. Eso es delegar, y es la primera de cuatro habilidades que vas a trabajar en este bloque." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "El marco 4D",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Para usar la IA con criterio, el taller sigue el **marco 4D** del curso *AI Fluency* de Anthropic, desarrollado por Rick Dakan y Joseph Feller. Son cuatro habilidades que se usan juntas. La idea es que funcionen con cualquier herramienta, la de hoy y la que aparezca el año que viene.\n\nPasá el cursor o el foco por cada dimensión para ver qué incluye." },
+        { "tipo": "marco4d", "titulo": "Las cuatro dimensiones", "fuente": "Basado en el marco de *AI Fluency* (Dakan, Feller y Anthropic). Diagrama y redacción propios del taller." },
+        { "tipo": "texto", "md": "El orden importa. Primero **delegás**: decidís si la IA entra en la tarea y de qué manera. Después **describís** lo que necesitás y **discernís** lo que vuelve. Esas dos se alternan: rara vez la primera respuesta es la que sirve, así que ajustás el pedido y volvés a evaluar. Y la **diligencia** está en todo el recorrido: sos responsable de lo que cargás, de lo que usás y de cómo lo contás.\n\nEste diagrama vuelve al empezar cada módulo de este bloque, con la dimensión que se trabaja destacada." }
+      ]
+    },
+    {
+      "titulo": "Tres maneras de trabajar con IA",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Cuando decidís usar IA, no siempre la usás igual. El curso de Anthropic distingue tres modalidades:\n\n- **Automatización.** Le das una tarea concreta y la ejecuta según tus instrucciones. Vos definís qué querés; ella lo hace. Por ejemplo: \"Pasá estas notas a una lista con viñetas\".\n- **Aumentación.** Trabajan juntos, como con una colega con quien pensás en voz alta. Vos aportás criterio y contexto; ella propone, cuestiona y amplía. Por ejemplo: ida y vuelta para diseñar una actividad hasta que te convence.\n- **Agencia.** La configurás para que actúe por su cuenta, a veces con otras personas. Definís cómo se tiene que comportar y la dejás trabajar. Por ejemplo: un asistente que responde las preguntas frecuentes de un curso con el material que le cargaste.\n\nCuanto más avanzás hacia la agencia, menos ves cada paso. Por eso cada modalidad pide más preparación antes y más control después." },
+        { "tipo": "nota", "estado": "info", "titulo": "Un mismo tema, tres modalidades", "md": "Con el programa de un curso: le pedís que le dé formato a tu borrador (automatización); lo discuten juntos para mejorar la secuencia (aumentación); o armás un asistente que responde dudas de las personas inscriptas sobre ese programa (agencia)." },
+        { "tipo": "quiz", "id": "modalidades", "titulo": "¿Qué modalidad es?", "competencia": "delegacion", "objetivo": "m4-o2", "preguntas": [
+          { "texto": "Una docente le pega a la IA las respuestas abiertas de una encuesta y le pide que las agrupe por tema.", "opciones": [
+            { "texto": "Automatización", "correcta": true, "feedback": "Es una tarea concreta, con instrucciones claras, que la IA ejecuta. La docente después revisa el agrupamiento." },
+            { "texto": "Aumentación", "feedback": "No hay ida y vuelta para pensar juntas: hay un pedido y un resultado." },
+            { "texto": "Agencia", "feedback": "La IA no actúa por su cuenta ni con otras personas: responde a un pedido puntual." }
+          ] },
+          { "texto": "Un capacitador conversa con la IA durante media hora para encontrar la mejor forma de explicar un tema que a su grupo le cuesta.", "opciones": [
+            { "texto": "Automatización", "feedback": "No le pidió una tarea cerrada: están pensando juntos." },
+            { "texto": "Aumentación", "correcta": true, "feedback": "Es un intercambio en el que los dos aportan. Él pone el conocimiento del grupo; la IA, alternativas." },
+            { "texto": "Agencia", "feedback": "La IA no trabaja sola: cada paso pasa por él." }
+          ] },
+          { "texto": "Una empresa configura un asistente que responde a su personal las dudas sobre el reglamento interno.", "opciones": [
+            { "texto": "Automatización", "feedback": "Va más allá de una tarea puntual: el asistente atiende a otras personas sin que nadie revise cada respuesta." },
+            { "texto": "Aumentación", "feedback": "No hay alguien pensando junto con la IA en cada respuesta." },
+            { "texto": "Agencia", "correcta": true, "feedback": "Se definió cómo tiene que comportarse y actúa por su cuenta con otras personas. Por eso exige probarlo bien antes y revisarlo cada tanto." }
+          ] }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Antes de delegar, tres preguntas",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Antes de pasarle una tarea a la IA, conviene tener claras tres cosas:\n\n1. **El problema.** ¿Qué querés lograr y cómo te das cuenta de que salió bien? Si no lo sabés vos, la IA tampoco lo va a adivinar. Y si no podés evaluar el resultado, no lo podés delegar.\n2. **La herramienta.** ¿Qué hace bien y qué no? ¿Tiene acceso a internet o a tus archivos? ¿Qué pasa con lo que le cargás? No es lo mismo pedir un resumen de un texto que pegaste que pedir datos de este mes sin búsqueda.\n3. **Tus capacidades.** ¿Qué parte de la tarea hacés mejor que nadie? Lo que depende de tu conocimiento del grupo, de un vínculo o de una decisión que te corresponde, te lo quedás.\n\nCon esas tres respuestas, cada tarea cae en alguno de estos lugares: **la hacés vos**, **la hacés con IA** (y revisás) o **la delegás** (y verificás de un vistazo)." },
+        { "tipo": "nota", "estado": "atencion", "titulo": "Lo que nunca se delega", "md": "Decisiones sobre personas (evaluar, seleccionar, sancionar), conversaciones delicadas y cualquier tarea en la que no podrías detectar un error. La IA puede ayudarte a prepararlas, pero la decisión y el vínculo son tuyos." }
+      ]
+    },
+    {
+      "titulo": "¿Quién hace cada tarea?",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Estas son tareas reales de personas que trabajan en capacitación y en oficinas. Ubicá cada una donde te parezca. No hay una sola respuesta posible para todas: lo importante es el porqué, que aparece al comprobar." },
+        { "tipo": "clasificador", "id": "delegar", "titulo": "Lo hago yo, con IA o lo delego", "competencia": "delegacion", "objetivo": "m4-o3", "categorias": [
+          { "id": "yo", "titulo": "Lo hago yo", "descripcion": "Requiere mi criterio, un vínculo o una decisión mía." },
+          { "id": "con-ia", "titulo": "Lo hago con IA", "descripcion": "La IA aporta y yo reviso a fondo." },
+          { "id": "ia", "titulo": "Lo delego a la IA", "descripcion": "Es mecánico y lo verifico de un vistazo." }
+        ], "items": [
+          { "texto": "Darle la devolución a una participante que no aprobó el curso.", "categoria": "yo", "feedback": "Es una conversación con impacto en una persona. La IA puede ayudarte a ordenar ideas antes, pero las palabras y el tono son tuyos." },
+          { "texto": "Decidir si una persona del equipo pasa a un puesto de coordinación.", "categoria": "yo", "feedback": "Es una decisión sobre una persona, con datos sensibles y consecuencias. No se delega." },
+          { "texto": "Responder a un participante que contó un problema familiar para justificar una ausencia.", "categoria": "yo", "feedback": "Hay información personal y un vínculo en juego. Además, no corresponde cargar ese mensaje en una herramienta externa." },
+          { "texto": "Aprobar el presupuesto de un proveedor para el próximo curso.", "categoria": "yo", "feedback": "Es una decisión con responsabilidad económica. La IA puede ayudarte a comparar opciones, pero aprobar es tuyo." },
+          { "texto": "Armar el primer borrador del programa de un curso nuevo.", "categoria": "con-ia", "feedback": "La IA acelera el punto de partida. El programa final necesita tu conocimiento del tema y del grupo." },
+          { "texto": "Buscar ejemplos para explicar un concepto que a tu grupo le cuesta.", "categoria": "con-ia", "feedback": "Es aumentación: ella propone variantes y vos elegís las que sirven para esas personas." },
+          { "texto": "Preparar las preguntas para entrevistar a los jefes de área antes de diseñar una capacitación.", "categoria": "con-ia", "feedback": "Te ayuda a no olvidarte de nada, pero vos sabés qué necesitás averiguar en esa organización." },
+          { "texto": "Revisar si las consignas de un examen se entienden.", "categoria": "con-ia", "feedback": "Puede señalarte ambigüedades que no ves. La decisión de cómo reescribirlas es tuya." },
+          { "texto": "Pasar a una tabla las fechas y aulas ya confirmadas del cronograma.", "categoria": "ia", "feedback": "Es mecánico, con datos que ya validaste y sin información personal. Lo revisás de un vistazo." },
+          { "texto": "Corregir la ortografía de un texto tuyo antes de enviarlo.", "categoria": "ia", "feedback": "Tarea acotada sobre tu propio material. Comparás antes y después en un minuto." },
+          { "texto": "Dar formato de lista a las notas que tomaste en una reunión.", "categoria": "ia", "feedback": "Trabaja sobre tu texto y no tiene que inventar nada. Fijate solo que no haya cambiado el sentido." },
+          { "texto": "Traducir al inglés un aviso breve de cambio de horario.", "categoria": "ia", "feedback": "Es corto y fácil de revisar, incluso con un inglés básico. Si fuera un contrato, la historia sería otra." }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "delegacion", "objetivo": "m4-o1", "preguntas": [
+          { "texto": "¿Qué dimensión del marco 4D está presente en todo el trabajo, de principio a fin?", "opciones": [
+            { "texto": "Diligencia", "correcta": true, "feedback": "La responsabilidad sobre lo que cargás, usás y compartís no empieza ni termina en un paso: atraviesa todo." },
+            { "texto": "Descripción", "feedback": "La descripción es un momento del trabajo, que se alterna con el discernimiento." },
+            { "texto": "Delegación", "feedback": "La delegación abre el trabajo: es la decisión inicial." }
+          ] },
+          { "texto": "¿Por qué Descripción y Discernimiento forman un ciclo?", "opciones": [
+            { "texto": "Porque rara vez la primera respuesta sirve: ajustás el pedido según lo que evaluaste y volvés a evaluar.", "correcta": true, "feedback": "Exacto. Es el ciclo que vas a trabajar en el Módulo 7." },
+            { "texto": "Porque hay que escribir el mismo prompt dos veces.", "feedback": "No se trata de repetir, sino de mejorar el pedido con lo que aprendiste de la respuesta." }
+          ] },
+          { "texto": "Antes de delegar una tarea, ¿cuál de estas preguntas es la más importante?", "opciones": [
+            { "texto": "¿Puedo darme cuenta de si el resultado está bien?", "correcta": true, "feedback": "Si no podés evaluar el resultado, no lo podés delegar sin riesgo." },
+            { "texto": "¿Cuál es la herramienta más nueva?", "feedback": "La herramienta importa, pero no define si la tarea se puede delegar." },
+            { "texto": "¿Cuánto tiempo me ahorra?", "feedback": "El ahorro importa, pero no compensa un resultado que no podés verificar." }
+          ] }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "Elegí una tarea de tu semana que hoy hacés sin IA. ¿En qué columna la pondrías y por qué? Si la pasaras a \"con IA\", ¿qué parte te quedarías siempre?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "AI Fluency: el curso del marco 4D", "apa": "Dakan, R., Feller, J. y Anthropic. (s.f.). *AI Fluency: Framework & Foundations* [Curso en línea]. Anthropic Academy.", "url": "https://anthropic.skilljar.com/ai-fluency-framework-foundations", "idioma": "en", "nivel": "Inicial", "tipo": "curso" },
+          { "titulo": "Co-intelligence: vivir y trabajar con IA", "apa": "Mollick, E. (2024). *Co-intelligence: Living and working with AI*. Portfolio.", "idioma": "en", "nivel": "Inicial", "tipo": "libro" }
+        ] }
+      ]
+    }
+  ]
+}

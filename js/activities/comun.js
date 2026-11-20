@@ -37,7 +37,8 @@ const TIPOS = {
   constructor: ["edit_note", "Constructor guiado"], reflexion: ["edit", "Reflexión para tu diario"],
   comparador: ["compare", "Antes y después"], tabla: ["table_chart", "Tabla comparativa"],
   flujo: ["account_tree", "Diseñá un flujo"], storyboard: ["movie", "Storyboard"], mapa: ["hub", "Mapa de impactos"],
-  perfil: ["person", "Tu recorrido"], objetivos: ["flag", "Tus objetivos"], autodiagnostico: ["insights", "Autodiagnóstico"], predictor: ["keyboard", "Predictor de palabras"]
+  perfil: ["person", "Tu recorrido"], objetivos: ["flag", "Tus objetivos"], autodiagnostico: ["insights", "Autodiagnóstico"], predictor: ["keyboard", "Predictor de palabras"],
+  "subir-nivel": ["trending_up", "Subí de nivel"], checklist: ["checklist", "Checklist"]
 };
 
 /** Marco de la actividad. El id del título se usa como nombre accesible de la región. */
