@@ -364,7 +364,26 @@
       "titulo": "IA para programar",
       "descripcion": "Del autocompletado a los agentes.",
       "pasos": 8,
-      "minutos": 75
+      "minutos": 75,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m14-o1",
+          "competencia": "crear"
+        },
+        {
+          "id": "m14-o2",
+          "competencia": "comprender"
+        },
+        {
+          "id": "m14-o3",
+          "competencia": "descripcion"
+        },
+        {
+          "id": "m14-o4",
+          "competencia": "discernimiento"
+        }
+      ]
     },
     {
       "id": 15,
@@ -372,7 +391,22 @@
       "titulo": "IA para imagen",
       "descripcion": "Prompt visual, derechos y procedencia.",
       "pasos": 6,
-      "minutos": 55
+      "minutos": 55,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m15-o1",
+          "competencia": "comprender"
+        },
+        {
+          "id": "m15-o2",
+          "competencia": "descripcion"
+        },
+        {
+          "id": "m15-o3",
+          "competencia": "diligencia"
+        }
+      ]
     },
     {
       "id": 16,
@@ -380,7 +414,22 @@
       "titulo": "IA para audio, voz y música",
       "descripcion": "Voz sintética, música generativa y consentimiento.",
       "pasos": 6,
-      "minutos": 55
+      "minutos": 55,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m16-o1",
+          "competencia": "crear"
+        },
+        {
+          "id": "m16-o2",
+          "competencia": "diligencia"
+        },
+        {
+          "id": "m16-o3",
+          "competencia": "crear"
+        }
+      ]
     },
     {
       "id": 17,
@@ -388,7 +437,22 @@
       "titulo": "IA para video y animación",
       "descripcion": "Del guion al video y su ética.",
       "pasos": 6,
-      "minutos": 55
+      "minutos": 55,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m17-o1",
+          "competencia": "crear"
+        },
+        {
+          "id": "m17-o2",
+          "competencia": "crear"
+        },
+        {
+          "id": "m17-o3",
+          "competencia": "diligencia"
+        }
+      ]
     },
     {
       "id": 18,

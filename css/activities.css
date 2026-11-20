@@ -389,3 +389,38 @@
 .kit-caso{border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-medium);padding:var(--app-space-4);display:grid;gap:var(--app-space-3)}
 .kit-caso h6{font:var(--md-sys-typescale-title-small)}
 .kit-sit{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+
+/* ---------- Catálogo de herramientas de creación (D-055) ---------- */
+.cat-lista{list-style:none;margin:0;padding:0;display:grid;gap:var(--app-space-2)}
+.cat-item{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--app-space-2) var(--app-space-4);border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-medium);padding:var(--app-space-3) var(--app-space-4)}
+.cat-txt{flex:1 1 280px;display:grid;gap:var(--app-space-1)}
+.cat-nom{font:var(--md-sys-typescale-body-large)}
+.cat-tipo{font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-primary)}
+.cat-det{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+
+/* ---------- Leé el agente ---------- */
+.ag-chat{list-style:none;margin:0;padding:0;display:grid;gap:var(--app-space-3)}
+.ag-turno{display:grid;gap:var(--app-space-2);padding:var(--app-space-3) var(--app-space-4);border-radius:var(--md-sys-shape-corner-large);max-width:min(100%,640px)}
+.ag-persona{justify-self:end;background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container)}
+.ag-agente{justify-self:start;background:var(--app-color-card-item);border:1px solid var(--md-sys-color-outline-variant)}
+.ag-quien{display:flex;align-items:center;gap:var(--app-space-1);font:var(--md-sys-typescale-label-large)}
+.ag-msg{font:var(--md-sys-typescale-body-large)}
+.ag-cod{margin:var(--app-space-2) 0 0;padding:var(--app-space-2) var(--app-space-3);border-radius:var(--md-sys-shape-corner-small);background:var(--md-sys-color-inverse-surface);color:var(--md-sys-color-inverse-on-surface);font:var(--md-sys-typescale-body-medium);font-family:ui-monospace,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.ag-cod:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:2px}
+.ag-marca{justify-self:start}
+.ag-turno.is-ok{border-color:var(--app-color-success)}
+.ag-turno.is-missed{border:2px dashed var(--md-sys-color-error)}
+.ag-turno.is-bad{border-color:var(--md-sys-color-error)}
+
+/* ---------- Guion para voz ---------- */
+.gv-marcas{display:flex;flex-wrap:wrap;gap:var(--app-space-2)}
+.gv-dur{font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-on-surface-variant)}
+
+/* ---------- Guía plegable ---------- */
+.guia{border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-medium)}
+.guia summary{display:flex;align-items:center;gap:var(--app-space-2);min-height:48px;padding:var(--app-space-2) var(--app-space-4);font:var(--md-sys-typescale-title-small);cursor:pointer;list-style:none}
+.guia summary::-webkit-details-marker{display:none}
+.guia summary::after{content:"expand_more";font-family:"Material Symbols Rounded";font-size:24px;margin-left:auto;transition:transform var(--md-sys-motion-spring-fast-spatial)}
+.guia[open] summary::after{transform:rotate(180deg)}
+.guia summary:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:-3px;border-radius:var(--md-sys-shape-corner-medium)}
+.guia-cuerpo{padding:0 var(--app-space-4) var(--app-space-4)}

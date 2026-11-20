@@ -59,6 +59,10 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-051 | 2026-11-20 | Fuentes de las herramientas y datos sin confirmar | Vigente |
 | D-052 | 2026-11-20 | Etapa 6 (bloque 4): componentes y Módulos 11 a 13 | Vigente |
 | D-053 | 2026-11-20 | Etapa 6 (bloque 4): verificación | Vigente |
+| D-054 | 2026-11-20 | Componentes del bloque 5: "Leé el agente", guion para voz y guía plegable | Vigente |
+| D-055 | 2026-11-20 | Herramientas de creación en `herramientas.json`, con fuentes | Vigente |
+| D-056 | 2026-11-20 | Etapa 7 (bloque 5): Módulos 14 a 17 | Vigente |
+| D-057 | 2026-11-20 | Etapa 7 (bloque 5): verificación | Vigente |
 
 ---
 
@@ -1106,5 +1110,115 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
   - sin errores de consola.
 - Dos fallas de la prueba no eran del sitio y se comprobaron aparte: el snackbar se leía antes de aparecer, y el kit recordaba el área elegida antes en la misma prueba, que es el comportamiento esperado.
 - `npm run verificar` completo: 696 capturas (58 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, scroll, áreas táctiles, consola, movimiento, texto ni design system.
+
+**Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.
+
+## D-054 | 2026-11-20 | Componentes del bloque 5
+
+**Solicitado:** las actividades del bloque 5 que todavía no existían: "Leé el agente" (Módulo 14), "Guion para voz" (Módulo 16) y la guía opcional para publicar (Módulo 14). El brief, el constructor de prompt visual y el storyboard ya estaban desde la etapa 2.
+
+**Decisión y motivo:**
+- **Leé el agente:**
+  - una conversación con forma de chat entre la persona y un agente de programación, con los comandos y el código en su propio recuadro;
+  - en cada mensaje del agente hay un botón "Revisaría o frenaría acá";
+  - al comprobar, cada mensaje explica por qué era o no un momento para frenar, y se marcan los que faltaron y los que sobraron.
+- **Guion para voz:**
+  - un editor con botones para insertar pausas y énfasis;
+  - la duración estimada mientras se escribe (150 palabras por minuto, más un segundo por pausa), con aviso si queda fuera de 30 a 60 segundos;
+  - un ejemplo, la opción de copiar y la descarga en .txt con la duración;
+  - lo acompaña un checklist de calidad (claridad, ritmo, pronunciación y uso responsable) y un clasificador de usos permitidos y no permitidos de la voz.
+- **Guía plegable:** un bloque `<details>` para pasos opcionales (publicar en GitHub Pages), que no alarga la lección para quien no lo necesita.
+- **Lo que encontró la auditoría:**
+  - El código en línea de las lecciones medía 14,4 px (0,9 del texto), fuera de la escala. Ahora mide 14 px.
+  - La barra "Pausa" y "Énfasis" quedó como **excepción documentada** de alineación: es una barra de edición sobre el texto, no una fila de acciones, y por eso empieza a la izquierda (`data-excepcion-ds="acciones-alineacion"`).
+
+**Archivos afectados:** `js/activities/creacion.js`, `js/activities/comun.js`, `js/lesson/leccion.js`, `css/activities.css`, `css/lesson.css`.
+
+**Verificación realizada:** ver D-057.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-055 | 2026-11-20 | Herramientas de creación
+
+**Solicitado:** que los nombres de herramientas del bloque 5 estén en `herramientas.json`, con fecha y enlace oficial, y que las lecciones expliquen procesos que sirven con cualquiera.
+
+**Decisión y motivo:**
+- `herramientas.json` suma una sección `creacion`, con cinco categorías: programar, imagen, audio, video y procedencia. El bloque `catalogo` muestra una categoría con nombre, empresa, tipo, una línea y el enlace al sitio oficial.
+- **Verificado el 2026-11-20 en el sitio oficial:**
+  - Claude Code, Google Antigravity, GitHub Copilot, Cursor y AGENTS.md;
+  - la página de Claude Code sobre CLAUDE.md y la guía de GitHub Pages;
+  - los modelos de imagen de Google (Gemini Image), Veo y Lyria;
+  - SynthID, C2PA y la Content Authenticity Initiative;
+  - ElevenLabs, con su página de clonación de voz, que exige el consentimiento explícito de la otra persona, y su página de seguridad.
+- **No confirmado:** Codex y Sora, de OpenAI, porque sus páginas rechazaron la lectura automática. Figuran en la lista con "No pudimos confirmar su página oficial" y sin enlace.
+- **"Vibe coding":** la publicación original de Karpathy en X no se pudo abrir. Wikipedia confirma que acuñó el término en febrero de 2025. La lección dice eso y no cita la publicación.
+
+**Archivos afectados:** `content/herramientas.json`, `js/activities/creacion.js`.
+
+**Verificación realizada:** consulta de cada sitio oficial; URL guardada en cada herramienta.
+
+**Pendientes o riesgos:** **para Lourdes:** confirmar los sitios oficiales de Codex y Sora y completar su entrada.
+
+## D-056 | 2026-11-20 | Etapa 7 (bloque 5): Módulos 14 a 17
+
+**Solicitado:** producir el contenido del bloque 5 (Crear con IA), con los constructores de brief, prompt visual y storyboard (sección 8 del brief, etapa 7).
+
+**Decisión y motivo:**
+- **Módulo 14, IA para programar:**
+  - el caso de Lucía, que publica su página con su celular personal sin darse cuenta;
+  - tres niveles de ayuda (sugerencias, chat y agentes) y el catálogo;
+  - conceptos mínimos (archivo, repositorio, terminal, diff, Git y publicar);
+  - "vibe coding" y su límite: si un error afecta a otras personas, hace falta revisión profesional;
+  - cómo darle contexto a un agente (brief, CLAUDE.md o AGENTS.md, etapas);
+  - "Tu primer brief", con siete campos y descarga en Markdown, y la guía opcional para publicar;
+  - discernimiento y seguridad, y "Leé el agente".
+- **Módulo 15, IA para imagen:**
+  - cómo funcionan, explicado con la idea de limpiar el ruido;
+  - qué permiten;
+  - el prompt visual en siete componentes, con el antes y después del caso de Diego;
+  - el constructor de prompt visual, con un desplegable de formato;
+  - derechos (estilos de artistas, marcas, personas reales, licencias);
+  - procedencia con C2PA y SynthID, y por qué detectar una imagen generada es difícil.
+- **Módulo 16, IA para audio, voz y música:**
+  - el caso de Valeria y sus cápsulas;
+  - qué se puede producir;
+  - clonación de voz, con usos legítimos, riesgos y consentimiento por escrito, y un clasificador de usos;
+  - música generativa como debate abierto, con aviso de que no es asesoramiento legal;
+  - "Guion para voz" con su checklist de calidad.
+- **Módulo 17, IA para video y animación:**
+  - el caso de Martín;
+  - qué se puede hacer;
+  - del guion al video en seis pasos, con los límites técnicos actuales;
+  - ética del video sintético, con tres situaciones;
+  - el storyboard de 4 a 6 escenas, imprimible.
+- **Verificador:** "módulo sin lección" pasa al Módulo 18.
+- **Repositorio:** `.claude/` (la configuración local de vista previa) se agregó a `.gitignore`, para que no se publique.
+
+**Archivos afectados:** `content/modulo-14.json` a `content/modulo-17.json`, `content/modulos.json`, `scripts/pantallas.mjs`, `.gitignore`.
+
+**Verificación realizada:** ver D-057.
+
+**Pendientes o riesgos:** la animación prioritaria 6 (cómo un modelo de imagen genera a partir de ruido) queda para la parte de animaciones, con la 4, la 5 y la 10.
+
+## D-057 | 2026-11-20 | Etapa 7 (bloque 5): verificación
+
+**Solicitado:** verificar el bloque 5 antes de subirlo.
+
+**Decisión y motivo:** el verificador y la auditoría suman seis pantallas del bloque 5 (catálogo, brief, agente, prompt visual, guion y storyboard).
+
+**Archivos afectados:** `scripts/pantallas.mjs`.
+
+**Verificación realizada:**
+- Prueba de punta a punta en 1280 px (claro) y 390 px (oscuro), todo correcto:
+  - los 26 pasos cargan, sin problemas de axe-core ni de la auditoría;
+  - el catálogo muestra 5 herramientas, 1 sin confirmar;
+  - el brief se descarga completo;
+  - "Leé el agente" informa aciertos, faltantes y de más, y los marca;
+  - el prompt visual incluye el formato elegido;
+  - el guion inserta pausas, estima la duración y se descarga;
+  - el storyboard empieza con 4 escenas;
+  - sin errores de consola.
+- La prueba encontró un error y se corrigió: al comprobar "Leé el agente", un mensaje sin marcar ni para frenar intentaba agregar una clase vacía.
+- `npm run verificar` completo: 768 capturas (64 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, scroll, consola, movimiento, texto ni design system. Encontró un problema, ya corregido: el recuadro de un comando de una línea en "Leé el agente" se podía enfocar con el teclado y medía 36 px de alto. Como no tiene scroll (el texto se corta en renglones), dejó de ser enfocable. Después, `npm run verificar:rapido` sin ningún problema (384 capturas).
 
 **Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.

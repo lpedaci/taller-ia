@@ -1,0 +1,80 @@
+{
+  "titulo": "IA para video y animación",
+  "objetivos": [
+    { "id": "m17-o1", "texto": "Reconocer las formas de crear y editar video con IA y sus límites técnicos actuales.", "competencia": "crear" },
+    { "id": "m17-o2", "texto": "Planificar un video del guion a la revisión, usando la IA en cada paso con criterio propio.", "competencia": "crear" },
+    { "id": "m17-o3", "texto": "Aplicar los cuidados éticos del video sintético: personas reales, etiquetado y contexto.", "competencia": "diligencia" }
+  ],
+  "pasos": [
+    {
+      "titulo": "Un minuto, seis escenas",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "texto", "md": "Martín tiene que presentar el nuevo procedimiento de seguridad de su planta. Le pidieron un video corto, para pasar en las pantallas del comedor. Abre un generador de video, escribe \"video sobre seguridad en una planta industrial\" y obtiene ocho segundos de una fábrica genérica, con un operario que tiene el casco atravesado por la mano.\n\nSe da cuenta de que se salteó todo lo que haría si filmara de verdad: ¿qué quiere que la gente haga después de verlo? ¿Qué se dice en cada momento? ¿Qué se ve? Vuelve al papel y arma seis escenas: qué se ve, qué dice el texto en pantalla, qué dice la voz.\n\nRecién ahí genera, escena por escena, y monta. El video final dura un minuto y se entiende. La IA hizo mucho, pero el que sabía qué contar era él." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "Qué se puede hacer con video",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "- **Texto a video:** describís una escena y se genera un clip corto.\n- **Imagen a video:** partís de una imagen (una foto, una ilustración) y la IA la anima.\n- **Avatares que hablan:** una persona sintética, o la imagen de una real con su permiso, dice un texto que escribiste.\n- **Animación:** personajes, gráficos y transiciones a partir de una descripción o de un boceto.\n- **Edición asistida:** subtítulos automáticos, recortes de silencios, reencuadre para pasar un video horizontal a vertical, búsqueda de un momento por lo que se dice.\n\nPara el trabajo, la edición asistida suele ser lo más útil y lo menos riesgoso: mejora lo que ya grabaste." },
+        { "tipo": "catalogo", "categoria": "video", "titulo": "Algunos ejemplos de herramientas" }
+      ]
+    },
+    {
+      "titulo": "Del guion al video",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Un video con IA se hace con los mismos pasos que cualquier video. La IA ayuda en cada uno, y el criterio sigue siendo tuyo:\n\n1. **Idea:** qué querés que pase después de que lo vean. La IA te ayuda a afinarla con preguntas.\n2. **Guion:** qué se dice y en qué orden. La IA propone borradores; vos decidís el mensaje.\n3. **Storyboard:** qué se ve en cada escena, con el texto en pantalla y la voz. Es el paso que más se saltea y el que más ahorra.\n4. **Generación por escenas:** un clip por escena, con un prompt visual propio (Módulo 15) y el mismo estilo en todos.\n5. **Edición:** montar, agregar voz (Módulo 16), música y subtítulos.\n6. **Revisión:** mirarlo entero, en el lugar donde se va a ver, con alguien que no lo hizo.\n\n**Límites técnicos actuales,** en general:\n\n- **Coherencia entre escenas:** una misma persona u objeto puede cambiar de cara, de ropa o de color de un clip al otro.\n- **Manos y texto en la imagen:** siguen siendo los puntos más débiles. Mejor agregar los textos en la edición.\n- **Duración:** los clips generados suelen ser cortos, de segundos. Un video largo se arma con muchos clips." }
+      ]
+    },
+    {
+      "titulo": "Ética del video sintético",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "El video es el formato más creíble, y por eso el más delicado:\n\n- **Deepfakes:** videos que muestran a una persona real haciendo o diciendo algo que no hizo. Pueden destruir una reputación o sostener una estafa (Módulo 9).\n- **Imagen de personas reales:** para usar la cara o el cuerpo de alguien, aunque sea un avatar, hace falta su consentimiento escrito, con el uso y el plazo acordados.\n- **Etiquetar el contenido sintético:** si el video tiene escenas o personas generadas, decilo, en el video o en su descripción. Muchas plataformas lo piden.\n- **Contexto electoral y de noticias:** un video falso de un hecho o de una figura pública puede influir en una elección o generar pánico. En esos contextos, la regla es no generar nada que pueda confundirse con un registro real." },
+        { "tipo": "quiz", "id": "etica", "titulo": "¿Qué harías?", "competencia": "diligencia", "objetivo": "m17-o3", "preguntas": [
+          { "texto": "Querés un avatar con la cara de la directora de tu escuela para dar la bienvenida a los ingresantes.", "opciones": [
+            { "texto": "Le pido su consentimiento por escrito, le muestro el guion y aclaro en el video que es un avatar.", "correcta": true, "feedback": "Consentimiento, control sobre lo que dice y transparencia con quien lo mira." },
+            { "texto": "Lo hago con una foto suya de la página: es para algo positivo.", "feedback": "Aunque la intención sea buena, usa su imagen y pone palabras en su boca sin permiso." }
+          ] },
+          { "texto": "Tu video de capacitación tiene escenas generadas de una planta que no es la tuya.", "opciones": [
+            { "texto": "Indico en el video que son escenas ilustrativas, generadas con IA.", "correcta": true, "feedback": "Así nadie las toma por un registro de tu planta." },
+            { "texto": "No digo nada, porque se ven muy reales.", "feedback": "Justamente porque se ven reales, conviene aclararlo." }
+          ] },
+          { "texto": "Te piden un video humorístico con un candidato diciendo algo que no dijo, en época de elecciones.", "opciones": [
+            { "texto": "No lo hago: aunque sea humor, puede circular sin contexto como si fuera real.", "correcta": true, "feedback": "En contexto electoral, el riesgo de confusión pesa más que la intención." },
+            { "texto": "Lo hago y agrego una marca chica que diga \"parodia\".", "feedback": "Las marcas se recortan y el video circula solo. En este contexto es mejor no generarlo." }
+          ] }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Storyboard",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Planificá un video corto de tu trabajo en 4 a 6 escenas: una cápsula de capacitación, la presentación de un servicio, un instructivo. Para cada escena, completá qué se ve, qué dice el texto en pantalla, qué dice la voz y el prompt para generarla. Al terminar, imprimilo o guardalo como PDF: es tu plan de rodaje." },
+        { "tipo": "storyboard", "id": "storyboard", "titulo": "Storyboard de mi video", "competencia": "crear", "objetivo": "m17-o2", "evidencia": "Storyboard de un video corto", "consigna": "Entre 4 y 6 escenas. Tip: escribí primero la voz de todas las escenas, y después lo que se ve." }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre del bloque",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "vf", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "crear", "objetivo": "m17-o1", "afirmaciones": [
+          { "texto": "Para un video de un minuto, conviene generar escena por escena a partir de un storyboard.", "verdadero": true, "explicacion": "Los clips generados son cortos y la coherencia entre escenas es difícil: planificar escena por escena lo resuelve mejor." },
+          { "texto": "Los textos dentro de la imagen generada suelen salir bien, así que no hace falta agregarlos en la edición.", "verdadero": false, "explicacion": "El texto sigue siendo un punto débil. Es más seguro agregarlo al editar." },
+          { "texto": "Para usar la imagen de una persona real en un avatar, alcanza con que sea una figura pública.", "verdadero": false, "explicacion": "Hace falta su consentimiento. Ser una figura pública no autoriza a ponerle palabras en la boca." },
+          { "texto": "La edición asistida (subtítulos, recortes, reencuadre) es de los usos más útiles y menos riesgosos.", "verdadero": true, "explicacion": "Mejora lo que ya grabaste, sin generar personas ni hechos que no existieron." }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario, al cerrar el bloque", "pregunta": "En este bloque creaste un brief, un prompt visual, un guion para voz y un storyboard. ¿Cuál de esos productos te sirve más en tu trabajo? ¿Qué parte del proceso seguiría siendo tuya aunque la IA pudiera hacerlo todo?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Veo, el modelo de video de Google DeepMind", "apa": "Google DeepMind. (s.f.). *Veo*.", "url": "https://deepmind.google/models/veo/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "SynthID, marcas de agua invisibles en video", "apa": "Google DeepMind. (s.f.). *SynthID*.", "url": "https://deepmind.google/science/synthid/", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" },
+          { "titulo": "Content Authenticity Initiative", "apa": "Content Authenticity Initiative. (s.f.). *Content Authenticity Initiative*.", "url": "https://contentauthenticity.org/", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" }
+        ] }
+      ]
+    }
+  ]
+}

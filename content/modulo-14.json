@@ -1,0 +1,118 @@
+{
+  "titulo": "IA para programar",
+  "objetivos": [
+    { "id": "m14-o1", "texto": "Distinguir tres niveles de ayuda para programar: sugerencias, chat y agentes.", "competencia": "crear" },
+    { "id": "m14-o2", "texto": "Entender los conceptos mínimos para trabajar con un agente: archivo, repositorio, terminal, diff, Git y publicar.", "competencia": "comprender" },
+    { "id": "m14-o3", "texto": "Escribir un brief claro para que un agente construya una página simple.", "competencia": "descripcion" },
+    { "id": "m14-o4", "texto": "Reconocer los momentos en que hay que revisar o frenar a un agente, y los cuidados de seguridad.", "competencia": "discernimiento" }
+  ],
+  "pasos": [
+    {
+      "titulo": "Una página en una tarde",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "texto", "md": "Lucía da clases de cerámica en su casa y hace años que quiere una página para mostrar sus trabajos y sus horarios. Nunca programó. Un domingo a la tarde abre un agente de programación, le describe lo que quiere y, tres horas después, tiene una página publicada.\n\nAl día siguiente una alumna le escribe: \"Lucía, en tu página aparece tu número de celular personal y la dirección de tu casa\". El agente los había agregado al pie, \"para que te puedan contactar\". Lucía no lo había visto: miró que la página se viera linda y la publicó.\n\nLa historia termina bien, porque lo corrigió en cinco minutos. Pero muestra las dos caras de este módulo: con IA, hoy se puede construir sin saber programar; y justamente por eso hay que saber qué mirar." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "Del autocompletado a los agentes",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "La IA ayuda a programar en tres niveles, de menos a más autonomía:\n\n1. **Sugerencias en el editor.** Mientras alguien escribe código, la IA propone cómo completar la línea o la función. Quien programa acepta o descarta cada sugerencia.\n2. **Chat que escribe código.** Le pedís algo en una conversación (\"una función que ordene esta lista\") y te devuelve el código para copiar. Vos lo pegás donde va y lo probás.\n3. **Agentes.** Reciben un objetivo (\"armá una página con estas secciones\") y lo hacen por su cuenta: planifican, crean y editan archivos, ejecutan comandos, prueban y corrigen, hasta terminar. Vos revisás lo que hicieron.\n\nCuanto más autónomo, más trabajo te ahorra y más importante es revisar. Es la misma lógica de la Delegación (Módulo 4): de la automatización a la agencia." },
+        { "tipo": "catalogo", "categoria": "programar", "titulo": "Algunas herramientas, por tipo" },
+        { "tipo": "nota", "estado": "info", "titulo": "Generadores de apps en el navegador", "md": "También hay servicios que arman una aplicación completa desde una descripción, sin instalar nada. Son la puerta de entrada más fácil, y tienen los mismos cuidados: revisar qué construyeron y qué datos guardan." }
+      ]
+    },
+    {
+      "titulo": "Conceptos mínimos para no perderse",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "No hace falta saber programar, pero sí entender lo que el agente te cuenta:\n\n- **Archivo y carpeta.** Una página es un conjunto de archivos (por ejemplo, `index.html` para el contenido y `styles.css` para el diseño) dentro de una carpeta.\n- **Repositorio.** La carpeta de un proyecto con todo su historial de cambios. Suele vivir también en internet, en servicios como GitHub.\n- **Terminal.** Una ventana donde se escriben comandos de texto. Los agentes la usan para instalar, probar y publicar. Cada comando hace algo concreto, y algunos no tienen vuelta atrás.\n- **Diff.** La comparación entre un archivo antes y después de un cambio: en rojo lo que se quitó, en verde lo que se agregó. Es la forma de leer qué hizo el agente.\n- **Control de versiones con Git.** Guarda cada versión del proyecto como una foto (un *commit*). Si algo sale mal, se puede volver a una versión anterior.\n- **Publicar.** Subir la página a un servidor para que cualquiera la vea. Servicios como GitHub Pages publican gratis una página hecha con HTML." },
+        { "tipo": "vf", "id": "conceptos", "titulo": "¿Lo tenés claro?", "competencia": "comprender", "objetivo": "m14-o2", "afirmaciones": [
+          { "texto": "Un diff muestra qué se agregó y qué se quitó en un archivo.", "verdadero": true, "explicacion": "Es la herramienta principal para revisar el trabajo de un agente: ves exactamente qué cambió." },
+          { "texto": "Si trabajás con Git, un error del agente no se puede deshacer.", "verdadero": false, "explicacion": "Al contrario: Git guarda cada versión, así que se puede volver a una anterior." },
+          { "texto": "Todos los comandos de la terminal se pueden deshacer.", "verdadero": false, "explicacion": "Algunos borran archivos o publican cosas y no tienen vuelta atrás. Por eso conviene leerlos antes de aceptarlos." }
+        ] }
+      ]
+    },
+    {
+      "titulo": "\"Vibecoding\": hasta dónde se llega sin programar",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "En febrero de 2025, el investigador Andrej Karpathy llamó *vibe coding* a programar describiendo lo que querés y aceptando lo que la IA genera, casi sin leer el código. El término se popularizó enseguida.\n\n**Qué se puede hacer así:** páginas simples, prototipos para mostrar una idea, herramientas personales (una calculadora para tu trabajo, un organizador de turnos), automatizaciones chicas.\n\n**Dónde está el límite:** cuando la aplicación guarda datos de otras personas, maneja pagos o contraseñas, tiene que funcionar para muchos usuarios o mantenerse durante años. Ahí hace falta alguien que entienda el código, porque los errores que no se ven (de seguridad, de privacidad) son los más caros.\n\nUna regla práctica: si un error en lo que construiste solo te afecta a vos, podés experimentar. Si afecta a otras personas, necesitás revisión profesional." }
+      ]
+    },
+    {
+      "titulo": "Darle contexto a un agente",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Un agente trabaja mejor con lo mismo que una persona: un pedido claro y el contexto del proyecto.\n\n- **Un brief.** Qué querés construir, para quién, qué secciones, qué estilo, qué no tiene que tener. Es la Descripción del marco 4D aplicada al código.\n- **Archivos de instrucciones del proyecto.** Muchos agentes leen un archivo con las reglas del proyecto cada vez que empiezan: por ejemplo, `CLAUDE.md` en Claude Code o `AGENTS.md`, un formato abierto que usan varios agentes. Ahí van las decisiones que no querés repetir: el idioma, los colores, qué nunca hacer.\n- **Trabajar por etapas.** En lugar de pedir todo junto, pedí una parte, revisala, probala y recién ahí seguí. Si algo sale mal, sabés en qué etapa fue.\n\nEste mismo taller se construyó así: con un brief, un archivo de instrucciones y etapas que se revisaron una por una." }
+      ]
+    },
+    {
+      "titulo": "Tu primer brief",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Escribí el brief de una página simple: un portfolio, la presentación de un emprendimiento o de un curso. Completá lo que puedas; los campos opcionales mejoran el resultado. Al terminar, descargalo: es el archivo que le das al agente para empezar." },
+        { "tipo": "constructor", "id": "brief", "titulo": "Tu primer brief", "modo": "brief", "archivo": "brief-de-mi-pagina", "competencia": "descripcion", "objetivo": "m14-o3", "evidencia": "Brief de una página para un agente de programación", "consigna": "El brief se arma abajo a medida que escribís.", "campos": [
+          { "id": "proyecto", "etiqueta": "Qué querés construir", "obligatorio": true, "ayuda": "En una o dos oraciones.", "ejemplo": "Una página de una sola pantalla para presentar mis clases de cerámica." },
+          { "id": "publico", "etiqueta": "Para quién es", "multilinea": true, "ayuda": "Quién la va a visitar y qué busca.", "ejemplo": "Personas adultas de mi barrio que buscan una actividad creativa para hacer una vez por semana." },
+          { "id": "secciones", "etiqueta": "Secciones y contenido", "multilinea": true, "ayuda": "Qué partes tiene y qué va en cada una. Si tenés los textos, pegalos.", "ejemplo": "Inicio con una foto y una frase; horarios y precios; galería de trabajos de alumnos (con su permiso); contacto con un botón a WhatsApp." },
+          { "id": "estilo", "etiqueta": "Estilo", "ayuda": "Colores, tipo de letra, sensación general.", "ejemplo": "Cálido y simple: terracota y blanco, letra grande y fácil de leer." },
+          { "id": "restricciones", "etiqueta": "Lo que no tiene que tener", "multilinea": true, "ayuda": "Datos que no querés publicar y cosas que no querés que haga.", "ejemplo": "Sin mi dirección ni mi celular personal: el contacto es solo por el botón de WhatsApp del emprendimiento. Sin formularios que guarden datos." },
+          { "id": "tecnica", "etiqueta": "Condiciones técnicas", "multilinea": true, "ayuda": "Si no sabés, dejalo así: es un buen punto de partida.", "ejemplo": "HTML y CSS simples, sin programas que haya que instalar, que se vea bien en el celular y que se pueda publicar gratis en GitHub Pages." },
+          { "id": "etapas", "etiqueta": "Cómo trabajar", "multilinea": true, "ayuda": "Pedile que trabaje por etapas y te muestre cada una.", "ejemplo": "Primero mostrame un plan. Después hacé una sección por vez y esperá a que la revise. Antes de borrar o publicar algo, preguntame." }
+        ], "plantilla": "# Brief: {proyecto}\n\n## Para quién es\n{publico}\n\n## Secciones y contenido\n{secciones}\n\n## Estilo\n{estilo}\n\n## Lo que no tiene que tener\n{restricciones}\n\n## Condiciones técnicas\n{tecnica}\n\n## Cómo trabajar\n{etapas}" },
+        { "tipo": "guia", "titulo": "Guía opcional: publicar tu página en GitHub Pages", "icono": "rocket_launch", "md": "Si querés publicar lo que construyas, este es el camino más simple y gratuito. Tomate tu tiempo: no hace falta hacerlo hoy.\n\n1. **Creá una cuenta en GitHub** (github.com), con un correo que uses.\n2. **Creá un repositorio** nuevo. Ponele un nombre corto, sin espacios, por ejemplo `mi-pagina`.\n3. **Subí los archivos** que hizo el agente: el `index.html` tiene que estar en la carpeta principal. Muchos agentes lo pueden hacer por vos; si lo hace, leé antes el comando que va a ejecutar.\n4. **Activá GitHub Pages** en la configuración del repositorio (Settings, Pages): elegí la rama principal y la carpeta raíz, y guardá.\n5. **Esperá unos minutos** y abrí la dirección que te muestra. Revisala en el celular y en la computadora.\n6. **Antes de compartirla**, leela entera: que no aparezcan datos personales, claves ni textos de prueba.\n\nLa guía oficial, en inglés: [Creating a GitHub Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)." }
+      ]
+    },
+    {
+      "titulo": "Revisar al agente",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "**Discernimiento aplicado al código:**\n\n- **Probá lo que se construyó.** Abrí la página, tocá cada botón, mirala en el celular.\n- **Leé los cambios antes de aceptarlos.** Aunque no entiendas todo el código, el diff te muestra si tocó archivos que no esperabas o agregó datos.\n- **No confíes en \"ya está funcionando\".** El agente puede creer que funciona porque no vio un error. Comprobalo vos.\n\n**Seguridad:**\n\n- No compartas contraseñas ni claves de acceso (las llamadas claves de API) en el chat.\n- Revisá qué permisos le das: a qué carpetas puede entrar, si puede ejecutar comandos sin preguntar.\n- Cuidado con los comandos que borran o publican: pedile que te explique qué hacen antes de aprobarlos.\n- Si la app guarda datos de otras personas, aplica todo lo del Módulo 10." },
+        { "tipo": "agente", "id": "agente", "titulo": "Leé el agente", "competencia": "discernimiento", "objetivo": "m14-o4", "consigna": "Esta conversación entre Lucía y un agente fue escrita para el taller. Leela como si fueras Lucía.", "turnos": [
+          { "quien": "persona", "t": "Te paso mi brief. Quiero una página para mis clases de cerámica: inicio, horarios, galería y contacto." },
+          { "quien": "agente", "t": "Este es mi plan: 1) crear la estructura de la página, 2) aplicar los colores del brief, 3) agregar un formulario de contacto que te envíe un correo con los datos de cada persona, 4) publicarla.", "frenar": true, "porque": "El plan es el mejor momento para corregir el rumbo. Tu brief pedía un botón de WhatsApp y nada que guarde datos: el formulario no estaba pedido y suma riesgos." },
+          { "quien": "agente", "t": "Creé `index.html` y `styles.css` con las cuatro secciones.", "codigo": "+ <section id=\"horarios\">\n+   <h2>Horarios y precios</h2>", "frenar": false, "porque": "Es el trabajo pedido. Mirá el resultado, pero no hace falta frenarlo." },
+          { "quien": "agente", "t": "Ajusté los colores a la paleta que pediste: terracota y blanco.", "frenar": false, "porque": "Cambio esperado y fácil de comprobar viendo la página." },
+          { "quien": "agente", "t": "Para que el formulario envíe correos necesito tu contraseña del correo. Pegala acá y la configuro.", "frenar": true, "porque": "Nunca compartas contraseñas ni claves en el chat. Además, el formulario no estaba en el brief: pedile que lo saque y deje el botón de WhatsApp." },
+          { "quien": "agente", "t": "Agregué en el pie tu celular personal y tu dirección, que encontré en un documento de la carpeta, para que te puedan contactar.", "frenar": true, "porque": "Es un dato personal que el brief excluía expresamente. Revisá siempre qué información agrega el agente por su cuenta, y qué archivos de tu carpeta puede leer." },
+          { "quien": "agente", "t": "Voy a ejecutar este comando para reemplazar las fotos de la galería por versiones más livianas:", "codigo": "rm -rf imagenes/", "frenar": true, "porque": "`rm -rf` borra una carpeta entera sin pasar por la papelera. Antes de aprobar un comando que borra, pedile que explique qué hace y asegurate de tener una copia." },
+          { "quien": "agente", "t": "Corregí un error de ortografía en el título de la galería.", "frenar": false, "porque": "Un cambio chico y visible. Se puede seguir." },
+          { "quien": "agente", "t": "Listo, ya está todo funcionando.", "frenar": true, "porque": "\"Ya está funcionando\" es lo que el agente cree. Abrí la página, probá cada botón y mirala en el celular antes de darlo por terminado." },
+          { "quien": "agente", "t": "¿Querés que la publique ahora en GitHub Pages?", "frenar": true, "porque": "Publicar la hace visible para cualquiera. Antes, leé la página entera: datos personales, textos de prueba, enlaces que no funcionan." }
+        ], "cierre": "Fijate que los momentos para frenar no son errores de código: son decisiones (el plan, publicar), datos (contraseñas, información personal), comandos irreversibles y la confianza en \"ya funciona\". Para eso no hace falta saber programar." }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "discernimiento", "objetivo": "m14-o1", "preguntas": [
+          { "texto": "¿Qué diferencia a un agente de programación de un chat que escribe código?", "opciones": [
+            { "texto": "El agente planifica y ejecuta varios pasos por su cuenta: edita archivos, ejecuta comandos y prueba.", "correcta": true, "feedback": "Por eso ahorra más trabajo, y por eso hay que revisar más." },
+            { "texto": "El agente escribe código sin errores.", "feedback": "Se puede equivocar como cualquier modelo, y en más pasos." }
+          ] },
+          { "texto": "El agente te pide una clave de acceso de un servicio para terminar la tarea. ¿Qué hacés?", "opciones": [
+            { "texto": "No la pego en el chat. Pregunto si hay otra forma o busco cómo configurarla de manera segura.", "correcta": true, "feedback": "Las claves no se comparten en una conversación. Si la tarea la necesita, se configura por fuera, con ayuda si hace falta." },
+            { "texto": "La pego: es la única forma de que funcione.", "feedback": "Una clave en el chat puede quedar guardada o terminar publicada en el código." }
+          ] },
+          { "texto": "¿Para qué sirve un archivo como CLAUDE.md o AGENTS.md?", "opciones": [
+            { "texto": "Para dejarle al agente las reglas y el contexto del proyecto, que lee cada vez que empieza.", "correcta": true, "feedback": "Es como las instrucciones persistentes del Módulo 6, pero para un proyecto de código." },
+            { "texto": "Para guardar las contraseñas del proyecto.", "feedback": "Al contrario: ahí nunca van contraseñas ni claves." }
+          ] }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "¿Qué herramienta personal o página te gustaría construir con un agente? ¿Qué parte revisarías vos sí o sí antes de usarla o publicarla?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Claude Code, documentación oficial", "apa": "Anthropic. (s.f.). *Claude Code overview*. Claude Code Docs.", "url": "https://code.claude.com/docs/en/overview", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" },
+          { "titulo": "Cómo recuerda Claude Code tu proyecto (CLAUDE.md)", "apa": "Anthropic. (s.f.). *How Claude remembers your project*. Claude Code Docs.", "url": "https://code.claude.com/docs/en/memory", "idioma": "en", "nivel": "Técnica (opcional)", "tipo": "documentacion" },
+          { "titulo": "AGENTS.md, un formato abierto para agentes", "apa": "AGENTS.md. (s.f.). *AGENTS.md*.", "url": "https://agents.md/", "idioma": "en", "nivel": "Técnica (opcional)", "tipo": "documentacion" },
+          { "titulo": "Documentación de GitHub Copilot", "apa": "GitHub. (s.f.). *GitHub Copilot documentation*. GitHub Docs.", "url": "https://docs.github.com/en/copilot", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" },
+          { "titulo": "Crear un sitio con GitHub Pages", "apa": "GitHub. (s.f.). *Creating a GitHub Pages site*. GitHub Docs.", "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" }
+        ] }
+      ]
+    }
+  ]
+}

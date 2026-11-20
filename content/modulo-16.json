@@ -1,0 +1,106 @@
+{
+  "titulo": "IA para audio, voz y música",
+  "objetivos": [
+    { "id": "m16-o1", "texto": "Reconocer qué se puede producir con IA en audio: voz, transcripción, traducción, doblaje, limpieza y música.", "competencia": "crear" },
+    { "id": "m16-o2", "texto": "Distinguir usos legítimos y riesgosos de la clonación de voz, y el papel del consentimiento.", "competencia": "diligencia" },
+    { "id": "m16-o3", "texto": "Escribir un guion para voz de 30 a 60 segundos, con pausas y énfasis.", "competencia": "crear" }
+  ],
+  "pasos": [
+    {
+      "titulo": "La cápsula de los lunes",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "texto", "md": "Valeria capacita a vendedores de una cadena de electrodomésticos que trabajan en sucursales de todo el país. Nadie tiene tiempo de leer manuales. Así que cada lunes graba una cápsula de audio de un minuto con un tip de venta, y los vendedores la escuchan camino al trabajo.\n\nGrabar le llevaba una mañana: repetir hasta que no se trabara, limpiar el ruido de fondo, editar. Ahora escribe el guion, lo pasa a una voz sintética para el borrador, ajusta las pausas, y cuando le gusta cómo suena, lo graba ella misma en una sola toma. Usa la IA para limpiar el ruido y para hacer la transcripción que acompaña cada audio.\n\nUna vez un proveedor le ofreció \"clonar su voz\" para no grabar nunca más. Lo pensó y dijo que no, por ahora. En este módulo vas a ver por qué es una decisión que vale la pena pensar." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "Qué se puede hacer con audio",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Este módulo trata la voz como **contenido que se produce**. Para conversar con la IA por voz, volvé al Módulo 12.\n\n- **Texto a voz.** Escribís un texto y una voz sintética lo lee. Hoy suenan muy naturales, con distintas voces, acentos e idiomas.\n- **Transcripción.** Pasar un audio o un video a texto, con marcas de tiempo y de quién habla. Ideal para subtitular y para que el contenido sea accesible.\n- **Traducción y doblaje.** Traducir lo que se dice y generar el audio en otro idioma, a veces con la voz original.\n- **Limpieza de audio.** Quitar ruido de fondo, eco o chasquidos de una grabación.\n- **Música y efectos.** Crear canciones, pistas de fondo y efectos de sonido a partir de una descripción.\n\n**Usos en el trabajo:** podcasts y cápsulas de capacitación, narración de videos, resúmenes en audio de documentos para quien prefiere escuchar, subtítulos para que todo sea accesible." },
+        { "tipo": "catalogo", "categoria": "audio", "titulo": "Algunos ejemplos de herramientas" }
+      ]
+    },
+    {
+      "titulo": "Clonar una voz",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Con unos minutos de grabación, algunas herramientas pueden generar una voz sintética que suena como una persona real. Es una tecnología con dos caras.\n\n**Usos legítimos:**\n\n- **Accesibilidad:** personas que van a perder el habla por una enfermedad pueden conservar su propia voz para comunicarse.\n- **Contenidos propios:** una docente que clona su voz para narrar sus propios materiales.\n- **Doblaje con permiso:** una charla traducida que conserva la voz de quien la dio, con su acuerdo.\n\n**Riesgos:**\n\n- **Estafas telefónicas:** un llamado o un audio con la voz de un familiar que pide dinero (Módulo 9).\n- **Suplantación:** hacer que alguien \"diga\" algo que nunca dijo.\n- **Usos no acordados:** una voz grabada para un fin que se usa para otro.\n\n**La regla:** para clonar la voz de alguien hace falta su **consentimiento explícito y por escrito**, que diga para qué se va a usar, dónde y por cuánto tiempo. Algunas herramientas lo exigen y verifican la identidad. Y la voz propia también es un dato personal: pensá bien dónde la cargás." },
+        { "tipo": "clasificador", "id": "usos-voz", "titulo": "¿Uso permitido o no?", "competencia": "diligencia", "objetivo": "m16-o2", "categorias": [
+          { "id": "si", "titulo": "Permitido", "descripcion": "Con consentimiento y un fin claro." },
+          { "id": "no", "titulo": "No permitido", "descripcion": "Sin consentimiento, engañoso o riesgoso." }
+        ], "items": [
+          { "texto": "Clonar tu propia voz para narrar los videos de tu curso.", "categoria": "si", "feedback": "Es tu voz y tu contenido. Igual, revisá qué hace la herramienta con tu grabación." },
+          { "texto": "Usar la voz de un actor famoso, generada sin su permiso, para un aviso de tu emprendimiento.", "categoria": "no", "feedback": "Usa su voz e identidad sin consentimiento y con fines comerciales." },
+          { "texto": "Narrar un material con la voz clonada de una compañera que firmó una autorización para ese curso.", "categoria": "si", "feedback": "Consentimiento escrito y un fin acordado: es el camino correcto. Si querés usarla para otra cosa, hay que volver a pedirlo." },
+          { "texto": "Hacer una broma con la voz clonada de tu jefe diciendo algo que no dijo.", "categoria": "no", "feedback": "Aunque sea una broma, pone en su boca palabras que no dijo y puede circular fuera de contexto." },
+          { "texto": "Usar una voz sintética genérica, que no imita a nadie, para un tutorial.", "categoria": "si", "feedback": "No suplanta a nadie. Si el público puede confundirla con una persona, conviene aclarar que es sintética." },
+          { "texto": "Seguir usando la voz clonada de un colaborador después de que dejó la organización, sin preguntarle.", "categoria": "no", "feedback": "El consentimiento tiene alcance y duración. Si cambian las condiciones, hay que volver a pedirlo." }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Música generativa",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Hoy se puede pedir una canción con letra, una pista de fondo para un video o un efecto de sonido describiendo el estilo, el clima y la duración. Para un video interno o una presentación, resuelve en minutos lo que antes requería buscar música libre de derechos.\n\n**Un debate abierto.** Los modelos de música se entrenaron con grabaciones protegidas, y discográficas y artistas reclamaron por eso. Las preguntas son las mismas que en la imagen (Módulo 9): ¿hace falta permiso para entrenar con obras ajenas? ¿De quién es una canción generada? ¿Qué pasa con las personas que viven de hacer música? Las respuestas cambian según el país y todavía se están discutiendo.\n\n**En la práctica:** revisá la licencia de la herramienta antes de usar una pista en algo público o comercial, no pidas canciones que imiten a artistas reales y, si podés, indicá que la música fue generada." },
+        { "tipo": "nota", "estado": "info", "titulo": "Esto no es asesoramiento legal", "md": "Presentamos un debate abierto. Para el uso comercial de música generada, revisá las condiciones de la herramienta y, si hace falta, consultá a una persona especialista." }
+      ]
+    },
+    {
+      "titulo": "Guion para voz",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Escribí el guion de una cápsula de 30 a 60 segundos: un tip, una novedad o una idea de tu trabajo. Escribí para el oído, no para la vista: oraciones cortas, una idea por vez, y repetí lo importante. Usá los botones para marcar pausas y énfasis." },
+        { "tipo": "guion-voz", "id": "guion", "titulo": "Mi cápsula de audio", "archivo": "guion-capsula", "competencia": "crear", "objetivo": "m16-o3", "evidencia": "Guion para una cápsula de audio", "ejemplo": "¿Sabías que la mayoría de los clientes decide en los primeros dos minutos? [pausa]\n\nPor eso, cuando alguien entra al local, lo primero no es mostrarle el producto. Lo primero es *preguntarle qué necesita*. [pausa]\n\nUna pregunta abierta, como \"¿Para qué lo vas a usar?\", te dice más que cualquier folleto.\n\nEsta semana probá empezar así. Y el lunes que viene, contame cómo te fue." },
+        { "tipo": "checklist", "id": "calidad", "titulo": "Lista de calidad del guion", "archivo": "checklist-guion-para-voz", "competencia": "crear", "intro": "Revisá tu guion antes de grabarlo o de pasarlo a una voz sintética.", "grupos": [
+          { "titulo": "Claridad", "items": [
+            { "texto": "Cada oración tiene una sola idea.", "ayuda": "Si para leerla en voz alta tenés que respirar en el medio, es larga." },
+            { "texto": "La idea principal aparece al principio y se repite al final." },
+            { "texto": "No hay siglas ni números difíciles de decir.", "ayuda": "Escribí \"un millón y medio\" en lugar de \"1.500.000\"." }
+          ] },
+          { "titulo": "Ritmo", "items": [
+            { "texto": "Dura entre 30 y 60 segundos leído a ritmo tranquilo." },
+            { "texto": "Hay pausas antes de lo importante." },
+            { "texto": "El énfasis está en pocas palabras, no en todo." }
+          ] },
+          { "titulo": "Pronunciación", "items": [
+            { "texto": "Los nombres propios y las palabras extranjeras están escritos como se pronuncian, o probaste que la voz sintética los dice bien." },
+            { "texto": "Lo leíste en voz alta al menos una vez." }
+          ] },
+          { "titulo": "Uso responsable", "items": [
+            { "texto": "Si usás una voz sintética, el público sabe que no es una persona." },
+            { "texto": "Si usás la voz de otra persona, tenés su consentimiento por escrito para este uso." }
+          ] }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "diligencia", "objetivo": "m16-o2", "preguntas": [
+          { "texto": "¿Qué necesitás para clonar la voz de otra persona?", "opciones": [
+            { "texto": "Su consentimiento explícito y por escrito, que diga para qué, dónde y por cuánto tiempo.", "correcta": true, "feedback": "Es la base de un uso legítimo. Sin eso, es suplantación." },
+            { "texto": "Una grabación de buena calidad.", "feedback": "La calidad técnica no reemplaza el permiso de la persona." }
+          ] },
+          { "texto": "¿Qué conviene hacer con una grabación de una capacitación antes de compartirla?", "opciones": [
+            { "texto": "Transcribirla y subtitularla, para que sea accesible a más personas.", "correcta": true, "feedback": "La transcripción con IA lo hace rápido; revisá los nombres propios y los términos técnicos." },
+            { "texto": "Clonar la voz de quien la dio para hacer más cápsulas.", "feedback": "Solo con su consentimiento escrito para ese uso." }
+          ] },
+          { "texto": "¿Qué distingue un guion para voz de un texto para leer?", "opciones": [
+            { "texto": "Oraciones cortas, una idea por vez, pausas y repetición de lo importante.", "correcta": true, "feedback": "El oído no puede volver atrás como la vista: el guion tiene que ser fácil de seguir de una sola vez." },
+            { "texto": "Que es más largo.", "feedback": "Suele ser más corto: 60 segundos son unas 150 palabras." }
+          ] }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "¿Aceptarías clonar tu propia voz para tu trabajo? ¿Para qué sí y para qué no? ¿Qué condiciones pondrías por escrito?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Clonación de voz y consentimiento, en ElevenLabs", "apa": "ElevenLabs. (s.f.). *Voice cloning*.", "url": "https://elevenlabs.io/voice-cloning", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Políticas de seguridad de voz de ElevenLabs", "apa": "ElevenLabs. (s.f.). *Safety*.", "url": "https://elevenlabs.io/safety", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" },
+          { "titulo": "Lyria, el modelo de música de Google DeepMind", "apa": "Google DeepMind. (s.f.). *Lyria*.", "url": "https://deepmind.google/models/lyria/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" }
+        ] }
+      ]
+    }
+  ]
+}
