@@ -25,7 +25,7 @@
 .anim-seg button:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:-2px;border-radius:var(--md-sys-shape-corner-small)}
 .anim-nar[aria-pressed="true"]{background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container);border-color:transparent}
 .anim-desc{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant);min-height:40px}
-.anim-trans{margin:var(--app-space-2) 0 0;padding-left:1.4em;display:grid;gap:var(--app-space-2);font:var(--md-sys-typescale-body-large)}
+.anim-trans{margin:var(--app-space-2) 0 0;padding-left:var(--app-list-indent);display:grid;gap:var(--app-space-2);font:var(--md-sys-typescale-body-large)}
 .anim-nota{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);margin-top:var(--app-space-3)}
 .anim.is-static .anim-seg .seg-fill{transition:none}
 /* En pantallas angostas, la barra de escenas va en su propia fila: cada escena conserva 48 px de área táctil */
@@ -45,14 +45,14 @@
 .an-tok{fill:var(--md-sys-color-surface-container-highest);stroke:var(--md-sys-color-outline-variant);stroke-width:2}
 .an-tok-t{fill:var(--md-sys-color-on-surface)}
 .an-split{stroke:var(--md-sys-color-primary);stroke-width:3}
-.an-split-t{fill:var(--md-sys-color-primary);font-weight:600}
+.an-split-t{fill:var(--md-sys-color-primary);font-weight:var(--md-sys-typescale-emphasized-weight)}
 .an-hueco{fill:none;stroke:var(--md-sys-color-outline);stroke-width:2;stroke-dasharray:8 6}
 .an-cand{fill:var(--md-sys-color-on-surface)}
 .an-pct{fill:var(--md-sys-color-on-surface-variant)}
 .an-bar{fill:var(--md-sys-color-secondary)}
 .an-bar-sel{fill:var(--md-sys-color-primary)}
-.an-elegido-t{fill:var(--md-sys-color-primary);font-weight:700}
+.an-elegido-t{fill:var(--md-sys-color-primary);font-weight:var(--md-sys-typescale-emphasized-weight)}
 .an-inv{fill:var(--app-color-warning-container)}
-.an-inv-t{fill:var(--app-color-on-warning-container);font-weight:600}
+.an-inv-t{fill:var(--app-color-on-warning-container);font-weight:var(--md-sys-typescale-emphasized-weight)}
 .anim .an-warn-ic{font-family:"Material Symbols Rounded";fill:var(--app-color-warning)}
-.an-warn-t{fill:var(--app-color-warning);font-weight:600}
+.an-warn-t{fill:var(--app-color-warning);font-weight:var(--md-sys-typescale-emphasized-weight)}

@@ -46,7 +46,7 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
 .shape{width:96px;height:72px;background:var(--md-sys-color-primary-container);color:var(--md-sys-color-on-primary-container);display:grid;place-items:center;font:var(--md-sys-typescale-label-small);text-align:center}
 .elev{width:140px;height:80px;background:var(--app-color-card);border-radius:var(--md-sys-shape-corner-medium);display:grid;place-items:center;font:var(--md-sys-typescale-label-medium)}
 .space{display:flex;align-items:center;gap:var(--app-space-3);font:var(--md-sys-typescale-body-small)}
-.space i{display:block;height:16px;background:var(--md-sys-color-primary);border-radius:2px}
+.space i{display:block;height:16px;background:var(--md-sys-color-primary);border-radius:var(--md-sys-shape-corner-extra-small)}
 .motion-box{width:48px;height:48px;border-radius:var(--md-sys-shape-corner-medium);background:var(--md-sys-color-primary)}
 .motion-track{position:relative;height:56px;background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-medium);padding:4px;flex:1;min-width:200px}
 .motion-track .motion-box{position:absolute;left:4px;top:4px}
@@ -72,7 +72,7 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
 <main class="ds" id="ds" tabindex="-1">
   <h1 style="font:var(--md-sys-typescale-headline-large);margin-top:var(--app-space-4)">Tokens y componentes</h1>
   <p class="lead">Referencia viva del sistema de diseño del Taller - IA, basado en Material Design 3 Expressive. Todo sale de <code>css/tokens.css</code>. Cambiá el tema y el contraste arriba para revisar cada esquema. <a href="index.html#/inicio">Volver al entorno</a>.</p>
-  <nav class="toc" aria-label="Secciones de esta página">
+  <nav class="toc" aria-label="Secciones de esta página" data-excepcion-ds="acciones-orden acciones-alineacion">
     <a class="btn btn-outlined" href="#color">Color</a><a class="btn btn-outlined" href="#tipografia">Tipografía</a><a class="btn btn-outlined" href="#forma">Forma y elevación</a><a class="btn btn-outlined" href="#espacio">Espacio y movimiento</a><a class="btn btn-outlined" href="#componentes">Componentes</a><a class="btn btn-outlined" href="#graficos">Gráficos</a><a class="btn btn-outlined" href="#estados">Estados</a>
   </nav>
 
@@ -95,7 +95,7 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
   <div class="row"><span class="chip ev-entrega"><span class="ms" aria-hidden="true">upload_file</span>Entregas y cierres</span><span class="chip ev-eval"><span class="ms" aria-hidden="true">quiz</span>Evaluaciones</span><span class="chip ev-vivo"><span class="ms" aria-hidden="true">videocam</span>Videollamadas</span><span class="chip ev-workshop"><span class="ms" aria-hidden="true">groups</span>Workshops</span></div>
 
   <h2 id="tipografia">Tipografía</h2>
-  <p class="lead">Roboto Flex con la escala base de M3. Los números clave usan el peso enfático (650).</p>
+  <p class="lead">Roboto Flex con la escala base de M3 y dos estilos propios para títulos de tarjeta. Hay tres pesos: 400, 500 y el enfático (650), que se usa en números clave, fechas, estados activos y negritas del texto.</p>
   <div class="panel" id="typeScale"></div>
 
   <h2 id="forma">Forma y elevación</h2>
@@ -128,8 +128,8 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
 
   <h3>Botones (S de 40 px y M de 56 px)</h3>
   <div class="panel" style="display:grid;gap:var(--app-space-4)">
-    <div class="row"><button class="btn btn-filled" type="button">Relleno</button><button class="btn btn-tonal" type="button">Tonal</button><button class="btn btn-outlined" type="button">Con borde</button><button class="btn btn-text" type="button">De texto</button><button class="btn btn-danger" type="button"><span class="ms" aria-hidden="true">delete</span>Eliminar</button><button class="btn btn-filled" type="button" disabled>Deshabilitado</button></div>
-    <div class="row"><button class="btn btn-filled btn-m" type="button"><span class="ms" aria-hidden="true">play_arrow</span>Continuar</button><button class="btn btn-tonal btn-m" type="button"><span class="ms" aria-hidden="true">add</span>Agregar tarea</button><button class="btn btn-outlined btn-m" type="button">Con borde M</button></div>
+    <div class="row" data-excepcion-ds="acciones-orden acciones-alineacion"><button class="btn btn-filled" type="button">Relleno</button><button class="btn btn-tonal" type="button">Tonal</button><button class="btn btn-outlined" type="button">Con borde</button><button class="btn btn-text" type="button">De texto</button><button class="btn btn-danger" type="button"><span class="ms" aria-hidden="true">delete</span>Eliminar</button><button class="btn btn-filled" type="button" disabled>Deshabilitado</button></div>
+    <div class="row" data-excepcion-ds="acciones-orden acciones-alineacion"><button class="btn btn-filled btn-m" type="button"><span class="ms" aria-hidden="true">play_arrow</span>Continuar</button><button class="btn btn-tonal btn-m" type="button"><span class="ms" aria-hidden="true">add</span>Agregar tarea</button><button class="btn btn-outlined btn-m" type="button">Con borde M</button></div>
     <div class="row"><button class="icon-btn" type="button" aria-label="Buscar" data-tip="Buscar"><span class="ms" aria-hidden="true">search</span></button><button class="icon-btn tonal" type="button" aria-label="Favorito" data-tip="Favorito"><span class="ms" aria-hidden="true">bookmark</span></button><button class="icon-btn" type="button" aria-label="Avisos, 2 nuevos" data-tip="Avisos"><span class="ms" aria-hidden="true">notifications</span><span class="dot" aria-hidden="true"></span></button><span class="muted" style="font:var(--md-sys-typescale-body-small)">Botones de ícono de 48 px, con tooltip al pasar el cursor o con el foco del teclado.</span></div>
   </div>
 
@@ -168,10 +168,12 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
     </div>
   </div>
 
-  <h3>Campos de texto y switch</h3>
+  <h3>Campos de texto, desplegable y switch</h3>
+  <p class="muted" style="font:var(--md-sys-typescale-body-medium);margin-bottom:var(--app-space-3)">Todos miden <code>app-size-field</code> (56 px). El ícono final (calendario, reloj o la flecha del desplegable) va a <code>app-field-icon-inset</code> (12 px) del borde, y el texto le deja <code>app-field-icon-space</code> (48 px).</p>
   <div class="panel two">
     <div class="tf"><label for="dsT1">Tarea</label><input class="field" id="dsT1" placeholder="Por ejemplo: leer el capítulo 2" aria-describedby="dsT1h"><span class="tf-help" id="dsT1h">Texto de ayuda debajo del campo.</span></div>
     <div class="tf"><label for="dsT2">Con error</label><input class="field" id="dsT2" aria-invalid="true" aria-describedby="dsT2e"><span class="tf-err" id="dsT2e"><span class="ms" aria-hidden="true">error</span>Escribí la tarea para poder agregarla.</span></div>
+    <div class="tf"><label for="dsSel">Desplegable</label><span class="sel"><select class="field" id="dsSel"><option>Lo hago con IA</option><option>Lo hago yo</option><option>Lo delego a la IA</option></select><span class="ms tf-ic" aria-hidden="true">arrow_drop_down</span></span></div>
     <div class="tf"><label for="dsT3">Fecha límite</label><span class="tf-wrap"><input class="field" id="dsT3" type="date"><span class="ms tf-ic" aria-hidden="true">calendar_today</span></span></div>
     <div><div class="switch-row"><label for="dsSw">Leer la lección en voz alta</label><input class="switch" type="checkbox" role="switch" id="dsSw" checked></div><div class="switch-row"><label for="dsSw2">Opción desactivada</label><input class="switch" type="checkbox" role="switch" id="dsSw2"></div></div>
   </div>
@@ -181,7 +183,7 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
     <div class="menu demo-menu"><p class="menu-title" id="dsMenuT">Menú de ejemplo</p><div role="menu" aria-labelledby="dsMenuT"><button role="menuitem" type="button"><span class="ms" aria-hidden="true">download</span>Exportar mi progreso</button><button role="menuitem" type="button"><span class="ms" aria-hidden="true">upload</span>Importar progreso</button><div class="menu-div" role="separator"></div><button role="menuitem" type="button" class="danger"><span class="ms" aria-hidden="true">delete</span>Borrar mis datos</button></div></div>
     <div class="sheet demo-sheet" aria-label="Hoja inferior de ejemplo" role="region"><div class="handle" aria-hidden="true"></div><a href="#componentes"><span class="ms" aria-hidden="true">local_library</span>Biblioteca</a><a href="#componentes" aria-current="page"><span class="ms" aria-hidden="true">bookmarks</span>Mis prompts</a></div>
   </div>
-  <div class="row" style="margin-top:var(--app-space-4)"><div class="snackbar demo-snack">Tarea agregada</div><button class="btn btn-tonal" type="button" id="dsSnack">Mostrar snackbar</button><button class="btn btn-outlined" type="button" id="dsDlg">Abrir diálogo</button></div>
+  <div class="row" data-excepcion-ds="acciones-orden acciones-alineacion" style="margin-top:var(--app-space-4)"><div class="snackbar demo-snack">Tarea agregada</div><button class="btn btn-tonal" type="button" id="dsSnack">Mostrar snackbar</button><button class="btn btn-outlined" type="button" id="dsDlg">Abrir diálogo</button></div>
 
   <h3>Estado vacío y skeleton</h3>
   <div class="two">
@@ -191,8 +193,8 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
   <h2 id="graficos">Gráficos</h2>
   <p class="lead">Paleta categórica en orden fijo, validada para daltonismo y contraste en los dos modos. Cada gráfico tiene leyenda (si hay más de una serie), etiquetas directas, detalle al pasar el cursor y una tabla con los mismos datos.</p>
   <div class="row" style="margin-bottom:var(--app-space-3)" aria-label="Paleta categórica" role="group">
-    <span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:3px;background:var(--app-chart-1)"></i>Serie 1</span><span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:3px;background:var(--app-chart-2)"></i>Serie 2</span>
-    <span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:3px;background:var(--app-chart-3)"></i>Serie 3</span><span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:3px;background:var(--app-chart-4)"></i>Serie 4</span>
+    <span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:var(--md-sys-shape-corner-extra-small);background:var(--app-chart-1)"></i>Serie 1</span><span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:var(--md-sys-shape-corner-extra-small);background:var(--app-chart-2)"></i>Serie 2</span>
+    <span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:var(--md-sys-shape-corner-extra-small);background:var(--app-chart-3)"></i>Serie 3</span><span class="chip chip-neutral"><i style="width:12px;height:12px;border-radius:var(--md-sys-shape-corner-extra-small);background:var(--app-chart-4)"></i>Serie 4</span>
   </div>
   <div class="two" id="dsGraficos"></div>
 
@@ -207,7 +209,7 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
     </div>
     <div class="panel" style="display:grid;gap:var(--app-space-3)">
       <div class="espera"><div class="lin-ind" aria-hidden="true"></div><p class="espera-t">Preparando la lección: pasos y actividades.</p></div>
-      <div aria-hidden="true" style="display:grid;gap:10px"><div class="sk" style="height:24px;width:55%"></div><div class="sk" style="height:12px"></div><div class="sk" style="height:12px;width:85%"></div><div class="sk" style="height:96px;border-radius:var(--md-sys-shape-corner-large)"></div></div>
+      <div aria-hidden="true" style="display:grid;gap:var(--app-space-3)"><div class="sk" style="height:24px;width:55%"></div><div class="sk" style="height:12px"></div><div class="sk" style="height:12px;width:85%"></div><div class="sk" style="height:96px;border-radius:var(--md-sys-shape-corner-large)"></div></div>
       <p class="muted" style="font:var(--md-sys-typescale-body-small)">Skeleton con la forma real del contenido y un mensaje que dice qué va a aparecer.</p>
     </div>
     <div class="card estado-error" style="margin:0"><div class="status status-error"><span class="ms fill" aria-hidden="true">error</span><div><b>No se pudo cargar la lección</b><p>Puede ser un problema de conexión. Tu progreso guardado no se pierde.</p></div></div>
@@ -266,9 +268,10 @@ function pintar() {
 }
 const ESCALA = ["display-large","display-medium","display-small","headline-large","headline-medium","headline-small","title-large","title-medium","title-small","body-large","body-medium","body-small","label-large","label-medium","label-small"];
 document.getElementById("typeScale").innerHTML = ESCALA.map(n => `<div class="type-row"><code>${n}</code><span style="font:var(--md-sys-typescale-${n});overflow-wrap:anywhere">Aprender con criterio</span></div>`).join("") +
+  ["card-title", "card-title-small"].map(n => `<div class="type-row"><code>app ${n}</code><span style="font:var(--app-typescale-${n})">Título de tarjeta</span></div>`).join("") +
   `<div class="type-row"><code>enfático (650)</code><span style="font:var(--md-sys-typescale-headline-small);font-weight:var(--md-sys-typescale-emphasized-weight)">13 de 38</span></div>`;
 document.getElementById("shapes").innerHTML = ["none","extra-small","small","medium","large","large-increased","extra-large","extra-large-increased","extra-extra-large","full"].map(n => `<div class="shape" style="border-radius:var(--md-sys-shape-corner-${n})">${n}</div>`).join("");
-document.getElementById("sizes").innerHTML = [["target","Área táctil y lugar en barras"],["control","Botón S y botón de ícono relleno"],["icon","Ícono en barras y navegación"],["icon-sm","Ícono dentro de un botón S"],["avatar","Avatar en la barra superior"],["avatar-lg","Avatar en el menú"],["brand","Logo"]].map(([n, t]) => `<div class="space"><code style="width:160px">app-size-${n}</code><i style="width:var(--app-size-${n});height:var(--app-size-${n});border-radius:var(--md-sys-shape-corner-small);opacity:.8"></i><span>${css("--app-size-" + n)} | ${t}</span></div>`).join("");
+document.getElementById("sizes").innerHTML = [["target","Área táctil y lugar en barras"],["control","Botón S y botón de ícono relleno"],["icon","Ícono en barras y navegación"],["icon-sm","Ícono dentro de un botón S"],["avatar","Avatar en la barra superior"],["avatar-lg","Avatar en el menú"],["brand","Logo"],["field","Campo de texto y desplegable"]].map(([n, t]) => `<div class="space"><code style="width:160px">app-size-${n}</code><i style="width:var(--app-size-${n});height:var(--app-size-${n});border-radius:var(--md-sys-shape-corner-small);opacity:.8"></i><span>${css("--app-size-" + n)} | ${t}</span></div>`).join("");
 document.getElementById("spaces").innerHTML = [1,2,3,4,5,6,8,10].map(n => `<div class="space"><code style="width:96px">app-space-${n}</code><i style="width:var(--app-space-${n})"></i><span>${css("--app-space-" + n)}</span></div>`).join("");
 
 document.getElementById("ctrlTema").addEventListener("click", e => { const b = e.target.closest("button"); if (b) tema.setPreferencia(b.dataset.v); });

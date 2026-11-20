@@ -22,8 +22,8 @@ html:has(.lesson-bar){scroll-padding-top:152px;scroll-padding-bottom:24px}
 /* Texto de lectura: body-large con interlineado amplio */
 .lesson-text{font:var(--md-sys-typescale-body-large);line-height:1.65}
 .lesson-text p+p,.lesson-text p+ul,.lesson-text ul+p,.lesson-text p+ol,.lesson-text ol+p{margin-top:var(--app-space-4)}
-.lesson-text ul,.lesson-text ol{margin:0;padding-left:1.4em;display:grid;gap:var(--app-space-2)}
-.lesson-text strong{font-weight:600}
+.lesson-text ul,.lesson-text ol{margin:0;padding-left:var(--app-list-indent);display:grid;gap:var(--app-space-2)}
+.lesson-text strong{font-weight:var(--md-sys-typescale-emphasized-weight)}
 .lesson-text code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(--app-color-card-item);padding:1px 6px;border-radius:var(--md-sys-shape-corner-extra-small)}
 .lesson-text a,.status a{color:inherit;text-underline-offset:3px}
 .lesson-text a{color:var(--md-sys-color-primary)}
@@ -78,7 +78,7 @@ a.term{text-decoration-style:dotted}
 .step-link::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--md-sys-color-on-surface);opacity:0;z-index:-1;transition:opacity var(--md-sys-motion-spring-fast-effects)}
 .step-link:hover::after{opacity:var(--md-sys-state-hover-opacity)}
 .step-link:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:-3px}
-.step-link.is-here{background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container);font-weight:600}
+.step-link.is-here{background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container);font-weight:var(--md-sys-typescale-emphasized-weight)}
 .step-ic{width:24px;height:24px;display:grid;place-items:center;flex:none;color:var(--md-sys-color-primary)}
 .step-link.is-here .step-ic{color:inherit}
 .step-n{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--md-sys-color-outline);display:grid;place-items:center;font:var(--md-sys-typescale-label-small);color:var(--md-sys-color-on-surface-variant)}
@@ -102,7 +102,7 @@ a.term{text-decoration-style:dotted}
 .lesson-done p{font:var(--md-sys-typescale-body-large);color:var(--md-sys-color-on-surface-variant)}
 .done-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--app-space-3);margin-top:var(--app-space-2)}
 .badge-morph{width:112px;height:112px;display:grid;place-items:center;background:var(--app-color-success-container);color:var(--app-color-on-success-container);border-radius:var(--md-sys-shape-corner-extra-large);animation:badge-morph var(--md-sys-motion-spring-slow-spatial) both}
-.badge-morph .ms{font-size:56px}
+.badge-morph .ms{font-size:48px}
 @keyframes badge-morph{0%{border-radius:50%;transform:scale(.6) rotate(-12deg)}100%{border-radius:var(--md-sys-shape-corner-extra-large);transform:none}}
 
 /* ---------- Transición entre pasos: muestra la dirección (avanzar o retroceder) ---------- */

@@ -2,7 +2,8 @@
    Uso: npm run verificar           (todas las pantallas, 6 anchos, claro y oscuro)
         npm run verificar:rapido    (3 anchos)
    Hace: capturas, axe-core, scroll horizontal, áreas táctiles en mobile,
-   errores de consola, movimiento reducido y búsqueda de rayas largas y puntos medios.
+   errores de consola, movimiento reducido, búsqueda de rayas largas y puntos medios,
+   y auditoría contra el design system (scripts/auditoria-ds.mjs).
    Resultado: verificacion/capturas/*.png y verificacion/reporte-accesibilidad.md */
 import { chromium } from "playwright";
 import { AxeBuilder } from "@axe-core/playwright";
@@ -11,6 +12,8 @@ import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import { resolve, dirname, join } from "node:path";
 import { crearServidor } from "./servidor.mjs";
+import { PANTALLAS } from "./pantallas.mjs";
+import { auditar, seccionAuditoria } from "./auditoria-ds.mjs";
 
 const require = createRequire(import.meta.url);
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -20,56 +23,6 @@ const rapido = process.argv.includes("--rapido");
 
 const ANCHOS = rapido ? [360, 768, 1280] : [360, 412, 768, 1024, 1280, 1920];
 const MODOS = ["light", "dark"];
-const PANTALLAS = [
-  { id: "inicio", url: "index.html#/inicio" },
-  { id: "inicio-ejemplo", url: "index.html?demo=1#/inicio" },
-  { id: "agenda-vacia", url: "index.html#/agenda" },
-  { id: "estado-error", url: "index.html?simular=error#/inicio" },
-  { id: "estado-error-leccion", url: "index.html?simular=error-leccion#/modulo/prueba/paso/2" },
-  { id: "estado-sin-conexion", url: "index.html?simular=sin-conexion#/modulo/prueba/paso/4", clic: ".video-play" },
-  { id: "leccion", url: "index.html#/modulo/prueba/paso/3" },
-  { id: "video", url: "index.html#/modulo/prueba/paso/4" },
-  { id: "graficos", url: "index.html#/modulo/prueba/paso/5" },
-  { id: "animacion", url: "index.html#/modulo/prueba/paso/6" },
-  { id: "act-chequeo", url: "index.html#/modulo/prueba/paso/7" },
-  { id: "act-clasificar", url: "index.html#/modulo/prueba/paso/8" },
-  { id: "act-escenario", url: "index.html#/modulo/prueba/paso/9" },
-  { id: "act-constructor", url: "index.html#/modulo/prueba/paso/10" },
-  { id: "act-comparar", url: "index.html#/modulo/prueba/paso/11" },
-  { id: "act-disenar", url: "index.html#/modulo/prueba/paso/12" },
-  { id: "act-reflexion", url: "index.html#/modulo/prueba/paso/13" },
-  { id: "leccion-fin", url: "index.html#/modulo/prueba/completado" },
-  { id: "m0-perfil", url: "index.html#/modulo/0/paso/2" },
-  { id: "m0-autodiagnostico", url: "index.html#/modulo/0/paso/3" },
-  { id: "m0-objetivos", url: "index.html#/modulo/0/paso/4" },
-  { id: "m1-diagrama", url: "index.html#/modulo/1/paso/3" },
-  { id: "m1-clasificar", url: "index.html#/modulo/1/paso/5" },
-  { id: "m2-animacion", url: "index.html#/modulo/2/paso/2" },
-  { id: "m2-predictor", url: "index.html#/modulo/2/paso/3" },
-  { id: "m3-comparar", url: "index.html#/modulo/3/paso/4" },
-  { id: "m3-cierre", url: "index.html#/modulo/3/paso/6" },
-  { id: "m4-marco4d", url: "index.html#/modulo/4/paso/2" },
-  { id: "m4-delegar", url: "index.html#/modulo/4/paso/5" },
-  { id: "m5-marco-destacado", url: "index.html#/modulo/5/paso/1" },
-  { id: "m5-laboratorio", url: "index.html#/modulo/5/paso/7" },
-  { id: "m6-subir-nivel", url: "index.html#/modulo/6/paso/5" },
-  { id: "m7-corregir", url: "index.html#/modulo/7/paso/5" },
-  { id: "m7-checklist", url: "index.html#/modulo/7/paso/6" },
-  { id: "m8-dilemas", url: "index.html#/modulo/8/paso/5" },
-  { id: "mis-prompts", url: "index.html#/prompts" },
-  { id: "recorrido", url: "index.html#/recorrido" },
-  { id: "agenda-semana", url: "index.html#/agenda/semana" },
-  { id: "agenda-mes", url: "index.html#/agenda/mes" },
-  { id: "agenda-dia", url: "index.html#/agenda/dia" },
-  { id: "aprendizaje", url: "index.html#/aprendizaje" },
-  { id: "modulo-sin-leccion", url: "index.html#/modulo/6" },
-  { id: "biblioteca", url: "index.html#/biblioteca" },
-  { id: "glosario", url: "index.html#/glosario" },
-  { id: "facilitadores", url: "index.html#/facilitadores" },
-  { id: "ayuda", url: "index.html#/ayuda" },
-  { id: "ajustes", url: "index.html#/ajustes" },
-  { id: "estilos", url: "estilos.html" }
-];
 
 const IMPACTO = { critical: "Crítico", serious: "Grave", moderate: "Moderado", minor: "Menor" };
 const ORDEN = ["critical", "serious", "moderate", "minor"];
@@ -90,6 +43,7 @@ const navegador = await chromium.launch();
 
 const problemasAxe = new Map();   // id de regla -> { regla, impacto, ayuda, url, casos: Set }
 const excepciones = new Set();
+const auditoria = new Map();  // regla|elemento|detalle -> { regla, elemento, detalle, casos }
 const scroll = [], tactiles = [], consola = [], textos = [], movimiento = [];
 let capturas = 0, corridasAxe = 0;
 
@@ -181,6 +135,12 @@ for (const modo of MODOS) {
         v.nodes.slice(0, 3).forEach(n => e.nodos.add(n.target.join(" ") + (n.failureSummary ? " | " + n.failureSummary.split("\n").slice(1, 2).join(" ").trim() : "")));
       }
 
+      // Auditoría contra el design system
+      for (const f of await page.evaluate(auditar)) {
+        const k = `${f.regla}|${f.elemento}|${f.detalle}`;
+        if (!auditoria.has(k)) auditoria.set(k, { ...f, casos: [] });
+        auditoria.get(k).casos.push(caso);
+      }
       errores.forEach(e => consola.push(`${caso}: ${e}`));
       await page.close();
     }
@@ -238,6 +198,7 @@ Generado el ${fecha} con \`npm run verificar${rapido ? ":rapido" : ""}\`.
 | Errores de consola | ${consola.length ? consola.length : "Ninguno"} |
 | Movimiento reducido | ${movimiento.length ? movimiento.length + " elementos con movimiento" : "Sin transiciones ni animaciones"} |
 | Rayas largas y puntos medios en el texto | ${textos.length ? textos.length + " casos" : "Ninguno"} |
+| Design system | ${auditoria.size ? auditoria.size + " elementos fuera de las reglas" : "Todo cumple"} |
 
 ## Accesibilidad automática (axe-core), por gravedad
 
@@ -267,6 +228,12 @@ ${lista(movimiento, "Con \"reducir movimiento\" activado no quedan transiciones 
 
 ${lista(textos, "No se encontraron.")}
 
+## Auditoría contra el design system
+
+Reglas en \`referencia/design-system/README.md\` (sección "Reglas verificables"); el código está en \`scripts/auditoria-ds.mjs\`.
+
+${seccionAuditoria(auditoria)}
+
 Nota: durante el análisis de axe-core, la barra flotante de las lecciones se fija en su lugar, para que no cuente como "tapado" el contenido que queda debajo de ella en el borde de la ventana. Para el teclado, el sitio usa \`scroll-padding\`: el elemento con foco siempre queda visible por encima de la barra.
 
 ## Qué se revisa a mano
@@ -281,6 +248,6 @@ Conviene probar, cuando haya oportunidad, con personas usuarias reales y con un 
 `;
 await writeFile(join(SALIDA, "reporte-accesibilidad.md"), md, "utf8");
 
-console.log(`Capturas: ${capturas} | axe: ${problemasAxe.size} reglas con problemas (${criticos} críticas o graves) | scroll: ${scroll.length} | táctiles: ${tactiles.length} | consola: ${consola.length} | movimiento: ${movimiento.length} | texto: ${textos.length}`);
+console.log(`Capturas: ${capturas} | axe: ${problemasAxe.size} reglas con problemas (${criticos} críticas o graves) | scroll: ${scroll.length} | táctiles: ${tactiles.length} | consola: ${consola.length} | movimiento: ${movimiento.length} | texto: ${textos.length} | design system: ${auditoria.size}`);
 console.log("Reporte: verificacion/reporte-accesibilidad.md");
 process.exitCode = (criticos || scroll.length || consola.length) ? 1 : 0;

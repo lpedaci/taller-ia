@@ -46,9 +46,18 @@ El comando levanta un servidor local, recorre las pantallas principales y:
 - saca capturas en 360, 412, 768, 1024, 1280 y 1920 px, en modo claro y oscuro, en `verificacion/capturas/`;
 - corre axe-core en cada pantalla, ancho y modo;
 - revisa que no haya scroll horizontal ni elementos cortados, que las áreas táctiles en mobile midan 48 px, que no haya errores de consola, que "reducir movimiento" apague las animaciones y que no aparezcan rayas largas ni puntos medios como separadores;
+- audita cada pantalla contra el design system (ver más abajo);
 - escribe el resultado en español en `verificacion/reporte-accesibilidad.md`.
 
 `npm run verificar:rapido` hace lo mismo en 3 anchos (360, 768 y 1280 px). La verificación completa tarda unos 11 minutos y la rápida, unos 5.
+
+### Auditoría contra el design system
+
+```
+npm run auditar
+```
+
+Revisa en cada pantalla, en 360, 412, 768, 1024 y 1280 px y en los dos modos, las reglas del design system: campos y desplegables, botones, orden y alineación de las filas de acciones, tipografía, forma, espaciado, íconos y color del texto. Tarda un par de minutos y escribe `verificacion/auditoria-design-system.md`. Las reglas están en `referencia/design-system/README.md` ("Reglas verificables") y el código, en `scripts/auditoria-ds.mjs`. Al crear un componente o una pantalla, sumá su página a `scripts/pantallas.mjs` y corré la auditoría antes de presentarlo. `npm run verificar` también la incluye.
 
 Para revisar los estados de carga y error sin esperar a que pasen de verdad, agregá a la dirección `?simular=lento`, `?simular=error`, `?simular=error-leccion` o `?simular=sin-conexion`.
 

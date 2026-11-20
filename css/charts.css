@@ -14,14 +14,14 @@
 .chart-head p{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
 .chart-legend{display:flex;flex-wrap:wrap;gap:var(--app-space-2) var(--app-space-4);font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);list-style:none;margin:0;padding:0}
 .chart-legend li{display:inline-flex;align-items:center;gap:6px}
-.chart-legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.chart-legend i{width:12px;height:12px;border-radius:var(--md-sys-shape-corner-extra-small);display:inline-block}
 .chart-legend i.dot{border-radius:50%}
 .chart-plot{position:relative;min-height:120px}
 .chart svg{display:block;width:100%;height:auto;overflow:visible}
 .chart text{font-family:var(--md-ref-typeface-plain)}
 .chart .ax-lbl{font-size:12px;fill:var(--md-sys-color-on-surface-variant)}
 .chart .cat-lbl{font-size:13px;fill:var(--md-sys-color-on-surface)}
-.chart .val-lbl{font-size:12px;fill:var(--md-sys-color-on-surface);font-weight:600}
+.chart .val-lbl{font-size:12px;fill:var(--md-sys-color-on-surface);font-weight:var(--md-sys-typescale-emphasized-weight)}
 .chart .grid{stroke:var(--md-sys-color-outline-variant);stroke-width:1}
 .chart .base{stroke:var(--md-sys-color-outline);stroke-width:1}
 .chart .s1{fill:var(--app-chart-1);stroke:var(--app-chart-1)}.chart .s2{fill:var(--app-chart-2);stroke:var(--app-chart-2)}
@@ -45,6 +45,6 @@
 .chart-tip span{display:flex;align-items:center;gap:6px}
 .chart-tip i{width:8px;height:8px;border-radius:50%;display:inline-block}
 .chart-src{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);overflow-wrap:anywhere}
-.chart-sk{display:grid;gap:10px;padding:var(--app-space-2) 0}
+.chart-sk{display:grid;gap:var(--app-space-3);padding:var(--app-space-2) 0}
 .chart-sk .sk{height:16px}
 @media (prefers-reduced-motion: reduce){ .chart .grow,.chart .fade{animation:none} }

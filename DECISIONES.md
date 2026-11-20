@@ -47,6 +47,9 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-039 | 2026-11-20 | Componentes del bloque 2: "Subí de nivel", checklist descargable, pedido en "Corregí a la IA" y exportación de Mis prompts | Vigente |
 | D-040 | 2026-11-20 | Etapa 3, bloque 2: Módulos 4 a 8 y fuentes | Vigente |
 | D-041 | 2026-11-20 | Etapa 3, bloque 2: verificación | Vigente |
+| D-042 | 2026-11-20 | Desplegable como componente del design system, con el ícono a 12 px del borde | Vigente |
+| D-043 | 2026-11-20 | Auditoría automática contra el design system (`npm run auditar`) | Vigente |
+| D-044 | 2026-11-20 | Ajustes que encontró la primera auditoría: pesos, títulos de tarjeta, sangrías y medidas | Vigente |
 
 ---
 
@@ -818,3 +821,67 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 - `npm run verificar` completo: 576 capturas (48 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, sin scroll horizontal, con todas las áreas táctiles de 48 px, sin errores de consola, sin animaciones con movimiento reducido y sin rayas largas ni puntos medios.
 
 **Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.
+
+## D-042 | 2026-11-20 | Desplegable en el design system
+
+**Solicitado:** **Cambio:** separar unos píxeles del borde la flecha de los desplegables, que se veía pegada a la derecha, y actualizar el design system.
+
+**Alcance:** todos los desplegables del sitio (clasificadores, tipo de paso en los flujos y tipo de evento en la Agenda), en todas las clases de ventana y en los dos modos.
+
+**Decisión y motivo:**
+- La flecha era la nativa del navegador: queda pegada al borde y cambia de un navegador a otro. Se reemplaza por el ícono `arrow_drop_down` de Material, como indica M3 para el desplegable delineado.
+- El ícono va a 12 px del borde, la misma distancia que el ícono de calendario o de reloj en los campos de fecha y hora (que estaba a 14 px y se unificó). El texto le deja 48 px.
+- Además, el desplegable de los clasificadores no usaba el campo del sistema (tenía esquinas rectas y texto de 14 px): ahora usa `.field`, como todos.
+- Tokens nuevos: `--app-size-field` (56 px), `--app-field-icon-inset` (12 px) y `--app-field-icon-space` (48 px).
+- Design system: el desplegable figura en el inventario y tiene su ficha en "Campos y desplegables" (`referencia/design-system/README.md`) y una muestra en `estilos.html`.
+
+**Archivos afectados:** `css/components.css`, `css/activities.css`, `js/activities/evaluadas.js`, `js/activities/produccion.js`, `index.html`, `estilos.html`, `referencia/design-system/README.md`.
+
+**Verificación realizada:** medición en 1280 y 390 px: 56 px de alto e ícono a 12 px del borde. Capturas en claro y oscuro. Pruebas de los clasificadores sin cambios.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-043 | 2026-11-20 | Auditoría contra el design system
+
+**Solicitado:** un chequeo automático que audite todo lo construido contra el design system, para no tener que revisar y corregir después cosas que se podían evitar.
+
+**Decisión y motivo:**
+- **Reglas escritas:** el design system tiene una sección nueva, "Reglas verificables", con doce reglas: campos, desplegables, ícono de los campos, botones, botones de ícono, orden y alineación de las filas de acciones, tipografía, forma, espaciado, íconos y color del texto.
+- **Auditoría:** `scripts/auditoria-ds.mjs` revisa esas reglas en cada pantalla. Toma las escalas (tamaños, pesos, radios y colores) de los tokens, así que si el design system cambia, la auditoría lo sigue.
+- **Dos formas de correrla:**
+  - `npm run auditar`: recorre todas las pantallas en 360, 412, 768, 1024 y 1280 px, en claro y oscuro, en unos tres minutos. Escribe `verificacion/auditoria-design-system.md` y termina con error si algo no cumple.
+  - `npm run verificar`: la suma a los chequeos de siempre, con su propia sección en el reporte.
+- **Pantallas:** la lista vive en `scripts/pantallas.mjs`, compartida por las dos. Al crear un componente o una pantalla se suma su página ahí.
+- **Excepciones:** se marcan en el HTML con `data-excepcion-ds="regla"` y se documentan acá. Hoy son tres:
+  - los controles del reproductor de animaciones, que siguen el patrón de reproductor ("Reproducir" al centro);
+  - las acciones de la pantalla de cierre de un módulo, centradas como el resto de esa pantalla;
+  - las muestras de botones e índice del catálogo `estilos.html`, que muestran variantes y no son filas de acciones.
+- **Prueba de la auditoría:** se insertaron a propósito errores en una página (un desplegable nativo, dos botones rellenos, un texto de 13 px, un color suelto, una esquina de 5 px y un relleno de 10 px) y la auditoría los detectó todos. En esa prueba se encontró que la regla de color ignoraba los elementos con estilo en línea; se corrigió.
+- **Lo que no cubre:** la jerarquía visual, el ancho de los textos explicativos, el tono y la consistencia entre pantallas parecidas siguen siendo revisión con las capturas.
+
+**Archivos afectados:** `scripts/auditoria-ds.mjs`, `scripts/auditar-ds.mjs`, `scripts/pantallas.mjs`, `scripts/verificar.mjs`, `package.json`, `referencia/design-system/README.md`, `js/animacion.js`, `js/lesson/leccion.js`, `estilos.html`, `README.md`.
+
+**Verificación realizada:** `npm run auditar`: 48 pantallas, 5 anchos y 2 modos, todo cumple después de los ajustes de D-044.
+
+**Pendientes o riesgos:** cada regla nueva del design system tiene que sumarse a la auditoría; si no, queda solo en el papel.
+
+## D-044 | 2026-11-20 | Ajustes que encontró la primera auditoría
+
+**Solicitado:** corregir lo que la auditoría encontró fuera del design system (D-043).
+
+**Decisión y motivo:** la primera corrida encontró 102 elementos fuera de las reglas. Se corrigieron así:
+- **Pesos tipográficos:** había cinco (400, 500, 600, 650 y 700). Quedan tres: 400, 500 y el enfático de M3 Expressive (650), que ya era un token. El enfático se usa también en las negritas del texto y en los estados activos. La diferencia visual es mínima, pero ahora es un único criterio.
+- **Títulos de tarjeta:** los títulos de 17 px y los de las tarjetas de módulo de 15 px venían del prototipo aprobado y estaban escritos a mano. Pasan a ser tokens del taller (`--app-typescale-card-title` y `--app-typescale-card-title-small`) y figuran en la escala del design system.
+- **Campos:** las áreas de texto de la tabla comparativa y del storyboard tenían texto de 14 px; ahora usan 16 px, como todos los campos.
+- **Medidas sueltas:**
+  - la insignia de la barra inferior tenía texto de 10 px y ahora usa `label-small` (11 px);
+  - un ícono de 14 px pasa a 16 px y el de la insignia de cierre, de 56 a 48 px;
+  - el snackbar, las filas de próximos eventos y la hora de la línea de tiempo tenían rellenos de 10 o 14 px y ahora usan la escala de 4 px;
+  - la sangría de las listas iba en unidades relativas (19 a 22 px) y ahora es un token de 24 px;
+  - las celdas del registro de actividad y los cuadrados de las leyendas de los gráficos pasan de 3 px a la esquina `extra-small` (4 px).
+
+**Archivos afectados:** `css/components.css`, `css/layout.css`, `css/lesson.css`, `css/activities.css`, `css/estados.css`, `css/charts.css`, `css/animacion.css`, `estilos.html`, `referencia/design-system/README.md`.
+
+**Verificación realizada:** `npm run verificar` completo: 576 capturas, sin problemas de axe-core, scroll, áreas táctiles, consola, movimiento ni texto. La auditoría encontró 24 casos más en 412 px, que la corrida rápida no veía: el relleno de las actividades era fluido (3 % del ancho) y quedaba fuera de la escala de 4 px. Ahora es fijo: 12 px en mobile y 20 px desde 600 px. Por eso `npm run auditar` suma los anchos 412 y 1024. Después, `npm run auditar` sin hallazgos en los 5 anchos y los 2 modos.
+
+**Pendientes o riesgos:** ninguno.

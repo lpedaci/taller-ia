@@ -80,7 +80,8 @@ Se generó con `@material/material-color-utilities`, el método de Material Them
 
 ### Tipografía
 - **Familia:** Roboto Flex, gratuita y servida desde Google Fonts, con la escala tipográfica base de M3 (display, headline, title, body y label).
-- **Variantes enfáticas de M3 Expressive** (peso 650): solo para los números clave y las fechas.
+- **Pesos:** tres, y nada más. 400 (regular), 500 (títulos, etiquetas y botones) y el enfático de M3 Expressive, 650 (`--md-sys-typescale-emphasized-weight`): números clave, fechas, estados activos y negritas dentro del texto.
+- **Títulos de tarjeta:** dos estilos propios del taller, heredados del prototipo aprobado: `--app-typescale-card-title` (500, 17/24 px) para el título de una tarjeta y `--app-typescale-card-title-small` (500, 15/20 px) para el título de una tarjeta de módulo. Ningún otro tamaño fuera de la escala.
 - **Lectura:** el texto largo usa `body-large`, con un ancho de línea de 60 a 75 caracteres.
 
 ### Forma
@@ -177,7 +178,7 @@ Estado de cada componente de M3 Expressive en el taller.
 | Barra de navegación flexible | Implementado | Navegación en mobile |
 | Barra superior (*app bar*) con búsqueda | Implementado | Título, búsqueda, tema, avisos y usuario |
 | Pestañas (*tabs*) | A construir | Secciones dentro de un módulo: lección, actividad, recursos |
-| *Toolbar* flotante | A construir | Anterior, Escuchar y Siguiente dentro de una lección |
+| *Toolbar* flotante | Implementado | Anterior, Escuchar y Siguiente dentro de una lección, fija debajo de la barra superior |
 
 **Contención**
 
@@ -197,7 +198,7 @@ Estado de cada componente de M3 Expressive en el taller.
 | Insignias (*badges*) | Implementado | Eventos de hoy en Agenda, avisos |
 | Diálogos | Implementado | Confirmar "Borrar mis datos" |
 | Indicadores de progreso (lineal y circular) | Implementado | Objetivos, módulos |
-| Indicador de carga (*loading indicator*) | A construir | Esperas cortas, de 200 ms a 5 s |
+| Indicador de carga (*loading indicator*) | Implementado (indicador circular, skeleton y pantalla de carga) | Esperas cortas, de 200 ms a 5 s; mensajes que cambian a los 3 s y salida a los 10 s |
 | Snackbar | Implementado | Confirmaciones breves |
 | Mensajes de estado (error, atención, positivo, información) | Implementado | Feedback de actividades, avisos de agenda, notas |
 | Tooltips | A construir | Íconos sin etiqueta visible |
@@ -208,11 +209,25 @@ Estado de cada componente de M3 Expressive en el taller.
 |---|---|---|
 | Chips (filtro y asistencia) | Implementado | Filtros de agenda, tipos de evento |
 | Menús | Implementado | Menú de usuario |
-| Campos de texto (56 px de alto, como indica M3) | Implementado | Agregar tarea: texto a todo el ancho; abajo, fecha y botón M (56 px) en la misma fila |
+| Campos de texto (56 px de alto, como indica M3) | Implementado | Agregar tarea: texto a todo el ancho; abajo, fecha y botón M (56 px) en la misma fila. Respuestas de las actividades |
+| Desplegable (*exposed dropdown menu*, delineado) | Implementado | Clasificadores, tipo de paso en los flujos, tipo de evento en la Agenda |
 | Búsqueda (barra y vista) | Implementado la barra; falta la vista a pantalla completa en mobile | Buscar módulos y glosario |
 | Checkbox | Implementado | Pendientes |
-| Radio, *switch* y *slider* | A construir | Actividades, ajustes, velocidad de lectura |
-| Selectores de fecha y hora | A construir | Fecha límite de tareas propias |
+| Radio y *switch* | Implementado | Preguntas de las actividades, autodiagnóstico, "Más sorpresa" en el predictor |
+| *Slider* | A construir | Velocidad de lectura |
+| Selectores de fecha y hora | Implementado (selector nativo con ícono Material) | Fecha límite de tareas propias, eventos propios |
+
+### Campos y desplegables
+
+Todos los campos son delineados, de 56 px (`--app-size-field`), con esquina `extra-small` (4 px), texto `body-large` y la etiqueta arriba, en `label-large`.
+
+**Desplegable**
+- Es un campo delineado con el ícono final `arrow_drop_down` (24 px). No se usa la flecha nativa del navegador, porque queda pegada al borde y cambia de un navegador a otro.
+- El ícono va a 12 px del borde derecho (`--app-field-icon-inset`) y el texto le deja 48 px (`--app-field-icon-space`), igual que el ícono de calendario o de reloj en los campos de fecha y hora.
+- Con foco, el borde y el ícono pasan a `primary`.
+- Marcado: `<span class="sel"><select class="field">...</select><span class="ms tf-ic" aria-hidden="true">arrow_drop_down</span></span>`, con su `<label>` asociada (visible o, si el contexto ya la da, solo para lectores de pantalla).
+
+**Listas dentro del texto:** sangría de 24 px (`--app-list-indent`).
 
 ### Patrones que no son componentes de M3
 
@@ -232,6 +247,29 @@ Algunos patrones habituales en otros sistemas no son componentes de M3. Se resue
 - **Qué es en M3:** no es un componente de M3.
 - **Lecciones:** se avanza por pasos ("Paso 4 de 7", con Anterior y Siguiente).
 - **Listas largas** (Biblioteca, glosario): búsqueda, filtros y un botón "Cargar más".
+
+## Reglas verificables
+
+Estas reglas se revisan solas en cada pantalla, ancho y modo con `npm run auditar` (rápida, unos minutos) y dentro de `npm run verificar`. El código está en `scripts/auditoria-ds.mjs`; las pantallas que recorre, en `scripts/pantallas.mjs`. **Al crear un componente o una pantalla, se suma su página a `scripts/pantallas.mjs` y se corre la auditoría antes de presentarlo.**
+
+| Regla | Qué se revisa |
+|---|---|
+| `campo` | Todo campo usa `.field`: 56 px de alto, esquina de 4 px y texto de 16 px. |
+| `desplegable` | Todo `select` está dentro de `.sel`, sin flecha nativa y con `arrow_drop_down`. |
+| `icono-campo` | El ícono final de un campo mide 24 px y está a 12 px del borde. |
+| `boton` | Botones de 40 px (S) o 56 px (M), en forma de píldora, con etiqueta de 14 px y peso 500, e ícono de 20 px en S (24 px si el botón muestra solo el ícono). |
+| `boton-icono` | Botones de ícono de 40 o 48 px, con ícono de 24 px. |
+| `acciones-orden` | En una fila de acciones hay un solo botón relleno, y va último (a la derecha). Antes van las acciones de menor prioridad. |
+| `acciones-alineacion` | Las filas de acciones se alinean al final del contenedor. No aplica a la navegación anterior y siguiente. |
+| `tipografia` | Solo tamaños y pesos de la escala (M3 y `--app-typescale-*`). |
+| `forma` | Radios de esquina de la escala de forma, o completos. |
+| `espaciado` | Márgenes, rellenos y separaciones en múltiplos de 4 px (2 y 6 px solo como ajuste óptico). |
+| `icono` | Material Symbols Rounded en 16, 18, 20, 24, 32, 40 o 48 px. |
+| `color-texto` | El color de todo texto es un token. |
+
+**Excepciones:** se documentan en `DECISIONES.md` y se marcan en el HTML con `data-excepcion-ds="regla"`. Hoy son tres: los controles del reproductor de animaciones (patrón de reproductor, con "Reproducir" al centro), las acciones de la pantalla de cierre de un módulo (centradas, como el resto de esa pantalla) y las muestras de botones del catálogo `estilos.html`.
+
+**Qué no se revisa solo** (sigue siendo revisión a mano con las capturas): la jerarquía visual, el ancho de los textos explicativos, el tono de los textos y la consistencia entre pantallas parecidas.
 
 ## Iconografía
 - **Material Symbols Rounded** (fuente variable): relleno 0 cuando está inactivo y 1 cuando está activo, grosor 400 y tamaño óptico 24.

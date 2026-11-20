@@ -3,7 +3,8 @@
    Marco común, feedback por ítem (ícono y texto, nunca solo color) y un
    layout propio para mobile en clasificador, tabla, mapa y storyboard.
    ===================================================================== */
-.act{border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-extra-large);padding:clamp(var(--app-space-3),3vw,var(--app-space-5));display:grid;gap:var(--app-space-4);background:var(--app-color-card)}
+.act{border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-extra-large);padding:var(--app-space-3);display:grid;gap:var(--app-space-4);background:var(--app-color-card)}
+@media (min-width:600px){ .act{padding:var(--app-space-5)} }
 .act-head{display:flex;gap:var(--app-space-3);align-items:center}
 .act-ic{width:48px;height:48px;border-radius:var(--md-sys-shape-corner-large);display:grid;place-items:center;flex:none;background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container)}
 .act-tipo{font:var(--md-sys-typescale-label-medium);color:var(--md-sys-color-primary)}
@@ -17,7 +18,7 @@
    su contenido, de menor a mayor prioridad: la acción principal (rellena, una sola) queda última, a la derecha */
 .act-actions{display:flex;flex-wrap:wrap;gap:var(--app-space-2) var(--app-space-3);align-items:center;justify-content:flex-end}
 .act-fb:empty{display:none}
-.act-fb .status ul{margin:var(--app-space-2) 0 0;padding-left:1.2em;display:grid;gap:var(--app-space-1)}
+.act-fb .status ul{margin:var(--app-space-2) 0 0;padding-left:var(--app-list-indent);display:grid;gap:var(--app-space-1)}
 .act-fb-in{animation:fb-in var(--md-sys-motion-spring-default-spatial) both}
 @keyframes fb-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .opc{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
@@ -56,10 +57,10 @@
 .cls-list{list-style:none;margin:0;padding:0;display:grid;gap:var(--app-space-2);min-height:48px}
 /* Tarjeta en columna con el selector anclado abajo: en una misma fila, los selectores quedan alineados aunque los textos tengan distinto largo */
 .cls-item{background:var(--app-color-card);border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-medium);padding:var(--app-space-3);display:flex;flex-direction:column;gap:var(--app-space-2);font:var(--md-sys-typescale-body-medium)}
-.cls-item .cls-sel{margin-top:auto}
+.cls-item .sel{margin-top:auto}
 .cls-item[draggable="true"]{cursor:grab}
 .cls-item.is-drag{opacity:.5}
-.cls-sel{height:56px;font:var(--md-sys-typescale-label-large);padding:0 var(--app-space-2)}
+
 .cls-item.is-ok{border-color:var(--app-color-success)}
 .cls-item.is-bad{border-color:var(--md-sys-color-error)}
 @container act (min-width:640px){ .cls-zonas{grid-template-columns:repeat(var(--cols,3),minmax(0,1fr))} .cls-pool{grid-column:1/-1} .cls-pool .cls-list{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))} }
@@ -118,13 +119,13 @@
 .cmp-panel h5{display:flex;flex-wrap:wrap;gap:var(--app-space-2);align-items:center;font:var(--md-sys-typescale-title-small);margin-bottom:var(--app-space-3)}
 .cmp-texto{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:var(--md-sys-typescale-body-medium);font-family:inherit;line-height:1.6}
 .cmp-ver{justify-self:end}
-.cmp-cambios{margin:0;padding-left:1.4em;display:grid;gap:var(--app-space-2);font:var(--md-sys-typescale-body-large)}
+.cmp-cambios{margin:0;padding-left:var(--app-list-indent);display:grid;gap:var(--app-space-2);font:var(--md-sys-typescale-body-large)}
 
 /* ---------- Tabla editable: tabla en pantallas anchas, tarjetas por fila en mobile ---------- */
 .tbl-edit-wrap{overflow-x:auto}
 .tbl-edit td{vertical-align:top;padding:var(--app-space-2) var(--app-space-1)}
 .tbl-edit th[scope="row"]{vertical-align:top;padding-top:var(--app-space-4);min-width:120px}
-.tbl-edit textarea{width:100%;min-width:140px;height:auto;min-height:56px;padding:var(--app-space-2);font:var(--md-sys-typescale-body-medium);resize:vertical}
+.tbl-edit textarea{width:100%;min-width:140px;height:auto;min-height:56px;padding:var(--app-space-3);resize:vertical}
 @container act (max-width:599px){
   .tbl-edit,.tbl-edit tbody,.tbl-edit tr,.tbl-edit th,.tbl-edit td{display:block;width:100%}
   .tbl-edit thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -145,8 +146,9 @@
 .flujo-paso+.flujo-paso::before{content:"";position:absolute;left:32px;top:calc(-1 * var(--app-space-5));height:var(--app-space-5);width:2px;background:var(--md-sys-color-outline)}
 .fp-head{display:flex;flex-wrap:wrap;align-items:center;gap:var(--app-space-2)}
 .fp-n{display:inline-flex;align-items:center;gap:var(--app-space-2);font:var(--md-sys-typescale-title-small);margin-right:auto}
-.fp-tipo{height:56px;font:var(--md-sys-typescale-label-large);padding:0 var(--app-space-2)}
+
 .fp-ctrl{display:inline-flex}
+.fp-sel{flex:0 1 232px}
 .icon-btn:disabled{color:var(--app-color-disabled-content);cursor:default}
 .icon-btn:disabled::after{display:none}
 
@@ -156,7 +158,7 @@
 .sb-esc{background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-3) var(--app-space-4) var(--app-space-4);display:grid;gap:var(--app-space-3);min-width:0}
 .sb-head{display:flex;justify-content:space-between;align-items:center}
 .sb-head h5{font:var(--md-sys-typescale-title-medium)}
-.sb-esc textarea{height:auto;min-height:56px;padding:var(--app-space-2);font:var(--md-sys-typescale-body-medium)}
+.sb-esc textarea{height:auto;min-height:56px;padding:var(--app-space-3)}
 
 /* ---------- Mapa de impactos ---------- */
 .mapa-caso{display:flex;gap:var(--app-space-3);background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-3) var(--app-space-4);font:var(--md-sys-typescale-body-large)}
@@ -169,9 +171,9 @@
 .mapa-items li{display:flex;align-items:center;gap:var(--app-space-2);background:var(--app-color-card);border-radius:var(--md-sys-shape-corner-medium);padding:0 0 0 var(--app-space-3);font:var(--md-sys-typescale-body-medium)}
 .mapa-items li span{flex:1;min-width:0;overflow-wrap:anywhere;padding:var(--app-space-2) 0}
 .mapa-add{display:flex;gap:var(--app-space-1);align-items:center}
-.mapa-add .field{flex:1;height:56px}
+.mapa-add .field{flex:1}
 .mapa-ideas{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);border-top:1px dashed var(--md-sys-color-outline-variant);padding-top:var(--app-space-2)}
-.mapa-ideas ul{margin:var(--app-space-1) 0 0;padding-left:1.2em}
+.mapa-ideas ul{margin:var(--app-space-1) 0 0;padding-left:var(--app-list-indent)}
 
 /* ---------- Mis prompts ---------- */
 .prompt-list{display:grid;gap:var(--app-space-3)}
@@ -278,7 +280,7 @@
 .m4-item dt{display:flex;align-items:center;gap:var(--app-space-2);font:var(--md-sys-typescale-title-small)}
 .m4-dot{display:inline-flex;color:var(--m4-c)}
 .m4-item dd{margin:var(--app-space-1) 0 0;font:var(--md-sys-typescale-body-medium)}
-.m4-item ul{margin:var(--app-space-1) 0 0;padding-left:1.2em;color:var(--md-sys-color-on-surface-variant)}
+.m4-item ul{margin:var(--app-space-1) 0 0;padding-left:var(--app-list-indent);color:var(--md-sys-color-on-surface-variant)}
 .m4-en{display:flex;gap:var(--app-space-2);align-items:flex-start;font:var(--md-sys-typescale-body-large)}
 .m4-en .ms{margin-top:2px;color:var(--app-chart-2)}
 .m4-destaca[data-destacar="delegacion"] .m4-en .ms{color:var(--app-chart-1)}
@@ -308,7 +310,7 @@
 .sn-nota{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
 .sn-texto{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:var(--md-sys-typescale-body-large);font-family:inherit;line-height:1.6}
 .sn-texto ins{text-decoration:none;background:var(--app-color-success-container);color:var(--app-color-on-success-container);border-radius:4px;padding:0 2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.sn-porque{margin:0;padding-left:1.2em;display:grid;gap:var(--app-space-1)}
+.sn-porque{margin:0;padding-left:var(--app-list-indent);display:grid;gap:var(--app-space-1)}
 .sn-comp{display:grid;gap:var(--app-space-3)}
 @container act (min-width:640px){ .sn-comp{grid-template-columns:1fr 1.4fr} }
 .sn-comp>div{background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-4);display:grid;gap:var(--app-space-2);align-content:start}

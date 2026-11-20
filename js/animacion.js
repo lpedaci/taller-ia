@@ -55,7 +55,7 @@ function plantilla(a, id) {
     `<figcaption class="anim-head"><span class="chip chip-neutral">${icono("animation")}Animación | ${a.escenas.length} escenas</span><h4 id="${esc(id)}-t">${esc(a.titulo)}</h4></figcaption>` +
     `<div class="anim-stage"><svg role="img" aria-labelledby="${esc(id)}-t ${esc(id)}-d"></svg>` +
       `<button class="anim-play-big" type="button" data-an="play" aria-label="Reproducir la animación">${icono("play_arrow", "fill")}</button></div>` +
-    `<div class="anim-ctrl" role="group" aria-label="Controles de la animación">` +
+    `<div class="anim-ctrl" role="group" aria-label="Controles de la animación" data-excepcion-ds="acciones-orden acciones-alineacion">` +
       `<button class="btn btn-filled anim-pp" type="button" data-an="pp">${icono("play_arrow")}<span>Reproducir</span></button>` +
       ctrl("prev", "skip_previous", "Escena anterior") +
       `<ol class="anim-seg" aria-label="Escenas">${a.escenas.map((e, i) => `<li><button type="button" data-an="ir" data-i="${i}" aria-label="Escena ${i + 1}: ${esc(e.titulo)}"><span class="seg-fill"></span></button></li>`).join("")}</ol>` +

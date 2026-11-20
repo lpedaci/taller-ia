@@ -94,7 +94,7 @@ registrar("clasificador", {
     const id = idDe(ctx, b);
     const opciones = sel => `<option value="">Sin clasificar</option>` + b.categorias.map(c => `<option value="${esc(c.id)}"${sel === c.id ? " selected" : ""}>${esc(c.titulo)}</option>`).join("");
     const item = (it, i) => `<li class="cls-item" data-i="${i}" draggable="true"><span class="cls-txt" id="${esc(id)}-i${i}">${enLinea(it.texto)}</span>` +
-      `<label class="sr-only" for="${esc(id)}-s${i}">Mover a</label><select class="cls-sel" id="${esc(id)}-s${i}" data-i="${i}" aria-describedby="${esc(id)}-i${i}">${opciones("")}</select><div class="q-fb"></div></li>`;
+      `<label class="sr-only" for="${esc(id)}-s${i}">Mover a</label><span class="sel"><select class="field cls-sel" id="${esc(id)}-s${i}" data-i="${i}" aria-describedby="${esc(id)}-i${i}">${opciones("")}</select><span class="ms tf-ic" aria-hidden="true">arrow_drop_down</span></span><div class="q-fb"></div></li>`;
     return marco("clasificador", b, ctx,
       `<p class="act-ayuda">${icono("info", "sm")}Arrastrá cada tarjeta a su columna, o elegí la columna en "Mover a".</p>` +
       `<div class="cls-zonas" style="--cols:${b.categorias.length}"><section class="cls-zona cls-pool" data-cat="" aria-labelledby="${esc(id)}-z0"><h5 id="${esc(id)}-z0">Por clasificar <span class="cls-n"></span></h5><ul class="cls-list">${b.items.map(item).join("")}</ul></section>` +

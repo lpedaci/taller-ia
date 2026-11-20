@@ -161,7 +161,7 @@ registrar("flujo", {
       lista.innerHTML = pasos.map((p, i) => {
         const [lbl, ic] = TIPOS_FLUJO[p.tipo];
         return `<li class="flujo-paso k-${p.tipo}"><div class="fp-head"><span class="fp-n">${icono(ic)}<span>Paso ${i + 1}</span></span>` +
-          `<label class="sr-only" for="${fid(ctx, b, "t" + i)}">Tipo del paso ${i + 1}</label><select class="field fp-tipo" id="${fid(ctx, b, "t" + i)}" data-tipo="${i}">${Object.entries(TIPOS_FLUJO).map(([k, [l]]) => `<option value="${k}"${k === p.tipo ? " selected" : ""}>${l}</option>`).join("")}</select>` +
+          `<label class="sr-only" for="${fid(ctx, b, "t" + i)}">Tipo del paso ${i + 1}</label><span class="sel fp-sel"><select class="field fp-tipo" id="${fid(ctx, b, "t" + i)}" data-tipo="${i}">${Object.entries(TIPOS_FLUJO).map(([k, [l]]) => `<option value="${k}"${k === p.tipo ? " selected" : ""}>${l}</option>`).join("")}</select><span class="ms tf-ic" aria-hidden="true">arrow_drop_down</span></span>` +
           `<span class="fp-ctrl"><button class="icon-btn" type="button" data-sube="${i}" aria-label="Subir el paso ${i + 1}"${i === 0 ? " disabled" : ""}>${icono("arrow_upward")}</button>` +
           `<button class="icon-btn" type="button" data-baja="${i}" aria-label="Bajar el paso ${i + 1}"${i === pasos.length - 1 ? " disabled" : ""}>${icono("arrow_downward")}</button>` +
           `<button class="icon-btn" type="button" data-quita="${i}" aria-label="Quitar el paso ${i + 1}"${pasos.length === 1 ? " disabled" : ""}>${icono("delete")}</button></span></div>` +

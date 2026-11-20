@@ -15,11 +15,21 @@
   --app-size-avatar:32px;      /* avatar en la barra superior */
   --app-size-avatar-lg:40px;   /* avatar en el encabezado del menú */
   --app-size-brand:32px;       /* logo */
+  --app-size-field:56px;       /* campos de texto y desplegables (M3) */
+  --app-field-icon-inset:12px; /* distancia del ícono final de un campo al borde (M3) */
+  --app-field-icon-space:48px; /* lugar que reserva el texto para ese ícono: 12 + 24 + 12 */
+  --app-list-indent:24px;      /* sangría de listas con viñetas o números */
+  /* Títulos de tarjeta del prototipo aprobado: un punto más que title-medium y title-small, para que
+     se distingan del texto de la tarjeta con Roboto Flex. Son parte de la escala tipográfica del taller. */
+  --app-typescale-card-title:500 17px/24px var(--md-ref-typeface-plain);
+  --app-typescale-card-title-small:500 15px/20px var(--md-ref-typeface-plain);
 }
 
 /* ---------- Base ---------- */
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
+/* Un solo peso de énfasis en todo el taller (M3 Expressive, emphasized): negritas, números clave y estados activos */
+b,strong{font-weight:var(--md-sys-typescale-emphasized-weight)}
 html{height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;min-height:100%;font:var(--md-sys-typescale-body-large);background-color:var(--app-color-background);background-image:radial-gradient(var(--app-color-texture) 1px, transparent 1.2px);background-size:20px 20px;background-attachment:fixed;color:var(--md-sys-color-on-surface);-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4,h5,h6,p{margin:0}
@@ -108,7 +118,7 @@ img,svg{max-width:100%}
 .card.outlined{border:1px solid var(--md-sys-color-outline-variant)}
 .card-head{display:flex;align-items:center;gap:var(--app-space-3);padding:var(--app-space-4) var(--app-space-4) var(--app-space-3);flex-wrap:wrap}
 .card-head .ic{width:40px;height:40px;border-radius:var(--md-sys-shape-corner-medium);display:grid;place-items:center;background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container);flex:none}
-.card-head h2,.card-head h3{font:var(--md-sys-typescale-title-medium);font-size:17px;flex:1;min-width:0}
+.card-head h2,.card-head h3{font:var(--app-typescale-card-title);flex:1;min-width:0}
 .card-body{padding:0 var(--app-space-4) var(--app-space-4)}
 .card-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:var(--app-space-2);padding:0 var(--app-space-2) var(--app-space-2)}
 /* Acento cálido (terciario) para lo relacionado con el tiempo */
@@ -147,7 +157,7 @@ img,svg{max-width:100%}
 .ring svg{width:48px;height:48px;transform:rotate(-90deg)}
 .ring .bg{stroke:var(--md-sys-color-secondary-container)}
 .ring .fg{stroke:var(--md-sys-color-primary)}
-.ring b{position:absolute;inset:0;display:grid;place-items:center;font:var(--md-sys-typescale-label-small);font-weight:700}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:var(--md-sys-typescale-label-small);font-weight:var(--md-sys-typescale-emphasized-weight)}
 .ring .ok{color:var(--md-sys-color-primary)}
 /* Circular indeterminado */
 .spin{width:40px;height:40px;flex:none;animation:spin-rot 1.4s linear infinite}
@@ -156,7 +166,7 @@ img,svg{max-width:100%}
 @keyframes spin-dash{0%{stroke-dasharray:2 200;stroke-dashoffset:0}50%{stroke-dasharray:70 200;stroke-dashoffset:-15}100%{stroke-dasharray:70 200;stroke-dashoffset:-100}}
 
 /* ---------- Campos de texto (delineados, 56 px) ---------- */
-.field{height:56px;border:1px solid var(--md-sys-color-outline);border-radius:var(--md-sys-shape-corner-extra-small);background:transparent;padding:0 var(--app-space-3);font:var(--md-sys-typescale-body-large);min-width:0;color:var(--md-sys-color-on-surface)}
+.field{height:var(--app-size-field);border:1px solid var(--md-sys-color-outline);border-radius:var(--md-sys-shape-corner-extra-small);background:transparent;padding:0 var(--app-space-3);font:var(--md-sys-typescale-body-large);min-width:0;color:var(--md-sys-color-on-surface)}
 textarea.field{height:auto;min-height:112px;padding:var(--app-space-3);resize:vertical;line-height:24px}
 .field:focus{outline:2px solid var(--md-sys-color-primary);outline-offset:-1px;border-color:transparent}
 .field::placeholder{color:var(--md-sys-color-on-surface-variant);opacity:1}
@@ -171,10 +181,17 @@ textarea.field{height:auto;min-height:112px;padding:var(--app-space-3);resize:ve
 .tf-err .ms{font-size:16px}
 /* Fecha y hora: ícono Material visible en lugar del nativo tenue; el área del ícono abre el selector */
 .tf-wrap{position:relative;display:block}
-.tf-wrap .field{padding-right:48px}
-.tf-ic{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--md-sys-color-on-surface-variant);pointer-events:none}
+.tf-wrap .field{padding-right:var(--app-field-icon-space)}
+.tf-ic{position:absolute;right:var(--app-field-icon-inset);top:50%;transform:translateY(-50%);font-size:24px;color:var(--md-sys-color-on-surface-variant);pointer-events:none}
 .tf-wrap input::-webkit-calendar-picker-indicator{position:absolute;right:0;top:0;width:52px;height:100%;opacity:0;cursor:pointer}
 .tf-wrap .field:focus+.tf-ic{color:var(--md-sys-color-primary)}
+/* Desplegable (M3: campo delineado con ícono final arrow_drop_down). El ícono nativo se reemplaza para
+   respetar la distancia al borde del design system (D-042). */
+.sel{position:relative;display:block;min-width:0}
+.sel select.field{appearance:none;-webkit-appearance:none;width:100%;padding-right:var(--app-field-icon-space);cursor:pointer;text-overflow:ellipsis;white-space:nowrap;background:transparent}
+.sel select.field:focus+.tf-ic{color:var(--md-sys-color-primary)}
+.sel select.field:disabled{cursor:default;color:var(--app-color-disabled-content);border-color:var(--app-color-disabled-content)}
+.sel select.field option{background:var(--md-sys-color-surface-container);color:var(--md-sys-color-on-surface)}
 .tf-row{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:var(--app-space-3);margin-top:var(--app-space-4)}
 
 /* ---------- Switch M3 ---------- */
@@ -208,13 +225,13 @@ textarea.field{height:auto;min-height:112px;padding:var(--app-space-3);resize:ve
 .menu-title{font:var(--md-sys-typescale-title-small);padding:var(--app-space-2) var(--app-space-4) var(--app-space-1)}
 
 /* ---------- Avatar ---------- */
-.avatar{position:relative;isolation:isolate;overflow:hidden;width:var(--app-size-avatar);height:var(--app-size-avatar);border-radius:50%;display:grid;place-items:center;background:var(--md-sys-color-tertiary-container);color:var(--md-sys-color-on-tertiary-container);font:var(--md-sys-typescale-label-medium);font-weight:700;border:0;cursor:pointer;flex:none;text-decoration:none}
+.avatar{position:relative;isolation:isolate;overflow:hidden;width:var(--app-size-avatar);height:var(--app-size-avatar);border-radius:50%;display:grid;place-items:center;background:var(--md-sys-color-tertiary-container);color:var(--md-sys-color-on-tertiary-container);font:var(--md-sys-typescale-label-medium);font-weight:var(--md-sys-typescale-emphasized-weight);border:0;cursor:pointer;flex:none;text-decoration:none}
 .avatar::after{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;z-index:-1;transition:opacity var(--md-sys-motion-spring-fast-effects)}
 .avatar:hover::after{opacity:var(--md-sys-state-hover-opacity)}
 .avatar[aria-expanded="true"]{box-shadow:0 0 0 2px var(--md-sys-color-primary)}
 .avatar .ms{font-size:20px}
 .avatar.lg .ms{font-size:24px}
-.avatar.lg{width:var(--app-size-avatar-lg);height:var(--app-size-avatar-lg);font:var(--md-sys-typescale-label-large);font-weight:700;cursor:default}
+.avatar.lg{width:var(--app-size-avatar-lg);height:var(--app-size-avatar-lg);font:var(--md-sys-typescale-label-large);font-weight:var(--md-sys-typescale-emphasized-weight);cursor:default}
 /* El botón del avatar ocupa 48 px de área táctil */
 .avatar-btn{width:var(--app-size-target);height:var(--app-size-target);display:grid;place-items:center;border:0;background:transparent;padding:0;cursor:pointer;border-radius:50%}
 .avatar-btn:focus-visible{outline:none}
@@ -230,7 +247,7 @@ textarea.field{height:auto;min-height:112px;padding:var(--app-space-3);resize:ve
 .dialog .dlg-ic{display:block;margin:0 auto 16px;color:var(--md-sys-color-secondary)}
 .dialog h2{font:var(--md-sys-typescale-headline-small);text-align:center;margin-bottom:16px}
 .dialog p{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
-.dialog p b{color:var(--md-sys-color-on-surface);font-weight:600}
+.dialog p b{color:var(--md-sys-color-on-surface);font-weight:var(--md-sys-typescale-emphasized-weight)}
 .dlg-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin-top:24px}
 .dialog .btn-outlined{border-color:var(--md-sys-color-outline);color:var(--md-sys-color-on-surface)}
 .dlg-confirm{width:min(400px,calc(100vw - 48px))}
@@ -262,7 +279,7 @@ textarea.field{height:auto;min-height:112px;padding:var(--app-space-3);resize:ve
 .scrim.open{opacity:1;pointer-events:auto}
 
 /* ---------- Snackbar ---------- */
-.snackbar{position:fixed;left:50%;bottom:80px;transform:translate(-50%,24px);background:var(--md-sys-color-inverse-surface);color:var(--md-sys-color-inverse-on-surface);padding:14px 16px;border-radius:var(--md-sys-shape-corner-extra-small);font:var(--md-sys-typescale-body-medium);box-shadow:var(--md-sys-elevation-level3);opacity:0;pointer-events:none;transition:opacity var(--md-sys-motion-spring-default-effects),transform var(--md-sys-motion-spring-default-spatial);z-index:60;max-width:calc(100vw - 32px);width:max-content}
+.snackbar{position:fixed;left:50%;bottom:80px;transform:translate(-50%,24px);background:var(--md-sys-color-inverse-surface);color:var(--md-sys-color-inverse-on-surface);min-height:48px;padding:var(--app-space-3) var(--app-space-4);border-radius:var(--md-sys-shape-corner-extra-small);font:var(--md-sys-typescale-body-medium);box-shadow:var(--md-sys-elevation-level3);opacity:0;pointer-events:none;transition:opacity var(--md-sys-motion-spring-default-effects),transform var(--md-sys-motion-spring-default-spatial);z-index:60;max-width:calc(100vw - 32px);width:max-content}
 .snackbar.show{opacity:1;transform:translate(-50%,0)}
 
 /* ---------- Tooltip simple ---------- */
