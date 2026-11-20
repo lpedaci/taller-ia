@@ -1,0 +1,90 @@
+{
+  "actualizado": "noviembre de 2026",
+  "nota": "Cada función tiene \"estado\": \"si\" (confirmada en la ayuda oficial en la fecha de actualización, con su URL) o \"a-verificar\" (no se pudo confirmar: la página muestra \"Consultá la ayuda oficial\"). Ver DECISIONES.md, D-051.",
+  "funciones": {
+    "archivos": "Subir archivos",
+    "web": "Búsqueda web",
+    "imagenes": "Crear imágenes",
+    "datos": "Analizar datos",
+    "proyectos": "Proyectos o espacios de trabajo",
+    "memoria": "Memoria entre conversaciones",
+    "asistentes": "Asistentes personalizados",
+    "voz": "Modo de voz",
+    "privacidad": "Entrenamiento con tus conversaciones",
+    "suite": "Dentro de la suite de oficina"
+  },
+  "herramientas": [
+    {
+      "id": "chatgpt", "nombre": "ChatGPT", "empresa": "OpenAI",
+      "ecosistema": "Asistente independiente, en la web, en apps y en escritorio.",
+      "ayuda": "https://help.openai.com/",
+      "web": "https://chatgpt.com/",
+      "funciones": {
+        "archivos": { "estado": "si", "detalle": "Permite adjuntar archivos con la sesión iniciada.", "url": "https://chatgpt.com/" },
+        "web": { "estado": "si", "detalle": "Tiene búsqueda web entre las opciones del chat.", "url": "https://chatgpt.com/" },
+        "imagenes": { "estado": "si", "detalle": "Tiene \"Crear imagen\" entre las opciones del chat.", "url": "https://chatgpt.com/" },
+        "datos": { "estado": "a-verificar" },
+        "proyectos": { "estado": "a-verificar" },
+        "memoria": { "estado": "a-verificar" },
+        "asistentes": { "estado": "a-verificar" },
+        "voz": { "estado": "si", "detalle": "Tiene un modo de voz que se abre desde el ícono de voz del chat. Idiomas y planes: consultá la ayuda oficial.", "url": "https://chatgpt.com/" },
+        "privacidad": { "estado": "si", "detalle": "Avisa que las conversaciones pueden revisarse y usarse para mejorar sus modelos. Cómo desactivarlo: ayuda oficial.", "url": "https://chatgpt.com/" },
+        "suite": { "estado": "a-verificar" }
+      }
+    },
+    {
+      "id": "claude", "nombre": "Claude", "empresa": "Anthropic",
+      "ecosistema": "Asistente independiente, en la web, en apps y en escritorio. Se conecta con herramientas como Gmail, Google Calendar y Google Docs.",
+      "ayuda": "https://support.claude.com/en/",
+      "web": "https://claude.ai/",
+      "funciones": {
+        "archivos": { "estado": "si", "detalle": "Permite subir archivos a la conversación.", "url": "https://support.claude.com/en/articles/8241126-upload-files-to-claude" },
+        "web": { "estado": "si", "detalle": "Tiene búsqueda web, que se activa desde la conversación.", "url": "https://support.claude.com/en/articles/10684626-enable-and-use-web-search" },
+        "imagenes": { "estado": "a-verificar" },
+        "datos": { "estado": "si", "detalle": "Ejecuta código para analizar datos subidos (por ejemplo, CSV) y crea planillas de Excel con fórmulas. Disponible en todos los planes.", "url": "https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude" },
+        "proyectos": { "estado": "si", "detalle": "Tiene proyectos, con documentos e instrucciones propias. En el plan gratuito, hasta cinco.", "url": "https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features" },
+        "memoria": { "estado": "si", "detalle": "Viene activada en los planes individuales. Se desactiva o se borra en Ajustes, y hay chats de incógnito que no se guardan.", "url": "https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context" },
+        "asistentes": { "estado": "si", "detalle": "Instrucciones por proyecto y \"skills\" (habilidades) reutilizables.", "url": "https://support.claude.com/en/articles/12512176-what-are-skills" },
+        "voz": { "estado": "si", "detalle": "\"Modo de voz\", en beta: en el celular, en escritorio y en la web, en todos los planes. Los idiomas distintos del inglés están en beta. Por defecto no guarda el audio, solo la transcripción.", "url": "https://support.claude.com/en/articles/11101966-use-voice-mode" },
+        "privacidad": { "estado": "a-verificar" },
+        "suite": { "estado": "si", "detalle": "Tiene un complemento para Google Docs, Sheets y Slides.", "url": "https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides" }
+      }
+    },
+    {
+      "id": "gemini", "nombre": "Gemini", "empresa": "Google",
+      "ecosistema": "Asistente de Google, integrado con Gmail, Docs, Drive y el resto de Google Workspace.",
+      "ayuda": "https://support.google.com/gemini/",
+      "web": "https://gemini.google.com/",
+      "funciones": {
+        "archivos": { "estado": "si", "detalle": "Documentos, planillas, fotos, videos y más: hasta 10 archivos por consulta.", "url": "https://support.google.com/gemini/answer/14903178?hl=es" },
+        "web": { "estado": "si", "detalle": "Algunas respuestas se basan en resultados de la Búsqueda de Google.", "url": "https://support.google.com/gemini/answer/13594961?hl=es" },
+        "imagenes": { "estado": "si", "detalle": "Crea y edita imágenes.", "url": "https://support.google.com/gemini/answer/14286560?hl=es" },
+        "datos": { "estado": "si", "detalle": "Arma gráficos a partir de las planillas que adjuntás.", "url": "https://support.google.com/gemini/answer/14903178?hl=es" },
+        "proyectos": { "estado": "si", "detalle": "Organiza el trabajo en \"notebooks\".", "url": "https://support.google.com/gemini/answer/16972047?hl=es" },
+        "memoria": { "estado": "si", "detalle": "Se activa o desactiva en Ajustes. Recordar datos puntuales tiene restricciones de país, de plan y de tipo de cuenta.", "url": "https://support.google.com/gemini/answer/16598625?hl=es" },
+        "asistentes": { "estado": "si", "detalle": "Gems y \"skills\" (Google está pasando de los Gems a las skills).", "url": "https://support.google.com/gemini/answer/15146780?hl=es" },
+        "voz": { "estado": "si", "detalle": "\"Gemini Live\", en la app para Android y iPhone. No está en la versión web.", "url": "https://support.google.com/gemini/answer/15274899?hl=es" },
+        "privacidad": { "estado": "si", "detalle": "Viene activado. Se desactiva en la Actividad de Gemini. Algunas conversaciones las revisan personas y se pueden conservar hasta tres años.", "url": "https://support.google.com/gemini/answer/13594961?hl=es" },
+        "suite": { "estado": "si", "detalle": "Resume y busca información en Gmail, Docs y Drive. En cuentas de trabajo o de estudio, lo habilita la organización.", "url": "https://support.google.com/gemini/answer/15229592?hl=es" }
+      }
+    },
+    {
+      "id": "copilot", "nombre": "Copilot", "empresa": "Microsoft",
+      "ecosistema": "Asistente de Microsoft, integrado con Word, Excel, PowerPoint, Outlook y Teams en Microsoft 365.",
+      "ayuda": "https://support.microsoft.com/en-us/microsoft-copilot/",
+      "web": "https://copilot.microsoft.com/",
+      "funciones": {
+        "archivos": { "estado": "si", "detalle": "Permite trabajar con tus archivos en la conversación.", "url": "https://support.microsoft.com/en-us/microsoft-copilot/" },
+        "web": { "estado": "si", "detalle": "Puede buscar en la web para mejorar sus respuestas.", "url": "https://support.microsoft.com/en-us/privacy/microsoft-copilot/privacy-controls" },
+        "imagenes": { "estado": "si", "detalle": "Crea imágenes, afiches y más a partir de una descripción.", "url": "https://support.microsoft.com/en-us/microsoft-copilot/" },
+        "datos": { "estado": "a-verificar" },
+        "proyectos": { "estado": "si", "detalle": "\"Copilot Notebooks\" reúne chats, archivos y notas en un lugar.", "url": "https://support.microsoft.com/en-us/microsoft-copilot/" },
+        "memoria": { "estado": "si", "detalle": "Recuerda datos y preferencias de tus conversaciones. Se desactiva o se borra desde tu perfil.", "url": "https://support.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-privacy-controls" },
+        "asistentes": { "estado": "si", "detalle": "Agentes para tareas repetitivas: se buscan, se agregan o se crean.", "url": "https://support.microsoft.com/en-us/microsoft-copilot/" },
+        "voz": { "estado": "si", "detalle": "\"Copilot Voice\": conversación hablada en tiempo real, en cuentas personales y de trabajo. Depende de la suscripción y la región.", "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/get-started-with-voice-features-in-microsoft-365-copilot" },
+        "privacidad": { "estado": "si", "detalle": "Se puede excluir del entrenamiento desde Privacidad, en el perfil. La ayuda lo describe para la versión anterior de la app: revisá la vigente.", "url": "https://support.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-privacy-controls" },
+        "suite": { "estado": "si", "detalle": "Convierte una idea en un archivo de Word, PowerPoint o Excel, y ordena las tareas de las reuniones de Teams.", "url": "https://support.microsoft.com/en-us/microsoft-copilot/" }
+      }
+    }
+  ]
+}

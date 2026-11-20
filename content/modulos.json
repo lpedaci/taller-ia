@@ -287,7 +287,22 @@
       "titulo": "Los cuatro asistentes",
       "descripcion": "ChatGPT, Claude, Gemini y Copilot comparados.",
       "pasos": 6,
-      "minutos": 60
+      "minutos": 60,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m11-o1",
+          "competencia": "crear"
+        },
+        {
+          "id": "m11-o2",
+          "competencia": "crear"
+        },
+        {
+          "id": "m11-o3",
+          "competencia": "delegacion"
+        }
+      ]
     },
     {
       "id": 12,
@@ -295,7 +310,26 @@
       "titulo": "Conversar con la IA por voz",
       "descripcion": "Práctica de idiomas, accesibilidad y cuidados.",
       "pasos": 6,
-      "minutos": 60
+      "minutos": 60,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m12-o1",
+          "competencia": "crear"
+        },
+        {
+          "id": "m12-o2",
+          "competencia": "descripcion"
+        },
+        {
+          "id": "m12-o3",
+          "competencia": "diligencia"
+        },
+        {
+          "id": "m12-o4",
+          "competencia": "discernimiento"
+        }
+      ]
     },
     {
       "id": 13,
@@ -303,7 +337,26 @@
       "titulo": "IA aplicada al trabajo",
       "descripcion": "Casos por área y tu kit de prompts.",
       "pasos": 6,
-      "minutos": 60
+      "minutos": 60,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m13-o1",
+          "competencia": "crear"
+        },
+        {
+          "id": "m13-o2",
+          "competencia": "crear"
+        },
+        {
+          "id": "m13-o3",
+          "competencia": "crear"
+        },
+        {
+          "id": "m13-o4",
+          "competencia": "descripcion"
+        }
+      ]
     },
     {
       "id": 14,

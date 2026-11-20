@@ -1,0 +1,96 @@
+{
+  "titulo": "Los cuatro asistentes",
+  "objetivos": [
+    { "id": "m11-o1", "texto": "Explicar qué tienen en común ChatGPT, Claude, Gemini y Copilot, y por qué lo aprendido en los bloques 1 y 2 sirve para los cuatro.", "competencia": "crear" },
+    { "id": "m11-o2", "texto": "Distinguir los asistentes por ecosistema y funciones, y saber dónde consultar lo que cambia.", "competencia": "crear" },
+    { "id": "m11-o3", "texto": "Elegir un asistente según la tarea, el ecosistema de trabajo, la privacidad y las políticas de tu organización.", "competencia": "delegacion" }
+  ],
+  "pasos": [
+    {
+      "titulo": "¿Cuál es el mejor?",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "texto", "md": "En la oficina de Nicolás hay una discusión que vuelve cada tanto. Él usa ChatGPT desde que salió. Paula jura que Claude escribe mejor. El área de sistemas les pide que usen Copilot, porque la empresa trabaja con Microsoft 365. Y Rocío, que lleva la agenda de todos, hace casi todo con Gemini desde Gmail.\n\nUn día prueban lo mismo en los cuatro: resumir el acta de una reunión. Las cuatro respuestas sirven. Ninguna es igual. Y la que más le sirve a cada persona depende menos del asistente que de dónde estaba el acta, qué tenían que hacer después y qué les permite la empresa.\n\nEn este módulo no vas a encontrar un ganador. Vas a ver en qué se parecen, en qué se diferencian y cómo elegir con criterio." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "Lo que tienen en común",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Los cuatro son **asistentes conversacionales construidos sobre modelos de lenguaje grandes**. Por eso funcionan de la misma manera de fondo:\n\n- predicen texto a partir de lo que tienen en su ventana de contexto (Módulo 2);\n- pueden equivocarse con mucha seguridad y alucinar (Módulo 3);\n- responden mejor cuando describís bien la tarea, el contexto y el formato (Módulos 5 y 6);\n- necesitan que evalúes lo que devuelven antes de usarlo (Módulo 7);\n- y lo que les cargás sale de tu computadora (Módulos 8 y 10).\n\nTodo lo que aprendiste en los bloques 1 y 2 sirve igual en cualquiera. Un buen prompt funciona en los cuatro, con pequeñas diferencias en el resultado." },
+        { "tipo": "nota", "estado": "positivo", "titulo": "La habilidad viaja con vos", "md": "Si mañana aparece un quinto asistente, o cambia el nombre de uno, el marco 4D sigue funcionando. Es la razón por la que el taller enseñó el criterio antes que las herramientas." }
+      ]
+    },
+    {
+      "titulo": "En qué se diferencian",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Las diferencias que más importan no son el nombre del modelo ni el precio, que cambian todo el tiempo, sino dos cosas:\n\n**El ecosistema.** Dónde vive cada asistente y con qué se conecta.\n\n- **ChatGPT** (OpenAI) y **Claude** (Anthropic) son asistentes independientes: los usás en su web, en sus apps o en el escritorio, y se conectan con otras herramientas.\n- **Gemini** (Google) está integrado con Gmail, Docs, Drive y el resto de Google Workspace.\n- **Copilot** (Microsoft) está integrado con Word, Excel, PowerPoint, Outlook y Teams en Microsoft 365.\n\n**Las funciones.** Hay un grupo de funciones que conviene conocer en cualquiera: subir archivos, buscar en la web, crear imágenes, analizar datos, organizar el trabajo en proyectos, recordar entre conversaciones y crear asistentes personalizados. Casi todos tienen casi todas, con nombres distintos y con diferencias según el plan." },
+        { "tipo": "herramientas", "id": "funciones", "titulo": "Qué ofrece cada uno", "claves": ["archivos", "web", "imagenes", "datos", "proyectos", "memoria", "asistentes"] },
+        { "tipo": "nota", "estado": "info", "titulo": "Por qué algunas dicen \"Consultá la ayuda oficial\"", "md": "Cada dato de estas fichas se comprobó en la ayuda oficial de la herramienta, con su enlace. Cuando no se pudo confirmar, preferimos no adivinar: andá a la ayuda oficial, que es la fuente que vale." }
+      ]
+    },
+    {
+      "titulo": "Cómo elegir",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Cuatro preguntas ayudan a elegir, en este orden:\n\n1. **¿Qué tarea es?** Para conversar sobre un texto, cualquiera sirve. Para algo reciente, necesitás búsqueda web. Para una planilla, que pueda analizar datos. Para trabajar sobre tus correos o documentos, que esté donde están ellos.\n2. **¿En qué ecosistema trabajás?** Si tu organización usa Google Workspace o Microsoft 365, el asistente integrado tiene acceso a tus documentos sin copiarlos y pegarlos, con los permisos que ya tenés.\n3. **¿Qué pasa con los datos?** Revisá si las conversaciones se usan para entrenar, si lo podés desactivar y qué se guarda.\n4. **¿Qué permite tu organización?** Si hay una herramienta autorizada para información de trabajo, esa es la que corresponde. Las demás, para lo que no tiene datos de nadie." },
+        { "tipo": "herramientas", "id": "privacidad", "titulo": "Datos y suite de oficina", "claves": ["privacidad", "suite"], "ecosistema": false },
+        { "tipo": "quiz", "id": "elegir", "titulo": "¿Con qué criterio elegirías?", "competencia": "delegacion", "objetivo": "m11-o3", "preguntas": [
+          { "texto": "Trabajás en una organización que usa Microsoft 365 y autorizó Copilot. Necesitás resumir un informe interno confidencial.", "opciones": [
+            { "texto": "Copilot, porque es la herramienta autorizada y el informe ya está en ese entorno.", "correcta": true, "feedback": "La política de la organización manda, y además evitás copiar el informe a otra plataforma." },
+            { "texto": "El asistente que mejor resume, con mi cuenta personal.", "feedback": "Con un informe confidencial, la calidad del resumen no compensa sacar la información del entorno autorizado." }
+          ] },
+          { "texto": "Querés ideas para una actividad de presentación de un curso, sin ningún dato de nadie.", "opciones": [
+            { "texto": "Cualquiera de los cuatro: es una tarea sin datos sensibles y todos la resuelven bien.", "correcta": true, "feedback": "Cuando no hay datos ni requisitos especiales, usá el que te resulte más cómodo y probá otro si querés más ideas." },
+            { "texto": "Solo el más caro, porque da mejores ideas.", "feedback": "El precio no es un buen criterio. Para generar ideas, todos sirven." }
+          ] },
+          { "texto": "Necesitás saber qué cambió esta semana en una normativa.", "opciones": [
+            { "texto": "Uno con búsqueda web activada, y después abro la fuente oficial.", "correcta": true, "feedback": "Sin búsqueda, ningún modelo puede saber qué pasó esta semana. Y la fuente oficial confirma." },
+            { "texto": "El que uso siempre, aunque no tenga búsqueda activada.", "feedback": "Sin búsqueda, va a responder lo más probable, no lo que cambió de verdad." }
+          ] }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Misma tarea, cuatro asistentes",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Copiá esta consigna y probala en los asistentes que tengas, aunque sean uno o dos. Usá una conversación nueva en cada uno, para que no arrastren contexto. Después anotá en la tabla lo que observaste. No hace falta completar todas las celdas." },
+        { "tipo": "prompt-fijo", "id": "consigna", "titulo": "La consigna para probar", "texto": "Resumí este texto en tres viñetas para un equipo de capacitadores. Después proponé tres preguntas de repaso para usar al final de una clase: una de recordar, una de comprender y una de aplicar.\n\nTexto:\nLa evaluación formativa es la que se hace durante el aprendizaje, no al final. Su objetivo no es poner una nota, sino darle a quien aprende información sobre cómo va y qué le falta, a tiempo para mejorar. Funciona mejor cuando la devolución es concreta (qué está bien, qué cambiar y cómo), cuando llega pronto y cuando la persona tiene una oportunidad real de usarla. Una pregunta al cierre de la clase, un borrador comentado o una autoevaluación con criterios claros son formas simples de evaluación formativa. Lo que las vuelve formativas no es el instrumento, sino lo que se hace con la información." },
+        { "tipo": "tabla", "id": "comparar", "titulo": "Lo que observé", "competencia": "crear", "objetivo": "m11-o2", "evidencia": "Tabla comparativa de asistentes con una misma tarea", "consigna": "Una fila por asistente que probaste.", "columnas": [
+          { "id": "resumen", "titulo": "¿El resumen fue fiel al texto?" },
+          { "id": "preguntas", "titulo": "¿Las preguntas sirven para una clase?" },
+          { "id": "formato", "titulo": "¿Respetó lo pedido (3 viñetas, 3 tipos de pregunta)?" },
+          { "id": "diferencia", "titulo": "Lo que más me llamó la atención" }
+        ], "filas": [
+          { "id": "chatgpt", "titulo": "ChatGPT" },
+          { "id": "claude", "titulo": "Claude" },
+          { "id": "gemini", "titulo": "Gemini" },
+          { "id": "copilot", "titulo": "Copilot" }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "vf", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "crear", "objetivo": "m11-o1", "afirmaciones": [
+          { "texto": "Un prompt bien escrito funciona en cualquiera de los cuatro asistentes, con diferencias en el resultado.", "verdadero": true, "explicacion": "Todos trabajan sobre modelos de lenguaje: los principios de descripción sirven en todos." },
+          { "texto": "El mejor criterio para elegir un asistente es cuál tiene el modelo más nuevo.", "verdadero": false, "explicacion": "Los modelos cambian todo el tiempo. La tarea, el ecosistema, la privacidad y la política de tu organización son criterios más estables." },
+          { "texto": "Si un asistente está integrado con tus documentos de trabajo, puede usarlos sin que los copies y pegues, con los permisos que ya tenés.", "verdadero": true, "explicacion": "Es la ventaja principal de los asistentes integrados en una suite de oficina." },
+          { "texto": "Lo que dicen las fichas de este módulo va a seguir siendo cierto dentro de un año.", "verdadero": false, "explicacion": "Las funciones, los nombres y los planes cambian seguido. Por eso cada dato tiene fecha y enlace a la ayuda oficial." }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "¿Qué asistente vas a usar para tu trabajo y por qué? Respondé con los cuatro criterios: tarea, ecosistema, datos y política de tu organización." },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Centro de ayuda de Claude", "apa": "Anthropic. (s.f.). *Claude Help Center*.", "url": "https://support.claude.com/en/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Centro de ayuda de Gemini", "apa": "Google. (s.f.). *Ayuda de Gemini Apps*.", "url": "https://support.google.com/gemini/", "idioma": "es", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Ayuda de Microsoft Copilot", "apa": "Microsoft. (s.f.). *Get help with Copilot*. Microsoft Support.", "url": "https://support.microsoft.com/en-us/microsoft-copilot/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Centro de ayuda de ChatGPT", "apa": "OpenAI. (s.f.). *OpenAI Help Center*.", "url": "https://help.openai.com/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "OpenAI Academy", "apa": "OpenAI. (s.f.). *OpenAI Academy* [Cursos en línea].", "url": "https://academy.openai.com/", "idioma": "en", "nivel": "Inicial", "tipo": "curso" }
+        ] }
+      ]
+    }
+  ]
+}

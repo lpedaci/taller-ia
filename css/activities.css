@@ -355,3 +355,37 @@
 .ml-ley{font:var(--md-sys-typescale-body-large)}
 .ml-link{display:inline-flex;align-items:center;gap:var(--app-space-1);min-height:48px;font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-primary)}
 .ml-fecha{display:flex;gap:var(--app-space-2);align-items:flex-start;font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+
+/* ---------- Fichas de herramientas (D-050) ---------- */
+.hr{display:grid;gap:var(--app-space-3);container-type:inline-size}
+.hr>h4{font:var(--md-sys-typescale-title-medium)}
+.hr-cards{list-style:none;margin:0;padding:0;display:grid;gap:var(--app-space-3)}
+@container (min-width:600px){ .hr-cards{grid-template-columns:1fr 1fr} }
+.hr-card article{height:100%;border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-medium);padding:var(--app-space-4);display:flex;flex-direction:column;gap:var(--app-space-3)}
+.hr-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--app-space-2);flex-wrap:wrap}
+.hr-head h5{font:var(--app-typescale-card-title)}
+.hr-emp{font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-on-surface-variant)}
+.hr-eco{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+.hr-funcs{margin:0;display:grid;gap:var(--app-space-3)}
+.hr-f dt{display:flex;align-items:center;gap:var(--app-space-2);font:var(--md-sys-typescale-title-small)}
+.hr-f dt .ms{font-size:20px;color:var(--app-color-success)}
+.hr-f.is-pend dt .ms{color:var(--md-sys-color-on-surface-variant)}
+.hr-f dd{margin:var(--app-space-1) 0 0 28px;font:var(--md-sys-typescale-body-medium)}
+.hr-f.is-pend dd{color:var(--md-sys-color-on-surface-variant)}
+.hr-ayuda{align-self:flex-end;margin-top:auto}
+
+/* ---------- Prompt para probar ---------- */
+.pf{display:grid;gap:var(--app-space-3);background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-4)}
+.pf h4{font:var(--md-sys-typescale-title-small)}
+.pf-texto{max-height:320px;overflow:auto}
+.pf-texto:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:2px}
+
+/* ---------- Kit de prompts ---------- */
+.kit-areas{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.kit-casos{display:grid;gap:var(--app-space-4)}
+.kit-casos:empty{display:none}
+.kit-t{font:var(--md-sys-typescale-title-medium)}
+.kit-t:focus{outline:none}
+.kit-caso{border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-medium);padding:var(--app-space-4);display:grid;gap:var(--app-space-3)}
+.kit-caso h6{font:var(--md-sys-typescale-title-small)}
+.kit-sit{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}

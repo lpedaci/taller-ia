@@ -45,15 +45,20 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-037 | 2026-11-18 | Etapa 3, bloque 1: verificación | Vigente |
 | D-038 | 2026-11-20 | Diagrama propio del marco 4D, reutilizable en todo el taller | Vigente |
 | D-039 | 2026-11-20 | Componentes del bloque 2: "Subí de nivel", checklist descargable, pedido en "Corregí a la IA" y exportación de Mis prompts | Vigente |
-| D-040 | 2026-11-20 | Etapa 3, bloque 2: Módulos 4 a 8 y fuentes | Vigente |
-| D-041 | 2026-11-20 | Etapa 3, bloque 2: verificación | Vigente |
+| D-040 | 2026-11-20 | Etapa 4 (bloque 2): Módulos 4 a 8 y fuentes | Vigente |
+| D-041 | 2026-11-20 | Etapa 4 (bloque 2): verificación | Vigente |
 | D-042 | 2026-11-20 | Desplegable como componente del design system, con el ícono a 12 px del borde | Vigente |
 | D-043 | 2026-11-20 | Auditoría automática contra el design system (`npm run auditar`) | Vigente |
 | D-044 | 2026-11-20 | Ajustes que encontró la primera auditoría: pesos, títulos de tarjeta, sangrías y medidas | Vigente |
 | D-045 | 2026-11-20 | Componentes del bloque 3: debate, "Anonimizá este texto" y marco legal por país | Vigente |
-| D-046 | 2026-11-20 | Etapa 3, bloque 3: Módulos 9 y 10 | Vigente |
+| D-046 | 2026-11-20 | Etapa 5 (bloque 3): Módulos 9 y 10 | Vigente |
 | D-047 | 2026-11-20 | Fuentes del bloque 3 y datos pendientes de verificar | Vigente |
-| D-048 | 2026-11-20 | Etapa 3, bloque 3: verificación | Vigente |
+| D-048 | 2026-11-20 | Etapa 5 (bloque 3): verificación | Vigente |
+| D-049 | 2026-11-20 | Numeración de etapas corregida según la sección 8 del brief | Vigente |
+| D-050 | 2026-11-20 | `herramientas.json` y fichas de los asistentes, con fecha y fuente por dato | Vigente |
+| D-051 | 2026-11-20 | Fuentes de las herramientas y datos sin confirmar | Vigente |
+| D-052 | 2026-11-20 | Etapa 6 (bloque 4): componentes y Módulos 11 a 13 | Vigente |
+| D-053 | 2026-11-20 | Etapa 6 (bloque 4): verificación | Vigente |
 
 ---
 
@@ -789,7 +794,7 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 
 **Pendientes o riesgos:** ninguno.
 
-## D-040 | 2026-11-20 | Etapa 3, bloque 2: Módulos 4 a 8
+## D-040 | 2026-11-20 | Etapa 4 (bloque 2): Módulos 4 a 8
 
 **Solicitado:** producir el contenido completo del bloque 2 (Criterio: el marco 4D) según la sección 3 del brief.
 
@@ -811,7 +816,7 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 - Lourdes puede querer revisar los cuatro dilemas del Módulo 8: son los textos con más matices del bloque.
 - La animación prioritaria 4 (el marco 4D y el ciclo entre descripción y discernimiento) queda para una parte siguiente: el diagrama interactivo ya cubre la idea en este bloque.
 
-## D-041 | 2026-11-20 | Etapa 3, bloque 2: verificación
+## D-041 | 2026-11-20 | Etapa 4 (bloque 2): verificación
 
 **Solicitado:** verificar el bloque 2 completo antes de subirlo.
 
@@ -914,7 +919,7 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 
 **Pendientes o riesgos:** ninguno.
 
-## D-046 | 2026-11-20 | Etapa 3, bloque 3: Módulos 9 y 10
+## D-046 | 2026-11-20 | Etapa 5 (bloque 3): Módulos 9 y 10
 
 **Solicitado:** producir el contenido completo del bloque 3 (Ética y datos) según la sección 3 del brief.
 
@@ -973,7 +978,7 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 
 **Pendientes o riesgos:** **para Lourdes:** confirmar en la fuente oficial los cuatro países pendientes (basta con cambiar `"verificado"` a `true` y completar el resumen y el enlace) o pedírmelo en otra sesión con mejor acceso a esos sitios.
 
-## D-048 | 2026-11-20 | Etapa 3, bloque 3: verificación
+## D-048 | 2026-11-20 | Etapa 5 (bloque 3): verificación
 
 **Solicitado:** verificar el bloque 3 completo antes de subirlo.
 
@@ -993,5 +998,113 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 - `npm run auditar` sin hallazgos.
 - `npm run verificar` completo: 636 capturas (53 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, scroll, consola, movimiento, texto ni design system. Encontró un problema: en mobile, las partes marcables de "Anonimizá" medían 36 px de alto. Se convirtieron en texto en línea con `role="button"` (se pueden enfocar y responden a Enter y Espacio), para que se corten con la oración. Así entran en la excepción de WCAG 2.5.8 para objetivos dentro de un texto, la misma que ya se aplica a los enlaces en un párrafo (D-011), y el verificador la reconoce. Darles 48 px de alto hacía que cada una saltara de renglón y dejara la puntuación suelta.
 - Después, `npm run verificar:rapido` sin ningún problema (318 capturas) y la prueba del bloque 3 en 390 px correcta.
+
+**Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.
+
+## D-049 | 2026-11-20 | Numeración de etapas
+
+**Solicitado:** seguir las etapas de la sección 8 del brief.
+
+**Decisión y motivo:** en la sección 8, cada bloque de contenido es una etapa: bloque 1 = etapa 3, bloque 2 = etapa 4, bloque 3 = etapa 5, bloque 4 = etapa 6. En las entradas D-040, D-041, D-046 y D-048 los bloques 2 y 3 figuraban como "Etapa 3"; se corrigieron. Los mensajes de los commits ya publicados conservan la numeración anterior.
+
+**Archivos afectados:** `DECISIONES.md`, `README.md`.
+
+**Verificación realizada:** revisión de la sección 8 del brief.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-050 | 2026-11-20 | Fichas de los asistentes
+
+**Solicitado:** que todo dato concreto de las herramientas (funciones, nombres, planes) esté en un archivo aparte, `content/herramientas.json`, fácil de actualizar, con la fecha "Actualizado a: noviembre de 2026" y un enlace a la ayuda oficial.
+
+**Decisión y motivo:**
+- **Archivo:** `content/herramientas.json` tiene los cuatro asistentes y diez funciones: subir archivos, búsqueda web, crear imágenes, analizar datos, proyectos, memoria, asistentes personalizados, modo de voz, entrenamiento con las conversaciones y suite de oficina. Cada función tiene un estado:
+  - `"si"`: confirmada en la ayuda oficial, con un detalle breve y la URL de la página donde se confirmó;
+  - `"a-verificar"`: no se pudo confirmar.
+- **Componente:** el bloque `herramientas` muestra una ficha por asistente con las funciones que se le piden (`"claves"`), cada una con su enlace "Fuente". Lo no confirmado dice "Consultá la ayuda oficial", en lugar de adivinar. Al pie de las fichas va la fecha de actualización. Se usa en cuatro lugares: las funciones (Módulo 11), datos y suite (Módulo 11), el modo de voz (Módulo 12) y la suite de oficina (Módulo 13).
+- **Para actualizar:** se edita solo el archivo. Ningún texto de las lecciones nombra planes, precios ni modelos: explican conceptos que sirven con cualquier herramienta.
+
+**Archivos afectados:** `content/herramientas.json`, `js/activities/asistentes.js`, `css/activities.css`.
+
+**Verificación realizada:** ver D-053.
+
+**Pendientes o riesgos:** ver D-051.
+
+## D-051 | 2026-11-20 | Fuentes de las herramientas
+
+**Solicitado:** datos de las herramientas comprobados en sus centros de ayuda oficiales.
+
+**Decisión y motivo:** se consultaron las ayudas oficiales el 2026-11-20.
+- **Claude** (support.claude.com): archivos, búsqueda web, análisis de datos con ejecución de código, proyectos, memoria (se desactiva en Ajustes; chats de incógnito), skills, modo de voz (beta; en el celular, el escritorio y la web; idiomas distintos del inglés en beta) y el complemento para Google Docs, Sheets y Slides.
+- **Gemini** (support.google.com/gemini): archivos (hasta 10 por consulta), respuestas basadas en la Búsqueda, imágenes, gráficos con planillas, notebooks, memoria (con restricciones de país, plan y cuenta), Gems y skills, Gemini Live (solo en la app móvil), entrenamiento activado y desactivable en la Actividad de Gemini, e integración con Gmail, Docs y Drive.
+- **Copilot** (support.microsoft.com): archivos, búsqueda web, imágenes, Copilot Notebooks, memoria desactivable, agentes, Copilot Voice, exclusión del entrenamiento desde Privacidad e integración con Word, PowerPoint, Excel y Teams.
+- **ChatGPT:** el centro de ayuda (help.openai.com) y openai.com rechazaron la lectura automática. Solo se confirmó lo que muestra chatgpt.com: archivos, búsqueda web, crear imágenes, un modo de voz y el aviso de que las conversaciones pueden usarse para mejorar los modelos.
+
+**Lo que queda "a verificar":**
+- ChatGPT: análisis de datos, proyectos, memoria, GPTs y suite de oficina.
+- Claude: creación de imágenes y uso de las conversaciones para entrenar.
+- Copilot: análisis de datos.
+
+**Avisos que se reflejan en las fichas:**
+- La ayuda de privacidad de Copilot describe la versión de la app anterior al 18 de agosto de 2026. La ficha lo aclara.
+- Ninguna ayuda confirma por nombre el español en el modo de voz. Las fichas no lo afirman, y el Módulo 12 recomienda probar con la forma de hablar de cada persona.
+
+**Archivos afectados:** `content/herramientas.json`, `content/modulo-11.json` a `content/modulo-13.json`.
+
+**Verificación realizada:** consulta de cada página oficial, con la URL guardada en cada dato.
+
+**Pendientes o riesgos:** **para Lourdes:** completar los datos "a verificar" de ChatGPT desde help.openai.com (cambiar `"estado"` a `"si"` y agregar `"detalle"` y `"url"`). Revisar el archivo cada tres meses, porque estas funciones cambian seguido.
+
+## D-052 | 2026-11-20 | Etapa 6 (bloque 4): Módulos 11 a 13
+
+**Solicitado:** producir el contenido del bloque 4 (Asistentes) con `herramientas.json`, la tabla comparativa y el generador de sesiones de voz (sección 8 del brief, etapa 6).
+
+**Decisión y motivo:**
+- **Módulo 11, Los cuatro asistentes:**
+  - el caso de una oficina donde cada persona usa uno distinto;
+  - lo que tienen en común: todo lo de los bloques 1 y 2 vale igual;
+  - las diferencias por ecosistema y funciones, con las fichas;
+  - cuatro criterios para elegir (tarea, ecosistema, datos y política de la organización), con un quiz;
+  - "Misma tarea, cuatro asistentes": una consigna fija con un texto propio para resumir, que se copia o se abre en cada asistente, y la tabla comparativa para registrar las diferencias.
+- **Módulo 12, Conversar con la IA por voz:**
+  - qué es el modo de voz y en qué se diferencia de dictar o de escuchar una respuesta leída;
+  - usos para aprender;
+  - "Armá tu sesión de speaking": idioma, nivel del Marco Común Europeo, situación, rol, cuándo corregir, duración y resumen. Genera el prompt y se guarda en Mis prompts;
+  - el "Plan de práctica" semanal de tres sesiones;
+  - la voz como apoyo de accesibilidad, presentada como una opción más, con cinco escenarios;
+  - límites y cuidados.
+- **Módulo 13, IA aplicada al trabajo:**
+  - casos por área;
+  - qué cambia cuando la IA vive en tus documentos (contexto, permisos y reglas de la organización);
+  - multimodalidad con sus cuidados (recortar capturas, pedir la página de cada dato);
+  - el kit de prompts: la persona elige una de seis áreas y ajusta tres prompts modelo. Los descarga en Markdown o los guarda en Mis prompts con la etiqueta "kit".
+- **Componentes nuevos:** fichas de herramientas (D-050), "prompt-fijo" (un prompt para copiar o abrir en un asistente) y "kit". El constructor guiado ahora acepta campos con opciones: se muestran con el desplegable del design system (D-042), y "Completar con el ejemplo" también los completa.
+- **Verificador:** "módulo sin lección" pasa al Módulo 14.
+
+**Archivos afectados:** `content/modulo-11.json` a `content/modulo-13.json`, `content/modulos.json`, `js/activities/asistentes.js`, `js/activities/produccion.js`, `js/activities/comun.js`, `js/lesson/leccion.js`, `css/activities.css`, `scripts/pantallas.mjs`.
+
+**Verificación realizada:** ver D-053.
+
+**Pendientes o riesgos:** la animación prioritaria 10 (cómo funciona el modo de voz) queda para la parte de animaciones, con la 4 y la 5.
+
+## D-053 | 2026-11-20 | Etapa 6 (bloque 4): verificación
+
+**Solicitado:** verificar el bloque 4 antes de subirlo.
+
+**Decisión y motivo:** el verificador y la auditoría suman cinco pantallas del bloque 4 (fichas, tabla comparativa, sesión de speaking, escenarios de accesibilidad y kit).
+
+**Archivos afectados:** `scripts/pantallas.mjs`.
+
+**Verificación realizada:**
+- Prueba de punta a punta en 1280 px (claro) y 390 px (oscuro), todo correcto:
+  - los 18 pasos cargan, sin problemas de axe-core ni de la auditoría del design system;
+  - las fichas muestran las cuatro herramientas con su fecha y lo no confirmado;
+  - la consigna se copia al portapapeles y la tabla comparativa guarda;
+  - el prompt de speaking se arma con los desplegables y omite lo vacío; el ejemplo completa los desplegables y se guarda en Mis prompts;
+  - el kit aparece al elegir el área, respeta ediciones y exclusiones al descargar y guardar, y recuerda el área;
+  - Mis prompts muestra la sesión y el kit;
+  - sin errores de consola.
+- Dos fallas de la prueba no eran del sitio y se comprobaron aparte: el snackbar se leía antes de aparecer, y el kit recordaba el área elegida antes en la misma prueba, que es el comportamiento esperado.
+- `npm run verificar` completo: 696 capturas (58 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, scroll, áreas táctiles, consola, movimiento, texto ni design system.
 
 **Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.

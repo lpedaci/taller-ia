@@ -1,0 +1,117 @@
+{
+  "titulo": "IA aplicada al trabajo",
+  "objetivos": [
+    { "id": "m13-o1", "texto": "Reconocer tareas de tu área en las que la IA generativa aporta, con un prompt modelo para cada una.", "competencia": "crear" },
+    { "id": "m13-o2", "texto": "Explicar qué cambia cuando la IA trabaja dentro de tus documentos, en una suite de oficina.", "competencia": "crear" },
+    { "id": "m13-o3", "texto": "Usar imágenes, PDF, capturas y audio como entrada, con los cuidados que corresponden.", "competencia": "crear" },
+    { "id": "m13-o4", "texto": "Armar tu propio kit de prompts de trabajo.", "competencia": "descripcion" }
+  ],
+  "pasos": [
+    {
+      "titulo": "El lunes de Gabriela",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "texto", "md": "Gabriela trabaja en recursos humanos de una empresa mediana. El lunes tiene que publicar dos búsquedas, preparar la inducción de tres personas nuevas, responder quince correos y presentar el informe de ausentismo del mes.\n\nHace seis meses lo hacía todo a mano. Hoy tiene una carpeta con ocho prompts que usa cada semana: uno para redactar avisos de búsqueda inclusivos, otro para armar el cronograma de inducción, otro para ordenar los datos del informe (sin nombres). Los fue ajustando hasta que funcionaron como ella quería.\n\nNo usa la IA para todo. La usa para lo que repite, y se queda con lo que necesita su criterio. Al final de este módulo vas a tener tu propia carpeta." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "Casos por área",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "En casi cualquier trabajo hay tareas donde la IA ayuda de verdad. Algunas, por área:\n\n- **Redacción y comunicación:** borradores de correos, adaptar un texto a otro público, resumir para quien no tiene tiempo de leer.\n- **Investigación y síntesis:** ordenar lo que leíste, comparar fuentes, armar una primera estructura de un informe.\n- **Análisis de datos y planillas:** fórmulas que no recordás, ordenar y limpiar datos, encontrar patrones y armar gráficos.\n- **Presentaciones:** pasar de un documento a una estructura de diapositivas, con un mensaje por pantalla.\n- **Atención al cliente:** respuestas modelo, tono adecuado para un reclamo, preguntas frecuentes.\n- **Recursos humanos y capacitación:** avisos de búsqueda, planes de inducción, actividades y evaluaciones.\n\nEn todas valen las mismas reglas: describí bien la tarea (Módulo 5), revisá el resultado (Módulo 7) y no cargues datos que no corresponden (Módulos 8 y 10). Al final del módulo vas a elegir tu área y armar tu kit." }
+      ]
+    },
+    {
+      "titulo": "Cuando la IA vive en tus documentos",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Gemini en Google Workspace y Copilot en Microsoft 365 no están en otra pestaña: están dentro del correo, el documento o la planilla. Eso cambia tres cosas:\n\n- **El contexto viene solo.** No copiás y pegás: el asistente ya ve el documento abierto, el hilo de correos o la planilla, y puede trabajar sobre ellos.\n- **Los permisos importan.** El asistente accede a lo que vos podés acceder. Si tenés acceso a carpetas compartidas que no deberías ver, el asistente también. En la organización conviene revisar los permisos antes de activarlo.\n- **Las reglas son las de la organización.** Lo configura el área de sistemas: qué se activa, qué se guarda y qué datos puede usar. Para información de trabajo, suele ser la opción más segura, justamente porque está dentro del entorno autorizado.\n\nLo que no cambia: el resultado se revisa igual. Que un resumen aparezca dentro de tu documento no lo hace más correcto." },
+        { "tipo": "herramientas", "id": "suite", "titulo": "La IA dentro de la suite de oficina", "claves": ["suite"], "ecosistema": false }
+      ]
+    },
+    {
+      "titulo": "Imágenes, PDF, capturas y audio",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Los asistentes actuales son **multimodales**: no solo leen texto. En el trabajo eso sirve para:\n\n- **Imágenes y capturas:** explicar un mensaje de error en pantalla, describir un gráfico, pasar a texto una pizarra fotografiada.\n- **PDF:** resumir un informe largo, encontrar una cláusula, comparar dos versiones de un documento.\n- **Audio:** transcribir y resumir una grabación (con el consentimiento de quienes hablan).\n\n**Cuidados:**\n\n- Una captura puede mostrar más de lo que querés: correos, nombres, datos de clientes en otra ventana. Recortala antes.\n- Con un PDF largo, pedile que indique de qué página sale cada dato, para poder verificar.\n- Leer una imagen también tiene errores: un número mal leído en una tabla escaneada cambia todo el análisis." },
+        { "tipo": "quiz", "id": "multimodal", "titulo": "¿Qué harías?", "competencia": "crear", "objetivo": "m13-o3", "preguntas": [
+          { "texto": "Querés que la IA te explique un error que aparece en el sistema de gestión. En la misma pantalla se ve una lista de clientes.", "opciones": [
+            { "texto": "Recorto la captura para que muestre solo el mensaje de error.", "correcta": true, "feedback": "La IA necesita el error, no la lista de clientes. Recortar es la forma más simple de anonimizar una captura." },
+            { "texto": "Subo la captura completa: total, es para un error.", "feedback": "Los datos de los clientes viajan igual, aunque la pregunta sea sobre otra cosa." }
+          ] },
+          { "texto": "Le pediste a la IA que resuma un PDF de 80 páginas y vas a usar el resumen en una reunión.", "opciones": [
+            { "texto": "Le pido que indique la página de cada dato y verifico los más importantes.", "correcta": true, "feedback": "Así podés controlar el resumen sin releer todo el documento." },
+            { "texto": "Lo uso tal cual: lo leyó completo.", "feedback": "Con documentos largos aumenta el riesgo de omisiones y datos mezclados. Verificá lo que vas a presentar." }
+          ] }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Tu kit de prompts",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Elegí tu área. Vas a ver tres casos con un prompt modelo cada uno. Ajustalos a tu trabajo: reemplazá lo que está entre corchetes, sacá lo que no te sirve, sumá lo que falta. Después guardalos en Mis prompts o descargá tu kit.\n\nTip: probá cada prompt al menos una vez con una tarea real y ajustalo según lo que devuelva. Un kit se arma usándolo." },
+        { "tipo": "kit", "id": "kit", "titulo": "Mi kit de prompts de trabajo", "competencia": "descripcion", "objetivo": "m13-o4", "evidencia": "Kit de prompts de trabajo", "areas": [
+          { "id": "redaccion", "titulo": "Redacción y comunicación", "descripcion": "Correos, informes, comunicados.", "casos": [
+            { "titulo": "Un correo difícil", "situacion": "Tenés que comunicar una mala noticia (un cambio de fecha, un pedido rechazado) sin sonar frío ni dar vueltas.", "prompt": "Escribí un correo para [destinatario y su relación conmigo] para comunicar que [la noticia].\n\nContexto: [qué pasó y por qué].\n\nTono: claro y cordial, sin disculpas excesivas. Empezá por la noticia, explicá el motivo en una oración y cerrá con el próximo paso: [qué va a pasar ahora].\n\nMenos de 120 palabras. Dame dos versiones: una más formal y una más cercana." },
+            { "titulo": "Adaptar un texto a otro público", "situacion": "Tenés un texto técnico y lo tiene que entender alguien que no es del tema.", "prompt": "Reescribí este texto para [público: por ejemplo, personal administrativo sin formación técnica].\n\nMantené todos los datos y el sentido. Usá oraciones cortas, explicá los términos técnicos la primera vez que aparecen y agregá un ejemplo cotidiano si ayuda.\n\nNo agregues información que no esté en el original.\n\n<texto>\n[pegá el texto]\n</texto>" },
+            { "titulo": "Resumen para quien no tiene tiempo", "situacion": "Tu jefa necesita lo esencial de un documento largo antes de una reunión.", "prompt": "Resumí este documento para [quién] que tiene cinco minutos antes de una reunión sobre [tema].\n\nFormato: tres viñetas con lo esencial, una línea con la decisión que se necesita y una con los riesgos.\n\nIndicá de qué sección sale cada dato. Si algo no está claro en el documento, decilo en lugar de suponer.\n\n<documento>\n[pegá el documento]\n</documento>" }
+          ] },
+          { "id": "investigacion", "titulo": "Investigación y síntesis", "descripcion": "Leer, ordenar y comparar fuentes.", "casos": [
+            { "titulo": "Ordenar lo que leíste", "situacion": "Leíste varios artículos y tenés notas sueltas.", "prompt": "Estas son mis notas de lectura sobre [tema]. Ordenalas por ideas principales, agrupá lo que se repite y marcá dónde las fuentes no coinciden.\n\nNo agregues ideas que no estén en mis notas. Al final, decime qué preguntas quedan abiertas.\n\n<notas>\n[pegá tus notas]\n</notas>" },
+            { "titulo": "Comparar dos fuentes", "situacion": "Dos documentos dicen cosas distintas sobre el mismo tema.", "prompt": "Compará estos dos textos sobre [tema].\n\nQuiero una tabla con: en qué coinciden, en qué difieren y qué evidencia da cada uno. Después, en dos oraciones, qué tendría que verificar para saber cuál tiene razón.\n\nCitá textualmente las frases clave de cada uno.\n\n<texto_a>\n[pegá el primero]\n</texto_a>\n<texto_b>\n[pegá el segundo]\n</texto_b>" },
+            { "titulo": "Estructura de un informe", "situacion": "Tenés que escribir un informe y no sabés por dónde empezar.", "prompt": "Voy a escribir un informe sobre [tema] para [destinatario], que tiene que decidir [qué decisión].\n\nProponé una estructura de secciones con una línea sobre qué va en cada una. Antes, haceme las tres preguntas que necesites para que la estructura sirva para esa decisión." }
+          ] },
+          { "id": "datos", "titulo": "Análisis de datos y planillas", "descripcion": "Fórmulas, limpieza, patrones y gráficos.", "casos": [
+            { "titulo": "La fórmula que no recordás", "situacion": "Sabés lo que querés calcular, pero no cómo escribirlo.", "prompt": "En [Excel o Google Sheets], tengo una planilla con estas columnas: [nombres de columnas y qué contienen].\n\nQuiero calcular [qué querés obtener].\n\nDame la fórmula, explicá qué hace cada parte y decime en qué celda ponerla. Si hay una forma más simple, mostrámela también." },
+            { "titulo": "Limpiar datos", "situacion": "Una planilla con fechas en distintos formatos, nombres mal escritos y filas repetidas.", "prompt": "Esta es una muestra de mi planilla (sin datos personales: reemplacé los nombres por códigos).\n\nDecime qué problemas de formato o de consistencia ves y proponé paso a paso cómo corregirlos en [Excel o Google Sheets].\n\n<muestra>\n[pegá 10 a 20 filas, anonimizadas]\n</muestra>" },
+            { "titulo": "Encontrar patrones", "situacion": "Tenés datos de un período y querés entender qué pasó.", "prompt": "Estos son datos de [qué mide] entre [período], sin información personal.\n\nDescribí las tendencias principales, los valores que se salen de lo normal y una posible explicación para cada uno, aclarando que son hipótesis.\n\nProponé un gráfico para mostrarlo y qué tendría que verificar antes de presentarlo.\n\n<datos>\n[pegá los datos o adjuntá la planilla]\n</datos>" }
+          ] },
+          { "id": "presentaciones", "titulo": "Presentaciones", "descripcion": "De un documento a diapositivas claras.", "casos": [
+            { "titulo": "De documento a diapositivas", "situacion": "Tenés un informe y una reunión de 15 minutos para presentarlo.", "prompt": "Convertí este documento en una presentación de [cantidad] diapositivas para [público], en una reunión de [duración].\n\nPara cada diapositiva: un título que diga la idea (no el tema), tres puntos como máximo y qué decir en voz alta.\n\nLa última diapositiva tiene que pedir una decisión concreta.\n\n<documento>\n[pegá el documento]\n</documento>" },
+            { "titulo": "Preguntas difíciles", "situacion": "Querés anticipar lo que te van a preguntar.", "prompt": "Voy a presentar [tema] ante [público y sus intereses].\n\nHaceme las cinco preguntas más difíciles que me podrían hacer, de la más probable a la menos probable. Para cada una, decime qué tendría que tener preparado para responderla." },
+            { "titulo": "Un mensaje por pantalla", "situacion": "Tus diapositivas tienen demasiado texto.", "prompt": "Estas son mis diapositivas actuales. Para cada una, decime cuál es la idea principal en una oración y qué texto sobra.\n\nProponé una versión con un solo mensaje por diapositiva y el resto pasado a las notas del orador.\n\n<diapositivas>\n[pegá el texto de cada diapositiva]\n</diapositivas>" }
+          ] },
+          { "id": "atencion", "titulo": "Atención al cliente", "descripcion": "Respuestas, reclamos y preguntas frecuentes.", "casos": [
+            { "titulo": "Responder un reclamo", "situacion": "Un cliente escribió molesto y tiene parte de razón.", "prompt": "Ayudame a responder este reclamo (reemplacé los datos del cliente).\n\nLa respuesta tiene que reconocer lo que salió mal, explicar qué vamos a hacer: [solución] y en qué plazo: [plazo], sin culpar al cliente ni prometer lo que no podemos cumplir.\n\nTono cálido y profesional. Menos de 150 palabras.\n\n<reclamo>\n[pegá el reclamo anonimizado]\n</reclamo>" },
+            { "titulo": "Preguntas frecuentes", "situacion": "Recibís siempre las mismas consultas.", "prompt": "Estas son consultas reales que recibimos (sin datos personales). Agrupalas por tema y redactá una sección de preguntas frecuentes, con respuestas de no más de tres oraciones.\n\nUsá solo la información de [política o documento que pegues]. Si una pregunta no se puede responder con eso, marcala para que la revise una persona.\n\n<consultas>\n[pegá las consultas]\n</consultas>" },
+            { "titulo": "Respuestas modelo", "situacion": "El equipo responde lo mismo de formas muy distintas.", "prompt": "Escribí tres respuestas modelo para [tipo de consulta], con el estilo de este ejemplo que nos gusta:\n\n<ejemplo>\n[pegá una respuesta buena]\n</ejemplo>\n\nCada una para una situación distinta: [situación 1], [situación 2] y [situación 3]. Marcá entre corchetes lo que hay que personalizar." }
+          ] },
+          { "id": "rrhh", "titulo": "Recursos humanos y capacitación", "descripcion": "Búsquedas, inducción, actividades y evaluaciones.", "casos": [
+            { "titulo": "Un aviso de búsqueda inclusivo", "situacion": "Tenés que publicar una búsqueda y querés que no excluya a nadie sin motivo.", "prompt": "Escribí un aviso de búsqueda para [puesto] en [tipo de organización].\n\nRequisitos indispensables: [lista]. Deseables: [lista].\n\nUsá lenguaje inclusivo, separá con claridad lo indispensable de lo deseable y evitá requisitos que no hagan falta para el puesto (edad, género, \"buena presencia\"). Al final, señalá cualquier parte que pueda excluir a alguien sin motivo." },
+            { "titulo": "Plan de inducción", "situacion": "Ingresan personas nuevas y querés que la primera semana tenga sentido.", "prompt": "Armá un plan de inducción de [cantidad de días] para [puesto] en [área].\n\nIncluí: a quién conoce cada día, qué aprende, qué tarea real hace y cómo sabemos que va bien. Dejá espacio para preguntas.\n\nFormato: una tabla por día. Nada de datos personales de nadie." },
+            { "titulo": "Una actividad para un curso", "situacion": "Necesitás una actividad para que el grupo aplique lo que aprendió.", "prompt": "Diseñá una actividad de [duración] para un curso de [tema] dirigido a [grupo].\n\nObjetivo: que puedan [qué tienen que poder hacer al terminar].\n\nIncluí: consigna, materiales, cómo se organiza el grupo, qué se espera como resultado y dos preguntas para el cierre. Que se pueda hacer [presencial o virtual]." }
+          ] }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre del bloque",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "crear", "objetivo": "m13-o2", "preguntas": [
+          { "texto": "¿Qué cambia cuando la IA está integrada en tu suite de oficina?", "opciones": [
+            { "texto": "Trabaja sobre tus documentos sin copiarlos, con tus permisos y las reglas que configuró la organización.", "correcta": true, "feedback": "Esa es la diferencia. Lo que no cambia es que el resultado se revisa." },
+            { "texto": "Sus resultados ya no necesitan revisión.", "feedback": "Un resumen dentro de tu documento puede tener los mismos errores que en cualquier otro lugar." }
+          ] },
+          { "texto": "¿Por qué los prompts del kit tienen partes entre corchetes?", "opciones": [
+            { "texto": "Para reemplazarlas con el contexto de cada caso: un prompt modelo se adapta, no se usa tal cual.", "correcta": true, "feedback": "Es una plantilla con variables, como viste en el Módulo 6." },
+            { "texto": "Porque los asistentes los necesitan para funcionar.", "feedback": "Los corchetes son para vos: marcan qué completar." }
+          ] },
+          { "texto": "Querés que la IA analice una planilla con datos de empleados. ¿Qué hacés primero?", "opciones": [
+            { "texto": "Reemplazo los nombres por códigos y uso la herramienta que autorizó mi organización.", "correcta": true, "feedback": "Anonimizar y usar el entorno autorizado: el análisis se puede hacer igual." },
+            { "texto": "La subo completa, porque si no el análisis no sirve.", "feedback": "Para encontrar patrones no hace falta saber quién es quién." }
+          ] }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario, al cerrar el bloque", "pregunta": "Probá uno de los prompts de tu kit con una tarea real de esta semana. ¿Qué le cambiaste después de ver el resultado? ¿Cuánto tiempo te ahorró, y qué parte seguiste haciendo vos?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Gemini en las apps de Google Workspace", "apa": "Google. (s.f.). *Usar Gemini con Gmail, Docs y Drive*. Ayuda de Gemini Apps.", "url": "https://support.google.com/gemini/answer/15229592?hl=es", "idioma": "es", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Ayuda de Microsoft Copilot", "apa": "Microsoft. (s.f.). *Get help with Copilot*. Microsoft Support.", "url": "https://support.microsoft.com/en-us/microsoft-copilot/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Consejos para escribir prompts en Gemini", "apa": "Google. (s.f.). *Tips to write prompts for Gemini*. Google Workspace Learning Center.", "url": "https://support.google.com/a/users/answer/14200040", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Cómo escribir prompts en Copilot", "apa": "Microsoft. (s.f.). *Get started writing prompts in Microsoft Copilot*. Microsoft Support.", "url": "https://support.microsoft.com/en-us/topic/learn-about-copilot-prompts-f6c3b467-f07c-4db1-ae54-ffac96184dd5", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" }
+        ] }
+      ]
+    }
+  ]
+}

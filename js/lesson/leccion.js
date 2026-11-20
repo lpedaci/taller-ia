@@ -14,6 +14,7 @@ import "../activities/video.js";
 import "../activities/inicio-taller.js";
 import "../activities/criterio.js";
 import "../activities/etica.js";
+import "../activities/asistentes.js";
 import "../charts.js";
 import "../animacion.js";
 import { demoraSimulada, errorSimulado, tarjetaError, esperaConMensaje } from "../estados.js";

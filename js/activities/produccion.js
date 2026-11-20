@@ -32,10 +32,13 @@ function armar(b, valores) {
 }
 registrar("constructor", {
   render: (b, ctx) => {
-    const salida = b.modo === "brief" ? "Tu brief" : b.modo === "visual" ? "Tu prompt visual" : "Tu prompt";
+    const salida = b.salida || (b.modo === "brief" ? "Tu brief" : b.modo === "visual" ? "Tu prompt visual" : "Tu prompt");
     return marco("constructor", b, ctx,
       `<div class="con-campos">${b.campos.map(c => `<div class="tf"><label for="${fid(ctx, b, c.id)}">${esc(c.etiqueta)}${c.obligatorio ? "" : ' <span class="opc">(opcional)</span>'}</label>` +
-        `<textarea class="field" id="${fid(ctx, b, c.id)}" data-campo="${esc(c.id)}" rows="${c.multilinea ? 3 : 1}" aria-describedby="${fid(ctx, b, c.id)}-h"></textarea>` +
+        (c.opciones
+          // Campo con opciones: desplegable del design system (D-042)
+          ? `<span class="sel"><select class="field" id="${fid(ctx, b, c.id)}" data-campo="${esc(c.id)}" aria-describedby="${fid(ctx, b, c.id)}-h"><option value="">Elegí una opción</option>${c.opciones.map(o => `<option>${esc(o)}</option>`).join("")}</select><span class="ms tf-ic" aria-hidden="true">arrow_drop_down</span></span>`
+          : `<textarea class="field" id="${fid(ctx, b, c.id)}" data-campo="${esc(c.id)}" rows="${c.multilinea ? 3 : 1}" aria-describedby="${fid(ctx, b, c.id)}-h"></textarea>`) +
         `<span class="tf-help" id="${fid(ctx, b, c.id)}-h">${esc(c.ayuda || "")}${c.ejemplo ? ` Por ejemplo: ${esc(c.ejemplo)}` : ""}</span></div>`).join("")}</div>` +
       acciones(boton("limpiar", "Vaciar", "btn-text", "backspace"), boton("ejemplo", "Completar con el ejemplo", "btn-text", "auto_fix_high")) +
       `<div class="con-salida"><div class="con-salida-head"><h5 id="${fid(ctx, b, "out")}">${salida}</h5><span class="chip chip-neutral con-cuenta"></span></div>` +
