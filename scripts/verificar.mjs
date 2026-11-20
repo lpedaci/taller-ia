@@ -96,7 +96,7 @@ for (const modo of MODOS) {
               const lr = el.labels[0].getBoundingClientRect(); if (lr.height >= 24) continue;
             }
             // Excepción de WCAG 2.5.8: enlaces dentro de un texto corrido
-            if (getComputedStyle(el).display === "inline" && el.closest("p, li, .next-step, .lead, .status")) continue;
+            if (getComputedStyle(el).display === "inline" && el.closest("p, li, .next-step, .lead, .status, .an-texto")) continue;
             el.scrollIntoView({ block: "center", inline: "center" });
             const r2 = el.getBoundingClientRect();
             const toca = (x, y) => { const t = document.elementFromPoint(x, y); return t && (t === el || el.contains(t)); };

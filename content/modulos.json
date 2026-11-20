@@ -233,7 +233,26 @@
       "titulo": "Ética de la inteligencia artificial",
       "descripcion": "Sesgos, desinformación, autoría, trabajo y ambiente.",
       "pasos": 7,
-      "minutos": 70
+      "minutos": 70,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m9-o1",
+          "competencia": "etica"
+        },
+        {
+          "id": "m9-o2",
+          "competencia": "etica"
+        },
+        {
+          "id": "m9-o3",
+          "competencia": "etica"
+        },
+        {
+          "id": "m9-o4",
+          "competencia": "etica"
+        }
+      ]
     },
     {
       "id": 10,
@@ -241,7 +260,26 @@
       "titulo": "Datos personales y marco legal",
       "descripcion": "Ley 25.326, AAIP y buenas prácticas.",
       "pasos": 7,
-      "minutos": 70
+      "minutos": 70,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m10-o1",
+          "competencia": "etica"
+        },
+        {
+          "id": "m10-o2",
+          "competencia": "etica"
+        },
+        {
+          "id": "m10-o3",
+          "competencia": "etica"
+        },
+        {
+          "id": "m10-o4",
+          "competencia": "etica"
+        }
+      ]
     },
     {
       "id": 11,

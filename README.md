@@ -6,7 +6,7 @@ Es un sitio de HTML, CSS y JavaScript sin paso de compilación. Funciona publica
 
 ## Estado del proyecto
 
-Etapa 3 de 10, en curso: contenido de los módulos. Los bloques 1 y 2 (Módulos 0 a 8) están completos. El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
+Etapa 3 de 10, en curso: contenido de los módulos. Los bloques 1 a 3 (Módulos 0 a 10) están completos. El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
 
 ## Ver el taller en tu computadora
 
@@ -117,6 +117,7 @@ Cada módulo es un archivo `content/modulo-XX.json` (por ejemplo, `modulo-03.jso
 - **Actividades:** `quiz`, `vf`, `clasificador`, `errores`, `escenario`, `constructor` (con `modo`: prompt, visual o brief), `reflexion`, `comparador`, `tabla`, `flujo`, `storyboard` y `mapa`. Cada actividad lleva un `id` único dentro del módulo y, si es evaluada, la `competencia` y el `objetivo` a los que suma.
 - **Del inicio del taller:** `perfil` (nombre y ruta), `autodiagnostico` (con `momento`: inicial o final), `objetivos-personales`, `diagrama` (círculos concéntricos con definiciones) y `predictor` (predictor de palabras con datos fijos). Ejemplos en `modulo-00.json`, `modulo-01.json` y `modulo-02.json`.
 - **Del bloque 2:** `marco4d` (el diagrama del marco 4D; con `"destacar": "descripcion"` y `"compacto": true` muestra una sola dimensión), `subir-nivel` (un prompt que se mejora en rondas) y `checklist` (casillas que se descargan en Markdown). El bloque `errores` acepta un `pedido` que se muestra antes del texto. Ejemplos en `modulo-04.json` a `modulo-08.json`.
+- **Del bloque 3:** `debate` (tres posiciones; la elegida y el argumento van al diario), `anonimizar` (un texto con partes que se marcan; las que tienen `dato` son las que hay que quitar, con su `reemplazo`) y `marco-legal` (tarjetas por país desde `content/marco-legal.json`; solo se muestran las que tienen `"verificado": true`). Ejemplos en `modulo-09.json` y `modulo-10.json`.
 - En `profundizar`, un recurso sin `url` se muestra como libro (`"tipo": "libro"`).
 - La lección de prueba (`content/modulo-prueba.json`) tiene un ejemplo de cada tipo de bloque, salvo los del inicio del taller.
 

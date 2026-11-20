@@ -50,6 +50,10 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-042 | 2026-11-20 | Desplegable como componente del design system, con el ícono a 12 px del borde | Vigente |
 | D-043 | 2026-11-20 | Auditoría automática contra el design system (`npm run auditar`) | Vigente |
 | D-044 | 2026-11-20 | Ajustes que encontró la primera auditoría: pesos, títulos de tarjeta, sangrías y medidas | Vigente |
+| D-045 | 2026-11-20 | Componentes del bloque 3: debate, "Anonimizá este texto" y marco legal por país | Vigente |
+| D-046 | 2026-11-20 | Etapa 3, bloque 3: Módulos 9 y 10 | Vigente |
+| D-047 | 2026-11-20 | Fuentes del bloque 3 y datos pendientes de verificar | Vigente |
+| D-048 | 2026-11-20 | Etapa 3, bloque 3: verificación | Vigente |
 
 ---
 
@@ -885,3 +889,109 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 **Verificación realizada:** `npm run verificar` completo: 576 capturas, sin problemas de axe-core, scroll, áreas táctiles, consola, movimiento ni texto. La auditoría encontró 24 casos más en 412 px, que la corrida rápida no veía: el relleno de las actividades era fluido (3 % del ancho) y quedaba fuera de la escala de 4 px. Ahora es fijo: 12 px en mobile y 20 px desde 600 px. Por eso `npm run auditar` suma los anchos 412 y 1024. Después, `npm run auditar` sin hallazgos en los 5 anchos y los 2 modos.
 
 **Pendientes o riesgos:** ninguno.
+
+## D-045 | 2026-11-20 | Componentes del bloque 3
+
+**Solicitado:** las actividades del bloque 3 que pide el brief: un debate con tres posiciones (Módulo 9), "Anonimizá este texto" y una tarjeta sobre otros países de la región en un archivo de datos aparte (Módulo 10).
+
+**Decisión y motivo:**
+- **Debate:**
+  - presenta el tema y tres posiciones, cada una con su argumento;
+  - la persona elige una y la argumenta;
+  - al guardar, va al diario con la posición elegida, y el feedback le devuelve la objeción más fuerte a su posición, para seguir pensando;
+  - no hay respuesta correcta y no se califica;
+  - en clase sirve como debate grupal.
+- **Anonimizá este texto:** un texto en el que se tocan las partes que identifican o exponen a una persona. Incluye señuelos (datos que no son personales y que el resumen necesita, como un total del grupo). Al comprobar:
+  - informa lo encontrado, lo que faltó y lo que sobraba;
+  - muestra la versión anonimizada, lista para pegar en la IA;
+  - mueve el foco a "Reintentar".
+- **Marco legal por país:** lee `content/marco-legal.json` y muestra solo los países con la fuente oficial verificada, con la fecha de revisión y el enlace al texto oficial (ver D-047).
+- Los tres pasaron la auditoría del design system antes de presentarse (D-043). En "Anonimizá", las partes marcables van pegadas a la puntuación: se quitó el relleno lateral que usan las de "Corregí a la IA".
+
+**Archivos afectados:** `js/activities/etica.js`, `js/activities/comun.js`, `js/lesson/leccion.js`, `css/activities.css`, `content/marco-legal.json`, `scripts/pantallas.mjs`.
+
+**Verificación realizada:** ver D-048.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-046 | 2026-11-20 | Etapa 3, bloque 3: Módulos 9 y 10
+
+**Solicitado:** producir el contenido completo del bloque 3 (Ética y datos) según la sección 3 del brief.
+
+**Decisión y motivo:**
+- **Módulo 9, Ética de la inteligencia artificial:**
+  - el caso de Silvina, que vuelve a buscar trabajo y no la llaman;
+  - sesgos y discriminación (datos, diseño, uso), con un verdadero o falso;
+  - contenido sintético y desinformación (voces clonadas, imágenes, videos), señales y verificación por otro canal, con un quiz de dos situaciones;
+  - autoría y trabajo, presentados como debate abierto, con aviso de que no es asesoramiento legal, y el debate "¿De quién es la ilustración?";
+  - ambiente, poder y autonomía;
+  - los marcos de la UNESCO y la OCDE;
+  - el mapa de impactos sobre la preselección automática de currículums, que vuelve al caso de Silvina del otro lado.
+- **Módulo 10, Datos personales y marco legal:**
+  - aviso visible al empezar: es informativo y no reemplaza el asesoramiento legal;
+  - el caso de Andrea, que pega un correo con datos de otras personas para pedir un resumen;
+  - datos personales, sensibles e inferidos;
+  - qué pasa con lo que se carga en una IA, explicado en general (los detalles por herramienta van al bloque de Asistentes);
+  - el marco argentino (artículo 43 de la Constitución, Ley 25.326, Decreto 1558/2001, AAIP, derechos y plazos) y la mención de los proyectos de reforma, sin darlos por aprobados;
+  - el RGPD, el Reglamento de IA de la UE y la tarjeta de otros países;
+  - "¿Lo cargarías?" con 15 tarjetas en "Nunca", "Solo anonimizado" y "Sin problema";
+  - "Anonimizá este texto" con el correo de Andrea.
+- **Cambio en el Módulo 8:** su clasificador también se llamaba "¿Lo cargarías?". Pasa a llamarse "Antes de pegar" para no repetir el nombre de la actividad completa del Módulo 10.
+- **Verificador:** "módulo sin lección" ahora usa el Módulo 11, porque el 6 ya tiene lección.
+
+**Archivos afectados:** `content/modulo-09.json`, `content/modulo-10.json`, `content/modulo-08.json`, `content/modulos.json`, `scripts/pantallas.mjs`.
+
+**Verificación realizada:** ver D-048.
+
+**Pendientes o riesgos:** la animación prioritaria 5 (qué pasa con los datos cuando los cargás en una IA) queda para la parte de animaciones, junto con la 4 (D-040).
+
+## D-047 | 2026-11-20 | Fuentes del bloque 3
+
+**Solicitado:** fuentes verificadas para los temas legales, ambientales y de autoría, sin dar por cierto lo que no se pudo comprobar.
+
+**Decisión y motivo:**
+- **Verificado en la fuente** (2026-11-20):
+  - UNESCO, Recomendación sobre la Ética de la IA (noviembre de 2021), con página en español;
+  - OCDE, Principios de IA (2019, actualizados en 2024; la Argentina adhiere) y sus cinco principios;
+  - Ley 25.326 (sancionada el 4 de octubre de 2000), Decreto 1558/2001 (29 de noviembre de 2001) y el artículo 43 de la Constitución, en Infoleg;
+  - los derechos y plazos (10 días corridos para el acceso; 5 días hábiles para la rectificación, actualización o supresión) y la denuncia ante la AAIP, en la página de la AAIP;
+  - Reglamento de IA de la UE: vigente desde el 1 de agosto de 2024, según la Comisión Europea;
+  - Agencia Internacional de Energía, *Energy and AI* (2025): 415 TWh y alrededor del 1,5 % de la electricidad mundial en 2024, más del doble para 2030;
+  - Li y otros (2023, arXiv): medio litro de agua cada 10 a 50 respuestas medianas, según el lugar;
+  - la Oficina de Derechos de Autor de Estados Unidos publicó la parte 2 de su informe el 29 de enero de 2025;
+  - el Tribunal Superior del Reino Unido dictó sentencia en Getty Images contra Stability AI el 4 de noviembre de 2025;
+  - LGPD de Brasil (Ley 13.709 de 2018) y Ley 18.331 de Uruguay (2008).
+- **Cómo se redactó lo que no se pudo leer:**
+  - De los informes de la Oficina de Derechos de Autor y de la sentencia de Getty solo se confirmaron la existencia y la fecha: los PDF no se pudieron leer. El texto los menciona sin afirmar su conclusión.
+  - Sobre la AAIP, la página oficial confirma que ante ella se denuncia el incumplimiento de la Ley 25.326. El texto dice que "controla el cumplimiento de la ley" y no cita una norma que no se pudo leer.
+  - El reglamento número 2024/1689 y la fecha de aplicación del RGPD (2018) no se pudieron confirmar por un problema del sitio EUR-Lex: el texto menciona el RGPD (2016) y la vigencia del Reglamento de IA, sin esos detalles.
+- **Pendiente de verificar:** las leyes de **Chile** (Ley 21.719), **México** (nueva ley federal de 2025), **Colombia** (Ley 1581 de 2012) y **Perú** (Ley 29733 de 2011). Los sitios oficiales rechazaron la conexión o no cargaron. Quedan en `content/marco-legal.json` con `"verificado": false` y no se muestran hasta confirmarlas.
+
+**Archivos afectados:** `content/modulo-09.json`, `content/modulo-10.json`, `content/marco-legal.json`.
+
+**Verificación realizada:** consulta de cada página oficial el 2026-11-20.
+
+**Pendientes o riesgos:** **para Lourdes:** confirmar en la fuente oficial los cuatro países pendientes (basta con cambiar `"verificado"` a `true` y completar el resumen y el enlace) o pedírmelo en otra sesión con mejor acceso a esos sitios.
+
+## D-048 | 2026-11-20 | Etapa 3, bloque 3: verificación
+
+**Solicitado:** verificar el bloque 3 completo antes de subirlo.
+
+**Decisión y motivo:** el verificador y la auditoría suman cinco pantallas del bloque 3 (debate, mapa, marco legal, "¿Lo cargarías?" y "Anonimizá").
+
+**Archivos afectados:** `scripts/pantallas.mjs`.
+
+**Verificación realizada:**
+- Prueba de punta a punta en 1280 px (claro) y 390 px (oscuro), todo correcto:
+  - los 14 pasos cargan, sin problemas de axe-core ni de la auditoría del design system;
+  - el debate pide elegir una posición, guarda en el diario y la recuerda;
+  - el mapa de impactos agrega ideas;
+  - el marco legal muestra solo Brasil y Uruguay;
+  - el clasificador da 15 de 15;
+  - "Anonimizá" informa lo que faltó y lo que sobraba, muestra la versión anonimizada y mueve el foco;
+  - sin errores de consola.
+- `npm run auditar` sin hallazgos.
+- `npm run verificar` completo: 636 capturas (53 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, scroll, consola, movimiento, texto ni design system. Encontró un problema: en mobile, las partes marcables de "Anonimizá" medían 36 px de alto. Se convirtieron en texto en línea con `role="button"` (se pueden enfocar y responden a Enter y Espacio), para que se corten con la oración. Así entran en la excepción de WCAG 2.5.8 para objetivos dentro de un texto, la misma que ya se aplica a los enlaces en un párrafo (D-011), y el verificador la reconoce. Darles 48 px de alto hacía que cada una saltara de renglón y dejara la puntuación suelta.
+- Después, `npm run verificar:rapido` sin ningún problema (318 capturas) y la prueba del bloque 3 en 390 px correcta.
+
+**Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.

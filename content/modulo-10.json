@@ -1,0 +1,140 @@
+{
+  "titulo": "Datos personales y marco legal",
+  "objetivos": [
+    { "id": "m10-o1", "texto": "Distinguir datos personales, datos sensibles y datos inferidos.", "competencia": "etica" },
+    { "id": "m10-o2", "texto": "Explicar qué puede pasar con lo que cargás en una herramienta de IA y qué podés configurar.", "competencia": "etica" },
+    { "id": "m10-o3", "texto": "Conocer el marco legal argentino de protección de datos y tus derechos.", "competencia": "etica" },
+    { "id": "m10-o4", "texto": "Decidir qué información cargar y anonimizar un texto antes de usarlo con IA.", "competencia": "etica" }
+  ],
+  "pasos": [
+    {
+      "titulo": "El resumen que pidió Andrea",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "nota", "estado": "atencion", "titulo": "Este módulo es informativo", "md": "Explica en general el marco de protección de datos. No reemplaza el asesoramiento legal: para una situación concreta, consultá a una persona especialista o a la Agencia de Acceso a la Información Pública." },
+        { "tipo": "texto", "md": "Andrea coordina un curso en una cadena de supermercados. Al final de la semana le pide a la IA que le resuma el correo que le iba a mandar a su jefa. Copia y pega el correo entero: nombres de los participantes, el DNI de uno, el celular de otra y el motivo por el que un tercero faltó, que es un tratamiento de salud.\n\nEl resumen sale perfecto. Lo que Andrea no pensó es que ahora todos esos datos de otras personas están en los servidores de una empresa externa, que ninguna de esas personas lo sabe y que, para el resumen, no hacía falta ninguno.\n\nNo hubo mala intención. Faltó saber qué es un dato personal, qué pasa con lo que cargamos y qué dice la ley. Es lo que vas a ver ahora, y al final vas a hacer vos el ejercicio que Andrea no hizo." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "Qué es un dato personal",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "**Dato personal** es cualquier información que identifica a una persona o permite identificarla: el nombre, el DNI, el correo, el teléfono, la dirección, una foto, la voz. También lo es una combinación de datos que, juntos, señalan a alguien: \"la gerenta de la sucursal Centro que entró en 2019\" no tiene nombre, pero identifica a una persona.\n\n**Dato sensible** es el que revela algo íntimo y puede dar lugar a discriminación: el origen racial o étnico, las opiniones políticas, las convicciones religiosas o morales, la afiliación sindical, la salud y la vida sexual. Los datos biométricos (la huella, el rostro, la voz usados para identificar) suelen recibir el mismo cuidado. Los sensibles tienen una protección reforzada.\n\n**Dato inferido** es el que no diste, pero alguien (o un sistema) deduce a partir de otros. Por tus compras, tus búsquedas o tus horarios, un sistema puede inferir un embarazo, una enfermedad o una situación económica. Es un dato personal aunque nunca lo hayas escrito, y muchas veces es sensible." },
+        { "tipo": "vf", "id": "datos", "titulo": "¿Es un dato personal?", "competencia": "etica", "objetivo": "m10-o1", "afirmaciones": [
+          { "texto": "\"El 70 % del grupo aprobó el curso\" es un dato personal.", "verdadero": false, "explicacion": "Es un dato agregado: no identifica a nadie. Salvo que el grupo sea tan chico que se pueda deducir quién es quién." },
+          { "texto": "Que una persona faltó porque está en tratamiento psicológico es un dato sensible.", "verdadero": true, "explicacion": "Es un dato de salud, y la salud es una de las categorías de datos sensibles." },
+          { "texto": "Una foto de un grupo de participantes en el aula es un dato personal.", "verdadero": true, "explicacion": "Las personas se pueden reconocer por su imagen. Por eso conviene pedir permiso antes de publicar o cargar fotos." },
+          { "texto": "Si nunca dije mi religión, no puede haber un dato sobre ella.", "verdadero": false, "explicacion": "Se puede inferir de otros datos (por ejemplo, de hábitos o de compras). Es un dato inferido, y sensible." }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Qué pasa con lo que le cargás a una IA",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Cuando escribís o adjuntás algo en un asistente de IA, eso viaja a los servidores de la empresa que lo ofrece. A partir de ahí, según la herramienta, el tipo de cuenta y tu configuración, pueden pasar cuatro cosas:\n\n1. **Se guarda.** Las conversaciones quedan almacenadas un tiempo, a veces largo, aunque las borres de tu pantalla.\n2. **Se usa para entrenar.** Algunas herramientas usan las conversaciones para mejorar sus modelos. Muchas permiten desactivarlo en la configuración de privacidad; conviene revisarlo.\n3. **Lo lee una persona.** Por seguridad o por control de calidad, algunas conversaciones pueden ser revisadas por personal de la empresa.\n4. **Queda sujeto a las condiciones de esa cuenta.** Las cuentas para empresas e instituciones suelen tener contratos que limitan el uso de los datos y controles para la organización. Las cuentas personales, sobre todo las gratuitas, suelen tener condiciones más amplias.\n\nLos detalles cambian seguido y son distintos en cada herramienta. En el bloque de Asistentes vas a ver cómo está configurado cada uno. Lo que no cambia es la regla: **cargá solo lo que la tarea necesita**." },
+        { "tipo": "nota", "estado": "positivo", "titulo": "Tres cosas para hacer hoy", "md": "Abrí la configuración de privacidad del asistente que más usás. Fijate si las conversaciones se usan para entrenar y si lo podés desactivar. Y preguntá en tu organización qué herramientas están autorizadas para información de trabajo." }
+      ]
+    },
+    {
+      "titulo": "El marco legal",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "**En la Argentina**\n\n- La **Constitución Nacional**, en el tercer párrafo del artículo 43, da a toda persona una acción para conocer los datos que se registran sobre ella y exigir que se supriman, rectifiquen, mantengan confidenciales o actualicen. Se la conoce como **hábeas data**.\n- La **Ley 25.326 de Protección de los Datos Personales** (sancionada en el año 2000) desarrolla ese derecho, y su **Decreto Reglamentario 1558/2001** la reglamenta. La ley regula, entre otras cosas, el consentimiento, los datos sensibles y la seguridad de los datos.\n- La **Agencia de Acceso a la Información Pública (AAIP)** controla el cumplimiento de la ley: ante ella se hacen las denuncias por incumplimiento.\n\n**Tus derechos**\n\n- **Acceso:** saber qué datos tuyos tiene una organización. Se pide a quien tiene los datos, y tiene que responder en **10 días corridos**.\n- **Rectificación, actualización o supresión:** corregir, actualizar o pedir que se borren datos. El plazo es de **5 días hábiles**.\n- Si no responden o la respuesta no alcanza, podés hacer una denuncia ante la AAIP o iniciar una acción de hábeas data.\n\nHay **proyectos de reforma** de la ley en debate, para actualizarla a la tecnología actual. Mientras no se aprueben, sigue vigente la Ley 25.326." },
+        { "tipo": "texto", "md": "**Referencias internacionales**\n\n- El **Reglamento General de Protección de Datos de la Unión Europea** (RGPD, 2016) es la referencia más influyente en el mundo. Muchas empresas lo aplican también fuera de Europa.\n- El **Reglamento de IA de la Unión Europea** (2024), vigente desde el 1 de agosto de 2024, es la primera ley integral sobre inteligencia artificial. Clasifica los usos según su riesgo: algunos se prohíben y otros, como los sistemas que intervienen en la selección de personal, tienen obligaciones más exigentes.\n\nAunque no se apliquen en la Argentina, influyen en las leyes de la región y en cómo trabajan las empresas que operan en varios países." },
+        { "tipo": "marco-legal", "titulo": "Otros países de la región" }
+      ]
+    },
+    {
+      "titulo": "¿Lo cargarías?",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Las buenas prácticas se resumen en cuatro: **anonimizar** antes de cargar; **no subir datos de terceros** sin base legal ni consentimiento; **revisar la configuración de privacidad**; y **seguir las políticas de tu organización**.\n\nAhora aplicalas. Imaginá que usás un asistente con una cuenta personal y que tu organización no autorizó ninguna herramienta para información de trabajo. ¿Qué harías con cada una de estas cosas?" },
+        { "tipo": "clasificador", "id": "cargarias", "titulo": "Quince cosas para cargar, o no", "competencia": "etica", "objetivo": "m10-o4", "categorias": [
+          { "id": "nunca", "titulo": "Nunca", "descripcion": "Ni siquiera anonimizado, en este contexto." },
+          { "id": "anonimo", "titulo": "Solo anonimizado", "descripcion": "Sirve, sin datos que identifiquen." },
+          { "id": "si", "titulo": "Sin problema", "descripcion": "No tiene datos personales ni confidenciales." }
+        ], "items": [
+          { "texto": "La foto de un DNI, para que te complete un formulario.", "categoria": "nunca", "feedback": "Es un documento de identidad: alcanza para suplantar a una persona. Completá el formulario a mano." },
+          { "texto": "La planilla de sueldos del área, para que calcule promedios.", "categoria": "nunca", "feedback": "Son datos personales y confidenciales. Si necesitás el cálculo, hacelo con la planilla o con números sin nombres en una herramienta autorizada." },
+          { "texto": "El certificado médico de una participante, para redactar la justificación de su ausencia.", "categoria": "nunca", "feedback": "Es un dato de salud de otra persona: sensible. La justificación se escribe sin necesidad de cargarlo." },
+          { "texto": "La contraseña del sistema de gestión, para que te explique un error.", "categoria": "nunca", "feedback": "Las contraseñas no se comparten con nadie, tampoco con una IA. Describí el error sin ella." },
+          { "texto": "La base de clientes con nombres, correos y teléfonos, para segmentarla.", "categoria": "nunca", "feedback": "Son datos de terceros que tu organización custodia. Solo con una herramienta autorizada y para un fin permitido." },
+          { "texto": "Las grabaciones de voz de un taller, para transcribirlas.", "categoria": "nunca", "feedback": "La voz identifica a las personas y puede usarse para clonarla. Solo con consentimiento y una herramienta autorizada." },
+          { "texto": "Tu currículum con tus datos de contacto, para mejorar la redacción.", "categoria": "anonimo", "feedback": "Es tuyo, pero no hace falta que la IA tenga tu teléfono ni tu dirección para mejorar la redacción. Quitalos antes." },
+          { "texto": "Los comentarios abiertos de una encuesta de clima laboral.", "categoria": "anonimo", "feedback": "Quitá nombres y cualquier detalle que permita reconocer a quien escribió (área, antigüedad, situaciones puntuales)." },
+          { "texto": "Tus notas de una entrevista de selección, para ordenarlas.", "categoria": "anonimo", "feedback": "Sin el nombre ni datos de la persona entrevistada. Y la decisión sobre ella sigue siendo tuya." },
+          { "texto": "El reclamo de un cliente, para responderlo mejor.", "categoria": "anonimo", "feedback": "Reemplazá el nombre, el número de cliente y cualquier dato de contacto. El contenido del reclamo alcanza." },
+          { "texto": "Las notas de una evaluación con el nombre de cada participante.", "categoria": "anonimo", "feedback": "Reemplazá los nombres por códigos. Para analizar resultados no hace falta saber quién es quién." },
+          { "texto": "Un texto que escribiste vos, para corregirlo.", "categoria": "si", "feedback": "Es tu material y no tiene datos de nadie. Si fuera un documento interno confidencial, revisá la política primero." },
+          { "texto": "El programa de un curso que diseñaste.", "categoria": "si", "feedback": "No tiene datos personales. Es el tipo de uso más seguro." },
+          { "texto": "El texto de una ley publicada en el Boletín Oficial, para que te la explique.", "categoria": "si", "feedback": "Es información pública. Igual, verificá la explicación con el texto oficial." },
+          { "texto": "\"18 de 20 personas aprobaron\", para escribir el informe del curso.", "categoria": "si", "feedback": "Es un dato agregado: no identifica a nadie. Ojo con grupos muy chicos, donde un número puede delatar a alguien." }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Anonimizá este texto",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Este es el correo de Andrea (inventado para el taller, con datos ficticios). Quiere pedirle a la IA que lo resuma para su jefa. Marcá todo lo que habría que quitar o reemplazar antes de pegarlo. Ojo: no todo lo que parece un dato lo es, y el resumen necesita algo de información para servir." },
+        { "tipo": "anonimizar", "id": "anonimizar", "titulo": "El correo de Andrea", "competencia": "etica", "objetivo": "m10-o4",
+          "segmentos": [
+            "Hola, ",
+            { "t": "Marina", "dato": "Nombre", "reemplazo": "[Coordinadora]", "porque": "El nombre de la destinataria no hace falta para el resumen." },
+            ":\n\nTe cuento cómo viene el curso de atención al público de la sucursal ",
+            { "t": "Rosario Centro", "nota": "Es un dato de la empresa y el resumen lo necesita. Solo, no identifica a nadie." },
+            ". Esta semana ",
+            { "t": "Jorge Ramírez", "dato": "Nombre", "reemplazo": "[Participante 1]", "porque": "Para el resumen alcanza con saber que un participante faltó." },
+            " faltó a dos clases porque ",
+            { "t": "está en tratamiento por depresión", "dato": "Dato de salud (sensible)", "reemplazo": "[por motivos personales]", "porque": "Es un dato sensible de otra persona. El resumen no lo necesita." },
+            ". ",
+            { "t": "Lucía Benítez", "dato": "Nombre", "reemplazo": "[Participante 2]", "porque": "Alcanza con decir que una participante pidió cambio de turno." },
+            " (DNI ",
+            { "t": "30.456.789", "dato": "Documento", "reemplazo": "[DNI]", "porque": "Un número de documento nunca hace falta para resumir." },
+            ") pidió cambiar de turno; su celular es ",
+            { "t": "341 555-0198", "dato": "Teléfono", "reemplazo": "[teléfono]", "porque": "Es un dato de contacto de otra persona." },
+            ".\n\nEl grupo en general va bien: ",
+            { "t": "18 de 20 personas", "nota": "Es un dato agregado y es justamente lo que el resumen necesita." },
+            " entregaron el trabajo práctico y el promedio de la evaluación fue ",
+            { "t": "7,5", "nota": "Es un promedio del grupo: no identifica a nadie." },
+            ".\n\nTe pido que lo hablemos con ",
+            { "t": "Ricardo, el gerente de la sucursal", "dato": "Nombre y cargo", "reemplazo": "[el gerente]", "porque": "Con el cargo y la sucursal ya se sabe quién es. El nombre sobra." },
+            " antes del viernes.\n\nSaludos,\n",
+            { "t": "Andrea Sosa", "dato": "Nombre", "reemplazo": "[Capacitadora]", "porque": "Tu propio nombre tampoco hace falta para resumir." },
+            "\n",
+            { "t": "andrea.sosa@empresa-ejemplo.com.ar", "dato": "Correo", "reemplazo": "[correo]", "porque": "Un correo identifica a una persona y a su organización." }
+          ],
+          "cierre": "Con la versión anonimizada, la IA puede hacer el mismo resumen. Lo que se pierde son datos que la tarea nunca necesitó." }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre del bloque",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "etica", "objetivo": "m10-o3", "preguntas": [
+          { "texto": "¿Qué ley regula la protección de datos personales en la Argentina?", "opciones": [
+            { "texto": "La Ley 25.326, reglamentada por el Decreto 1558/2001.", "correcta": true, "feedback": "Es la ley general, que desarrolla el derecho de hábeas data del artículo 43 de la Constitución." },
+            { "texto": "El Reglamento General de Protección de Datos (RGPD).", "feedback": "El RGPD es de la Unión Europea. Influye en la región, pero no es la ley argentina." }
+          ] },
+          { "texto": "Una empresa tiene datos tuyos y querés saber cuáles. ¿Qué hacés?", "opciones": [
+            { "texto": "Ejerzo el derecho de acceso pidiéndoselos a la empresa; si no responde en 10 días corridos, puedo hacer una denuncia ante la AAIP.", "correcta": true, "feedback": "Es el camino: primero a quien tiene los datos y, si no responde, a la AAIP o a una acción de hábeas data." },
+            { "texto": "No se puede: los datos son de la empresa.", "feedback": "Los datos son tuyos. La ley te da derecho a conocerlos, corregirlos y pedir que se borren." }
+          ] },
+          { "texto": "¿Qué es un dato inferido?", "opciones": [
+            { "texto": "Uno que no diste, pero que un sistema deduce de otros datos tuyos.", "correcta": true, "feedback": "Por ejemplo, una situación de salud deducida de tus compras. Es un dato personal, y muchas veces sensible." },
+            { "texto": "Un dato que ya no se usa.", "feedback": "No: es un dato deducido, y puede ser muy sensible." }
+          ] }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario, al cerrar el bloque", "pregunta": "Revisá tu configuración de privacidad en el asistente que usás. ¿Qué encontraste? ¿Vas a cambiar algo en cómo cargás información de tu trabajo?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Ley 25.326 de Protección de los Datos Personales", "apa": "Ley 25.326 de 2000. Protección de los datos personales. 4 de octubre de 2000 (Argentina).", "url": "https://servicios.infoleg.gob.ar/infolegInternet/anexos/60000-64999/64790/texact.htm", "idioma": "es", "nivel": "Inicial", "tipo": "documento" },
+          { "titulo": "Tus derechos sobre tus datos personales, de la AAIP", "apa": "Agencia de Acceso a la Información Pública. (s.f.). *Conocé tus derechos respecto a tus datos personales*. Argentina.gob.ar.", "url": "https://www.argentina.gob.ar/aaip/datospersonales/derechos", "idioma": "es", "nivel": "Inicial", "tipo": "documento" },
+          { "titulo": "Decreto Reglamentario 1558/2001", "apa": "Decreto 1558 de 2001. Reglamentación de la Ley 25.326. 29 de noviembre de 2001 (Argentina).", "url": "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=70368", "idioma": "es", "nivel": "Profundización", "tipo": "documento" },
+          { "titulo": "El Reglamento de IA de la Unión Europea entra en vigencia", "apa": "Comisión Europea. (2024, 1 de agosto). *AI Act enters into force*.", "url": "https://commission.europa.eu/news-and-media/news/ai-act-enters-force-2024-08-01_en", "idioma": "en", "nivel": "Profundización", "tipo": "documento" }
+        ] }
+      ]
+    }
+  ]
+}

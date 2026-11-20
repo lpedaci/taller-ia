@@ -1,0 +1,123 @@
+{
+  "titulo": "Ética de la inteligencia artificial",
+  "objetivos": [
+    { "id": "m9-o1", "texto": "Explicar de dónde vienen los sesgos de la IA y qué efectos tienen en decisiones sobre personas.", "competencia": "etica" },
+    { "id": "m9-o2", "texto": "Reconocer señales de contenido sintético y saber cómo verificarlo.", "competencia": "etica" },
+    { "id": "m9-o3", "texto": "Analizar un caso real identificando actores, beneficios, riesgos y salvaguardas.", "competencia": "etica" },
+    { "id": "m9-o4", "texto": "Argumentar una posición propia en un debate abierto sobre autoría, trabajo o ambiente.", "competencia": "etica" }
+  ],
+  "pasos": [
+    {
+      "titulo": "Treinta segundos por currículum",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "texto", "md": "Silvina tiene 41 años, es contadora y vuelve a buscar trabajo después de cuatro años cuidando a sus hijos. Se postula a doce avisos en dos semanas. No la llaman de ninguno.\n\nUna amiga que trabaja en recursos humanos le cuenta que muchas empresas usan sistemas que ordenan los currículums antes de que los lea una persona. Esos sistemas aprendieron de las contrataciones de años anteriores. Y en esos años, casi nadie con un \"hueco\" de cuatro años en su trayectoria había sido contratado.\n\nNadie programó una regla contra las madres. El sistema aprendió un patrón del pasado y lo repitió, en silencio, miles de veces. Eso es un problema ético, aunque no haya mala intención de nadie. En este módulo vas a ver los principales, y a practicar cómo analizarlos." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "Sesgos y discriminación",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Un sesgo es una diferencia sistemática en cómo un sistema trata a distintos grupos de personas. En la IA, puede entrar por tres lados:\n\n- **Los datos.** Si el sistema aprende de decisiones pasadas, aprende también sus prejuicios. Si en los datos casi no hay mujeres en puestos técnicos, el modelo \"aprende\" que no suelen estar ahí.\n- **El diseño.** Qué se decide medir y qué se considera un buen resultado. Si \"buen empleado\" se define como \"el que nunca faltó\", se castiga a quien tuvo una licencia por enfermedad o por cuidado.\n- **El uso.** Una herramienta pensada para sugerir se usa para decidir; una que se probó en un país se aplica en otro, con otra población.\n\nEl problema crece cuando la IA participa en **decisiones sobre personas**: quién pasa a una entrevista, quién recibe un crédito, a quién se le revisa un trámite. Ahí un sesgo no es un detalle técnico: es una oportunidad que alguien pierde sin saber por qué." },
+        { "tipo": "nota", "estado": "atencion", "titulo": "Lo que lo hace más difícil", "md": "Un sesgo de una persona se puede discutir con esa persona. Un sesgo de un sistema se repite a escala, es difícil de ver desde afuera y quien lo sufre muchas veces ni sabe que hubo una IA en el medio." },
+        { "tipo": "vf", "id": "sesgos", "titulo": "¿Qué te parece?", "competencia": "etica", "objetivo": "m9-o1", "afirmaciones": [
+          { "texto": "Si a un sistema no se le da el género de las personas, no puede tener sesgo de género.", "verdadero": false, "explicacion": "Puede inferirlo de otras variables: el nombre, los huecos en la trayectoria, ciertas carreras o actividades. Quitar un dato no quita el patrón." },
+          { "texto": "Un sistema puede discriminar aunque nadie haya querido que lo haga.", "verdadero": true, "explicacion": "Es lo más común: el sistema reproduce patrones de los datos sin que nadie lo haya decidido." },
+          { "texto": "Si una IA tiene sesgos, la solución es no usar nunca IA en recursos humanos.", "verdadero": false, "explicacion": "Hay usos de bajo riesgo y salvaguardas posibles: revisión humana, auditorías, transparencia. Lo importante es dónde decide y quién controla." }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Contenido sintético y desinformación",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Hoy se puede generar en minutos una foto, un video o la voz de una persona real diciendo algo que nunca dijo. A eso se le llama **contenido sintético**, y cuando busca engañar, **deepfake**.\n\nAlgunos usos que ya circulan:\n\n- **Estafas con voces clonadas:** un audio de \"tu hija\" o de \"tu jefe\" que pide una transferencia urgente.\n- **Noticias falsas con imágenes realistas:** una foto de un hecho que nunca pasó, que se comparte miles de veces antes de que alguien la desmienta.\n- **Videos de figuras públicas** recomendando inversiones o productos que nunca recomendaron.\n\n**Señales que ayudan** (ninguna alcanza por sí sola): urgencia y presión para actuar ya; un pedido de dinero o de datos; un canal inusual; detalles raros en manos, textos o reflejos de una imagen; una voz que suena bien pero no responde preguntas personales.\n\n**Lo que más sirve:** cortar y verificar por otro canal. Llamar a la persona al número de siempre, buscar la noticia en medios confiables, acordar en familia o en el trabajo una palabra clave para emergencias." },
+        { "tipo": "quiz", "id": "sintetico", "titulo": "¿Qué hacés?", "competencia": "etica", "objetivo": "m9-o2", "preguntas": [
+          { "texto": "Te llega un audio de WhatsApp con la voz de tu hermano: tuvo un problema y necesita que le transfieras dinero ya, a una cuenta que no conocés.", "opciones": [
+            { "texto": "Corto y lo llamo a su número de siempre antes de hacer nada.", "correcta": true, "feedback": "Verificar por otro canal es lo más efectivo: una voz clonada no puede atender el teléfono de tu hermano." },
+            { "texto": "Le respondo con una pregunta que solo él sabría.", "feedback": "Ayuda, pero si te escriben desde su cuenta robada pueden evadir la pregunta. Lo más seguro es llamarlo a su número." },
+            { "texto": "Transfiero: la voz era idéntica.", "feedback": "Hoy una voz idéntica se puede generar con pocos segundos de audio. La urgencia es justamente la señal de alerta." }
+          ] },
+          { "texto": "Circula una foto impactante de un hecho reciente. ¿Qué es lo primero?", "opciones": [
+            { "texto": "Buscar si medios confiables informan lo mismo antes de compartirla.", "correcta": true, "feedback": "Si nadie más lo informa, desconfiá. Las búsquedas inversas de imágenes también ayudan." },
+            { "texto": "Compartirla con un \"no sé si es verdad\".", "feedback": "Aun con la aclaración, la imagen sigue circulando y suma credibilidad." }
+          ] }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Autoría y trabajo: debates abiertos",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "**Propiedad intelectual.** Los modelos se entrenan con enormes cantidades de textos, imágenes y música, muchas veces protegidos por derechos de autor. Hay juicios abiertos en varios países: diarios, editoriales, artistas y bancos de imágenes reclamaron a empresas de IA por usar sus obras sin permiso. En el Reino Unido, por ejemplo, la justicia dictó sentencia en noviembre de 2025 en el caso de Getty Images contra Stability AI. Los resultados varían según el país y el caso, y la discusión está lejos de cerrarse.\n\nLa otra pregunta es **quién es autor de lo que genera una IA**. La Oficina de Derechos de Autor de Estados Unidos publicó en enero de 2025 un informe sobre si se puede proteger lo generado con IA, y la discusión gira en torno a cuánta intervención humana hace falta para que haya una obra. Cada país lo resuelve a su manera, y en muchos todavía no hay una respuesta clara.\n\n**Trabajo.** La IA cambia tareas más que puestos enteros: algunas desaparecen, otras se aceleran y aparecen tareas nuevas (revisar, verificar, diseñar cómo se usa). Quienes más se benefician suelen ser quienes aprenden a usarla con criterio. Por eso la formación continua no es un lujo." },
+        { "tipo": "nota", "estado": "info", "titulo": "Esto no es asesoramiento legal", "md": "Lo que leés acá presenta un debate abierto, con sus posturas. Para una decisión concreta sobre derechos de autor, consultá a una persona especialista." },
+        { "tipo": "debate", "id": "debate-autoria", "titulo": "¿De quién es la ilustración?", "competencia": "etica", "objetivo": "m9-o4",
+          "tema": "Una diseñadora escribe un prompt detallado, genera 40 imágenes, elige una, le cambia los colores y la usa en la tapa de un libro. **¿Quién es autor de esa ilustración?**",
+          "posiciones": [
+            { "titulo": "Es de la diseñadora", "argumento": "Ella tuvo la idea, escribió el pedido, eligió entre muchas opciones y la modificó. Es como un fotógrafo que no fabrica la cámara pero decide todo lo que importa.", "objecion": "si el prompt fuera de una sola línea, ¿seguiría siendo autora?" },
+            { "titulo": "No es de nadie", "argumento": "La imagen la produjo una máquina. Elegir y retocar no alcanza para ser autora de algo que no se creó. Debería ser de uso libre.", "objecion": "¿qué pasa con todo el trabajo de selección y edición? ¿No vale nada?" },
+            { "titulo": "Es, en parte, de quienes hicieron las obras de entrenamiento", "argumento": "El modelo aprendió de miles de artistas que no dieron permiso ni cobraron. Sin su trabajo, la imagen no existiría.", "objecion": "¿cómo se reconocería a miles de personas por una sola imagen?" }
+          ] }
+      ]
+    },
+    {
+      "titulo": "Ambiente, poder y autonomía",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "**Impacto ambiental.** Entrenar y usar modelos requiere centros de datos que consumen electricidad y agua para enfriarse. Según la Agencia Internacional de Energía, en 2024 los centros de datos usaron alrededor del 1,5 % de la electricidad del mundo, y su consumo podría más que duplicarse para 2030. Un estudio de 2023 estimó que, según dónde esté el centro de datos, entre 10 y 50 respuestas medianas de un modelo como GPT-3 pueden consumir el equivalente a una botella de agua de medio litro. Son estimaciones y varían mucho, pero muestran que cada consulta tiene un costo.\n\n**Transparencia y poder.** Los modelos más usados los desarrollan pocas empresas, que deciden con qué datos entrenan, qué reglas siguen y qué cuesta usarlos. Muchas veces no se sabe cómo un sistema llegó a una decisión (explicabilidad), y eso complica reclamar cuando algo sale mal.\n\n**Autonomía humana.** Si delegamos todo, perdemos práctica en pensar por nuestra cuenta. Y algunas personas desarrollan vínculos emocionales con asistentes que siempre están disponibles y siempre dan la razón. La IA puede acompañar, pero no reemplaza el criterio propio ni las relaciones con otras personas." },
+        { "tipo": "texto", "md": "**Marcos de referencia.** Dos documentos orientan las políticas de muchos países, incluida la Argentina:\n\n- La **Recomendación sobre la Ética de la IA de la UNESCO** (noviembre de 2021), el primer estándar mundial sobre el tema, adoptado por los Estados miembros.\n- Los **Principios de IA de la OCDE** (2019, actualizados en 2024), a los que adhiere la Argentina. Proponen cinco principios: crecimiento inclusivo y bienestar; derechos humanos y valores democráticos, incluidas la equidad y la privacidad; transparencia y explicabilidad; robustez, seguridad y protección; y rendición de cuentas." }
+      ]
+    },
+    {
+      "titulo": "Mapa de impactos",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Volvé al caso de Silvina, ahora del otro lado: sos parte del equipo que decide si la empresa usa el sistema de preselección. Completá el tablero con lo que se te ocurra. Después, compará con las ideas sugeridas: no hay una lista completa, y lo que agregues vos puede ser tan válido como lo nuestro." },
+        { "tipo": "mapa", "id": "mapa", "titulo": "Preselección automática de currículums", "competencia": "etica", "objetivo": "m9-o3", "evidencia": "Mapa de impactos de un caso de IA en selección de personal",
+          "caso": "Una empresa con 3.000 postulaciones por año quiere usar un sistema de IA que ordena los **currículums** y descarta automáticamente el 70 % antes de que los lea una persona. El sistema aprendió de las contrataciones de los últimos diez años.",
+          "columnas": [
+            { "id": "actores", "titulo": "Actores afectados", "ayuda": "Quiénes reciben el impacto, directo o indirecto." },
+            { "id": "beneficios", "titulo": "Beneficios", "ayuda": "Qué mejora y para quién." },
+            { "id": "riesgos", "titulo": "Riesgos", "ayuda": "Qué puede salir mal y a quién afecta." },
+            { "id": "salvaguardas", "titulo": "Salvaguardas", "ayuda": "Qué medidas reducen los riesgos." }
+          ],
+          "ideas": {
+            "actores": ["Personas que se postulan, sobre todo las de grupos subrepresentados", "Equipo de selección", "Áreas que esperan a la persona contratada", "La empresa y su reputación"],
+            "beneficios": ["Menos tiempo en tareas repetitivas", "Respuestas más rápidas a quienes se postulan", "Criterios aplicados de forma pareja (si están bien definidos)"],
+            "riesgos": ["Repetir los sesgos de diez años de contrataciones", "Descartar perfiles valiosos sin que nadie los vea", "Que nadie pueda explicar por qué alguien quedó afuera", "Tratar datos personales sin el cuidado debido"],
+            "salvaguardas": ["Que el sistema ordene pero no descarte: una persona revisa", "Auditar los resultados por género, edad y otros grupos", "Avisar a quienes se postulan que se usa IA", "Un canal para pedir revisión humana"]
+          } }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "etica", "objetivo": "m9-o1", "preguntas": [
+          { "texto": "Un sistema de créditos aprende de los préstamos aprobados en los últimos 20 años. ¿Por dónde puede entrar un sesgo?", "opciones": [
+            { "texto": "Por los datos: si en el pasado se aprobaba menos a ciertos grupos, el sistema aprende a repetirlo.", "correcta": true, "feedback": "Es el caso más típico: los datos históricos traen las decisiones, y los prejuicios, del pasado." },
+            { "texto": "No puede: las decisiones de un sistema son objetivas.", "feedback": "Un sistema es tan objetivo como los datos y el diseño de los que parte." }
+          ] },
+          { "texto": "¿Cuál es la forma más efectiva de defenderte de una estafa con voz clonada?", "opciones": [
+            { "texto": "Cortar y verificar por otro canal.", "correcta": true, "feedback": "Ninguna señal visual o auditiva es infalible; verificar por otro canal sí lo es." },
+            { "texto": "Escuchar con atención si la voz suena rara.", "feedback": "Las voces clonadas pueden sonar idénticas. No alcanza con escuchar." }
+          ] },
+          { "texto": "¿Qué propone una salvaguarda como \"que el sistema ordene pero no descarte\"?", "opciones": [
+            { "texto": "Que una persona tome la decisión final y pueda corregir los errores del sistema.", "correcta": true, "feedback": "Mantener a una persona en la decisión es una de las salvaguardas más importantes cuando hay personas afectadas." },
+            { "texto": "Que el sistema trabaje más lento.", "feedback": "No se trata de velocidad, sino de quién decide." }
+          ] }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "De los temas del módulo (sesgos, desinformación, autoría, trabajo, ambiente, poder o autonomía), ¿cuál te preocupa más en tu trabajo o en tu vida? ¿Qué podrías hacer vos al respecto?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Recomendación sobre la Ética de la Inteligencia Artificial", "apa": "UNESCO. (2021). *Recomendación sobre la ética de la inteligencia artificial*. UNESCO.", "url": "https://www.unesco.org/es/artificial-intelligence/recommendation-ethics", "idioma": "es", "nivel": "Inicial", "tipo": "documento" },
+          { "titulo": "Principios de IA de la OCDE", "apa": "OCDE. (2019, actualizados en 2024). *OECD AI Principles*. OECD.AI.", "url": "https://oecd.ai/en/ai-principles", "idioma": "en", "nivel": "Inicial", "tipo": "documento" },
+          { "titulo": "Energía e IA, de la Agencia Internacional de Energía", "apa": "International Energy Agency. (2025). *Energy and AI*. IEA.", "url": "https://www.iea.org/reports/energy-and-ai", "idioma": "en", "nivel": "Profundización", "tipo": "documento" },
+          { "titulo": "El consumo de agua de la IA", "apa": "Li, P., Yang, J., Islam, M. A. y Ren, S. (2023). Making AI less \"thirsty\": Uncovering and addressing the secret water footprint of AI models. *arXiv*. https://doi.org/10.48550/arXiv.2304.03271", "url": "https://arxiv.org/abs/2304.03271", "idioma": "en", "nivel": "Técnica (opcional)", "tipo": "articulo" },
+          { "titulo": "Informe sobre derechos de autor e IA", "apa": "U.S. Copyright Office. (2025). *Copyright and artificial intelligence, part 2: Copyrightability*.", "url": "https://www.copyright.gov/ai/", "idioma": "en", "nivel": "Profundización", "tipo": "documento" },
+          { "titulo": "Weapons of math destruction: algoritmos y desigualdad", "apa": "O'Neil, C. (2016). *Weapons of math destruction: How big data increases inequality and threatens democracy*. Crown.", "idioma": "en", "nivel": "Inicial", "tipo": "libro" }
+        ] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "revisado": "20 de noviembre de 2026",
+  "nota": "Solo se muestran los países con \"verificado\": true (texto oficial consultado en la fecha de revisión). Los demás quedan pendientes de verificar en la fuente oficial: ver DECISIONES.md, D-047.",
+  "paises": [
+    {
+      "pais": "Brasil",
+      "norma": "Ley General de Protección de Datos Personales (LGPD), Ley 13.709",
+      "anio": 2018,
+      "resumen": "Es la ley general de datos personales de Brasil, con una autoridad nacional propia (ANPD). Tuvo modificaciones posteriores.",
+      "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+      "verificado": true
+    },
+    {
+      "pais": "Uruguay",
+      "norma": "Ley de Protección de Datos Personales, Ley 18.331",
+      "anio": 2008,
+      "resumen": "Reconoce, entre otros, los derechos de acceso, rectificación, actualización, inclusión y supresión. Está reglamentada y tuvo modificaciones posteriores.",
+      "url": "https://www.impo.com.uy/bases/leyes/18331-2008",
+      "verificado": true
+    },
+    {
+      "pais": "Chile",
+      "norma": "Ley 21.719 sobre protección y tratamiento de datos personales",
+      "anio": 2024,
+      "resumen": "A verificar: fecha de publicación y de entrada en vigencia.",
+      "verificado": false
+    },
+    {
+      "pais": "México",
+      "norma": "Ley Federal de Protección de Datos Personales en Posesión de los Particulares (nueva ley)",
+      "anio": 2025,
+      "resumen": "A verificar: fecha de publicación en el Diario Oficial de la Federación.",
+      "verificado": false
+    },
+    {
+      "pais": "Colombia",
+      "norma": "Ley 1581",
+      "anio": 2012,
+      "resumen": "A verificar en la fuente oficial.",
+      "verificado": false
+    },
+    {
+      "pais": "Perú",
+      "norma": "Ley 29733 de Protección de Datos Personales",
+      "anio": 2011,
+      "resumen": "A verificar en la fuente oficial.",
+      "verificado": false
+    }
+  ]
+}

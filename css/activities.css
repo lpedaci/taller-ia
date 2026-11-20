@@ -327,3 +327,31 @@
 .ck-item b{font-weight:400}
 .ck-item small{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
 .ck-cuenta{font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-on-surface-variant)}
+
+/* ---------- Debate (D-046) ---------- */
+.deb-tema{background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-4) var(--app-space-5);font:var(--md-sys-typescale-body-large)}
+.deb-pos{border:0;margin:0;padding:0;display:grid;gap:var(--app-space-2)}
+.deb-op{display:flex;gap:var(--app-space-3);align-items:flex-start;padding:var(--app-space-3) var(--app-space-4);border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-medium);cursor:pointer;transition:background var(--md-sys-motion-spring-fast-effects),border-color var(--md-sys-motion-spring-fast-effects)}
+.deb-op:hover{background:var(--app-color-card-item)}
+.deb-op:has(input:checked){border-color:var(--md-sys-color-primary);background:color-mix(in srgb,var(--md-sys-color-primary) 8%,var(--app-color-card))}
+.deb-op input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--md-sys-color-primary)}
+.deb-txt{display:grid;gap:var(--app-space-1);font:var(--md-sys-typescale-body-medium)}
+.deb-txt b{font:var(--md-sys-typescale-title-small)}
+
+/* ---------- Anonimizá este texto ---------- */
+.an-texto{white-space:pre-wrap}
+.an-texto .seg{padding:2px 0;cursor:pointer}
+.an-texto .seg[aria-disabled="true"]{cursor:default}
+.an-resultado{display:grid;gap:var(--app-space-2);background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-4)}
+.an-resultado h5{font:var(--md-sys-typescale-title-small)}
+
+/* ---------- Marco legal en la región ---------- */
+.ml{display:grid;gap:var(--app-space-3);container-type:inline-size}
+.ml h4{font:var(--md-sys-typescale-title-medium)}
+.ml-cards{list-style:none;margin:0;padding:0;display:grid;gap:var(--app-space-3)}
+@container (min-width:560px){ .ml-cards{grid-template-columns:1fr 1fr} }
+.ml-card{border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-medium);padding:var(--app-space-4);display:grid;gap:var(--app-space-2);align-content:start;font:var(--md-sys-typescale-body-medium)}
+.ml-pais{font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-primary)}
+.ml-ley{font:var(--md-sys-typescale-body-large)}
+.ml-link{display:inline-flex;align-items:center;gap:var(--app-space-1);min-height:48px;font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-primary)}
+.ml-fecha{display:flex;gap:var(--app-space-2);align-items:flex-start;font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
