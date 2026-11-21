@@ -357,6 +357,48 @@
         "url": "https://deepmind.google/science/synthid/",
         "estado": "si"
       }
+    ],
+    "automatizar": [
+      {
+        "nombre": "Zapier",
+        "empresa": "Zapier",
+        "tipo": "Automatización sin código",
+        "detalle": "Conecta miles de aplicaciones con flujos y agentes de IA.",
+        "url": "https://zapier.com/",
+        "estado": "si"
+      },
+      {
+        "nombre": "Make",
+        "empresa": "Make",
+        "tipo": "Automatización visual",
+        "detalle": "Arma automatizaciones y agentes en un tablero visual.",
+        "url": "https://www.make.com/",
+        "estado": "si"
+      },
+      {
+        "nombre": "n8n",
+        "empresa": "n8n",
+        "tipo": "Automatización con flujos visibles",
+        "detalle": "Plataforma de flujos y agentes; se puede instalar en servidores propios.",
+        "url": "https://n8n.io/",
+        "estado": "si"
+      },
+      {
+        "nombre": "Power Automate",
+        "empresa": "Microsoft",
+        "tipo": "Automatización en Microsoft 365",
+        "detalle": "Automatiza procesos de trabajo dentro del ecosistema de Microsoft.",
+        "url": "https://www.microsoft.com/power-platform/products/power-automate",
+        "estado": "si"
+      },
+      {
+        "nombre": "Google Apps Script",
+        "empresa": "Google",
+        "tipo": "Automatización en Google Workspace",
+        "detalle": "Automatiza y extiende Gmail, Docs, Sheets y otras apps de Google con código simple.",
+        "url": "https://developers.google.com/apps-script",
+        "estado": "si"
+      }
     ]
   },
   "tipos_creacion": {
@@ -364,6 +406,7 @@
     "imagen": "Imagen",
     "audio": "Audio y música",
     "video": "Video",
-    "procedencia": "Procedencia y etiquetado"
+    "procedencia": "Procedencia y etiquetado",
+    "automatizar": "Automatizar"
   }
 }

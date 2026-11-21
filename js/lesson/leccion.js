@@ -16,6 +16,7 @@ import "../activities/criterio.js";
 import "../activities/etica.js";
 import "../activities/asistentes.js";
 import "../activities/creacion.js";
+import "../activities/aplicar.js";
 import "../charts.js";
 import "../animacion.js";
 import { demoraSimulada, errorSimulado, tarjetaError, esperaConMensaje } from "../estados.js";
@@ -46,7 +47,7 @@ function metaDe(id, l) {
 export function esqueleto() {
   return `<div id="lecEspera" class="lec-espera"></div><div class="lesson" aria-hidden="true"><div class="lesson-main"><div class="card lesson-head"><div class="sk" style="height:24px;width:160px"></div><div class="sk" style="height:32px;width:70%;margin-top:12px"></div><div class="sk" style="height:8px;margin-top:16px"></div></div>` +
     `<div class="card lesson-step"><div class="sk" style="height:16px;width:120px"></div><div class="sk" style="height:28px;width:60%;margin:12px 0 20px"></div>` +
-    `<div class="sk" style="height:14px"></div><div class="sk" style="height:14px;margin-top:10px"></div><div class="sk" style="height:14px;width:80%;margin-top:10px"></div><div class="sk" style="height:160px;margin-top:24px;border-radius:var(--md-sys-shape-corner-large)"></div></div></div>` +
+    `<div class="sk" style="height:14px"></div><div class="sk" style="height:14px;margin-top:var(--app-space-3)"></div><div class="sk" style="height:14px;width:80%;margin-top:var(--app-space-3)"></div><div class="sk" style="height:160px;margin-top:24px;border-radius:var(--md-sys-shape-corner-large)"></div></div></div>` +
     `<div class="card lesson-side"><div class="sk" style="height:20px;width:60%"></div>${'<div class="sk" style="height:40px;margin-top:12px"></div>'.repeat(5)}</div></div>`;
 }
 

@@ -15,7 +15,7 @@ const estilos = `
 .diag-head{display:flex;align-items:center;gap:8px;padding:12px 8px 12px 20px;border-bottom:1px solid var(--md-sys-color-outline-variant)}
 .diag-head h2{font:var(--md-sys-typescale-title-medium);flex:1}
 .diag-body{overflow:auto;padding:12px 20px 20px;display:grid;gap:12px;font:var(--md-sys-typescale-body-medium)}
-.diag-body ol{margin:0;padding-left:1.2em;display:grid;gap:10px}
+.diag-body ol{margin:0;padding-left:var(--app-list-indent);display:grid;gap:var(--app-space-3)}
 .diag-body code{font-size:12px;overflow-wrap:anywhere;color:var(--md-sys-color-on-surface-variant)}
 .diag-frames{position:fixed;inset:0;z-index:90;background:var(--app-color-background);display:flex;flex-direction:column}
 .diag-frames .bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 16px;background:var(--app-color-chrome)}

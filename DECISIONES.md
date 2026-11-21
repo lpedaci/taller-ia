@@ -63,6 +63,10 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-055 | 2026-11-20 | Herramientas de creación en `herramientas.json`, con fuentes | Vigente |
 | D-056 | 2026-11-20 | Etapa 7 (bloque 5): Módulos 14 a 17 | Vigente |
 | D-057 | 2026-11-20 | Etapa 7 (bloque 5): verificación | Vigente |
+| D-058 | 2026-11-21 | Componentes del bloque 7: rúbrica, proyecto final y certificado | Vigente |
+| D-059 | 2026-11-21 | Etapa 8 (bloques 6 y 7): Módulos 18 a 20 | Vigente |
+| D-060 | 2026-11-21 | Fuentes de los bloques 6 y 7 | Vigente |
+| D-061 | 2026-11-21 | Etapa 8 (bloques 6 y 7): verificación | Vigente |
 
 ---
 
@@ -1220,5 +1224,118 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
   - sin errores de consola.
 - La prueba encontró un error y se corrigió: al comprobar "Leé el agente", un mensaje sin marcar ni para frenar intentaba agregar una clase vacía.
 - `npm run verificar` completo: 768 capturas (64 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, scroll, consola, movimiento, texto ni design system. Encontró un problema, ya corregido: el recuadro de un comando de una línea en "Leé el agente" se podía enfocar con el teclado y medía 36 px de alto. Como no tiene scroll (el texto se corta en renglones), dejó de ser enfocable. Después, `npm run verificar:rapido` sin ningún problema (384 capturas).
+
+**Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.
+
+## D-058 | 2026-11-21 | Componentes del bloque 7
+
+**Solicitado:** el proyecto final con plantilla guiada, una rúbrica visible desde el inicio, la exportación como documento imprimible y un certificado de finalización generado en el navegador, firmado por Lourdes Pedaci y que diga claramente que es un certificado del taller (Módulo 20). El constructor de flujos y el autodiagnóstico comparado ya existían.
+
+**Decisión y motivo:**
+- **Rúbrica:**
+  - cinco criterios, uno por cada dimensión del marco 4D (Delegación, Descripción, Discernimiento y Diligencia) y uno de Aplicación;
+  - tres niveles: inicial, en desarrollo y logrado;
+  - va en el primer paso del módulo, antes del proyecto, y se repite en la autoevaluación;
+  - en mobile, la tabla se desplaza: es una región que se puede enfocar y tiene nombre.
+- **Proyecto final:**
+  - se elige una de las tres opciones del brief, y cada opción cambia los ejemplos de ayuda de los campos;
+  - la plantilla tiene los siete campos del brief (el flujo, "si corresponde");
+  - la autoevaluación es con la rúbrica;
+  - se guarda mientras se escribe, y al guardar avisa lo que falta;
+  - "Imprimir o guardar como PDF" arma un documento limpio con todo lo escrito.
+- **Certificado:**
+  - toma el nombre del perfil o lo pide, y lo guarda;
+  - se genera solo si el proyecto final está guardado;
+  - muestra el indicador de proceso determinado, con el paso actual, como pide la tabla de estados del brief;
+  - lleva la firma de Lourdes Pedaci y el aviso "No es un certificado de Anthropic, Google, OpenAI ni Microsoft, ni de ninguna institución educativa";
+  - se imprime o se guarda como PDF;
+  - incluye la cantidad de módulos completados solo si hay al menos uno, para no mostrar "0 de 21".
+- **Autodiagnóstico final:** usa exactamente las preguntas del Módulo 0 (se copian del archivo, no se reescriben). Así la comparación en mancuernas de Mi aprendizaje es válida.
+
+**Archivos afectados:** `js/activities/aplicar.js`, `js/activities/comun.js`, `js/lesson/leccion.js`, `css/activities.css`.
+
+**Verificación realizada:** ver D-061.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-059 | 2026-11-21 | Etapa 8 (bloques 6 y 7): Módulos 18 a 20
+
+**Solicitado:** producir el contenido de los bloques 6 (Automatizar) y 7 (Aplicar), con el constructor de flujos, el proyecto final, el autodiagnóstico comparado y el certificado (sección 8 del brief, etapa 8).
+
+**Decisión y motivo:**
+- **Módulo 18, De la conversación a la automatización:**
+  - el caso de Sergio y sus cuarenta correos;
+  - chat, flujo y agente, con la distinción de la guía de Anthropic: empezar por lo más simple que resuelva el problema;
+  - disparador, acción, condición, integración, API y humano en el circuito, sin código;
+  - agentes que usan herramientas, con RAG y MCP explicados en simple y un aviso de que esas herramientas cambian rápido;
+  - plataformas sin código (catálogo) y cuándo no automatizar, con un clasificador;
+  - "Diseñá tu flujo".
+- **Módulo 19, Diseñar formación con IA:**
+  - el caso de Natalia y la consigna que se resolvía sola;
+  - la IA para diseñar actividades, materiales, evaluaciones y devoluciones, siempre con revisión;
+  - los marcos de la UNESCO para docentes y para estudiantes, con sus dimensiones y niveles;
+  - enseñar IA a personas adultas y los formatos;
+  - evaluar en tiempos de IA;
+  - "Rediseñá una consigna" en dos rondas (que no se pueda tercerizar y que use la IA como apoyo), con el componente "Subí de nivel".
+- **Módulo 20, Proyecto final:**
+  - presentación y rúbrica;
+  - el proyecto;
+  - el autodiagnóstico final;
+  - "Mirar el recorrido": la reflexión final y una pregunta opcional de cierre (nivel 1 de Kirkpatrick, reacción, como pide el brief);
+  - el certificado.
+- **Todos los módulos tienen lección.** La pantalla "módulo sin lección" sale del verificador.
+- **Ajustes que encontró la auditoría:** el esqueleto de carga de las lecciones y el panel de diagnóstico tenían separaciones de 10 px; pasaron a la escala de 4 px.
+
+**Archivos afectados:** `content/modulo-18.json` a `content/modulo-20.json`, `content/modulos.json`, `content/herramientas.json`, `scripts/pantallas.mjs`, `js/lesson/leccion.js`, `js/diagnostico.js`.
+
+**Verificación realizada:** ver D-061.
+
+**Pendientes o riesgos:** la animación prioritaria 7 (cómo funciona un agente) y la 9 (un flujo con revisión humana) quedan para la parte de animaciones, junto con la 4, la 5, la 6 y la 10.
+
+## D-060 | 2026-11-21 | Fuentes de los bloques 6 y 7
+
+**Solicitado:** fuentes verificadas para automatización, agentes y formación.
+
+**Decisión y motivo:**
+- **Verificado el 2026-11-21:**
+  - Zapier, Make, n8n, Power Automate y Google Apps Script (en el catálogo `automatizar` de `herramientas.json`);
+  - Anthropic, *Building effective agents* (19 de diciembre de 2024), que distingue flujos y agentes y tiene una nota de que buena parte de sus herramientas cambiaron desde entonces;
+  - Model Context Protocol;
+  - Yao y otros (2022), ReAct, y Lewis y otros (2020), RAG, en arXiv;
+  - los marcos de la UNESCO de 2024, verificados en D-040;
+  - la página de cursos de OpenAI Academy.
+- **No se pudo verificar, y no se incluye:**
+  - la guía de la UNESCO sobre IA generativa en educación e investigación (2023): cinco intentos, todos con la conexión cortada;
+  - Mollick y Mollick (2023), *Assigning AI*, en SSRN: el sitio rechazó el acceso;
+  - el curso *AI Fluency for Educators* de Anthropic: el sitio rechazó el acceso;
+  - *ChatGPT Foundations for Teachers*: no aparece en el catálogo de OpenAI Academy, que sí tiene una categoría para enseñar y aprender con IA;
+  - la edición más reciente del *Digital Education Outlook* de la OCDE: el sitio rechazó el acceso.
+
+**Archivos afectados:** `content/modulo-18.json`, `content/modulo-19.json`, `content/herramientas.json`.
+
+**Verificación realizada:** consulta de cada página el 2026-11-21.
+
+**Pendientes o riesgos:** **para Lourdes:** las cinco fuentes no verificadas se pueden sumar a "Para profundizar" del Módulo 19 una vez confirmadas, o en la Biblioteca (etapa 9).
+
+## D-061 | 2026-11-21 | Etapa 8 (bloques 6 y 7): verificación
+
+**Solicitado:** verificar los bloques 6 y 7 antes de subirlos.
+
+**Decisión y motivo:** el verificador y la auditoría suman siete pantallas (flujo, "¿Lo automatizarías?", consigna, rúbrica, proyecto, autodiagnóstico final y certificado).
+
+**Archivos afectados:** `scripts/pantallas.mjs`.
+
+**Verificación realizada:**
+- Prueba de punta a punta en 1280 px (claro) y 390 px (oscuro), todo correcto:
+  - los 19 pasos cargan, sin problemas de axe-core ni de la auditoría;
+  - el catálogo de automatización tiene 5 plataformas;
+  - sin proyecto guardado, el certificado lo pide;
+  - el proyecto pide lo que falta, muestra los ejemplos de la opción, avisa el criterio sin autoevaluar y se recuerda;
+  - el autodiagnóstico final muestra la comparación, también en Mi aprendizaje;
+  - el certificado lleva el nombre, la firma y el aviso; el foco va al certificado y el nombre queda en el perfil;
+  - sin errores de consola.
+- La prueba en 390 px encontró que la tabla de la rúbrica se desplazaba sin poder enfocarse con el teclado; se corrigió.
+- `npm run auditar` sin hallazgos.
+- `npm run verificar` completo: 840 capturas (70 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, áreas táctiles, consola, movimiento, texto ni design system. Encontró un problema: en 360 y 412 px la tabla de la rúbrica se salía de la pantalla. Ahora, en contenedores de menos de 600 px, cada criterio es una tarjeta con sus tres niveles, con el mismo patrón que la tabla comparativa. Después, `npm run verificar:rapido` sin ningún problema (420 capturas).
 
 **Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.

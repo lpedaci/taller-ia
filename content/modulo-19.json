@@ -1,0 +1,93 @@
+{
+  "titulo": "Diseñar formación con IA",
+  "objetivos": [
+    { "id": "m19-o1", "texto": "Usar IA para diseñar actividades, materiales, evaluaciones y devoluciones, con revisión humana.", "competencia": "formacion" },
+    { "id": "m19-o2", "texto": "Explicar con palabras propias los marcos de competencias en IA de la UNESCO para docentes y estudiantes.", "competencia": "formacion" },
+    { "id": "m19-o3", "texto": "Planificar la enseñanza de IA a personas adultas, en distintos formatos.", "competencia": "formacion" },
+    { "id": "m19-o4", "texto": "Rediseñar una consigna para que use la IA como apoyo del aprendizaje y no como atajo.", "competencia": "formacion" }
+  ],
+  "pasos": [
+    {
+      "titulo": "La consigna que se resolvía sola",
+      "momento": "gancho",
+      "bloques": [
+        { "tipo": "texto", "md": "Natalia da un curso de redacción comercial para empleados de una aseguradora. Hace años que su trabajo final es el mismo: \"Escribí una carta a un cliente explicando un cambio en su póliza\". Este año recibió veinte cartas impecables, casi idénticas en estructura y en tono. Las había escrito una IA.\n\nSu primera reacción fue prohibirla. La segunda, mejor, fue preguntarse qué quería evaluar. No era si sabían escribir una carta correcta: era si sabían adaptar un mensaje difícil a un cliente concreto, y explicar sus decisiones.\n\nEl año siguiente la consigna cambió: cada persona recibe el caso real de un cliente (anonimizado), le pide a la IA un primer borrador, lo critica con una lista de criterios, lo reescribe y explica qué cambió y por qué. Las cartas mejoraron. Y Natalia, por fin, ve cómo piensa cada participante." },
+        { "tipo": "objetivos" }
+      ]
+    },
+    {
+      "titulo": "La IA para diseñar formación",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Para quien enseña, la IA es una gran asistente de diseño. Puede ayudarte a:\n\n- **Diseñar actividades:** variantes de una misma práctica para distintos niveles, casos realistas, juegos de rol.\n- **Preparar materiales:** explicaciones con ejemplos de la vida laboral de tu grupo, resúmenes, guías paso a paso, glosarios.\n- **Armar evaluaciones:** preguntas de distintos niveles, situaciones para resolver, rúbricas con criterios claros.\n- **Dar retroalimentación:** sugerir comentarios sobre un trabajo (anonimizado), que vos ajustás antes de enviar.\n\n**Siempre con revisión humana.** La IA no conoce a tu grupo, puede inventar datos o ejemplos que no aplican y tiende a lo genérico. Vos decidís qué se enseña, cómo y con qué criterios. Todo lo del marco 4D vale acá: describís bien (con el contexto del grupo), discernís lo que vuelve y sos responsable de lo que llega a tus participantes." },
+        { "tipo": "nota", "estado": "atencion", "titulo": "Los trabajos de tus participantes son datos personales", "md": "Para pedir ayuda con una devolución, quitá nombres y cualquier dato que identifique, y usá la herramienta que autorice tu institución (Módulo 10)." }
+      ]
+    },
+    {
+      "titulo": "Los marcos de la UNESCO",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "En 2024, la UNESCO publicó dos marcos de competencias en IA que orientan a sistemas educativos de todo el mundo.\n\n**Para docentes**, con quince competencias en cinco dimensiones:\n\n1. **Una mirada centrada en lo humano:** la IA al servicio de las personas, no al revés.\n2. **Ética de la IA:** usarla de forma responsable, segura y justa.\n3. **Fundamentos y aplicaciones de la IA:** entender cómo funciona y para qué sirve.\n4. **Pedagogía con IA:** integrarla en la enseñanza y en la evaluación.\n5. **IA para el desarrollo profesional:** usarla para seguir aprendiendo.\n\nY tres niveles de progresión: **adquirir**, **profundizar** y **crear**.\n\n**Para estudiantes**, con doce competencias en cuatro dimensiones: la mirada centrada en lo humano, la ética, las técnicas y aplicaciones de la IA, y el diseño de sistemas de IA. Sus tres niveles son **comprender**, **aplicar** y **crear**.\n\nFijate que los dos empiezan por lo mismo: antes de cualquier contenido técnico, la pregunta por las personas. Es también la lógica de este taller: el criterio antes que las herramientas." }
+      ]
+    },
+    {
+      "titulo": "Enseñar IA a personas adultas",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Las personas adultas aprenden mejor cuando lo que aprenden les sirve ya. Tres principios:\n\n- **Partir de problemas reales de su trabajo.** No \"qué es un prompt\", sino \"ese informe que te lleva dos horas cada mes\". La teoría aparece cuando hace falta.\n- **Practicar más de lo que se expone.** Cinco minutos de explicación y veinte de práctica guiada. Cada concepto, probado con una tarea propia.\n- **Trabajar los miedos y las expectativas.** Hay quien teme quedarse sin trabajo, quien cree que la IA lo hace todo y quien siente que \"no es para mí\". Nombrarlo al principio libera la atención.\n\n**Formatos:**\n\n- **Individual** (tutoría): ideal para aplicar a un caso propio, con ritmo personal.\n- **Grupal:** suma el intercambio de usos y dudas; las personas aprenden mucho de cómo usan la IA sus pares.\n- **Sincrónico** (en vivo): para practicar juntos, mostrar en pantalla y resolver dudas en el momento.\n- **Asincrónico** (como este taller): cada quien a su ritmo, con actividades que dan devolución automática.\n\nLo que mejor funciona suele ser una combinación: lo conceptual asincrónico y la práctica guiada en vivo." },
+        { "tipo": "quiz", "id": "adultos", "titulo": "¿Cómo lo plantearías?", "competencia": "formacion", "objetivo": "m19-o3", "preguntas": [
+          { "texto": "Vas a dar una primera clase de IA a personal administrativo que nunca la usó y llega con desconfianza.", "opciones": [
+            { "texto": "Empiezo preguntando qué tareas les llevan más tiempo y qué temen de la IA, y practicamos con una de esas tareas.", "correcta": true, "feedback": "Parte de su realidad, nombra los miedos y lleva rápido a la práctica." },
+            { "texto": "Empiezo con la historia de la inteligencia artificial desde 1956.", "feedback": "Puede ser interesante, pero no responde a lo que necesitan ni baja la desconfianza." }
+          ] },
+          { "texto": "Tenés un grupo de distintas ciudades, con horarios muy distintos.", "opciones": [
+            { "texto": "Lo conceptual en formato asincrónico y un encuentro en vivo corto para practicar y resolver dudas.", "correcta": true, "feedback": "Combina flexibilidad con el valor del intercambio en vivo." },
+            { "texto": "Todo en vivo, en un horario fijo.", "feedback": "Con horarios tan distintos, muchas personas se quedarían afuera." }
+          ] }
+        ] }
+      ]
+    },
+    {
+      "titulo": "Evaluar en tiempos de IA",
+      "momento": "contenido",
+      "bloques": [
+        { "tipo": "texto", "md": "Si una consigna se puede resolver pegándola en un chat, la IA la va a resolver. Prohibir no alcanza (no se puede controlar) y detectar tampoco (los detectores de texto generado no son confiables). Lo que sí funciona es rediseñar:\n\n- **Tareas difíciles de tercerizar:** que requieran el contexto propio (mi organización, mi grupo, mi caso), una experiencia vivida o una decisión que hay que justificar.\n- **Evaluar procesos, no solo productos:** borradores, decisiones explicadas, qué se le pidió a la IA y qué se cambió de lo que devolvió.\n- **Integrar la IA a la consigna:** pedir que se use para un primer borrador y que la persona lo critique y lo mejore; o usarla como tutora que hace preguntas.\n- **Instancias orales o en vivo:** explicar, defender, aplicar a un caso nuevo.\n- **Reglas claras sobre el uso:** qué está permitido, qué no, y cómo declararlo (Módulo 8)." }
+      ]
+    },
+    {
+      "titulo": "Rediseñá una consigna",
+      "momento": "practica",
+      "bloques": [
+        { "tipo": "texto", "md": "Esta es una consigna tradicional que la IA resuelve sola. Vas a transformarla en dos rondas: primero, para que no se pueda tercerizar; después, para que use la IA como apoyo del aprendizaje. Escribí tu versión en cada ronda y, si querés, compará con una versión posible." },
+        { "tipo": "subir-nivel", "id": "consigna", "titulo": "Una consigna para rediseñar", "competencia": "formacion", "objetivo": "m19-o4", "evidencia": "Consigna rediseñada para usar la IA como apoyo del aprendizaje", "nombre": "Consigna rediseñada: plan de capacitación", "etiquetas": ["consigna", "evaluación"],
+          "inicial": "Elaborá un plan de capacitación de una jornada sobre atención al cliente, con objetivos, actividades y evaluación.",
+          "rondas": [
+            { "tecnica": "Que no se pueda tercerizar", "explicacion": "Hacé que la consigna necesite el contexto propio de quien la resuelve y una decisión justificada.", "pista": "Por ejemplo: un área real de su organización, un problema concreto que observaron, y por qué eligen cada actividad.",
+              "referencia": "Elegí un área de tu organización donde la atención al cliente tenga un problema concreto que hayas observado.\n\nElaborá un plan de capacitación de una jornada para esa área, con objetivos, actividades y evaluación.\n\nPara cada actividad, explicá en dos oraciones por qué la elegiste para ese grupo y ese problema.",
+              "porque": ["**Contexto propio:** un área y un problema que solo conoce quien hace la consigna. La IA no los tiene.", "**Decisión justificada:** explicar por qué cada actividad muestra el criterio, que es lo que se quiere evaluar.", "**Sigue siendo la misma tarea:** el plan de capacitación no cambió; cambió lo que lo hace propio."] },
+            { "tecnica": "Que la IA sea apoyo, no atajo", "explicacion": "Integrá la IA a la consigna: que se use para un primer borrador o como crítica, y que la persona muestre qué hizo con eso.", "pista": "Pedí que adjunten el prompt, lo que devolvió la IA y qué cambiaron y por qué.",
+              "referencia": "Elegí un área de tu organización donde la atención al cliente tenga un problema concreto que hayas observado.\n\nElaborá un plan de capacitación de una jornada para esa área, con objetivos, actividades y evaluación.\n\nPara cada actividad, explicá en dos oraciones por qué la elegiste para ese grupo y ese problema.\n\nPodés usar un asistente de IA para un primer borrador. Si lo usás, adjuntá el prompt, la respuesta y una tabla con tres cambios que le hiciste y por qué. Sin datos personales de nadie.\n\nEn la presentación oral vas a defender una decisión de tu plan ante el grupo.",
+              "porque": ["**La IA como borrador:** se permite y se integra, en lugar de prohibirla sin poder controlarlo.", "**Se evalúa el proceso:** el prompt, la respuesta y los cambios muestran el discernimiento de la persona.", "**Diligencia:** el recordatorio sobre datos personales enseña el uso responsable.", "**Instancia oral:** defender una decisión en vivo es difícil de tercerizar y muestra lo aprendido."] }
+          ] }
+      ]
+    },
+    {
+      "titulo": "Chequeo y cierre",
+      "momento": "evaluacion",
+      "bloques": [
+        { "tipo": "vf", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "formacion", "objetivo": "m19-o1", "afirmaciones": [
+          { "texto": "Los detectores de texto generado por IA son una forma confiable de saber si alguien usó IA.", "verdadero": false, "explicacion": "Se equivocan en los dos sentidos: marcan textos humanos y dejan pasar textos generados. Es mejor rediseñar la evaluación." },
+          { "texto": "Evaluar el proceso (borradores, decisiones, uso de la IA) es una forma de evaluar en tiempos de IA.", "verdadero": true, "explicacion": "Muestra cómo piensa la persona, que es lo que la IA no puede hacer por ella." },
+          { "texto": "Los marcos de la UNESCO empiezan por los contenidos técnicos.", "verdadero": false, "explicacion": "Los dos empiezan por una mirada centrada en lo humano." },
+          { "texto": "Con personas adultas conviene partir de problemas reales de su trabajo.", "verdadero": true, "explicacion": "Les da sentido inmediato a lo que aprenden y aumenta la práctica." }
+        ] },
+        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "Pensá en una consigna o evaluación que uses en tu trabajo. ¿La resolvería sola una IA? ¿Cómo la cambiarías después de este módulo?" },
+        { "tipo": "profundizar", "fuentes": [
+          { "titulo": "Marco de competencias en IA para docentes", "apa": "UNESCO. (2024). *AI competency framework for teachers*. UNESCO.", "url": "https://www.unesco.org/en/articles/ai-competency-framework-teachers", "idioma": "en", "nivel": "Profundización", "tipo": "documento" },
+          { "titulo": "Marco de competencias en IA para estudiantes", "apa": "UNESCO. (2024). *AI competency framework for students*. UNESCO.", "url": "https://www.unesco.org/en/articles/ai-competency-framework-students", "idioma": "en", "nivel": "Profundización", "tipo": "documento" },
+          { "titulo": "OpenAI Academy, cursos para enseñar y aprender con IA", "apa": "OpenAI. (s.f.). *OpenAI Academy courses*.", "url": "https://academy.openai.com/pages/courses", "idioma": "en", "nivel": "Inicial", "tipo": "curso" }
+        ] }
+      ]
+    }
+  ]
+}

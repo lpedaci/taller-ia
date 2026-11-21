@@ -460,7 +460,26 @@
       "titulo": "De la conversación a la automatización",
       "descripcion": "Flujos, agentes y humano en el circuito.",
       "pasos": 7,
-      "minutos": 70
+      "minutos": 70,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m18-o1",
+          "competencia": "crear"
+        },
+        {
+          "id": "m18-o2",
+          "competencia": "comprender"
+        },
+        {
+          "id": "m18-o3",
+          "competencia": "delegacion"
+        },
+        {
+          "id": "m18-o4",
+          "competencia": "crear"
+        }
+      ]
     },
     {
       "id": 19,
@@ -468,7 +487,26 @@
       "titulo": "Diseñar formación con IA",
       "descripcion": "Actividades, materiales y evaluación.",
       "pasos": 7,
-      "minutos": 70
+      "minutos": 70,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m19-o1",
+          "competencia": "formacion"
+        },
+        {
+          "id": "m19-o2",
+          "competencia": "formacion"
+        },
+        {
+          "id": "m19-o3",
+          "competencia": "formacion"
+        },
+        {
+          "id": "m19-o4",
+          "competencia": "formacion"
+        }
+      ]
     },
     {
       "id": 20,
@@ -476,7 +514,22 @@
       "titulo": "Proyecto final",
       "descripcion": "Integrá el marco 4D en un proyecto propio.",
       "pasos": 5,
-      "minutos": 75
+      "minutos": 75,
+      "leccion": true,
+      "objetivos": [
+        {
+          "id": "m20-o1",
+          "competencia": "formacion"
+        },
+        {
+          "id": "m20-o2",
+          "competencia": "discernimiento"
+        },
+        {
+          "id": "m20-o3",
+          "competencia": "formacion"
+        }
+      ]
     }
   ],
   "competencias": [

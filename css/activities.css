@@ -424,3 +424,52 @@
 .guia[open] summary::after{transform:rotate(180deg)}
 .guia summary:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:-3px;border-radius:var(--md-sys-shape-corner-medium)}
 .guia-cuerpo{padding:0 var(--app-space-4) var(--app-space-4)}
+
+/* ---------- Rúbrica (D-058) ---------- */
+.rub-box{display:grid;gap:var(--app-space-3);container-type:inline-size}
+/* En pantallas angostas, cada criterio es una tarjeta con sus tres niveles (mismo patrón que la tabla comparativa) */
+@container (max-width:599px){
+  .rub,.rub tbody,.rub tr,.rub th,.rub td{display:block;width:100%}
+  .rub thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .rub tr{background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-3);margin-bottom:var(--app-space-3)}
+  .rub th[scope=row]{padding:0 0 var(--app-space-2);border:0;min-width:0}
+  .rub td{border:0;padding:var(--app-space-1) 0}
+  .rub td::before{content:attr(data-col);display:block;font:var(--md-sys-typescale-label-medium);color:var(--md-sys-color-on-surface-variant);margin-bottom:var(--app-space-1)}
+}
+.rub-wrap:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:2px}
+.rub-box h4{font:var(--md-sys-typescale-title-medium)}
+.rub th[scope=row]{display:table-cell;text-align:left;vertical-align:top;min-width:160px}
+.rub th[scope=row] b{display:block;font:var(--md-sys-typescale-title-small)}
+.rub th[scope=row] span{display:block;font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);margin-top:var(--app-space-1)}
+.rub td{vertical-align:top;font:var(--md-sys-typescale-body-medium)}
+
+/* ---------- Proyecto final ---------- */
+.proy-campos{display:grid;gap:var(--app-space-4)}
+.proy-auto{border:0;margin:0;padding:0;display:grid;gap:var(--app-space-3)}
+.proy-crit{border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-medium);margin:0;padding:var(--app-space-3) var(--app-space-4)}
+.proy-crit legend{font:var(--md-sys-typescale-title-small);padding:0 var(--app-space-1)}
+.proy-niv{display:flex;flex-wrap:wrap;gap:var(--app-space-2)}
+.doc-imp{display:none}
+
+/* ---------- Certificado ---------- */
+.cert-estado{display:flex;gap:var(--app-space-2);align-items:flex-start;font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+.cert-estado .ms{color:var(--md-sys-color-primary)}
+.cert-vista{display:grid;gap:var(--app-space-3)}
+.cert{border:2px solid var(--md-sys-color-primary);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-8) var(--app-space-6);text-align:center;display:grid;gap:var(--app-space-4);background:var(--app-color-card)}
+.cert:focus{outline:3px solid var(--md-sys-color-primary);outline-offset:4px}
+.cert-k{font:var(--md-sys-typescale-label-large);letter-spacing:.1em;text-transform:uppercase;color:var(--md-sys-color-primary)}
+.cert-nombre{font:var(--md-sys-typescale-headline-large)}
+.cert-txt{font:var(--md-sys-typescale-body-large);max-width:52ch;margin:0 auto}
+.cert-fecha{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+.cert-firma{border-top:1px solid var(--md-sys-color-outline);width:min(260px,100%);margin:var(--app-space-4) auto 0;padding-top:var(--app-space-2);font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+.cert-firma-n{font:var(--md-sys-typescale-title-medium);color:var(--md-sys-color-on-surface)}
+.cert-aviso{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);max-width:60ch;margin:0 auto}
+
+@media print{
+  body.imprimiendo .doc-imp.imprimir{display:block;font:12pt/1.5 var(--md-ref-typeface-plain);color:#000}
+  body.imprimiendo .doc-imp h2{font-size:18pt;margin-bottom:4pt}
+  body.imprimiendo .doc-imp h3{font-size:14pt;margin:12pt 0 4pt}
+  body.imprimiendo .doc-imp h4{font-size:12pt;margin:10pt 0 2pt}
+  body.imprimiendo .doc-imp .doc-txt{white-space:pre-wrap}
+  body.imprimiendo .cert.imprimir{border:2px solid #000;color:#000;padding:48pt 36pt}
+}

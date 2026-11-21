@@ -1,0 +1,355 @@
+{
+  "titulo": "Proyecto final",
+  "objetivos": [
+    {
+      "id": "m20-o1",
+      "texto": "Integrar el marco 4D completo en un proyecto aplicado a tu contexto.",
+      "competencia": "formacion"
+    },
+    {
+      "id": "m20-o2",
+      "texto": "Evaluar tu propio proyecto con una rúbrica de cinco criterios.",
+      "competencia": "discernimiento"
+    },
+    {
+      "id": "m20-o3",
+      "texto": "Comparar tu punto de partida con tu punto de llegada.",
+      "competencia": "formacion"
+    }
+  ],
+  "pasos": [
+    {
+      "titulo": "Tu proyecto final",
+      "momento": "objetivo",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "md": "Llegaste al final del recorrido. El proyecto es la oportunidad de juntar todo en algo que te sirva de verdad, en tu trabajo o en tu vida.\n\nHay tres opciones. Elegí la que más se acerque a lo que necesitás:\n\n- **Diseñar una sesión de formación sobre IA** para un público adulto concreto.\n- **Resolver un problema real de tu trabajo con IA**, incluyendo un flujo de automatización.\n- **Crear una pieza o un proyecto con IA:** una página construida con un agente, o una pieza de imagen, audio o video.\n\nLas tres aplican el marco 4D completo e incluyen una reflexión ética y de datos. Antes de empezar, mirá la rúbrica: es lo que vas a usar para autoevaluarte, y sirve como guía mientras trabajás."
+        },
+        {
+          "tipo": "objetivos"
+        },
+        {
+          "tipo": "rubrica",
+          "id": "rubrica",
+          "intro": "Cinco criterios, tres niveles. No hace falta llegar a \"Logrado\" en todo: sirve para ver dónde estás y qué mejorar.",
+          "titulo": "Rúbrica del proyecto final",
+          "criterios": [
+            {
+              "titulo": "Delegación",
+              "descripcion": "Qué se delega a la IA y por qué.",
+              "niveles": [
+                "Usa IA sin explicar por qué ni en qué parte.",
+                "Explica qué delega, pero no por qué conviene.",
+                "Justifica qué delega, qué hace con IA y qué se queda, según el problema, la herramienta y sus capacidades."
+              ]
+            },
+            {
+              "titulo": "Descripción",
+              "descripcion": "Calidad de los prompts y del brief.",
+              "niveles": [
+                "Prompts genéricos, sin contexto.",
+                "Prompts con tarea y contexto, pero sin formato ni restricciones.",
+                "Prompts completos y probados, con contexto, formato, restricciones y ajustes según lo que devolvió la IA."
+              ]
+            },
+            {
+              "titulo": "Discernimiento",
+              "descripcion": "Cómo se evalúa lo producido.",
+              "niveles": [
+                "No dice cómo revisa el resultado.",
+                "Revisa el resultado de forma general.",
+                "Tiene criterios concretos para evaluar el resultado, el proceso y el comportamiento, y muestra qué corrigió."
+              ]
+            },
+            {
+              "titulo": "Diligencia",
+              "descripcion": "Ética, datos y transparencia.",
+              "niveles": [
+                "No considera datos ni impacto en personas.",
+                "Menciona cuidados generales.",
+                "Identifica riesgos concretos (datos, sesgos, autoría), toma medidas y declara el uso de IA."
+              ]
+            },
+            {
+              "titulo": "Aplicación",
+              "descripcion": "Pertinencia y viabilidad en su contexto real.",
+              "niveles": [
+                "El proyecto no se conecta con un contexto real.",
+                "Responde a un contexto real, pero es difícil de llevar a cabo.",
+                "Resuelve un problema real, se puede implementar y tiene un próximo paso claro."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Armá tu proyecto",
+      "momento": "transferencia",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "md": "Completá la plantilla. Se guarda mientras escribís, así que podés hacerlo en varias sesiones. Cuando esté listo, autoevaluate con la rúbrica, guardalo y, si querés presentarlo, imprimilo o guardalo como PDF."
+        },
+        {
+          "tipo": "proyecto",
+          "id": "proyecto",
+          "titulo": "Mi proyecto final",
+          "competencia": "formacion",
+          "objetivo": "m20-o1",
+          "evidencia": "Proyecto final del taller",
+          "opciones": [
+            {
+              "id": "formacion",
+              "titulo": "Diseñar una sesión de formación sobre IA",
+              "descripcion": "Para un público adulto concreto: tus compañeros, un grupo de estudiantes, tu equipo.",
+              "ejemplos": {
+                "objetivo": "Que el equipo de administración use la IA para redactar correos sin compartir datos de clientes.",
+                "delegacion": "Delego en la IA los primeros borradores de las actividades; me quedo con el diagnóstico del grupo y la evaluación.",
+                "flujo": "No corresponde."
+              }
+            },
+            {
+              "id": "problema",
+              "titulo": "Resolver un problema real de tu trabajo con IA",
+              "descripcion": "Incluye un flujo de automatización con revisión humana.",
+              "ejemplos": {
+                "objetivo": "Reducir de dos tardes a una hora el seguimiento mensual de inscripciones.",
+                "delegacion": "Automatizo la carga de datos y el borrador de los correos; reviso cada correo antes de que salga.",
+                "flujo": "Disparador: llega una inscripción. Acción: pasa a la planilla. IA: redacta la bienvenida. Revisa una persona. Acción: se envía."
+              }
+            },
+            {
+              "id": "pieza",
+              "titulo": "Crear una pieza o un proyecto con IA",
+              "descripcion": "Una página construida con un agente, o una pieza de imagen, audio o video.",
+              "ejemplos": {
+                "objetivo": "Publicar la página de mi emprendimiento con horarios, precios y contacto.",
+                "delegacion": "Un agente construye la página a partir de mi brief; yo reviso cada etapa y decido qué se publica.",
+                "flujo": "Si corresponde: brief, plan del agente, revisión, publicación."
+              }
+            }
+          ],
+          "campos": [
+            {
+              "id": "objetivo",
+              "etiqueta": "Objetivo",
+              "ayuda": "Qué querés lograr y para quién, en una o dos oraciones."
+            },
+            {
+              "id": "delegacion",
+              "etiqueta": "Qué se delega y por qué",
+              "ayuda": "Qué hace la IA, qué hacés con IA y qué te quedás vos."
+            },
+            {
+              "id": "herramienta",
+              "etiqueta": "Herramienta elegida y justificación",
+              "ayuda": "Cuál y por qué: tarea, ecosistema, datos y política de tu organización (Módulo 11)."
+            },
+            {
+              "id": "prompts",
+              "etiqueta": "Prompts",
+              "filas": 6,
+              "ayuda": "Los prompts principales, como los usaste. Podés traerlos de Mis prompts."
+            },
+            {
+              "id": "flujo",
+              "etiqueta": "Flujo",
+              "obligatorio": false,
+              "ayuda": "Los pasos, dónde interviene la IA y dónde revisa una persona (Módulo 18)."
+            },
+            {
+              "id": "evaluacion",
+              "etiqueta": "Cómo se evalúa lo producido",
+              "ayuda": "Qué criterios usás para saber si el resultado sirve (Módulo 7)."
+            },
+            {
+              "id": "etica",
+              "etiqueta": "Consideraciones éticas y de datos",
+              "ayuda": "Datos personales, sesgos, autoría, transparencia y a quién afecta (Módulos 8 a 10)."
+            }
+          ],
+          "rubrica": {
+            "titulo": "Rúbrica del proyecto final",
+            "criterios": [
+              {
+                "titulo": "Delegación",
+                "descripcion": "Qué se delega a la IA y por qué.",
+                "niveles": [
+                  "Usa IA sin explicar por qué ni en qué parte.",
+                  "Explica qué delega, pero no por qué conviene.",
+                  "Justifica qué delega, qué hace con IA y qué se queda, según el problema, la herramienta y sus capacidades."
+                ]
+              },
+              {
+                "titulo": "Descripción",
+                "descripcion": "Calidad de los prompts y del brief.",
+                "niveles": [
+                  "Prompts genéricos, sin contexto.",
+                  "Prompts con tarea y contexto, pero sin formato ni restricciones.",
+                  "Prompts completos y probados, con contexto, formato, restricciones y ajustes según lo que devolvió la IA."
+                ]
+              },
+              {
+                "titulo": "Discernimiento",
+                "descripcion": "Cómo se evalúa lo producido.",
+                "niveles": [
+                  "No dice cómo revisa el resultado.",
+                  "Revisa el resultado de forma general.",
+                  "Tiene criterios concretos para evaluar el resultado, el proceso y el comportamiento, y muestra qué corrigió."
+                ]
+              },
+              {
+                "titulo": "Diligencia",
+                "descripcion": "Ética, datos y transparencia.",
+                "niveles": [
+                  "No considera datos ni impacto en personas.",
+                  "Menciona cuidados generales.",
+                  "Identifica riesgos concretos (datos, sesgos, autoría), toma medidas y declara el uso de IA."
+                ]
+              },
+              {
+                "titulo": "Aplicación",
+                "descripcion": "Pertinencia y viabilidad en su contexto real.",
+                "niveles": [
+                  "El proyecto no se conecta con un contexto real.",
+                  "Responde a un contexto real, pero es difícil de llevar a cabo.",
+                  "Resuelve un problema real, se puede implementar y tiene un próximo paso claro."
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "titulo": "Autodiagnóstico final",
+      "momento": "evaluacion",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "md": "Son las mismas preguntas que respondiste en el Módulo 0. Respondé pensando en cómo te sentís hoy, sin mirar lo que contestaste antes. Al guardar, vas a ver la comparación entre tu punto de partida y tu punto de llegada. También queda en Mi aprendizaje."
+        },
+        {
+          "tipo": "autodiagnostico",
+          "id": "autodiagnostico-final",
+          "momento": "final",
+          "titulo": "Autodiagnóstico final",
+          "preguntas": [
+            {
+              "tipo": "multiple",
+              "texto": "¿Qué asistentes de IA usaste alguna vez?",
+              "opciones": [
+                "ChatGPT",
+                "Claude",
+                "Gemini",
+                "Copilot",
+                "Otro",
+                "Ninguno todavía"
+              ]
+            },
+            {
+              "tipo": "opcion",
+              "texto": "¿Con qué frecuencia usás IA hoy?",
+              "opciones": [
+                "Nunca o casi nunca",
+                "Alguna vez al mes",
+                "Todas las semanas",
+                "Todos los días"
+              ]
+            },
+            {
+              "tipo": "multiple",
+              "texto": "¿Para qué la usás o te gustaría usarla?",
+              "opciones": [
+                "Escribir o corregir textos",
+                "Buscar y resumir información",
+                "Preparar clases o capacitaciones",
+                "Analizar datos o planillas",
+                "Crear imágenes, audio o video",
+                "Programar o automatizar tareas"
+              ]
+            },
+            {
+              "tipo": "escala",
+              "texto": "Entiendo qué hace un asistente de IA por dentro cuando me responde.",
+              "corto": "Cómo funciona"
+            },
+            {
+              "tipo": "escala",
+              "texto": "Sé escribir un pedido claro para obtener lo que necesito.",
+              "corto": "Pedir bien"
+            },
+            {
+              "tipo": "escala",
+              "texto": "Me doy cuenta cuando una respuesta tiene errores o datos inventados.",
+              "corto": "Detectar errores"
+            },
+            {
+              "tipo": "escala",
+              "texto": "Sé qué información no conviene cargar en un asistente.",
+              "corto": "Cuidar los datos"
+            },
+            {
+              "tipo": "escala",
+              "texto": "Sé decidir qué tareas hacer yo y cuáles hacer con IA.",
+              "corto": "Decidir qué delegar"
+            },
+            {
+              "tipo": "escala",
+              "texto": "Puedo explicar los dilemas éticos que plantea la IA.",
+              "corto": "Ética"
+            },
+            {
+              "tipo": "escala",
+              "texto": "Uso la IA en mi trabajo y los resultados me sirven.",
+              "corto": "Uso en el trabajo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Mirar el recorrido",
+      "momento": "cierre",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "md": "Antes de cerrar, volvé a tus objetivos del Módulo 0 (están en Mi aprendizaje) y a tu diario. Fijate qué cambió en cómo usás la IA, y qué te queda por practicar."
+        },
+        {
+          "tipo": "reflexion",
+          "id": "diario-final",
+          "titulo": "Para tu diario: el cierre",
+          "pregunta": "¿Qué cambió en tu forma de usar la IA desde el Módulo 0? ¿Cumpliste tus objetivos? ¿Cuál es tu próximo paso?",
+          "minimo": 40
+        },
+        {
+          "tipo": "reflexion",
+          "id": "encuesta",
+          "titulo": "Una última pregunta, opcional",
+          "pregunta": "¿Qué parte del taller te sirvió más y qué cambiarías? Tu respuesta queda en tu diario; si cursás con una facilitadora o un facilitador, podés compartírsela.",
+          "ayuda": "Es opcional. Ayuda a mejorar el taller.",
+          "minimo": 10
+        }
+      ]
+    },
+    {
+      "titulo": "Tu certificado",
+      "momento": "cierre",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "md": "Terminaste el taller. Podés generar tu certificado de finalización con tu nombre. Es un certificado del taller, firmado por su autora: no es de ninguna empresa de IA ni de una institución educativa."
+        },
+        {
+          "tipo": "certificado",
+          "id": "certificado",
+          "titulo": "Certificado de finalización",
+          "requiere": "20-proyecto"
+        }
+      ]
+    }
+  ]
+}

@@ -6,7 +6,7 @@ Es un sitio de HTML, CSS y JavaScript sin paso de compilación. Funciona publica
 
 ## Estado del proyecto
 
-Etapa 7 de 10 terminada: los bloques 1 a 5 (Módulos 0 a 17) están completos. Sigue la etapa 8, los bloques 6 y 7 (Automatizar y Aplicar). El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
+Etapa 8 de 10 terminada: los 21 módulos (bloques 1 a 7) tienen su lección completa. Sigue la etapa 9: secciones transversales (glosario, biblioteca, diario, guía para facilitadores) y las animaciones pendientes. El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
 
 ## Ver el taller en tu computadora
 
@@ -122,6 +122,7 @@ Cada módulo es un archivo `content/modulo-XX.json` (por ejemplo, `modulo-03.jso
 - **Del bloque 3:** `debate` (tres posiciones; la elegida y el argumento van al diario), `anonimizar` (un texto con partes que se marcan; las que tienen `dato` son las que hay que quitar, con su `reemplazo`) y `marco-legal` (tarjetas por país desde `content/marco-legal.json`; solo se muestran las que tienen `"verificado": true`). Ejemplos en `modulo-09.json` y `modulo-10.json`.
 - **Del bloque 4:** `herramientas` (fichas de los asistentes desde `content/herramientas.json`; `"claves"` elige las funciones), `prompt-fijo` (un prompt para copiar o abrir en un asistente) y `kit` (áreas con tres prompts modelo cada una). En `constructor`, un campo con `"opciones"` se muestra como desplegable. Ejemplos en `modulo-11.json` a `modulo-13.json`.
 - **Del bloque 5:** `catalogo` (herramientas de creación de una `"categoria"` de `herramientas.json`), `agente` (conversación simulada en la que se marcan los momentos para frenar), `guion-voz` (guion con pausas, énfasis y duración estimada) y `guia` (pasos opcionales en un bloque plegable). Ejemplos en `modulo-14.json` a `modulo-17.json`.
+- **Del bloque 7:** `rubrica` (criterios con tres niveles), `proyecto` (opciones, plantilla, autoevaluación con la rúbrica e impresión) y `certificado` (requiere el proyecto guardado: `"requiere": "20-proyecto"`). Ejemplos en `modulo-20.json`.
 - En `profundizar`, un recurso sin `url` se muestra como libro (`"tipo": "libro"`).
 - La lección de prueba (`content/modulo-prueba.json`) tiene un ejemplo de cada tipo de bloque, salvo los del inicio del taller.
 
