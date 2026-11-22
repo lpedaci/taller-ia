@@ -81,7 +81,7 @@
           },
           "despues": {
             "titulo": "Asistente con búsqueda web",
-            "texto": "Pregunta: ¿Qué cambió este mes en las condiciones de uso de la herramienta X?\n\nRespuesta: Encontré el aviso oficial publicado el día 3. Los cambios son dos: ... (con el enlace al aviso)."
+            "texto": "Pregunta: ¿Qué cambió este mes en las condiciones de uso de la herramienta X?\n\nRespuesta: Encontré el aviso oficial publicado el día 3. Los cambios son dos: el plan gratuito permite más consultas y se suma un control de privacidad. Te dejo el enlace al aviso."
           },
           "cambios": [
             {

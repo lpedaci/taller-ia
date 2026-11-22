@@ -6,7 +6,7 @@ Es un sitio de HTML, CSS y JavaScript sin paso de compilación. Funciona publica
 
 ## Estado del proyecto
 
-Etapa 9 de 10 terminada, con las nueve animaciones propias. Queda la etapa 10, la revisión final. El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
+Las 10 etapas del brief están terminadas: 21 módulos con lección, actividades, nueve animaciones propias, glosario, Biblioteca, diario y guía para facilitadores. Lo que queda pendiente de verificar a mano está al final de [DECISIONES.md](DECISIONES.md) (D-070). El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
 
 ## Ver el taller en tu computadora
 
@@ -27,6 +27,22 @@ Páginas útiles:
 - `http://localhost:8080/?diagnostico=1`: el entorno con el panel de diagnóstico de accesibilidad (ver más abajo).
 
 ## Verificar antes de publicar
+
+### Lista corta
+
+Antes de subir un cambio a `main`, corré lo que corresponda:
+
+| Comando | Qué revisa | Cuándo |
+|---|---|---|
+| `npm run auditar` | Que todo respete el design system (unos minutos) | Siempre que cambies algo visual |
+| `npm run textos` | Rayas, puntos medios, texto en inglés sin traducir, citas, signos sin par y palabras repetidas | Siempre que cambies un texto |
+| `npm run enlaces` | Que todos los enlaces externos funcionen | Al sumar fuentes y cada tanto, porque los sitios cambian |
+| `npm run contraste` | Contraste alto en todas las pantallas y que el progreso se mantenga al cerrar el navegador | Antes de publicar una versión |
+| `npm run verificar` | Todo lo anterior de accesibilidad y diseño, con capturas en 6 anchos y 2 modos | Antes de publicar una versión |
+
+Los resultados quedan en `verificacion/` (esa carpeta no se publica).
+
+### Verificación completa
 
 La primera vez, instalá las herramientas de verificación (solo se usan en tu computadora, no se publican):
 

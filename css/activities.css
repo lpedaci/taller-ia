@@ -115,7 +115,7 @@
 .cmp{display:grid;gap:var(--app-space-3);grid-template-columns:minmax(0,1fr)}
 @container act (min-width:600px){ .cmp{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .cmp-panel{border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-4);background:var(--app-color-card-item);min-width:0}
-.cmp-despues{background:color-mix(in srgb,var(--md-sys-color-primary-container) 55%,var(--app-color-card))}
+.cmp-despues{background:var(--md-sys-color-primary-container);color:var(--md-sys-color-on-primary-container)}
 .cmp-panel h5{display:flex;flex-wrap:wrap;gap:var(--app-space-2);align-items:center;font:var(--md-sys-typescale-title-small);margin-bottom:var(--app-space-3)}
 .cmp-texto{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:var(--md-sys-typescale-body-medium);font-family:inherit;line-height:1.6}
 .cmp-ver{justify-self:end}

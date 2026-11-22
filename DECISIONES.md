@@ -75,6 +75,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-067 | 2026-11-22 | Piezas comunes para las animaciones de procesos | Vigente |
 | D-068 | 2026-11-22 | Animaciones prioritarias 3 a 10: guiones, escenas y ubicación | Vigente |
 | D-069 | 2026-11-22 | Animaciones: MP4 para facilitadores y verificación | Vigente |
+| D-070 | 2026-11-22 | Etapa 10: revisión final y criterios de aceptación | Vigente |
 
 ---
 
@@ -1508,3 +1509,87 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 - Revisión de cuadros de los MP4 en 1920 x 1080. En la ventana de contexto, el aviso "Quedó afuera" aparecía cuando el primer mensaje todavía se veía en parte; ahora aparece cuando el mensaje salió entero, y se volvió a grabar ese video.
 
 **Pendientes o riesgos:** queda la etapa 10, la revisión final.
+
+## D-070 | 2026-11-22 | Etapa 10: revisión final
+
+**Solicitado:** la revisión final de la etapa 10 del brief:
+- accesibilidad (contraste, teclado, lector de pantalla);
+- prueba en mobile;
+- enlaces verificados;
+- búsqueda de "—" y "·";
+- que no quede texto en inglés sin traducir y que las citas tengan el original;
+- ortografía;
+- capturas de cada clase de ventana para revisar;
+- el README.
+
+Además, comprobar los criterios de aceptación (sección 9).
+
+**Decisión y motivo:** cada punto que se podía comprobar con un programa quedó como un comando que se puede volver a correr. Así la revisión no es de una sola vez.
+- `npm run enlaces`: junta todos los enlaces externos del contenido y del código, los pide uno por uno y los clasifica en "funciona", "bloquea la lectura automática" o "roto". Corre con un límite de cabeceras más alto, porque algunos sitios (gemini.google.com) mandan cabeceras muy grandes, y reintenta las conexiones cortadas.
+- `npm run textos`: revisa los 3.663 textos del contenido:
+  - rayas y puntos medios;
+  - texto en inglés fuera de las referencias y de los títulos de obras;
+  - citas sin el original;
+  - palabras repetidas;
+  - signos de pregunta y exclamación sin par, y comillas o paréntesis sin cerrar;
+  - espacios dobles;
+  - menciones a menores.
+- `npm run contraste`: recorre las 75 pantallas con "contraste alto" (claro y oscuro, 390 y 1280 px), con axe-core y la auditoría del design system, y comprueba que el progreso se mantenga al cerrar y volver a abrir el navegador.
+- `npm run galeria`: arma una hoja de capturas por clase de ventana (Compact, Medium, Expanded y Large), con las pantallas principales en claro y oscuro, para revisarlas a mano.
+- **README:** suma una lista corta con los cinco comandos, qué revisa cada uno y cuándo correrlo.
+
+**Lo que se encontró y se corrigió:**
+- **Comparador:** en modo oscuro con contraste alto, el panel "después" no llegaba al contraste mínimo. Mezclaba `primary-container` con el color de la tarjeta y dejaba el texto en `on-surface`. Ahora usa el par del sistema, `primary-container` con `on-primary-container`, que cumple en los tres contrastes y en los dos modos.
+- **Módulo 3:** una respuesta de ejemplo tenía "..." como relleno ("Los cambios son dos: ..."). Se reemplazó por una respuesta completa.
+- **Glosario:** axe marca como "tapado" el índice de letras cuando se llega por un enlace directo a un término. Pasa porque la página baja hasta el término y la barra superior fija cubre el índice. El término enfocado queda visible, que es lo que pide WCAG 2.4.11. No se corrigió y `npm run contraste` lo acepta como conocido.
+
+**Criterios de aceptación (sección 9 del brief):**
+
+| Criterio | Resultado |
+|---|---|
+| Funciona en GitHub Pages, sin servidor ni build | Sí: HTML, CSS y JS con rutas relativas y enrutamiento por hash |
+| Navegación y layout según la clase de ventana | Sí: capturas en 6 anchos y galería por clase |
+| Claro, oscuro y contraste alto | Sí: `npm run verificar` (claro y oscuro) y `npm run contraste` (contraste alto) |
+| Colores, formas, tipografías y tiempos desde los tokens | Sí: `npm run auditar` revisa tipografía, forma, espaciado, íconos y color del texto contra los tokens |
+| Sin movimiento con `prefers-reduced-motion` | Sí: lo comprueba `npm run verificar`; las animaciones pasan a escenas fijas |
+| Gráficos con alternativa en tabla | Sí |
+| Inicio y agenda según el prototipo, sin métricas de tiempo ni rachas | Sí (etapa 1) |
+| Estados de carga, error, sin conexión y vacío diseñados | Sí (etapa 2), con `?simular=` |
+| Videos verificados, con fachada y preguntas | Sí: `content/videos.json`, con fecha de verificación |
+| Animaciones con guion, controles, transcripción, versión estática y MP4 | Sí: las nueve |
+| Sin texto en inglés sin traducir; citas con original, `lang` y etiqueta | Sí: `npm run textos` |
+| El progreso se mantiene al cerrar el navegador | Sí: `npm run contraste` |
+| Todas las actividades se completan con teclado | Sí: prueba de los 25 tipos de actividad, cada uno donde aparece por primera vez; Tab llega a todos los controles |
+| Ningún texto con "—" ni "·" | Sí: contenido, código, páginas y README |
+| `npm run verificar` sin errores críticos, scroll ni consola | En curso al momento de subir esta entrada; el resultado se agrega en el commit siguiente |
+| `DECISIONES.md` con una entrada por pedido y decisión | Sí: D-001 a D-070 |
+| Mi aprendizaje con progreso, competencias, autodiagnóstico, objetivos, evidencias y exportación | Sí, más el diario |
+| Fuentes en APA 7 con enlace verificado | Sí: 56 fuentes; los 86 enlaces del sitio funcionan |
+| Datos que cambian solo en `herramientas.json` y `marco-legal.json`, con fecha | Sí |
+| Nada dirigido a menores | Sí: `npm run textos` no encuentra menciones |
+| Ningún ejemplo con datos personales reales | Sí: todos los casos y datos son inventados, y se aclara en cada actividad que los usa |
+| Contenido original | Sí: redacción propia; las fuentes se citan y se enlazan |
+| La guía para facilitadores alcanza para dar cada módulo | Sí: 21 módulos, con los MP4 para proyectar |
+
+**Archivos afectados:** `scripts/verificar-enlaces.mjs`, `scripts/revisar-textos.mjs`, `scripts/verificar-contraste.mjs`, `scripts/galeria.mjs`, `package.json`, `README.md`, `css/activities.css`, `content/modulo-03.json`.
+
+**Verificación realizada:**
+- `npm run enlaces`: 86 de 86 funcionan.
+- `npm run textos`: sin hallazgos.
+- `npm run contraste`: sin problemas reales; el progreso se mantiene.
+- Teclado: 25 de 25 tipos de actividad.
+- `npm run verificar`: ver la tabla.
+
+**Pendientes o riesgos:** lo que no se puede comprobar con un programa, y queda para Lourdes:
+- **Lector de pantalla y personas usuarias:** probar con NVDA en Windows, VoiceOver en iOS o TalkBack en Android, y con personas usuarias reales.
+- **Ortografía:** la revisión automática detecta errores de forma, pero no reemplaza una lectura completa. Conviene una lectura de los 21 módulos, sobre todo de los casos y las narraciones.
+- **Datos por verificar en la fuente oficial:**
+  - las leyes de Chile, México, Colombia y Perú (D-047);
+  - funciones de ChatGPT y algunas de Claude y Copilot (D-051);
+  - las páginas de Codex y Sora (D-055).
+  Ahora que `npm run enlaces` llega a sitios que antes rechazaban la lectura, se pueden completar en una sesión aparte.
+- **Para revisar el tono y el criterio:**
+  - las definiciones del glosario (D-062);
+  - las duraciones de la guía para facilitadores (D-064);
+  - los dilemas del Módulo 8 (D-040);
+  - las narraciones de las ocho animaciones nuevas (D-068).
