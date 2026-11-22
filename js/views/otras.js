@@ -47,10 +47,7 @@ export function iniciarAjustes(rerender) {
 
 /* ---------- Secciones que se completan en etapas posteriores ---------- */
 const PROXIMAMENTE = {
-  biblioteca: ["La Biblioteca del taller se arma en la etapa 9", "Vas a encontrar todas las fuentes en formato APA 7, con filtros por bloque, nivel, idioma y tipo."],
   prompts: ["Todavía no guardaste prompts", "Cuando guardes un prompt en el laboratorio del Módulo 5, aparece acá con su nombre y sus etiquetas. Vas a poder exportarlos en Markdown o JSON."],
-  glosario: ["El glosario se arma en la etapa 9", "Va a tener entre 30 y 40 términos, con su original en inglés, una definición propia y un buscador."],
-  facilitadores: ["La guía para facilitadores se arma en la etapa 9", "Para cada módulo: duración sugerida, objetivos, secuencia de clase, preguntas para debatir y dinámicas para clases online."]
 };
 export function misPrompts() {
   const ps = prompts();

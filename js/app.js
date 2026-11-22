@@ -12,6 +12,7 @@ import * as recorrido from "./views/recorrido.js";
 import * as aprendizaje from "./views/aprendizaje.js";
 import { ajustes, iniciarAjustes, simple, ayuda, misPrompts, iniciarPrompts } from "./views/otras.js";
 import * as leccion from "./lesson/leccion.js";
+import * as recursos from "./views/recursos.js";
 import { DEMO } from "./state.js";
 import { dibujarRegistro } from "./views/piezas.js";
 import { SIMULAR, demoraSimulada, errorSimulado, splashSiTarda, cerrarSplash, vigilarConexion, esperaConMensaje } from "./estados.js";
@@ -30,6 +31,9 @@ function vista(id, args) {
     case "ayuda": return { html: ayuda() };
     case "prompts": return { html: misPrompts() };
     case "modulo": return { asincrono: () => leccion.mostrar(main, args) };
+    case "glosario": return { asincrono: () => recursos.glosario(main, args) };
+    case "biblioteca": return { asincrono: () => recursos.biblioteca(main, args) };
+    case "facilitadores": return { asincrono: () => recursos.facilitadores(main, args) };
     default: return { html: simple(id), titulo: r.t, sub: r.s };
   }
 }

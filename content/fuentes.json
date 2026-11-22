@@ -1,0 +1,857 @@
+{
+  "actualizado": "noviembre de 2026",
+  "nota": "Se genera con scripts/generar-fuentes.mjs a partir de los bloques \"profundizar\" de cada módulo. El campo \"porque\" se escribe a mano.",
+  "fuentes": [
+    {
+      "titulo": "Elements of AI: curso gratuito de introducción a la IA",
+      "apa": "University of Helsinki y MinnaLearn. (s.f.). *Elements of AI* [Curso en línea].",
+      "url": "https://www.elementsofai.com/es/",
+      "idioma": "es",
+      "nivel": "Inicial",
+      "tipo": "curso",
+      "modulos": [
+        0,
+        1,
+        3
+      ],
+      "porque": "El mejor punto de partida gratuito y en español para entender qué es la IA, sin matemática.",
+      "bloques": [
+        1
+      ]
+    },
+    {
+      "titulo": "Artificial: la nueva inteligencia y el contorno de lo humano",
+      "apa": "Sigman, M. y Bilinkis, S. (2023). *Artificial: La nueva inteligencia y el contorno de lo humano*. Debate.",
+      "idioma": "es",
+      "nivel": "Inicial",
+      "tipo": "libro",
+      "modulos": [
+        1
+      ],
+      "porque": "Dos autores argentinos explican la IA y lo que cambia en lo humano, con ejemplos cercanos.",
+      "bloques": [
+        1
+      ]
+    },
+    {
+      "titulo": "Curso intensivo de aprendizaje automático de Google",
+      "apa": "Google. (s.f.). *Machine Learning Crash Course* [Curso en línea, versión en español].",
+      "url": "https://developers.google.com/machine-learning/crash-course?hl=es-419",
+      "idioma": "es",
+      "nivel": "Técnica",
+      "tipo": "curso",
+      "modulos": [
+        1
+      ],
+      "porque": "Para quien quiere ver cómo aprende una máquina por dentro, con ejercicios prácticos.",
+      "bloques": [
+        1
+      ]
+    },
+    {
+      "titulo": "Qué hace ChatGPT y por qué funciona",
+      "apa": "Wolfram, S. (2023, 14 de febrero). *What is ChatGPT doing… and why does it work?* Stephen Wolfram Writings.",
+      "url": "https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "artículo",
+      "modulos": [
+        2
+      ],
+      "porque": "La explicación larga y paciente de cómo un modelo predice texto. Ideal después del Módulo 2.",
+      "bloques": [
+        1
+      ]
+    },
+    {
+      "titulo": "Introducción a los modelos de lenguaje grandes (charla de una hora)",
+      "apa": "Karpathy, A. (2023). *[1hr Talk] Intro to large language models* [Video]. YouTube.",
+      "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "video",
+      "modulos": [
+        2
+      ],
+      "porque": "Una hora con uno de los investigadores que más claramente explica los LLM. Sirve verla por partes.",
+      "bloques": [
+        1
+      ]
+    },
+    {
+      "titulo": "Ventanas de contexto, en la documentación de Claude",
+      "apa": "Anthropic. (s.f.). *Context windows*. Claude Docs.",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "idioma": "en",
+      "nivel": "Técnica",
+      "tipo": "documentación",
+      "modulos": [
+        2
+      ],
+      "porque": "Qué entra y qué no en lo que el modelo tiene a la vista, explicado por quienes hacen Claude.",
+      "bloques": [
+        1
+      ]
+    },
+    {
+      "titulo": "AI Fluency: el marco de las 4D",
+      "apa": "Dakan, R., Feller, J. y Anthropic. (s.f.). *AI Fluency: Framework & Foundations* [Curso en línea]. Anthropic Academy.",
+      "url": "https://anthropic.skilljar.com/ai-fluency-framework-foundations",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "curso",
+      "modulos": [
+        3,
+        4,
+        7,
+        8
+      ],
+      "porque": "El curso del que sale el marco 4D, columna de este taller. Gratuito, en inglés.",
+      "bloques": [
+        1,
+        2
+      ]
+    },
+    {
+      "titulo": "Artificial intelligence: a guide for thinking humans",
+      "apa": "Mitchell, M. (2019). *Artificial intelligence: A guide for thinking humans*. Farrar, Straus and Giroux.",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "libro",
+      "modulos": [
+        3
+      ],
+      "porque": "Una científica explica qué puede y qué no puede la IA, con escepticismo informado.",
+      "bloques": [
+        1
+      ]
+    },
+    {
+      "titulo": "Co-intelligence: vivir y trabajar con IA",
+      "apa": "Mollick, E. (2024). *Co-intelligence: Living and working with AI*. Portfolio.",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "libro",
+      "modulos": [
+        4
+      ],
+      "porque": "Ideas prácticas para trabajar junto a la IA, de un profesor que la usa a diario con estudiantes.",
+      "bloques": [
+        2
+      ]
+    },
+    {
+      "titulo": "Buenas prácticas para escribir prompts, de Anthropic",
+      "apa": "Anthropic. (s.f.). *Prompting best practices*. Claude Docs.",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "documentación",
+      "modulos": [
+        5
+      ],
+      "porque": "La guía oficial más completa para pedir bien. Profundiza todo lo del Módulo 5.",
+      "bloques": [
+        2
+      ]
+    },
+    {
+      "titulo": "Cómo escribir prompts en Copilot",
+      "apa": "Microsoft. (s.f.). *Get started writing prompts in Microsoft Copilot*. Microsoft Support.",
+      "url": "https://support.microsoft.com/en-us/topic/learn-about-copilot-prompts-f6c3b467-f07c-4db1-ae54-ffac96184dd5",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        5,
+        13
+      ],
+      "porque": "Cómo propone Microsoft escribir prompts: objetivo, contexto, fuentes y expectativas.",
+      "bloques": [
+        2,
+        4
+      ]
+    },
+    {
+      "titulo": "Consejos para escribir prompts en Gemini",
+      "apa": "Google. (s.f.). *Tips to write prompts for Gemini*. Google Workspace Learning Center.",
+      "url": "https://support.google.com/a/users/answer/14200040",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        5,
+        13
+      ],
+      "porque": "Los consejos de Google para pedir bien dentro de Gmail, Docs y el resto de Workspace.",
+      "bloques": [
+        2,
+        4
+      ]
+    },
+    {
+      "titulo": "Guía de prompts de OpenAI",
+      "apa": "OpenAI. (s.f.). *Prompt engineering*. OpenAI API Docs.",
+      "url": "https://developers.openai.com/api/docs/guides/prompt-engineering",
+      "idioma": "en",
+      "nivel": "Técnica",
+      "tipo": "documentación",
+      "modulos": [
+        5
+      ],
+      "porque": "La mirada de OpenAI sobre cómo escribir prompts, con foco en desarrolladores.",
+      "bloques": [
+        2
+      ]
+    },
+    {
+      "titulo": "Visión general de la ingeniería de prompts, de Anthropic",
+      "apa": "Anthropic. (s.f.). *Prompt engineering overview*. Claude Docs.",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "documentación",
+      "modulos": [
+        6
+      ],
+      "porque": "Un mapa de todas las técnicas de prompting y cuándo usar cada una.",
+      "bloques": [
+        2
+      ]
+    },
+    {
+      "titulo": "El estudio sobre la cadena de razonamiento",
+      "apa": "Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E., Le, Q. y Zhou, D. (2022). Chain-of-thought prompting elicits reasoning in large language models. *arXiv*. https://doi.org/10.48550/arXiv.2201.11903",
+      "url": "https://arxiv.org/abs/2201.11903",
+      "idioma": "en",
+      "nivel": "Técnica",
+      "tipo": "paper",
+      "modulos": [
+        6
+      ],
+      "porque": "El trabajo que mostró que pedir razonar paso a paso mejora las respuestas.",
+      "bloques": [
+        2
+      ]
+    },
+    {
+      "titulo": "AI engineering, capítulos sobre prompts y evaluación",
+      "apa": "Huyen, C. (2025). *AI engineering: Building applications with foundation models*. O'Reilly Media.",
+      "idioma": "en",
+      "nivel": "Técnica",
+      "tipo": "libro",
+      "modulos": [
+        6
+      ],
+      "porque": "Para quien quiere ir más allá del chat: cómo se construyen y evalúan aplicaciones con IA.",
+      "bloques": [
+        2
+      ]
+    },
+    {
+      "titulo": "AI snake oil: lo que la IA puede hacer y lo que se promete",
+      "apa": "Narayanan, A. y Kapoor, S. (2024). *AI snake oil: What artificial intelligence can do, what it can't, and how to tell the difference*. Princeton University Press.",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "libro",
+      "modulos": [
+        7
+      ],
+      "porque": "Aprender a distinguir lo que la IA hace de verdad de lo que se promete. Ideal para el Discernimiento.",
+      "bloques": [
+        2
+      ]
+    },
+    {
+      "titulo": "Marco de competencias en IA para docentes",
+      "apa": "UNESCO. (2024). *AI competency framework for teachers*. UNESCO.",
+      "url": "https://www.unesco.org/en/articles/ai-competency-framework-teachers",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        8,
+        19
+      ],
+      "porque": "Qué tiene que saber hacer un docente con IA, según la UNESCO, en cinco dimensiones.",
+      "bloques": [
+        2,
+        7
+      ]
+    },
+    {
+      "titulo": "Marco de competencias en IA para estudiantes",
+      "apa": "UNESCO. (2024). *AI competency framework for students*. UNESCO.",
+      "url": "https://www.unesco.org/en/articles/ai-competency-framework-students",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        8,
+        19
+      ],
+      "porque": "Las competencias en IA que la UNESCO propone para estudiantes, de comprender a crear.",
+      "bloques": [
+        2,
+        7
+      ]
+    },
+    {
+      "titulo": "Recomendación sobre la Ética de la Inteligencia Artificial",
+      "apa": "UNESCO. (2021). *Recomendación sobre la ética de la inteligencia artificial*. UNESCO.",
+      "url": "https://www.unesco.org/es/artificial-intelligence/recommendation-ethics",
+      "idioma": "es",
+      "nivel": "Inicial",
+      "tipo": "normativa",
+      "modulos": [
+        9
+      ],
+      "porque": "El primer acuerdo mundial sobre ética de la IA, firmado por los Estados miembros de la UNESCO.",
+      "bloques": [
+        3
+      ]
+    },
+    {
+      "titulo": "Principios de IA de la OCDE",
+      "apa": "OCDE. (2019, actualizados en 2024). *OECD AI Principles*. OECD.AI.",
+      "url": "https://oecd.ai/en/ai-principles",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "normativa",
+      "modulos": [
+        9
+      ],
+      "porque": "Cinco principios que orientan las políticas de IA de muchos países, incluida la Argentina.",
+      "bloques": [
+        3
+      ]
+    },
+    {
+      "titulo": "Energía e IA, de la Agencia Internacional de Energía",
+      "apa": "International Energy Agency. (2025). *Energy and AI*. IEA.",
+      "url": "https://www.iea.org/reports/energy-and-ai",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "documentación",
+      "modulos": [
+        9
+      ],
+      "porque": "Los datos de referencia sobre cuánta electricidad consumen los centros de datos y cuánto puede crecer.",
+      "bloques": [
+        3
+      ]
+    },
+    {
+      "titulo": "El consumo de agua de la IA",
+      "apa": "Li, P., Yang, J., Islam, M. A. y Ren, S. (2023). Making AI less \"thirsty\": Uncovering and addressing the secret water footprint of AI models. *arXiv*. https://doi.org/10.48550/arXiv.2304.03271",
+      "url": "https://arxiv.org/abs/2304.03271",
+      "idioma": "en",
+      "nivel": "Técnica",
+      "tipo": "paper",
+      "modulos": [
+        9
+      ],
+      "porque": "El estudio que estimó cuánta agua usa la IA para enfriar sus centros de datos.",
+      "bloques": [
+        3
+      ]
+    },
+    {
+      "titulo": "Informe sobre derechos de autor e IA",
+      "apa": "U.S. Copyright Office. (2025). *Copyright and artificial intelligence, part 2: Copyrightability*.",
+      "url": "https://www.copyright.gov/ai/",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "documentación",
+      "modulos": [
+        9
+      ],
+      "porque": "Cómo aborda Estados Unidos la pregunta de si lo generado con IA puede tener derechos de autor.",
+      "bloques": [
+        3
+      ]
+    },
+    {
+      "titulo": "Weapons of math destruction: algoritmos y desigualdad",
+      "apa": "O'Neil, C. (2016). *Weapons of math destruction: How big data increases inequality and threatens democracy*. Crown.",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "libro",
+      "modulos": [
+        9
+      ],
+      "porque": "Casos concretos de algoritmos que deciden sobre personas y amplifican desigualdades.",
+      "bloques": [
+        3
+      ]
+    },
+    {
+      "titulo": "Ley 25.326 de Protección de los Datos Personales",
+      "apa": "Ley 25.326 de 2000. Protección de los datos personales. 4 de octubre de 2000 (Argentina).",
+      "url": "https://servicios.infoleg.gob.ar/infolegInternet/anexos/60000-64999/64790/texact.htm",
+      "idioma": "es",
+      "nivel": "Inicial",
+      "tipo": "normativa",
+      "modulos": [
+        10
+      ],
+      "porque": "El texto de la ley argentina de datos personales. Conviene tenerlo a mano para consultar.",
+      "bloques": [
+        3
+      ]
+    },
+    {
+      "titulo": "Tus derechos sobre tus datos personales, de la AAIP",
+      "apa": "Agencia de Acceso a la Información Pública. (s.f.). *Conocé tus derechos respecto a tus datos personales*. Argentina.gob.ar.",
+      "url": "https://www.argentina.gob.ar/aaip/datospersonales/derechos",
+      "idioma": "es",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        10
+      ],
+      "porque": "Cómo ejercer tus derechos de acceso, rectificación y supresión, explicado por la autoridad.",
+      "bloques": [
+        3
+      ]
+    },
+    {
+      "titulo": "Decreto Reglamentario 1558/2001",
+      "apa": "Decreto 1558 de 2001. Reglamentación de la Ley 25.326. 29 de noviembre de 2001 (Argentina).",
+      "url": "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=70368",
+      "idioma": "es",
+      "nivel": "Profundización",
+      "tipo": "normativa",
+      "modulos": [
+        10
+      ],
+      "porque": "La reglamentación de la ley de datos personales, para quien necesita el detalle.",
+      "bloques": [
+        3
+      ]
+    },
+    {
+      "titulo": "El Reglamento de IA de la Unión Europea entra en vigencia",
+      "apa": "Comisión Europea. (2024, 1 de agosto). *AI Act enters into force*.",
+      "url": "https://commission.europa.eu/news-and-media/news/ai-act-enters-force-2024-08-01_en",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "normativa",
+      "modulos": [
+        10
+      ],
+      "porque": "El anuncio oficial de la primera ley integral sobre IA, que influye en toda la región.",
+      "bloques": [
+        3
+      ]
+    },
+    {
+      "titulo": "Centro de ayuda de Claude",
+      "apa": "Anthropic. (s.f.). *Claude Help Center*.",
+      "url": "https://support.claude.com/en/",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        11
+      ],
+      "porque": "La fuente que vale para saber qué hace Claude hoy y cómo configurarlo.",
+      "bloques": [
+        4
+      ]
+    },
+    {
+      "titulo": "Centro de ayuda de Gemini",
+      "apa": "Google. (s.f.). *Ayuda de Gemini Apps*.",
+      "url": "https://support.google.com/gemini/",
+      "idioma": "es",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        11
+      ],
+      "porque": "La fuente que vale para saber qué hace Gemini hoy, en español.",
+      "bloques": [
+        4
+      ]
+    },
+    {
+      "titulo": "Ayuda de Microsoft Copilot",
+      "apa": "Microsoft. (s.f.). *Get help with Copilot*. Microsoft Support.",
+      "url": "https://support.microsoft.com/en-us/microsoft-copilot/",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        11,
+        13
+      ],
+      "porque": "La fuente que vale para saber qué hace Copilot hoy, en casa y en Microsoft 365.",
+      "bloques": [
+        4
+      ]
+    },
+    {
+      "titulo": "Centro de ayuda de ChatGPT",
+      "apa": "OpenAI. (s.f.). *OpenAI Help Center*.",
+      "url": "https://help.openai.com/",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        11
+      ],
+      "porque": "La fuente que vale para saber qué hace ChatGPT hoy y cómo configurar la privacidad.",
+      "bloques": [
+        4
+      ]
+    },
+    {
+      "titulo": "OpenAI Academy",
+      "apa": "OpenAI. (s.f.). *OpenAI Academy* [Cursos en línea].",
+      "url": "https://academy.openai.com/",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "curso",
+      "modulos": [
+        11
+      ],
+      "porque": "Cursos y eventos gratuitos de OpenAI para aprender a usar la IA en distintos ámbitos.",
+      "bloques": [
+        4
+      ]
+    },
+    {
+      "titulo": "Modo de voz de Claude",
+      "apa": "Anthropic. (s.f.). *Use voice mode*. Claude Help Center.",
+      "url": "https://support.claude.com/en/articles/11101966-use-voice-mode",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        12
+      ],
+      "porque": "Cómo funciona el modo de voz de Claude, en qué dispositivos y qué guarda.",
+      "bloques": [
+        4
+      ]
+    },
+    {
+      "titulo": "Gemini Live",
+      "apa": "Google. (s.f.). *Gemini Live*. Ayuda de Gemini Apps.",
+      "url": "https://support.google.com/gemini/answer/15274899?hl=es",
+      "idioma": "es",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        12
+      ],
+      "porque": "Cómo usar Gemini Live, el modo de conversación por voz de Gemini en el celular.",
+      "bloques": [
+        4
+      ]
+    },
+    {
+      "titulo": "Funciones de voz de Copilot",
+      "apa": "Microsoft. (s.f.). *Get started with voice features in Microsoft 365 Copilot*. Microsoft Support.",
+      "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/get-started-with-voice-features-in-microsoft-365-copilot",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        12
+      ],
+      "porque": "Copilot Voice, el dictado y la lectura en voz alta, explicados por Microsoft.",
+      "bloques": [
+        4
+      ]
+    },
+    {
+      "titulo": "Gemini en las apps de Google Workspace",
+      "apa": "Google. (s.f.). *Usar Gemini con Gmail, Docs y Drive*. Ayuda de Gemini Apps.",
+      "url": "https://support.google.com/gemini/answer/15229592?hl=es",
+      "idioma": "es",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        13
+      ],
+      "porque": "Qué puede hacer Gemini con tu Gmail, tus documentos y tu Drive, y qué no.",
+      "bloques": [
+        4
+      ]
+    },
+    {
+      "titulo": "Claude Code, documentación oficial",
+      "apa": "Anthropic. (s.f.). *Claude Code overview*. Claude Code Docs.",
+      "url": "https://code.claude.com/docs/en/overview",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "documentación",
+      "modulos": [
+        14
+      ],
+      "porque": "Para empezar con un agente de programación: qué hace y cómo se usa.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "Cómo recuerda Claude Code tu proyecto (CLAUDE.md)",
+      "apa": "Anthropic. (s.f.). *How Claude remembers your project*. Claude Code Docs.",
+      "url": "https://code.claude.com/docs/en/memory",
+      "idioma": "en",
+      "nivel": "Técnica",
+      "tipo": "documentación",
+      "modulos": [
+        14
+      ],
+      "porque": "Cómo escribir un buen archivo de instrucciones para que el agente conozca tu proyecto.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "AGENTS.md, un formato abierto para agentes",
+      "apa": "AGENTS.md. (s.f.). *AGENTS.md*.",
+      "url": "https://agents.md/",
+      "idioma": "en",
+      "nivel": "Técnica",
+      "tipo": "documentación",
+      "modulos": [
+        14
+      ],
+      "porque": "El formato abierto para dar instrucciones a agentes de programación, usado en miles de proyectos.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "Documentación de GitHub Copilot",
+      "apa": "GitHub. (s.f.). *GitHub Copilot documentation*. GitHub Docs.",
+      "url": "https://docs.github.com/en/copilot",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "documentación",
+      "modulos": [
+        14
+      ],
+      "porque": "Todo sobre el asistente de programación de GitHub, del editor a los agentes.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "Crear un sitio con GitHub Pages",
+      "apa": "GitHub. (s.f.). *Creating a GitHub Pages site*. GitHub Docs.",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        14
+      ],
+      "porque": "La guía oficial para publicar gratis una página hecha con HTML.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "Modelos de imagen de Google DeepMind",
+      "apa": "Google DeepMind. (s.f.). *Gemini Image*.",
+      "url": "https://deepmind.google/models/imagen/",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        15
+      ],
+      "porque": "Qué pueden hacer hoy los modelos de imagen de Google, con ejemplos.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "C2PA, el estándar de credenciales de contenido",
+      "apa": "Coalition for Content Provenance and Authenticity. (s.f.). *C2PA*.",
+      "url": "https://c2pa.org/",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "documentación",
+      "modulos": [
+        15
+      ],
+      "porque": "El estándar abierto que registra de dónde viene un contenido digital y cómo se editó.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "Content Authenticity Initiative",
+      "apa": "Content Authenticity Initiative. (s.f.). *Content Authenticity Initiative*.",
+      "url": "https://contentauthenticity.org/",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "documentación",
+      "modulos": [
+        15,
+        17
+      ],
+      "porque": "La iniciativa de la industria que impulsa las credenciales de contenido, con herramientas abiertas.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "SynthID, marcas de agua invisibles",
+      "apa": "Google DeepMind. (s.f.). *SynthID*.",
+      "url": "https://deepmind.google/science/synthid/",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "documentación",
+      "modulos": [
+        15,
+        17
+      ],
+      "porque": "Cómo funciona una marca de agua invisible en imágenes, audio, texto y video generados.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "Clonación de voz y consentimiento, en ElevenLabs",
+      "apa": "ElevenLabs. (s.f.). *Voice cloning*.",
+      "url": "https://elevenlabs.io/voice-cloning",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        16
+      ],
+      "porque": "Cómo una herramienta de voz plantea el consentimiento para clonar la voz de otra persona.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "Políticas de seguridad de voz de ElevenLabs",
+      "apa": "ElevenLabs. (s.f.). *Safety*.",
+      "url": "https://elevenlabs.io/safety",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "documentación",
+      "modulos": [
+        16
+      ],
+      "porque": "Las salvaguardas de una empresa de voz sintética contra la suplantación.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "Lyria, el modelo de música de Google DeepMind",
+      "apa": "Google DeepMind. (s.f.). *Lyria*.",
+      "url": "https://deepmind.google/models/lyria/",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        16
+      ],
+      "porque": "Qué puede hacer hoy un modelo de música generativa y cómo marca lo que genera.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "Veo, el modelo de video de Google DeepMind",
+      "apa": "Google DeepMind. (s.f.). *Veo*.",
+      "url": "https://deepmind.google/models/veo/",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "documentación",
+      "modulos": [
+        17
+      ],
+      "porque": "Qué puede hacer hoy un modelo de video generativo, con ejemplos de escenas.",
+      "bloques": [
+        5
+      ]
+    },
+    {
+      "titulo": "Cómo construir agentes efectivos, de Anthropic",
+      "apa": "Anthropic. (2024, 19 de diciembre). *Building effective agents*. Anthropic Engineering.",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "idioma": "en",
+      "nivel": "Profundización",
+      "tipo": "artículo",
+      "modulos": [
+        18
+      ],
+      "porque": "La guía más citada para decidir entre un flujo y un agente: empezar por lo simple.",
+      "bloques": [
+        6
+      ]
+    },
+    {
+      "titulo": "Model Context Protocol (MCP)",
+      "apa": "Model Context Protocol. (s.f.). *What is the Model Context Protocol (MCP)?*",
+      "url": "https://modelcontextprotocol.io/",
+      "idioma": "en",
+      "nivel": "Técnica",
+      "tipo": "documentación",
+      "modulos": [
+        18
+      ],
+      "porque": "El estándar abierto para conectar asistentes con tus herramientas y datos.",
+      "bloques": [
+        6
+      ]
+    },
+    {
+      "titulo": "ReAct: razonar y actuar",
+      "apa": "Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K. y Cao, Y. (2022). ReAct: Synergizing reasoning and acting in language models. *arXiv*. https://doi.org/10.48550/arXiv.2210.03629",
+      "url": "https://arxiv.org/abs/2210.03629",
+      "idioma": "en",
+      "nivel": "Técnica",
+      "tipo": "paper",
+      "modulos": [
+        18
+      ],
+      "porque": "El trabajo que propuso alternar razonamiento y acción, base de muchos agentes actuales.",
+      "bloques": [
+        6
+      ]
+    },
+    {
+      "titulo": "RAG: generación aumentada por recuperación",
+      "apa": "Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W., Rocktäschel, T., Riedel, S. y Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. *Advances in Neural Information Processing Systems, 33*. https://doi.org/10.48550/arXiv.2005.11401",
+      "url": "https://arxiv.org/abs/2005.11401",
+      "idioma": "en",
+      "nivel": "Técnica",
+      "tipo": "paper",
+      "modulos": [
+        18
+      ],
+      "porque": "El trabajo original sobre responder buscando primero en documentos.",
+      "bloques": [
+        6
+      ]
+    },
+    {
+      "titulo": "OpenAI Academy, cursos para enseñar y aprender con IA",
+      "apa": "OpenAI. (s.f.). *OpenAI Academy courses*.",
+      "url": "https://academy.openai.com/pages/courses",
+      "idioma": "en",
+      "nivel": "Inicial",
+      "tipo": "curso",
+      "modulos": [
+        19
+      ],
+      "porque": "Cursos y eventos gratuitos de OpenAI para aprender a usar la IA en distintos ámbitos.",
+      "bloques": [
+        7
+      ]
+    }
+  ]
+}

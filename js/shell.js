@@ -4,7 +4,7 @@ import { RUTAS, GRUPOS, destinos, href } from "./routes.js";
 import { store } from "./storage.js";
 import { tema } from "./theme.js";
 import { esc, norm, qs, qsa, mismoDia, hoy } from "./util.js";
-import { datos, eventos, moduloActual, pasoActual, hayProgreso, perfil, rutaActual, avisos, exportar, importar, borrarTodo, DEMO } from "./state.js";
+import { datos, eventos, moduloActual, pasoActual, hayProgreso, perfil, rutaActual, avisos, exportar, importar, borrarTodo, DEMO, leerJSON } from "./state.js";
 import { aviso, menu, confirmar, descargar, icono } from "./ui.js";
 import { SIMULAR, demoraSimulada, procesoDeterminado } from "./estados.js";
 
@@ -100,14 +100,19 @@ function cerrarHoja(volver) {
   if (volver) moreBtn.focus();
 }
 
-/* ---------- Búsqueda: módulos y secciones (el glosario se suma en la etapa 9) ---------- */
+/* ---------- Búsqueda: módulos, secciones y glosario ---------- */
+let GLOSARIO = [];
+leerJSON("content/glosario.json").then(d => { GLOSARIO = d.terminos; }).catch(() => { /* sin glosario, la búsqueda sigue con módulos y secciones */ });
+const slugT = t => norm(t).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 function resultados(q) {
   const v = norm(q.trim()); if (!v) return null;
   const mods = datos.modulos.filter(m => norm(m.titulo + " " + m.descripcion + " modulo " + m.id).includes(v))
     .map(m => ({ href: href("modulo", m.id), ic: "school", txt: `<b>Módulo ${m.id}</b> | ${esc(m.titulo)}`, tipo: "Módulo" }));
   const secs = Object.keys(RUTAS).filter(k => !RUTAS[k].oculto && norm(RUTAS[k].t + " " + RUTAS[k].s).includes(v))
     .map(k => ({ href: href(k), ic: RUTAS[k].ic, txt: esc(RUTAS[k].t), tipo: "Sección" }));
-  return secs.concat(mods).slice(0, 8);
+  const glos = GLOSARIO.filter(t => norm([t.termino, t.original, ...(t.alias || [])].join(" ")).includes(v))
+    .map(t => ({ href: href("glosario", slugT(t.termino)), ic: "menu_book", txt: `<b>${esc(t.termino)}</b> | ${esc(t.original)}`, tipo: "Glosario" }));
+  return secs.concat(mods, glos).slice(0, 8);
 }
 function pintarResultados(input, caja, estadoEl) {
   const r = resultados(input.value);

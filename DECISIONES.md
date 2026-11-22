@@ -67,6 +67,11 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-059 | 2026-11-21 | Etapa 8 (bloques 6 y 7): Módulos 18 a 20 | Vigente |
 | D-060 | 2026-11-21 | Fuentes de los bloques 6 y 7 | Vigente |
 | D-061 | 2026-11-21 | Etapa 8 (bloques 6 y 7): verificación | Vigente |
+| D-062 | 2026-11-21 | Glosario: 40 términos, buscador y enlaces desde las lecciones | Vigente |
+| D-063 | 2026-11-21 | Biblioteca: 56 fuentes en APA 7, con filtros y "por qué leerlo" | Vigente |
+| D-064 | 2026-11-21 | Guía para facilitadores por módulo | Vigente |
+| D-065 | 2026-11-21 | Diario de aprendizaje y portafolio imprimible en Mi aprendizaje | Vigente |
+| D-066 | 2026-11-21 | Etapa 9 (transversales): verificación | Vigente |
 
 ---
 
@@ -1339,3 +1344,98 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 - `npm run verificar` completo: 840 capturas (70 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, áreas táctiles, consola, movimiento, texto ni design system. Encontró un problema: en 360 y 412 px la tabla de la rúbrica se salía de la pantalla. Ahora, en contenedores de menos de 600 px, cada criterio es una tarjeta con sus tres niveles, con el mismo patrón que la tabla comparativa. Después, `npm run verificar:rapido` sin ningún problema (420 capturas).
 
 **Pendientes o riesgos:** falta la prueba con lector de pantalla (NVDA) y con personas usuarias.
+
+## D-062 | 2026-11-21 | Glosario
+
+**Solicitado:** un glosario de 30 a 40 términos con buscador, con el término en español, el original y una definición propia (sección 3 y criterios de lenguaje del brief).
+
+**Decisión y motivo:**
+- **Contenido:** `content/glosario.json` tiene 40 términos, con su original en inglés, una definición propia de una o dos oraciones y el módulo donde se explica. Cada término tiene, además, "alias" con las otras formas en que aparece en las lecciones, por ejemplo "tokens".
+- **Vista:**
+  - orden alfabético, con un índice de letras de 48 px;
+  - un buscador que filtra mientras se escribe, en español o en inglés, y anuncia cuántos términos quedan;
+  - un estado vacío cuando no hay resultados;
+  - el original en inglés lleva `lang="en"`, para que el lector de pantalla lo pronuncie bien.
+- **Enlaces desde las lecciones:** `{{término}}` lleva a `#/glosario/término`, que resalta y enfoca la ficha. Una prueba confirma que todos los términos enlazados en las 21 lecciones existen en el glosario.
+- **Búsqueda de la barra superior:** suma los términos del glosario a los módulos y las secciones.
+
+**Archivos afectados:** `content/glosario.json`, `js/views/recursos.js`, `js/shell.js`, `js/app.js`, `css/layout.css`.
+
+**Verificación realizada:** ver D-066.
+
+**Pendientes o riesgos:** **para Lourdes:** revisar las definiciones. Son propias y breves a propósito.
+
+## D-063 | 2026-11-21 | Biblioteca
+
+**Solicitado:** una Biblioteca con todas las fuentes en APA 7, con filtros por bloque, nivel, idioma y tipo, y una línea de "por qué leerlo" redactada para el taller (sección 7 del brief).
+
+**Decisión y motivo:**
+- **Origen de los datos:** `content/fuentes.json` se arma con `node scripts/generar-fuentes.mjs` a partir de los bloques "Para profundizar" de cada módulo. Así la Biblioteca y las lecciones no se contradicen. El script conserva el "por qué leerlo" escrito a mano y avisa si una fuente nueva no lo tiene.
+- **Contenido:** 56 fuentes, sin repetir. Cada una indica en qué módulos aparece y a qué bloques pertenece.
+- **Tipos:** los cinco del brief (libro, paper, curso, documentación y normativa), más "artículo" (ensayos y publicaciones de blog que no son papers) y "video" (una charla). Se sumaron para no forzar fuentes en una categoría que no les corresponde.
+- **Vista:**
+  - cuatro desplegables de filtro, del design system;
+  - un contador que se anuncia;
+  - "Quitar filtros" y un estado vacío;
+  - fichas con el título, el "por qué leerlo", la referencia APA, el tipo, el nivel, el idioma, los módulos enlazados y "Abrir" (o "buscalo en tu biblioteca" para los libros sin enlace).
+
+**Archivos afectados:** `content/fuentes.json`, `scripts/generar-fuentes.mjs`, `js/views/recursos.js`, `css/layout.css`.
+
+**Verificación realizada:** ver D-066.
+
+**Pendientes o riesgos:** las fuentes del brief que no se pudieron verificar (D-047, D-051, D-055 y D-060) no están en la Biblioteca. Se suman agregándolas a un módulo y volviendo a correr el script.
+
+## D-064 | 2026-11-21 | Guía para facilitadores
+
+**Solicitado:** una guía para dar cada módulo como clase online sincrónica, con duración individual y grupal, objetivos, secuencia de clase, preguntas para debatir, dinámicas online, adaptaciones para estudiantes del último año de escuela técnica y errores frecuentes (sección 3 del brief).
+
+**Decisión y motivo:**
+- **Contenido:** `content/facilitadores.json`, con una guía general y una por módulo. Los objetivos no se repiten en ese archivo: se toman de cada lección, así nunca quedan desactualizados.
+- **Vista en `#/facilitadores`:** dentro del entorno, como el resto de las secciones. No es una página aparte (`facilitadores.html`), para que tenga la misma navegación, el mismo tema y la misma accesibilidad. Cada módulo es un bloque plegable, agrupado por bloque.
+- **Enlace directo:** `#/facilitadores/N` abre la guía del módulo N.
+- **Imprimir:** "Imprimir la guía" despliega todos los módulos antes de imprimir y los vuelve a plegar después.
+- **Recursos para proyectar:** la guía del Módulo 2 ofrece la descarga del MP4 de la animación con sus subtítulos (D-035).
+
+**Archivos afectados:** `content/facilitadores.json`, `js/views/recursos.js`, `css/layout.css`.
+
+**Verificación realizada:** ver D-066.
+
+**Pendientes o riesgos:** **para Lourdes:** las duraciones son una propuesta inicial; conviene ajustarlas después de dar los primeros encuentros.
+
+## D-065 | 2026-11-21 | Diario y portafolio
+
+**Solicitado:** el diario de aprendizaje exportable, con las reflexiones en orden cronológico, y el portafolio imprimible o en PDF (secciones 3 y 4 del brief).
+
+**Decisión y motivo:**
+- **Diario:**
+  - es una tarjeta nueva en Mi aprendizaje, con cada reflexión en orden cronológico;
+  - cada entrada lleva la fecha, el módulo enlazado, la pregunta y la respuesta;
+  - "Descargar (.md)" exporta todo en Markdown;
+  - `#/aprendizaje/diario` lleva directo a la tarjeta.
+- **Portafolio:** "Imprimir portafolio" imprime Mi aprendizaje (competencias, objetivos, evidencias, autodiagnóstico, diario y registro) sin la navegación, listo para guardar como PDF. Las mismas reglas de impresión sirven para la guía para facilitadores.
+- **Fila de acciones de Mi aprendizaje:** "Exportar mi progreso" (JSON) con borde y "Imprimir portafolio" tonal al final, según el orden del design system.
+
+**Archivos afectados:** `js/views/aprendizaje.js`, `css/layout.css`, `js/views/otras.js`.
+
+**Verificación realizada:** ver D-066.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-066 | 2026-11-21 | Etapa 9 (transversales): verificación
+
+**Solicitado:** verificar las secciones transversales antes de subirlas.
+
+**Decisión y motivo:** el verificador y la auditoría suman tres pantallas: un término del glosario enlazado, la guía de un módulo y el diario.
+
+**Archivos afectados:** `scripts/pantallas.mjs`.
+
+**Verificación realizada:**
+- Prueba de punta a punta en 1280 px (claro) y 390 px (oscuro), todo correcto:
+  - **Glosario:** los 40 términos; la búsqueda por el original en inglés; el estado vacío; el enlace por alias; todos los términos de las lecciones existen; la búsqueda de la barra superior incluye el glosario.
+  - **Biblioteca:** las 56 fuentes; el filtro por idioma (10 en español); los filtros combinados; quitar filtros.
+  - **Facilitadores:** los 21 módulos; el enlace directo abre el módulo y ofrece el MP4; los objetivos vienen de la lección.
+  - **Diario:** muestra la reflexión, el enlace lo enfoca y se descarga en Markdown.
+  - Sin problemas de axe-core ni de la auditoría del design system en cada vista, y sin errores de consola.
+- `npm run verificar` completo: 876 capturas (73 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, scroll, consola, movimiento, texto ni design system. Encontró dos problemas de áreas táctiles en mobile, ya corregidos: (1) en el glosario, el enlace "Se explica en el Módulo N" quedaba fuera de la excepción para enlaces dentro de un texto, porque su contenedor es flexible; ahora va dentro de su propia oración; (2) en Mi aprendizaje, en 360 px, los dos botones del encabezado se apilaban sin separación; las acciones del encabezado de cualquier vista ahora tienen 8 px entre filas. Después, `npm run verificar:rapido` y la medición de los botones, sin problemas.
+
+**Pendientes o riesgos:** quedan las animaciones prioritarias 4 a 10 (D-040, D-046, D-052, D-056 y D-059) y la etapa 10, la revisión final.

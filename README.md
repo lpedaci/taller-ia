@@ -6,7 +6,7 @@ Es un sitio de HTML, CSS y JavaScript sin paso de compilación. Funciona publica
 
 ## Estado del proyecto
 
-Etapa 8 de 10 terminada: los 21 módulos (bloques 1 a 7) tienen su lección completa. Sigue la etapa 9: secciones transversales (glosario, biblioteca, diario, guía para facilitadores) y las animaciones pendientes. El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
+Etapa 9 de 10 terminada: los 21 módulos tienen su lección y están el glosario, la Biblioteca, el diario y la guía para facilitadores. Quedan las animaciones pendientes y la etapa 10, la revisión final. El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
 
 ## Ver el taller en tu computadora
 
@@ -92,6 +92,9 @@ El contenido está separado del código, en la carpeta `content/`:
 | `modulos.json` | Bloques, módulos (título, descripción, pasos, minutos), competencias, niveles y rutas sugeridas |
 | `agenda.json` | Fechas de la cursada por cohorte. Hoy está vacío: tiene un ejemplo del formato |
 | `demo.json` | Datos de ejemplo que se ven con `?demo=1` |
+| `glosario.json` | Los 40 términos del glosario, con su original en inglés, una definición propia y el módulo donde se explican |
+| `fuentes.json` | La Biblioteca. Se arma con `node scripts/generar-fuentes.mjs` a partir de "Para profundizar" de cada módulo; el "por qué leerlo" se escribe a mano |
+| `facilitadores.json` | La guía para facilitadores, módulo por módulo (los objetivos salen de cada lección) |
 | `herramientas.json` | Funciones de ChatGPT, Claude, Gemini y Copilot, con fecha y la URL de la ayuda oficial donde se confirmó cada dato. Es lo primero que hay que actualizar cuando cambian las herramientas |
 | `marco-legal.json` | Leyes de protección de datos de otros países de la región. Solo se muestran las que tienen `"verificado": true` |
 | `modulo-XX.json` | La lección de cada módulo (ver abajo). `modulo-prueba.json` muestra todos los tipos de bloque |

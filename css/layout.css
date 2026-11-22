@@ -133,6 +133,7 @@
 .view-head h2{font:var(--md-sys-typescale-headline-medium)}
 .view-head p{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
 .view-head .vh-txt{display:grid;gap:4px;min-width:0}
+.view-head .actions{display:flex;flex-wrap:wrap;gap:var(--app-space-2);justify-content:flex-end}
 
 /* =====================================================================
    INICIO: layout canónico M3 "panel de apoyo"
@@ -552,3 +553,61 @@ a.cell:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offse
 .rail.expanded.peek{position:fixed;left:0;top:0;bottom:0;height:100vh;height:100dvh;z-index:36;box-shadow:var(--md-sys-elevation-level2);border-radius:0 var(--md-sys-shape-corner-large) var(--md-sys-shape-corner-large) 0}
 .app.rail-peek .main{margin-left:var(--app-rail-collapsed-width)}
 @media (prefers-reduced-motion: reduce){ .mod:hover{transform:none} }
+
+/* ---------- Glosario (D-062) ---------- */
+.gl-buscar{padding:var(--app-space-4);display:grid;gap:var(--app-space-3);margin-bottom:var(--app-space-4)}
+.gl-n{font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-on-surface-variant);min-height:20px}
+.gl-letras{display:flex;flex-wrap:wrap;gap:var(--app-space-1)}
+.gl-letras a{display:inline-flex;align-items:center;justify-content:center;min-width:48px;height:48px;border-radius:var(--md-sys-shape-corner-full);font:var(--md-sys-typescale-title-small);color:var(--md-sys-color-primary);text-decoration:none}
+.gl-letras a:hover{background:var(--app-color-card-item)}
+.gl-letras a:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:-3px}
+.gl-lista{display:grid;gap:var(--app-space-6)}
+.gl-grupo{display:grid;gap:var(--app-space-3)}
+.gl-grupo h3{font:var(--md-sys-typescale-headline-small);color:var(--md-sys-color-primary)}
+.gl-grupo h3:focus{outline:none}
+.gl-term{background:var(--app-color-card);border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-4) var(--app-space-5);display:grid;gap:var(--app-space-2);scroll-margin-top:96px;transition:border-color var(--md-sys-motion-spring-fast-effects)}
+.gl-term:focus{outline:none}
+.gl-term:focus-visible,.gl-term.is-on{border-color:var(--md-sys-color-primary);box-shadow:0 0 0 2px var(--md-sys-color-primary)}
+.gl-term h4{font:var(--app-typescale-card-title)}
+.gl-orig{font:var(--md-sys-typescale-body-medium);font-style:italic;color:var(--md-sys-color-on-surface-variant);margin-left:var(--app-space-1)}
+.gl-term p{font:var(--md-sys-typescale-body-large)}
+.gl-term .gl-mod{display:flex;align-items:center;gap:var(--app-space-1);font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+.gl-vacio{margin-top:var(--app-space-4)}
+
+/* ---------- Biblioteca ---------- */
+.bi-filtros{padding:var(--app-space-4);display:grid;gap:var(--app-space-3);grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:var(--app-space-4)}
+.bi-pie{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--app-space-2)}
+.bi-lista{list-style:none;margin:0;padding:0;display:grid;gap:var(--app-space-4);grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr))}
+.bi-f{padding:var(--app-space-4) var(--app-space-5);display:flex;flex-direction:column;gap:var(--app-space-2)}
+.bi-f h3{font:var(--app-typescale-card-title)}
+.bi-porque{font:var(--md-sys-typescale-body-large)}
+.bi-apa{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant);overflow-wrap:anywhere}
+.bi-chips{display:flex;flex-wrap:wrap;gap:var(--app-space-1)}
+.bi-mods,.bi-sin{display:flex;align-items:center;gap:var(--app-space-1);font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant)}
+.bi-abrir{align-self:flex-end;margin-top:auto}
+.bi-sin{margin-top:auto}
+
+/* ---------- Guía para facilitadores ---------- */
+.fa-intro{padding:var(--app-space-4) var(--app-space-5);margin-bottom:var(--app-space-6);font:var(--md-sys-typescale-body-large)}
+.fa-bloque{display:grid;gap:var(--app-space-3);margin-bottom:var(--app-space-6)}
+.fa-bloque h3{font:var(--md-sys-typescale-title-large)}
+.fa-mod{background:var(--app-color-card);scroll-margin-top:96px}
+.fa-cuerpo h4{font:var(--md-sys-typescale-title-small);margin:var(--app-space-4) 0 var(--app-space-1)}
+.fa-cuerpo ul{margin:0;padding-left:var(--app-list-indent);display:grid;gap:var(--app-space-1)}
+.fa-dur{display:flex;gap:var(--app-space-2);align-items:flex-start}
+.fa-ir{display:flex;justify-content:flex-end;margin-top:var(--app-space-3)}
+
+/* ---------- Diario en Mi aprendizaje ---------- */
+.di-lista{list-style:none;margin:0;padding:0;display:grid;gap:var(--app-space-3)}
+.di-e{border-left:4px solid var(--md-sys-color-primary);padding:var(--app-space-1) 0 var(--app-space-1) var(--app-space-4);display:grid;gap:var(--app-space-1)}
+.di-meta{font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-on-surface-variant)}
+.di-preg{font:var(--md-sys-typescale-body-medium);color:var(--md-sys-color-on-surface-variant);font-style:italic}
+.di-txt{font:var(--md-sys-typescale-body-large);white-space:pre-wrap}
+
+/* ---------- Impresión de páginas completas (portafolio, guía) ---------- */
+@media print{
+  body:not(.imprimiendo) .rail,body:not(.imprimiendo) .topbar,body:not(.imprimiendo) .navbar,body:not(.imprimiendo) .sheet,body:not(.imprimiendo) .foot,body:not(.imprimiendo) .view-head .btn,body:not(.imprimiendo) .view-head .actions{display:none!important}
+  body:not(.imprimiendo) .content{padding:0;max-width:none}
+  body:not(.imprimiendo) .card{box-shadow:none;break-inside:avoid}
+  body:not(.imprimiendo){background:#fff}
+}
