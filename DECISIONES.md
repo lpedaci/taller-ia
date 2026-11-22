@@ -1561,7 +1561,7 @@ Además, comprobar los criterios de aceptación (sección 9).
 | El progreso se mantiene al cerrar el navegador | Sí: `npm run contraste` |
 | Todas las actividades se completan con teclado | Sí: prueba de los 25 tipos de actividad, cada uno donde aparece por primera vez; Tab llega a todos los controles |
 | Ningún texto con "—" ni "·" | Sí: contenido, código, páginas y README |
-| `npm run verificar` sin errores críticos, scroll ni consola | En curso al momento de subir esta entrada; el resultado se agrega en el commit siguiente |
+| `npm run verificar` sin errores críticos, scroll ni consola | Sí: 900 capturas (75 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, scroll, áreas táctiles, consola, movimiento, texto ni design system |
 | `DECISIONES.md` con una entrada por pedido y decisión | Sí: D-001 a D-070 |
 | Mi aprendizaje con progreso, competencias, autodiagnóstico, objetivos, evidencias y exportación | Sí, más el diario |
 | Fuentes en APA 7 con enlace verificado | Sí: 56 fuentes; los 86 enlaces del sitio funcionan |
@@ -1578,7 +1578,8 @@ Además, comprobar los criterios de aceptación (sección 9).
 - `npm run textos`: sin hallazgos.
 - `npm run contraste`: sin problemas reales; el progreso se mantiene.
 - Teclado: 25 de 25 tipos de actividad.
-- `npm run verificar`: ver la tabla.
+- `npm run verificar`: 900 capturas, todo en 0.
+- `npm run galeria`: cuatro hojas de capturas en `verificacion/`.
 
 **Pendientes o riesgos:** lo que no se puede comprobar con un programa, y queda para Lourdes:
 - **Lector de pantalla y personas usuarias:** probar con NVDA en Windows, VoiceOver en iOS o TalkBack en Android, y con personas usuarias reales.
