@@ -1,77 +1,426 @@
 {
   "titulo": "Cómo funciona un modelo de lenguaje",
   "objetivos": [
-    { "id": "m2-o1", "texto": "Explicar que un modelo de lenguaje escribe prediciendo el próximo fragmento de texto, de a uno por vez.", "competencia": "comprender" },
-    { "id": "m2-o2", "texto": "Describir con tus palabras el entrenamiento, el ajuste posterior y la ventana de contexto.", "competencia": "comprender" },
-    { "id": "m2-o3", "texto": "Explicar por qué un modelo no busca ni sabe como una persona, y qué consecuencias tiene eso.", "competencia": "discernimiento" }
+    {
+      "id": "m2-o1",
+      "texto": "Explicar que un modelo de lenguaje escribe prediciendo el próximo fragmento de texto, de a uno por vez.",
+      "competencia": "comprender"
+    },
+    {
+      "id": "m2-o2",
+      "texto": "Describir con tus palabras el entrenamiento, el ajuste posterior y la ventana de contexto.",
+      "competencia": "comprender"
+    },
+    {
+      "id": "m2-o3",
+      "texto": "Explicar por qué un modelo no busca ni sabe como una persona, y qué consecuencias tiene eso.",
+      "competencia": "discernimiento"
+    }
   ],
   "pasos": [
     {
       "titulo": "La misma pregunta, dos respuestas",
       "momento": "gancho",
       "bloques": [
-        { "tipo": "texto", "md": "Le pedís a un asistente que te ayude con un mensaje. La respuesta está bien. Por curiosidad, apretás \"regenerar\" y aparece otra versión, distinta, también razonable. ¿Cuál es la \"verdadera\"?\n\nLa pregunta tiene sentido si pensamos que el asistente busca la respuesta en algún lugar, como un buscador. Pero no funciona así. Cuando entiendas cómo escribe, esa variación (y también sus errores) va a dejar de ser un misterio." },
-        { "tipo": "objetivos" }
+        {
+          "tipo": "texto",
+          "md": "Le pedís a un asistente que te ayude con un mensaje. La respuesta está bien. Por curiosidad, apretás \"regenerar\" y aparece otra versión, distinta, también razonable. ¿Cuál es la \"verdadera\"?\n\nLa pregunta tiene sentido si pensamos que el asistente busca la respuesta en algún lugar, como un buscador. Pero no funciona así. Cuando entiendas cómo escribe, esa variación (y también sus errores) va a dejar de ser un misterio."
+        },
+        {
+          "tipo": "objetivos"
+        }
       ]
     },
     {
       "titulo": "Escribir de a un fragmento",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "Un {{modelo de lenguaje grande}} (en inglés, *large language model* o LLM) hace, en el fondo, una sola cosa: dado un texto, estima qué fragmento es más probable que venga después. Elige uno, lo agrega y repite. Así, fragmento a fragmento, aparece una respuesta completa.\n\nEsos fragmentos se llaman {{tokens}}. A veces son palabras enteras, a veces pedazos de palabras o signos de puntuación. Para el modelo, cada token es un número.\n\nMirá cómo pasa con un ejemplo cotidiano. Podés pausar, ir escena por escena o activar la narración." },
-        { "tipo": "animacion", "ref": "prediccion-tokens" }
+        {
+          "tipo": "texto",
+          "md": "Un {{modelo de lenguaje grande}} (en inglés, *large language model* o LLM) hace, en el fondo, una sola cosa: dado un texto, estima qué fragmento es más probable que venga después. Elige uno, lo agrega y repite. Así, fragmento a fragmento, aparece una respuesta completa.\n\nEsos fragmentos se llaman {{tokens}}. A veces son palabras enteras, a veces pedazos de palabras o signos de puntuación. Para el modelo, cada token es un número.\n\nMirá cómo pasa con un ejemplo cotidiano. Podés pausar, ir escena por escena o activar la narración."
+        },
+        {
+          "tipo": "animacion",
+          "ref": "prediccion-tokens"
+        }
       ]
     },
     {
       "titulo": "Probá vos: el predictor de juguete",
       "momento": "practica",
       "bloques": [
-        { "tipo": "texto", "md": "Ahora te toca elegir a vos. Empezá una frase y fijate qué palabras aparecen como más probables. Probá elegir siempre la más probable, y después probá con otras. Con **Más sorpresa**, las palabras menos probables ganan chances: es lo que en los modelos reales se llama subir la {{temperatura}}." },
         {
-          "tipo": "predictor", "id": "predictor", "titulo": "¿Qué palabra sigue?",
+          "tipo": "texto",
+          "md": "Ahora te toca elegir a vos. Empezá una frase y fijate qué palabras aparecen como más probables. Probá elegir siempre la más probable, y después probá con otras. Con **Más sorpresa**, las palabras menos probables ganan chances: es lo que en los modelos reales se llama subir la {{temperatura}}."
+        },
+        {
+          "tipo": "predictor",
+          "id": "predictor",
+          "titulo": "¿Qué palabra sigue?",
           "frases": [
-            { "etiqueta": "Una reunión", "inicio": "Mañana tengo una reunión con el equipo y quiero", "cierre": "Con la opción más probable en cada paso, la frase suena correcta y previsible. Con más sorpresa, aparecen finales menos comunes.",
+            {
+              "etiqueta": "Una reunión",
+              "inicio": "Mañana tengo una reunión con el equipo y quiero",
+              "cierre": "Con la opción más probable en cada paso, la frase suena correcta y previsible. Con más sorpresa, aparecen finales menos comunes.",
               "siguientes": {
-                "": [ { "t": " preparar", "p": 45 }, { "t": " revisar", "p": 25 }, { "t": " llegar", "p": 18 }, { "t": " pedir", "p": 12 } ],
-                " preparar": [ { "t": " una", "p": 50 }, { "t": " los", "p": 30 }, { "t": " el", "p": 20 } ],
-                " preparar una": [ { "t": " agenda.", "p": 55 }, { "t": " presentación.", "p": 30 }, { "t": " lista.", "p": 15 } ],
-                " preparar los": [ { "t": " temas.", "p": 60 }, { "t": " números.", "p": 40 } ],
-                " preparar el": [ { "t": " informe.", "p": 75 }, { "t": " café.", "p": 25 } ],
-                " revisar": [ { "t": " los", "p": 60 }, { "t": " el", "p": 40 } ],
-                " revisar los": [ { "t": " pendientes.", "p": 70 }, { "t": " números.", "p": 30 } ],
-                " revisar el": [ { "t": " presupuesto.", "p": 60 }, { "t": " plan.", "p": 40 } ],
-                " llegar": [ { "t": " temprano.", "p": 70 }, { "t": " preparada.", "p": 30 } ],
-                " pedir": [ { "t": " ayuda.", "p": 50 }, { "t": " opiniones.", "p": 50 } ]
-              } },
-            { "etiqueta": "Un mensaje", "inicio": "Querida Laura, te escribo para", "cierre": "Cada palabra salió de elegir entre opciones probables. El modelo no sabe si Laura existe ni qué le pasó a quien escribe.",
+                "": [
+                  {
+                    "t": " preparar",
+                    "p": 45
+                  },
+                  {
+                    "t": " revisar",
+                    "p": 25
+                  },
+                  {
+                    "t": " llegar",
+                    "p": 18
+                  },
+                  {
+                    "t": " pedir",
+                    "p": 12
+                  }
+                ],
+                " preparar": [
+                  {
+                    "t": " una",
+                    "p": 50
+                  },
+                  {
+                    "t": " los",
+                    "p": 30
+                  },
+                  {
+                    "t": " el",
+                    "p": 20
+                  }
+                ],
+                " preparar una": [
+                  {
+                    "t": " agenda.",
+                    "p": 55
+                  },
+                  {
+                    "t": " presentación.",
+                    "p": 30
+                  },
+                  {
+                    "t": " lista.",
+                    "p": 15
+                  }
+                ],
+                " preparar los": [
+                  {
+                    "t": " temas.",
+                    "p": 60
+                  },
+                  {
+                    "t": " números.",
+                    "p": 40
+                  }
+                ],
+                " preparar el": [
+                  {
+                    "t": " informe.",
+                    "p": 75
+                  },
+                  {
+                    "t": " café.",
+                    "p": 25
+                  }
+                ],
+                " revisar": [
+                  {
+                    "t": " los",
+                    "p": 60
+                  },
+                  {
+                    "t": " el",
+                    "p": 40
+                  }
+                ],
+                " revisar los": [
+                  {
+                    "t": " pendientes.",
+                    "p": 70
+                  },
+                  {
+                    "t": " números.",
+                    "p": 30
+                  }
+                ],
+                " revisar el": [
+                  {
+                    "t": " presupuesto.",
+                    "p": 60
+                  },
+                  {
+                    "t": " plan.",
+                    "p": 40
+                  }
+                ],
+                " llegar": [
+                  {
+                    "t": " temprano.",
+                    "p": 70
+                  },
+                  {
+                    "t": " preparada.",
+                    "p": 30
+                  }
+                ],
+                " pedir": [
+                  {
+                    "t": " ayuda.",
+                    "p": 50
+                  },
+                  {
+                    "t": " opiniones.",
+                    "p": 50
+                  }
+                ]
+              }
+            },
+            {
+              "etiqueta": "Un mensaje",
+              "inicio": "Querida Laura, te escribo para",
+              "cierre": "Cada palabra salió de elegir entre opciones probables. El modelo no sabe si Laura existe ni qué le pasó a quien escribe.",
               "siguientes": {
-                "": [ { "t": " avisarte", "p": 40 }, { "t": " contarte", "p": 30 }, { "t": " pedirte", "p": 20 }, { "t": " agradecerte", "p": 10 } ],
-                " avisarte": [ { "t": " que", "p": 85 }, { "t": " sobre", "p": 15 } ],
-                " avisarte que": [ { "t": " mañana", "p": 55 }, { "t": " no", "p": 45 } ],
-                " avisarte que mañana": [ { "t": " llego", "p": 60 }, { "t": " no", "p": 40 } ],
-                " avisarte que mañana llego": [ { "t": " tarde.", "p": 70 }, { "t": " a las 10.", "p": 30 } ],
-                " avisarte que mañana no": [ { "t": " voy a poder ir.", "p": 100 } ],
-                " avisarte que no": [ { "t": " voy a poder ir.", "p": 100 } ],
-                " avisarte sobre": [ { "t": " la reunión.", "p": 100 } ],
-                " contarte": [ { "t": " que", "p": 70 }, { "t": " una", "p": 30 } ],
-                " contarte que": [ { "t": " terminé el informe.", "p": 60 }, { "t": " cambió el horario.", "p": 40 } ],
-                " contarte una": [ { "t": " novedad.", "p": 100 } ],
-                " pedirte": [ { "t": " un favor.", "p": 60 }, { "t": " ayuda.", "p": 40 } ],
-                " agradecerte": [ { "t": " la paciencia.", "p": 50 }, { "t": " por todo.", "p": 50 } ]
-              } },
-            { "etiqueta": "Una opinión", "inicio": "La inteligencia artificial es", "cierre": "Fijate: el modelo completa con lo que es frecuente en los textos que vio, no con lo que es verdadero. La misma frase puede terminar en un elogio o en una advertencia según qué palabra salga.",
+                "": [
+                  {
+                    "t": " avisarte",
+                    "p": 40
+                  },
+                  {
+                    "t": " contarte",
+                    "p": 30
+                  },
+                  {
+                    "t": " pedirte",
+                    "p": 20
+                  },
+                  {
+                    "t": " agradecerte",
+                    "p": 10
+                  }
+                ],
+                " avisarte": [
+                  {
+                    "t": " que",
+                    "p": 85
+                  },
+                  {
+                    "t": " sobre",
+                    "p": 15
+                  }
+                ],
+                " avisarte que": [
+                  {
+                    "t": " mañana",
+                    "p": 55
+                  },
+                  {
+                    "t": " no",
+                    "p": 45
+                  }
+                ],
+                " avisarte que mañana": [
+                  {
+                    "t": " llego",
+                    "p": 60
+                  },
+                  {
+                    "t": " no",
+                    "p": 40
+                  }
+                ],
+                " avisarte que mañana llego": [
+                  {
+                    "t": " tarde.",
+                    "p": 70
+                  },
+                  {
+                    "t": " a las 10.",
+                    "p": 30
+                  }
+                ],
+                " avisarte que mañana no": [
+                  {
+                    "t": " voy a poder ir.",
+                    "p": 100
+                  }
+                ],
+                " avisarte que no": [
+                  {
+                    "t": " voy a poder ir.",
+                    "p": 100
+                  }
+                ],
+                " avisarte sobre": [
+                  {
+                    "t": " la reunión.",
+                    "p": 100
+                  }
+                ],
+                " contarte": [
+                  {
+                    "t": " que",
+                    "p": 70
+                  },
+                  {
+                    "t": " una",
+                    "p": 30
+                  }
+                ],
+                " contarte que": [
+                  {
+                    "t": " terminé el informe.",
+                    "p": 60
+                  },
+                  {
+                    "t": " cambió el horario.",
+                    "p": 40
+                  }
+                ],
+                " contarte una": [
+                  {
+                    "t": " novedad.",
+                    "p": 100
+                  }
+                ],
+                " pedirte": [
+                  {
+                    "t": " un favor.",
+                    "p": 60
+                  },
+                  {
+                    "t": " ayuda.",
+                    "p": 40
+                  }
+                ],
+                " agradecerte": [
+                  {
+                    "t": " la paciencia.",
+                    "p": 50
+                  },
+                  {
+                    "t": " por todo.",
+                    "p": 50
+                  }
+                ]
+              }
+            },
+            {
+              "etiqueta": "Una opinión",
+              "inicio": "La inteligencia artificial es",
+              "cierre": "Fijate: el modelo completa con lo que es frecuente en los textos que vio, no con lo que es verdadero. La misma frase puede terminar en un elogio o en una advertencia según qué palabra salga.",
               "siguientes": {
-                "": [ { "t": " una", "p": 40 }, { "t": " un", "p": 25 }, { "t": " capaz", "p": 20 }, { "t": " peligrosa.", "p": 8 }, { "t": " el", "p": 7 } ],
-                " una": [ { "t": " herramienta", "p": 60 }, { "t": " tecnología", "p": 40 } ],
-                " una herramienta": [ { "t": " útil.", "p": 50 }, { "t": " poderosa.", "p": 30 }, { "t": " más.", "p": 20 } ],
-                " una tecnología": [ { "t": " nueva.", "p": 50 }, { "t": " que avanza rápido.", "p": 50 } ],
-                " un": [ { "t": " campo", "p": 50 }, { "t": " tema", "p": 50 } ],
-                " un campo": [ { "t": " de estudio.", "p": 100 } ],
-                " un tema": [ { "t": " de moda.", "p": 60 }, { "t": " complejo.", "p": 40 } ],
-                " capaz": [ { "t": " de", "p": 100 } ],
-                " capaz de": [ { "t": " escribir.", "p": 50 }, { "t": " aprender.", "p": 50 } ],
-                " el": [ { "t": " futuro.", "p": 100 } ]
-              } }
+                "": [
+                  {
+                    "t": " una",
+                    "p": 40
+                  },
+                  {
+                    "t": " un",
+                    "p": 25
+                  },
+                  {
+                    "t": " capaz",
+                    "p": 20
+                  },
+                  {
+                    "t": " peligrosa.",
+                    "p": 8
+                  },
+                  {
+                    "t": " el",
+                    "p": 7
+                  }
+                ],
+                " una": [
+                  {
+                    "t": " herramienta",
+                    "p": 60
+                  },
+                  {
+                    "t": " tecnología",
+                    "p": 40
+                  }
+                ],
+                " una herramienta": [
+                  {
+                    "t": " útil.",
+                    "p": 50
+                  },
+                  {
+                    "t": " poderosa.",
+                    "p": 30
+                  },
+                  {
+                    "t": " más.",
+                    "p": 20
+                  }
+                ],
+                " una tecnología": [
+                  {
+                    "t": " nueva.",
+                    "p": 50
+                  },
+                  {
+                    "t": " que avanza rápido.",
+                    "p": 50
+                  }
+                ],
+                " un": [
+                  {
+                    "t": " campo",
+                    "p": 50
+                  },
+                  {
+                    "t": " tema",
+                    "p": 50
+                  }
+                ],
+                " un campo": [
+                  {
+                    "t": " de estudio.",
+                    "p": 100
+                  }
+                ],
+                " un tema": [
+                  {
+                    "t": " de moda.",
+                    "p": 60
+                  },
+                  {
+                    "t": " complejo.",
+                    "p": 40
+                  }
+                ],
+                " capaz": [
+                  {
+                    "t": " de",
+                    "p": 100
+                  }
+                ],
+                " capaz de": [
+                  {
+                    "t": " escribir.",
+                    "p": 50
+                  },
+                  {
+                    "t": " aprender.",
+                    "p": 50
+                  }
+                ],
+                " el": [
+                  {
+                    "t": " futuro.",
+                    "p": 100
+                  }
+                ]
+              }
+            }
           ]
         }
       ]
@@ -80,9 +429,13 @@
       "titulo": "Cómo aprendió a hacerlo",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "Para estimar qué palabra sigue, el modelo pasó por dos etapas.\n\n**1. El entrenamiento.** Se le mostraron cantidades enormes de texto: libros, sitios web, artículos, código. Durante meses, la tarea fue siempre la misma: adivinar la palabra que sigue y corregirse un poco cada vez que se equivocaba. Esas correcciones ajustan miles de millones de valores internos, llamados {{parámetros}}. Al final, el modelo no guarda los textos como en una biblioteca: guarda patrones de cómo se escribe.\n\n**2. El ajuste posterior.** Un modelo que solo completa textos no es un buen asistente: si le escribís una pregunta, puede seguirla con otra pregunta. Por eso se lo ajusta con ejemplos de conversaciones y con la valoración de personas que eligen qué respuesta es mejor. Así aprende a seguir instrucciones, a conversar y a negarse a ciertos pedidos.\n\nLas dos etapas explican cosas que vas a notar al usarlo: escribe con fluidez sobre casi cualquier tema (por todo lo que leyó) y responde con un tono servicial (por el ajuste)." },
         {
-          "tipo": "video", "ref": "llm-breve-3b1b",
+          "tipo": "texto",
+          "md": "Para estimar qué palabra sigue, el modelo pasó por dos etapas.\n\n**1. El entrenamiento.** Se le mostraron cantidades enormes de texto: libros, sitios web, artículos, código. Durante meses, la tarea fue siempre la misma: adivinar la palabra que sigue y corregirse un poco cada vez que se equivocaba. Esas correcciones ajustan miles de millones de valores internos, llamados {{parámetros}}. Al final, el modelo no guarda los textos como en una biblioteca: guarda patrones de cómo se escribe.\n\n**2. El ajuste posterior.** Un modelo que solo completa textos no es un buen asistente: si le escribís una pregunta, puede seguirla con otra pregunta. Por eso se lo ajusta con ejemplos de conversaciones y con la valoración de personas que eligen qué respuesta es mejor. Así aprende a seguir instrucciones, a conversar y a negarse a ciertos pedidos.\n\nLas dos etapas explican cosas que vas a notar al usarlo: escribe con fluidez sobre casi cualquier tema (por todo lo que leyó) y responde con un tono servicial (por el ajuste)."
+        },
+        {
+          "tipo": "video",
+          "ref": "llm-breve-3b1b",
           "pregunta": "Prestá atención a las dos etapas: qué aprende el modelo en cada una y para qué sirve la segunda.",
           "resumen": [
             "Un modelo de lenguaje asigna probabilidades a las palabras que pueden seguir a un texto.",
@@ -92,16 +445,40 @@
             "Se entiende cómo se entrena un modelo, pero explicar por qué da una respuesta concreta sigue siendo difícil."
           ],
           "despues": {
-            "tipo": "quiz", "id": "video-quiz", "titulo": "Después del video", "competencia": "comprender", "objetivo": "m2-o2",
+            "tipo": "quiz",
+            "id": "video-quiz",
+            "titulo": "Después del video",
+            "competencia": "comprender",
+            "objetivo": "m2-o2",
             "preguntas": [
-              { "texto": "¿Para qué sirve el ajuste posterior al entrenamiento?", "opciones": [
-                { "texto": "Para que el modelo siga instrucciones y converse como un asistente.", "correcta": true, "feedback": "Exacto: el entrenamiento le enseña a escribir; el ajuste, a ser útil en una conversación." },
-                { "texto": "Para que aprenda datos nuevos de internet en cada respuesta.", "feedback": "No: el ajuste no lo conecta a internet. Cambia cómo responde, no lo que sabe." }
-              ] },
-              { "texto": "¿Qué guarda el modelo después del entrenamiento?", "opciones": [
-                { "texto": "Una copia de todos los textos que leyó.", "feedback": "No guarda los textos como una biblioteca, aunque a veces puede repetir fragmentos muy frecuentes." },
-                { "texto": "Patrones de cómo se escribe, en miles de millones de parámetros.", "correcta": true, "feedback": "Así es: lo que queda son valores ajustados que capturan patrones del lenguaje." }
-              ] }
+              {
+                "texto": "¿Para qué sirve el ajuste posterior al entrenamiento?",
+                "opciones": [
+                  {
+                    "texto": "Para que el modelo siga instrucciones y converse como un asistente.",
+                    "correcta": true,
+                    "feedback": "Exacto: el entrenamiento le enseña a escribir; el ajuste, a ser útil en una conversación."
+                  },
+                  {
+                    "texto": "Para que aprenda datos nuevos de internet en cada respuesta.",
+                    "feedback": "No: el ajuste no lo conecta a internet. Cambia cómo responde, no lo que sabe."
+                  }
+                ]
+              },
+              {
+                "texto": "¿Qué guarda el modelo después del entrenamiento?",
+                "opciones": [
+                  {
+                    "texto": "Una copia de todos los textos que leyó.",
+                    "feedback": "No guarda los textos como una biblioteca, aunque a veces puede repetir fragmentos muy frecuentes."
+                  },
+                  {
+                    "texto": "Patrones de cómo se escribe, en miles de millones de parámetros.",
+                    "correcta": true,
+                    "feedback": "Así es: lo que queda son valores ajustados que capturan patrones del lenguaje."
+                  }
+                ]
+              }
             ]
           }
         }
@@ -111,21 +488,52 @@
       "titulo": "Lo que el modelo tiene a la vista",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "Cuando conversás con un asistente, el modelo no recuerda como una persona. Lo que tiene \"a la vista\" en cada respuesta es la {{ventana de contexto}}: el texto de la conversación actual, tus instrucciones y los archivos que hayas adjuntado.\n\nTres consecuencias prácticas:\n\n- **La ventana tiene un límite.** En conversaciones muy largas, lo más antiguo puede quedar afuera o perder peso. Si algo es importante, conviene repetirlo o empezar una conversación nueva con un buen resumen.\n- **La memoria entre conversaciones es otra cosa.** Algunas herramientas guardan datos tuyos para próximas charlas. No es que el modelo aprenda de vos: la herramienta agrega esa información a la ventana. Lo vemos en el bloque de asistentes.\n- **Hay una fecha de corte.** El modelo aprendió con textos hasta cierto momento. Sobre lo que pasó después no sabe nada, salvo que la herramienta busque en internet y le pase el resultado.\n\nLos modelos actuales, además, son **multimodales**: pueden leer imágenes, documentos, planillas y audio, no solo texto. La lógica es la misma: todo se convierte en tokens que entran en la ventana." },
-        { "tipo": "nota", "estado": "atencion", "titulo": "Datos que cambian rápido", "md": "El tamaño de la ventana, la fecha de corte y las funciones de cada asistente cambian seguido. Por eso no los ponemos en el texto: los vas a encontrar con fecha en el bloque 4." }
+        {
+          "tipo": "texto",
+          "md": "Cuando conversás con un asistente, el modelo no recuerda como una persona. Lo que tiene \"a la vista\" en cada respuesta es la {{ventana de contexto}}: el texto de la conversación actual, tus instrucciones y los archivos que hayas adjuntado.\n\nTres consecuencias prácticas:\n\n- **La ventana tiene un límite.** En conversaciones muy largas, lo más antiguo puede quedar afuera o perder peso. Si algo es importante, conviene repetirlo o empezar una conversación nueva con un buen resumen.\n- **La memoria entre conversaciones es otra cosa.** Algunas herramientas guardan datos tuyos para próximas charlas. No es que el modelo aprenda de vos: la herramienta agrega esa información a la ventana. Lo vemos en el bloque de asistentes.\n- **Hay una fecha de corte.** El modelo aprendió con textos hasta cierto momento. Sobre lo que pasó después no sabe nada, salvo que la herramienta busque en internet y le pase el resultado.\n\nLos modelos actuales, además, son **multimodales**: pueden leer imágenes, documentos, planillas y audio, no solo texto. La lógica es la misma: todo se convierte en tokens que entran en la ventana."
+        },
+        {
+          "tipo": "animacion",
+          "ref": "ventana-contexto"
+        },
+        {
+          "tipo": "nota",
+          "estado": "atencion",
+          "titulo": "Datos que cambian rápido",
+          "md": "El tamaño de la ventana, la fecha de corte y las funciones de cada asistente cambian seguido. Por eso no los ponemos en el texto: los vas a encontrar con fecha en el bloque 4."
+        }
       ]
     },
     {
       "titulo": "No busca ni sabe como una persona",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "Juntando todo: un modelo de lenguaje no consulta una base de datos ni \"sabe\" cosas como las sabemos nosotros. Genera el texto más probable para tu pedido, con lo que aprendió y con lo que tiene en la ventana.\n\nPor eso puede escribir una explicación excelente y, en la línea siguiente, un dato que suena perfecto pero es falso. No miente a propósito: no tiene forma de distinguir lo probable de lo verdadero. Esto tiene un nombre, {{alucinación}}, y es el tema del próximo módulo.\n\nLa buena noticia es que, sabiendo esto, podés usarlo mucho mejor: pedirle lo que hace bien, darle el contexto que necesita y revisar lo que importa." },
         {
-          "tipo": "vf", "id": "busca-sabe", "titulo": "¿Cómo lo explicarías?", "competencia": "discernimiento", "objetivo": "m2-o3",
+          "tipo": "texto",
+          "md": "Juntando todo: un modelo de lenguaje no consulta una base de datos ni \"sabe\" cosas como las sabemos nosotros. Genera el texto más probable para tu pedido, con lo que aprendió y con lo que tiene en la ventana.\n\nPor eso puede escribir una explicación excelente y, en la línea siguiente, un dato que suena perfecto pero es falso. No miente a propósito: no tiene forma de distinguir lo probable de lo verdadero. Esto tiene un nombre, {{alucinación}}, y es el tema del próximo módulo.\n\nLa buena noticia es que, sabiendo esto, podés usarlo mucho mejor: pedirle lo que hace bien, darle el contexto que necesita y revisar lo que importa."
+        },
+        {
+          "tipo": "vf",
+          "id": "busca-sabe",
+          "titulo": "¿Cómo lo explicarías?",
+          "competencia": "discernimiento",
+          "objetivo": "m2-o3",
           "afirmaciones": [
-            { "texto": "Si un asistente responde con mucha seguridad, es porque verificó la información.", "verdadero": false, "explicacion": "El tono seguro sale de cómo aprendió a escribir, no de una verificación. Puede sonar igual de seguro cuando se equivoca." },
-            { "texto": "Si le doy el documento en la conversación, puede trabajar con información que no estaba en su entrenamiento.", "verdadero": true, "explicacion": "Lo que adjuntás entra en la ventana de contexto y el modelo lo puede usar en esa conversación." },
-            { "texto": "El modelo recuerda todo lo que hablamos en conversaciones anteriores.", "verdadero": false, "explicacion": "Solo ve lo que hay en la ventana. Algunas herramientas agregan una memoria, pero es información que se suma a la ventana, no un recuerdo." }
+            {
+              "texto": "Si un asistente responde con mucha seguridad, es porque verificó la información.",
+              "verdadero": false,
+              "explicacion": "El tono seguro sale de cómo aprendió a escribir, no de una verificación. Puede sonar igual de seguro cuando se equivoca."
+            },
+            {
+              "texto": "Si le doy el documento en la conversación, puede trabajar con información que no estaba en su entrenamiento.",
+              "verdadero": true,
+              "explicacion": "Lo que adjuntás entra en la ventana de contexto y el modelo lo puede usar en esa conversación."
+            },
+            {
+              "texto": "El modelo recuerda todo lo que hablamos en conversaciones anteriores.",
+              "verdadero": false,
+              "explicacion": "Solo ve lo que hay en la ventana. Algunas herramientas agregan una memoria, pero es información que se suma a la ventana, no un recuerdo."
+            }
           ]
         }
       ]
@@ -135,29 +543,95 @@
       "momento": "evaluacion",
       "bloques": [
         {
-          "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "comprender", "objetivo": "m2-o1",
+          "tipo": "quiz",
+          "id": "chequeo",
+          "titulo": "¿Qué te llevás?",
+          "competencia": "comprender",
+          "objetivo": "m2-o1",
           "preguntas": [
-            { "texto": "¿Qué hace un modelo de lenguaje cuando escribe una respuesta?", "opciones": [
-              { "texto": "Elige el próximo fragmento según su probabilidad, lo agrega y repite.", "correcta": true, "feedback": "Eso es todo el mecanismo, repetido miles de veces por respuesta." },
-              { "texto": "Busca la respuesta correcta en una base de datos.", "feedback": "No hay una base de respuestas: el texto se genera en el momento." },
-              { "texto": "Copia el párrafo más parecido que encuentra en internet.", "feedback": "No copia ni busca, salvo que la herramienta tenga búsqueda web activada y le pase resultados." }
-            ] },
-            { "texto": "Si una conversación es muy larga y el asistente \"se olvida\" de algo del principio, ¿qué pasó?", "opciones": [
-              { "texto": "Se llenó la ventana de contexto y esa parte quedó afuera o perdió peso.", "correcta": true, "feedback": "Exacto. Conviene resumir lo importante o empezar una conversación nueva." },
-              { "texto": "El modelo se cansó.", "feedback": "No hay cansancio: es un límite de cuánto texto puede tener a la vista." }
-            ] },
-            { "texto": "¿Por qué la misma pregunta puede dar respuestas distintas?", "opciones": [
-              { "texto": "Porque el modelo elige entre opciones probables y no siempre la misma.", "correcta": true, "feedback": "Sí: hay un margen de azar en cada elección." },
-              { "texto": "Porque cada vez consulta una fuente distinta.", "feedback": "La variación no viene de las fuentes, sino de cómo elige cada fragmento." }
-            ] }
+            {
+              "texto": "¿Qué hace un modelo de lenguaje cuando escribe una respuesta?",
+              "opciones": [
+                {
+                  "texto": "Elige el próximo fragmento según su probabilidad, lo agrega y repite.",
+                  "correcta": true,
+                  "feedback": "Eso es todo el mecanismo, repetido miles de veces por respuesta."
+                },
+                {
+                  "texto": "Busca la respuesta correcta en una base de datos.",
+                  "feedback": "No hay una base de respuestas: el texto se genera en el momento."
+                },
+                {
+                  "texto": "Copia el párrafo más parecido que encuentra en internet.",
+                  "feedback": "No copia ni busca, salvo que la herramienta tenga búsqueda web activada y le pase resultados."
+                }
+              ]
+            },
+            {
+              "texto": "Si una conversación es muy larga y el asistente \"se olvida\" de algo del principio, ¿qué pasó?",
+              "opciones": [
+                {
+                  "texto": "Se llenó la ventana de contexto y esa parte quedó afuera o perdió peso.",
+                  "correcta": true,
+                  "feedback": "Exacto. Conviene resumir lo importante o empezar una conversación nueva."
+                },
+                {
+                  "texto": "El modelo se cansó.",
+                  "feedback": "No hay cansancio: es un límite de cuánto texto puede tener a la vista."
+                }
+              ]
+            },
+            {
+              "texto": "¿Por qué la misma pregunta puede dar respuestas distintas?",
+              "opciones": [
+                {
+                  "texto": "Porque el modelo elige entre opciones probables y no siempre la misma.",
+                  "correcta": true,
+                  "feedback": "Sí: hay un margen de azar en cada elección."
+                },
+                {
+                  "texto": "Porque cada vez consulta una fuente distinta.",
+                  "feedback": "La variación no viene de las fuentes, sino de cómo elige cada fragmento."
+                }
+              ]
+            }
           ]
         },
-        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "Ahora que sabés cómo escribe un modelo, ¿qué cambiarías en la forma en que usás (o pensabas usar) un asistente en tu trabajo?" },
-        { "tipo": "profundizar", "fuentes": [
-          { "titulo": "Qué hace ChatGPT y por qué funciona", "apa": "Wolfram, S. (2023, 14 de febrero). *What is ChatGPT doing… and why does it work?* Stephen Wolfram Writings.", "url": "https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/", "idioma": "en", "nivel": "Profundización", "tipo": "articulo" },
-          { "titulo": "Introducción a los modelos de lenguaje grandes (charla de una hora)", "apa": "Karpathy, A. (2023). *[1hr Talk] Intro to large language models* [Video]. YouTube.", "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g", "idioma": "en", "nivel": "Profundización", "tipo": "video" },
-          { "titulo": "Ventanas de contexto, en la documentación de Claude", "apa": "Anthropic. (s.f.). *Context windows*. Claude Docs.", "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows", "idioma": "en", "nivel": "Técnica (opcional)", "tipo": "documentacion" }
-        ] }
+        {
+          "tipo": "reflexion",
+          "id": "diario",
+          "titulo": "Para tu diario",
+          "pregunta": "Ahora que sabés cómo escribe un modelo, ¿qué cambiarías en la forma en que usás (o pensabas usar) un asistente en tu trabajo?"
+        },
+        {
+          "tipo": "profundizar",
+          "fuentes": [
+            {
+              "titulo": "Qué hace ChatGPT y por qué funciona",
+              "apa": "Wolfram, S. (2023, 14 de febrero). *What is ChatGPT doing… and why does it work?* Stephen Wolfram Writings.",
+              "url": "https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/",
+              "idioma": "en",
+              "nivel": "Profundización",
+              "tipo": "articulo"
+            },
+            {
+              "titulo": "Introducción a los modelos de lenguaje grandes (charla de una hora)",
+              "apa": "Karpathy, A. (2023). *[1hr Talk] Intro to large language models* [Video]. YouTube.",
+              "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g",
+              "idioma": "en",
+              "nivel": "Profundización",
+              "tipo": "video"
+            },
+            {
+              "titulo": "Ventanas de contexto, en la documentación de Claude",
+              "apa": "Anthropic. (s.f.). *Context windows*. Claude Docs.",
+              "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+              "idioma": "en",
+              "nivel": "Técnica (opcional)",
+              "tipo": "documentacion"
+            }
+          ]
+        }
       ]
     }
   ]

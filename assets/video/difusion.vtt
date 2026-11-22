@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.559
+Diego pide una imagen: una casa con el sol de la tarde.
+
+2
+00:00:03.559 --> 00:00:06.341
+El modelo no busca una foto en un archivo.
+
+3
+00:00:06.341 --> 00:00:11.000
+Arranca con algo parecido a la nieve de un televisor viejo: puro ruido.
+
+4
+00:00:11.040 --> 00:00:17.957
+En cada paso, el modelo quita un poco de ruido, en la dirección de lo que se pidió.
+
+5
+00:00:17.957 --> 00:00:23.123
+Después de muchos pasos, aparece una casa, el sol y el pasto.
+
+6
+00:00:23.123 --> 00:00:26.040
+Nadie la dibujó: se fue limpiando.
+
+7
+00:00:26.080 --> 00:00:29.951
+El pedido es lo que orienta cada paso de limpieza.
+
+8
+00:00:29.951 --> 00:00:38.080
+Por eso un prompt visual bien descripto, con el estilo, la luz y el encuadre, cambia tanto el resultado.
+
+9
+00:00:38.120 --> 00:00:44.325
+Si se repite el pedido, el ruido inicial es otro, y la imagen también: el sol en otro lugar, otra puerta.
+
+10
+00:00:44.325 --> 00:00:51.120
+Por eso nunca sale dos veces igual, y por eso los detalles difíciles, como las manos o las letras, a veces fallan.

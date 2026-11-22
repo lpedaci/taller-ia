@@ -1,0 +1,37 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.205
+Joaquín quiere saber cuántos días de licencia por estudio le corresponden.
+
+2
+00:00:04.205 --> 00:00:10.000
+La respuesta está en el reglamento interno de su empresa, que ningún modelo leyó en su entrenamiento.
+
+3
+00:00:10.040 --> 00:00:13.299
+Un asistente con RAG no responde de memoria.
+
+4
+00:00:13.299 --> 00:00:22.040
+Primero busca en los documentos que le conectaron, y encuentra dos fragmentos del reglamento que hablan de licencias.
+
+5
+00:00:22.080 --> 00:00:30.997
+El modelo recibe la pregunta junto con esos fragmentos y responde con esa información, indicando la página.
+
+6
+00:00:30.997 --> 00:00:35.080
+Joaquín puede abrir el reglamento y comprobarlo.
+
+7
+00:00:35.120 --> 00:00:41.763
+Sin RAG, el modelo respondería con lo más probable para cualquier empresa: diez días, quizás.
+
+8
+00:00:41.763 --> 00:00:43.549
+Sonaría igual de seguro.
+
+9
+00:00:43.549 --> 00:00:47.120
+La diferencia está en de dónde sale la respuesta.

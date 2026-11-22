@@ -1,107 +1,372 @@
 {
   "titulo": "Conversar con la IA por voz",
   "objetivos": [
-    { "id": "m12-o1", "texto": "Explicar qué es el modo de voz y en qué se diferencia de dictar o de escuchar una respuesta leída.", "competencia": "crear" },
-    { "id": "m12-o2", "texto": "Diseñar una sesión de práctica oral de un idioma y un plan semanal para sostenerla.", "competencia": "descripcion" },
-    { "id": "m12-o3", "texto": "Reconocer usos de la voz como apoyo de accesibilidad, sin presentarla como reemplazo de los apoyos profesionales.", "competencia": "diligencia" },
-    { "id": "m12-o4", "texto": "Aplicar los cuidados de discernimiento y de privacidad a lo que se escucha y se dice por voz.", "competencia": "discernimiento" }
+    {
+      "id": "m12-o1",
+      "texto": "Explicar qué es el modo de voz y en qué se diferencia de dictar o de escuchar una respuesta leída.",
+      "competencia": "crear"
+    },
+    {
+      "id": "m12-o2",
+      "texto": "Diseñar una sesión de práctica oral de un idioma y un plan semanal para sostenerla.",
+      "competencia": "descripcion"
+    },
+    {
+      "id": "m12-o3",
+      "texto": "Reconocer usos de la voz como apoyo de accesibilidad, sin presentarla como reemplazo de los apoyos profesionales.",
+      "competencia": "diligencia"
+    },
+    {
+      "id": "m12-o4",
+      "texto": "Aplicar los cuidados de discernimiento y de privacidad a lo que se escucha y se dice por voz.",
+      "competencia": "discernimiento"
+    }
   ],
   "pasos": [
     {
       "titulo": "Ensayar caminando",
       "momento": "gancho",
       "bloques": [
-        { "tipo": "texto", "md": "Mariana tiene una entrevista en inglés el jueves para un puesto en una empresa de logística. Lee bien, escribe bien, pero cuando tiene que hablar se traba. No tiene tiempo de tomar clases antes del jueves.\n\nEl martes, mientras camina al trabajo, abre el asistente en el celular, toca el ícono de voz y le pide que sea la persona que la va a entrevistar. Durante quince minutos le hace preguntas, ella responde en voz alta, la interrumpe para pedirle que hable más despacio, se ríe cuando no le sale una palabra. Al final le pide un resumen escrito con sus errores.\n\nNo reemplaza a un profesor. Pero el jueves Mariana ya había dicho esas respuestas en voz alta cinco veces. En este módulo vas a armar tu propia sesión." },
-        { "tipo": "objetivos" }
+        {
+          "tipo": "texto",
+          "md": "Mariana tiene una entrevista en inglés el jueves para un puesto en una empresa de logística. Lee bien, escribe bien, pero cuando tiene que hablar se traba. No tiene tiempo de tomar clases antes del jueves.\n\nEl martes, mientras camina al trabajo, abre el asistente en el celular, toca el ícono de voz y le pide que sea la persona que la va a entrevistar. Durante quince minutos le hace preguntas, ella responde en voz alta, la interrumpe para pedirle que hable más despacio, se ríe cuando no le sale una palabra. Al final le pide un resumen escrito con sus errores.\n\nNo reemplaza a un profesor. Pero el jueves Mariana ya había dicho esas respuestas en voz alta cinco veces. En este módulo vas a armar tu propia sesión."
+        },
+        {
+          "tipo": "objetivos"
+        }
       ]
     },
     {
       "titulo": "Qué es el modo de voz",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "El **modo de voz** es una conversación hablada, en tiempo real, con el asistente. Hablás, te responde con voz, y podés interrumpirlo, pedirle que hable más lento, que repita o cambiar de tema, como en una conversación.\n\nNo es lo mismo que otras dos funciones parecidas:\n\n- **Dictar** es escribir con la voz: lo que decís se convierte en texto en el cuadro del chat y después lo enviás. La respuesta llega escrita.\n- **Escuchar una respuesta leída** es que el asistente lea en voz alta lo que escribió. Vos seguís escribiendo.\n\nEn el modo de voz, la conversación entera es hablada. Al terminar, la transcripción suele quedar en el historial." },
-        { "tipo": "herramientas", "id": "voz", "titulo": "El modo de voz en cada asistente", "claves": ["voz"], "ecosistema": false }
+        {
+          "tipo": "texto",
+          "md": "El **modo de voz** es una conversación hablada, en tiempo real, con el asistente. Hablás, te responde con voz, y podés interrumpirlo, pedirle que hable más lento, que repita o cambiar de tema, como en una conversación.\n\nNo es lo mismo que otras dos funciones parecidas:\n\n- **Dictar** es escribir con la voz: lo que decís se convierte en texto en el cuadro del chat y después lo enviás. La respuesta llega escrita.\n- **Escuchar una respuesta leída** es que el asistente lea en voz alta lo que escribió. Vos seguís escribiendo.\n\nEn el modo de voz, la conversación entera es hablada. Al terminar, la transcripción suele quedar en el historial."
+        },
+        {
+          "tipo": "animacion",
+          "ref": "modo-voz"
+        },
+        {
+          "tipo": "herramientas",
+          "id": "voz",
+          "titulo": "El modo de voz en cada asistente",
+          "claves": [
+            "voz"
+          ],
+          "ecosistema": false
+        }
       ]
     },
     {
       "titulo": "Usos para aprender",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "**Práctica oral de idiomas.** Es el uso más potente. Podés:\n\n- pedir conversaciones guiadas según tu nivel del Marco Común Europeo (de A2, básico, a C1, avanzado);\n- hacer juegos de rol: una entrevista de trabajo, una reunión, un viaje, una consulta;\n- elegir cuándo te corrige: en el momento o al final, para no cortar la conversación;\n- practicar vocabulario de un tema y la pronunciación de palabras que te cuestan.\n\n**Repaso de contenidos.** Le pedís que te haga preguntas sobre un tema y respondés en voz alta. Explicar con tus palabras es una de las mejores formas de fijar lo que aprendiste.\n\n**Preparar presentaciones y entrevistas.** Ensayás con preguntas difíciles y le pedís una devolución: qué fue claro, qué fue largo, qué faltó.\n\n**Pensar en voz alta.** Ordenar las ideas de un proyecto mientras caminás o viajás, y al final pedir un resumen escrito." },
-        { "tipo": "constructor", "id": "speaking", "titulo": "Armá tu sesión de speaking", "modo": "prompt", "salida": "Tu prompt para el modo de voz", "competencia": "descripcion", "objetivo": "m12-o2", "evidencia": "Prompt para una sesión de práctica oral", "consigna": "Elegí las opciones. El prompt se arma abajo: copialo, abrí el modo de voz y pegalo (o leelo en voz alta) para empezar.", "campos": [
-          { "id": "idioma", "etiqueta": "Idioma", "obligatorio": true, "opciones": ["inglés", "portugués", "francés", "italiano", "alemán"], "ayuda": "El idioma que querés practicar.", "ejemplo": "inglés" },
-          { "id": "nivel", "etiqueta": "Tu nivel", "opciones": ["A2 (básico)", "B1 (intermedio)", "B2 (intermedio alto)", "C1 (avanzado)"], "ayuda": "Si no lo sabés, elegí el que te parezca y ajustalo después.", "ejemplo": "B1 (intermedio)" },
-          { "id": "situacion", "etiqueta": "Situación", "multilinea": true, "ayuda": "El juego de rol: dónde estás y qué pasa.", "ejemplo": "una entrevista de trabajo para un puesto de atención al cliente en una empresa de logística" },
-          { "id": "rol", "etiqueta": "Rol de la IA", "ayuda": "Quién es la IA en la conversación.", "ejemplo": "la persona de recursos humanos que me entrevista" },
-          { "id": "corregir", "etiqueta": "Cuándo corregirte", "opciones": ["al final de la conversación", "en el momento, solo los errores importantes", "en el momento, todos los errores"], "ayuda": "Al final no corta la conversación; en el momento aprendés más rápido.", "ejemplo": "al final de la conversación" },
-          { "id": "duracion", "etiqueta": "Duración", "opciones": ["5 minutos", "10 minutos", "15 minutos"], "ayuda": "Mejor corto y seguido que largo y de vez en cuando.", "ejemplo": "10 minutos" },
-          { "id": "resumen", "etiqueta": "Resumen escrito al final", "opciones": ["sí, con mis errores y cómo decirlo mejor", "no"], "ayuda": "Te sirve para anotar en tu diario.", "ejemplo": "sí, con mis errores y cómo decirlo mejor" }
-        ], "plantilla": "Quiero practicar {idioma} oral. Mi nivel es {nivel} del Marco Común Europeo.\n\nHagamos un juego de rol: {situacion}. Vos sos {rol}.\n\nHablá a un ritmo adecuado para mi nivel y hacé una pregunta por vez. Si te pido que repitas o que hables más despacio, hacelo.\n\nCorregime {corregir}.\n\nDuración: unos {duracion}.\n\nResumen escrito al final: {resumen}." }
+        {
+          "tipo": "texto",
+          "md": "**Práctica oral de idiomas.** Es el uso más potente. Podés:\n\n- pedir conversaciones guiadas según tu nivel del Marco Común Europeo (de A2, básico, a C1, avanzado);\n- hacer juegos de rol: una entrevista de trabajo, una reunión, un viaje, una consulta;\n- elegir cuándo te corrige: en el momento o al final, para no cortar la conversación;\n- practicar vocabulario de un tema y la pronunciación de palabras que te cuestan.\n\n**Repaso de contenidos.** Le pedís que te haga preguntas sobre un tema y respondés en voz alta. Explicar con tus palabras es una de las mejores formas de fijar lo que aprendiste.\n\n**Preparar presentaciones y entrevistas.** Ensayás con preguntas difíciles y le pedís una devolución: qué fue claro, qué fue largo, qué faltó.\n\n**Pensar en voz alta.** Ordenar las ideas de un proyecto mientras caminás o viajás, y al final pedir un resumen escrito."
+        },
+        {
+          "tipo": "constructor",
+          "id": "speaking",
+          "titulo": "Armá tu sesión de speaking",
+          "modo": "prompt",
+          "salida": "Tu prompt para el modo de voz",
+          "competencia": "descripcion",
+          "objetivo": "m12-o2",
+          "evidencia": "Prompt para una sesión de práctica oral",
+          "consigna": "Elegí las opciones. El prompt se arma abajo: copialo, abrí el modo de voz y pegalo (o leelo en voz alta) para empezar.",
+          "campos": [
+            {
+              "id": "idioma",
+              "etiqueta": "Idioma",
+              "obligatorio": true,
+              "opciones": [
+                "inglés",
+                "portugués",
+                "francés",
+                "italiano",
+                "alemán"
+              ],
+              "ayuda": "El idioma que querés practicar.",
+              "ejemplo": "inglés"
+            },
+            {
+              "id": "nivel",
+              "etiqueta": "Tu nivel",
+              "opciones": [
+                "A2 (básico)",
+                "B1 (intermedio)",
+                "B2 (intermedio alto)",
+                "C1 (avanzado)"
+              ],
+              "ayuda": "Si no lo sabés, elegí el que te parezca y ajustalo después.",
+              "ejemplo": "B1 (intermedio)"
+            },
+            {
+              "id": "situacion",
+              "etiqueta": "Situación",
+              "multilinea": true,
+              "ayuda": "El juego de rol: dónde estás y qué pasa.",
+              "ejemplo": "una entrevista de trabajo para un puesto de atención al cliente en una empresa de logística"
+            },
+            {
+              "id": "rol",
+              "etiqueta": "Rol de la IA",
+              "ayuda": "Quién es la IA en la conversación.",
+              "ejemplo": "la persona de recursos humanos que me entrevista"
+            },
+            {
+              "id": "corregir",
+              "etiqueta": "Cuándo corregirte",
+              "opciones": [
+                "al final de la conversación",
+                "en el momento, solo los errores importantes",
+                "en el momento, todos los errores"
+              ],
+              "ayuda": "Al final no corta la conversación; en el momento aprendés más rápido.",
+              "ejemplo": "al final de la conversación"
+            },
+            {
+              "id": "duracion",
+              "etiqueta": "Duración",
+              "opciones": [
+                "5 minutos",
+                "10 minutos",
+                "15 minutos"
+              ],
+              "ayuda": "Mejor corto y seguido que largo y de vez en cuando.",
+              "ejemplo": "10 minutos"
+            },
+            {
+              "id": "resumen",
+              "etiqueta": "Resumen escrito al final",
+              "opciones": [
+                "sí, con mis errores y cómo decirlo mejor",
+                "no"
+              ],
+              "ayuda": "Te sirve para anotar en tu diario.",
+              "ejemplo": "sí, con mis errores y cómo decirlo mejor"
+            }
+          ],
+          "plantilla": "Quiero practicar {idioma} oral. Mi nivel es {nivel} del Marco Común Europeo.\n\nHagamos un juego de rol: {situacion}. Vos sos {rol}.\n\nHablá a un ritmo adecuado para mi nivel y hacé una pregunta por vez. Si te pido que repitas o que hables más despacio, hacelo.\n\nCorregime {corregir}.\n\nDuración: unos {duracion}.\n\nResumen escrito al final: {resumen}."
+        }
       ]
     },
     {
       "titulo": "Tu plan de práctica",
       "momento": "practica",
       "bloques": [
-        { "tipo": "texto", "md": "Una sesión ayuda; tres por semana cambian algo. Armá un plan corto y realista: tres sesiones de 5 a 15 minutos, cada una con un objetivo concreto. Pensá también cómo vas a registrar tu avance en el diario: por ejemplo, anotando los errores que se repiten o una frase nueva por sesión." },
-        { "tipo": "tabla", "id": "plan", "titulo": "Mi plan de la semana", "competencia": "descripcion", "objetivo": "m12-o2", "evidencia": "Plan semanal de práctica oral con IA", "consigna": "Completá las tres sesiones. Podés cambiarlas después.", "columnas": [
-          { "id": "cuando", "titulo": "Día y duración" },
-          { "id": "objetivo", "titulo": "Objetivo" },
-          { "id": "situacion", "titulo": "Situación o tema" },
-          { "id": "registro", "titulo": "Cómo lo registro en el diario" }
-        ], "filas": [
-          { "id": "s1", "titulo": "Sesión 1" },
-          { "id": "s2", "titulo": "Sesión 2" },
-          { "id": "s3", "titulo": "Sesión 3" }
-        ] }
+        {
+          "tipo": "texto",
+          "md": "Una sesión ayuda; tres por semana cambian algo. Armá un plan corto y realista: tres sesiones de 5 a 15 minutos, cada una con un objetivo concreto. Pensá también cómo vas a registrar tu avance en el diario: por ejemplo, anotando los errores que se repiten o una frase nueva por sesión."
+        },
+        {
+          "tipo": "tabla",
+          "id": "plan",
+          "titulo": "Mi plan de la semana",
+          "competencia": "descripcion",
+          "objetivo": "m12-o2",
+          "evidencia": "Plan semanal de práctica oral con IA",
+          "consigna": "Completá las tres sesiones. Podés cambiarlas después.",
+          "columnas": [
+            {
+              "id": "cuando",
+              "titulo": "Día y duración"
+            },
+            {
+              "id": "objetivo",
+              "titulo": "Objetivo"
+            },
+            {
+              "id": "situacion",
+              "titulo": "Situación o tema"
+            },
+            {
+              "id": "registro",
+              "titulo": "Cómo lo registro en el diario"
+            }
+          ],
+          "filas": [
+            {
+              "id": "s1",
+              "titulo": "Sesión 1"
+            },
+            {
+              "id": "s2",
+              "titulo": "Sesión 2"
+            },
+            {
+              "id": "s3",
+              "titulo": "Sesión 3"
+            }
+          ]
+        }
       ]
     },
     {
       "titulo": "La voz como apoyo de accesibilidad",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "Para muchas personas, conversar por voz no es una comodidad sino lo que les permite usar la herramienta:\n\n- personas con **baja visión o ceguera**, que pueden conversar sin depender de la pantalla;\n- personas con **dificultades motrices** que complican escribir;\n- personas con **dislexia** u otras dificultades de lectura y escritura;\n- personas que **se expresan mejor hablando** que escribiendo.\n\nEn todos los casos es una opción más, que se suma a las herramientas de accesibilidad del sistema (lectores de pantalla, dictado, ampliación) y a los apoyos profesionales. No los reemplaza." },
-        { "tipo": "quiz", "id": "accesibilidad", "titulo": "Escenarios de accesibilidad", "competencia": "diligencia", "objetivo": "m12-o3", "consigna": "Cinco personas, cinco necesidades. ¿Qué tipo de interacción por voz le serviría más a cada una?", "preguntas": [
-          { "texto": "Elena tiene baja visión y quiere repasar para un examen de su curso de enfermería.", "opciones": [
-            { "texto": "El modo de voz, pidiéndole que le haga preguntas del tema y que le diga si su respuesta fue correcta.", "correcta": true, "feedback": "Repasa sin depender de la pantalla, en un formato de pregunta y respuesta que además ayuda a fijar. Si usa lector de pantalla, puede combinarlo." },
-            { "texto": "Pedirle un resumen escrito largo con letra grande.", "feedback": "Puede servir, pero leer un texto largo es justo lo que le cuesta. La conversación hablada le resuelve más." }
-          ] },
-          { "texto": "Raúl tiene artritis en las manos y escribir en el teclado le duele. Tiene que preparar un informe.", "opciones": [
-            { "texto": "Dictar o usar el modo de voz para armar el borrador, y revisarlo después con calma.", "correcta": true, "feedback": "La voz le ahorra el esfuerzo de tipear. La revisión sigue siendo suya: los errores de transcripción existen." },
-            { "texto": "Que la IA escriba el informe completo sin su intervención.", "feedback": "El informe tiene que reflejar lo que Raúl sabe. La voz le permite dictarlo; no hace falta delegarle el contenido." }
-          ] },
-          { "texto": "Tomás tiene dislexia y entiende mucho mejor cuando escucha.", "opciones": [
-            { "texto": "Que el asistente le lea las respuestas en voz alta, o conversar por voz, pidiendo respuestas cortas, de una idea por vez.", "correcta": true, "feedback": "Escuchar y pedir respuestas breves reduce la carga de lectura. Es un apoyo que se suma a los que ya usa." },
-            { "texto": "Que deje de usar texto escrito por completo.", "feedback": "La voz es una opción más, no un reemplazo. Tomás puede elegir según la tarea." }
-          ] },
-          { "texto": "Marta se expresa mucho mejor hablando que escribiendo y tiene que ordenar las ideas de un proyecto.", "opciones": [
-            { "texto": "Pensar en voz alta en el modo de voz y pedir al final un resumen escrito con sus ideas ordenadas.", "correcta": true, "feedback": "Habla con libertad y se queda con un texto para seguir trabajando. Conviene que revise que el resumen diga lo que ella quiso decir." },
-            { "texto": "Escribir igual, porque así se practica.", "feedback": "Puede practicar escritura en otro momento. Para ordenar ideas, usar su fortaleza le rinde más." }
-          ] },
-          { "texto": "Joaquín es ciego, usa un lector de pantalla y quiere practicar para una entrevista laboral.", "opciones": [
-            { "texto": "Un juego de rol en modo de voz, después de comprobar que la app funcione bien con su lector de pantalla.", "correcta": true, "feedback": "La práctica hablada le sirve, y verificar la accesibilidad de la app con su lector es parte de elegir la herramienta." },
-            { "texto": "Ninguna: la IA no sirve para personas ciegas.", "feedback": "Bien configurada, puede ser un apoyo muy útil. Lo importante es elegir una app accesible con su lector." }
-          ] }
-        ] }
+        {
+          "tipo": "texto",
+          "md": "Para muchas personas, conversar por voz no es una comodidad sino lo que les permite usar la herramienta:\n\n- personas con **baja visión o ceguera**, que pueden conversar sin depender de la pantalla;\n- personas con **dificultades motrices** que complican escribir;\n- personas con **dislexia** u otras dificultades de lectura y escritura;\n- personas que **se expresan mejor hablando** que escribiendo.\n\nEn todos los casos es una opción más, que se suma a las herramientas de accesibilidad del sistema (lectores de pantalla, dictado, ampliación) y a los apoyos profesionales. No los reemplaza."
+        },
+        {
+          "tipo": "quiz",
+          "id": "accesibilidad",
+          "titulo": "Escenarios de accesibilidad",
+          "competencia": "diligencia",
+          "objetivo": "m12-o3",
+          "consigna": "Cinco personas, cinco necesidades. ¿Qué tipo de interacción por voz le serviría más a cada una?",
+          "preguntas": [
+            {
+              "texto": "Elena tiene baja visión y quiere repasar para un examen de su curso de enfermería.",
+              "opciones": [
+                {
+                  "texto": "El modo de voz, pidiéndole que le haga preguntas del tema y que le diga si su respuesta fue correcta.",
+                  "correcta": true,
+                  "feedback": "Repasa sin depender de la pantalla, en un formato de pregunta y respuesta que además ayuda a fijar. Si usa lector de pantalla, puede combinarlo."
+                },
+                {
+                  "texto": "Pedirle un resumen escrito largo con letra grande.",
+                  "feedback": "Puede servir, pero leer un texto largo es justo lo que le cuesta. La conversación hablada le resuelve más."
+                }
+              ]
+            },
+            {
+              "texto": "Raúl tiene artritis en las manos y escribir en el teclado le duele. Tiene que preparar un informe.",
+              "opciones": [
+                {
+                  "texto": "Dictar o usar el modo de voz para armar el borrador, y revisarlo después con calma.",
+                  "correcta": true,
+                  "feedback": "La voz le ahorra el esfuerzo de tipear. La revisión sigue siendo suya: los errores de transcripción existen."
+                },
+                {
+                  "texto": "Que la IA escriba el informe completo sin su intervención.",
+                  "feedback": "El informe tiene que reflejar lo que Raúl sabe. La voz le permite dictarlo; no hace falta delegarle el contenido."
+                }
+              ]
+            },
+            {
+              "texto": "Tomás tiene dislexia y entiende mucho mejor cuando escucha.",
+              "opciones": [
+                {
+                  "texto": "Que el asistente le lea las respuestas en voz alta, o conversar por voz, pidiendo respuestas cortas, de una idea por vez.",
+                  "correcta": true,
+                  "feedback": "Escuchar y pedir respuestas breves reduce la carga de lectura. Es un apoyo que se suma a los que ya usa."
+                },
+                {
+                  "texto": "Que deje de usar texto escrito por completo.",
+                  "feedback": "La voz es una opción más, no un reemplazo. Tomás puede elegir según la tarea."
+                }
+              ]
+            },
+            {
+              "texto": "Marta se expresa mucho mejor hablando que escribiendo y tiene que ordenar las ideas de un proyecto.",
+              "opciones": [
+                {
+                  "texto": "Pensar en voz alta en el modo de voz y pedir al final un resumen escrito con sus ideas ordenadas.",
+                  "correcta": true,
+                  "feedback": "Habla con libertad y se queda con un texto para seguir trabajando. Conviene que revise que el resumen diga lo que ella quiso decir."
+                },
+                {
+                  "texto": "Escribir igual, porque así se practica.",
+                  "feedback": "Puede practicar escritura en otro momento. Para ordenar ideas, usar su fortaleza le rinde más."
+                }
+              ]
+            },
+            {
+              "texto": "Joaquín es ciego, usa un lector de pantalla y quiere practicar para una entrevista laboral.",
+              "opciones": [
+                {
+                  "texto": "Un juego de rol en modo de voz, después de comprobar que la app funcione bien con su lector de pantalla.",
+                  "correcta": true,
+                  "feedback": "La práctica hablada le sirve, y verificar la accesibilidad de la app con su lector es parte de elegir la herramienta."
+                },
+                {
+                  "texto": "Ninguna: la IA no sirve para personas ciegas.",
+                  "feedback": "Bien configurada, puede ser un apoyo muy útil. Lo importante es elegir una app accesible con su lector."
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
     {
       "titulo": "Límites, cuidados y cierre",
       "momento": "evaluacion",
       "bloques": [
-        { "tipo": "texto", "md": "**Límites y cuidados:**\n\n- **Acentos y modismos.** El reconocimiento de voz no funciona igual con todas las variedades del español. Probalo con tu forma de hablar antes de depender de él.\n- **Errores de transcripción.** Una palabra mal entendida puede cambiar el sentido. Si algo de la respuesta no cierra, revisá qué entendió.\n- **Lo que suena seguro.** Una voz amable y fluida puede estar diciendo algo falso. El discernimiento también aplica a lo que escuchás.\n- **La voz es un dato personal.** Revisá qué se guarda y por cuánto tiempo, y no hables de datos de otras personas (Módulo 10).\n- **No reemplaza a profesionales.** No sustituye a un profesor de idiomas ni a una profesional de la salud." },
-        { "tipo": "vf", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "discernimiento", "objetivo": "m12-o4", "afirmaciones": [
-          { "texto": "Dictar y conversar en modo de voz son lo mismo.", "verdadero": false, "explicacion": "Dictar convierte tu voz en texto escrito. En el modo de voz, la conversación entera es hablada." },
-          { "texto": "Si la respuesta suena segura y fluida, es más probable que sea correcta.", "verdadero": false, "explicacion": "El tono no dice nada sobre la exactitud. Lo que escuchás se verifica igual que lo que leés." },
-          { "texto": "Tu voz es un dato personal, y conviene revisar qué guarda la herramienta.", "verdadero": true, "explicacion": "La voz identifica a una persona. Revisá la configuración de privacidad del modo de voz que uses." },
-          { "texto": "Practicar con IA reemplaza las clases de idiomas.", "verdadero": false, "explicacion": "Es una práctica más, muy útil entre clases. No reemplaza a un profesor, que ve tu proceso completo." }
-        ] },
-        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "Hacé tu primera sesión con el prompt que armaste. ¿Cómo te fue? Anotá dos errores que te marcó y una frase nueva que quieras recordar." },
-        { "tipo": "profundizar", "fuentes": [
-          { "titulo": "Modo de voz de Claude", "apa": "Anthropic. (s.f.). *Use voice mode*. Claude Help Center.", "url": "https://support.claude.com/en/articles/11101966-use-voice-mode", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
-          { "titulo": "Gemini Live", "apa": "Google. (s.f.). *Gemini Live*. Ayuda de Gemini Apps.", "url": "https://support.google.com/gemini/answer/15274899?hl=es", "idioma": "es", "nivel": "Inicial", "tipo": "documentacion" },
-          { "titulo": "Funciones de voz de Copilot", "apa": "Microsoft. (s.f.). *Get started with voice features in Microsoft 365 Copilot*. Microsoft Support.", "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/get-started-with-voice-features-in-microsoft-365-copilot", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" }
-        ] }
+        {
+          "tipo": "texto",
+          "md": "**Límites y cuidados:**\n\n- **Acentos y modismos.** El reconocimiento de voz no funciona igual con todas las variedades del español. Probalo con tu forma de hablar antes de depender de él.\n- **Errores de transcripción.** Una palabra mal entendida puede cambiar el sentido. Si algo de la respuesta no cierra, revisá qué entendió.\n- **Lo que suena seguro.** Una voz amable y fluida puede estar diciendo algo falso. El discernimiento también aplica a lo que escuchás.\n- **La voz es un dato personal.** Revisá qué se guarda y por cuánto tiempo, y no hables de datos de otras personas (Módulo 10).\n- **No reemplaza a profesionales.** No sustituye a un profesor de idiomas ni a una profesional de la salud."
+        },
+        {
+          "tipo": "vf",
+          "id": "chequeo",
+          "titulo": "¿Qué te llevás?",
+          "competencia": "discernimiento",
+          "objetivo": "m12-o4",
+          "afirmaciones": [
+            {
+              "texto": "Dictar y conversar en modo de voz son lo mismo.",
+              "verdadero": false,
+              "explicacion": "Dictar convierte tu voz en texto escrito. En el modo de voz, la conversación entera es hablada."
+            },
+            {
+              "texto": "Si la respuesta suena segura y fluida, es más probable que sea correcta.",
+              "verdadero": false,
+              "explicacion": "El tono no dice nada sobre la exactitud. Lo que escuchás se verifica igual que lo que leés."
+            },
+            {
+              "texto": "Tu voz es un dato personal, y conviene revisar qué guarda la herramienta.",
+              "verdadero": true,
+              "explicacion": "La voz identifica a una persona. Revisá la configuración de privacidad del modo de voz que uses."
+            },
+            {
+              "texto": "Practicar con IA reemplaza las clases de idiomas.",
+              "verdadero": false,
+              "explicacion": "Es una práctica más, muy útil entre clases. No reemplaza a un profesor, que ve tu proceso completo."
+            }
+          ]
+        },
+        {
+          "tipo": "reflexion",
+          "id": "diario",
+          "titulo": "Para tu diario",
+          "pregunta": "Hacé tu primera sesión con el prompt que armaste. ¿Cómo te fue? Anotá dos errores que te marcó y una frase nueva que quieras recordar."
+        },
+        {
+          "tipo": "profundizar",
+          "fuentes": [
+            {
+              "titulo": "Modo de voz de Claude",
+              "apa": "Anthropic. (s.f.). *Use voice mode*. Claude Help Center.",
+              "url": "https://support.claude.com/en/articles/11101966-use-voice-mode",
+              "idioma": "en",
+              "nivel": "Inicial",
+              "tipo": "documentacion"
+            },
+            {
+              "titulo": "Gemini Live",
+              "apa": "Google. (s.f.). *Gemini Live*. Ayuda de Gemini Apps.",
+              "url": "https://support.google.com/gemini/answer/15274899?hl=es",
+              "idioma": "es",
+              "nivel": "Inicial",
+              "tipo": "documentacion"
+            },
+            {
+              "titulo": "Funciones de voz de Copilot",
+              "apa": "Microsoft. (s.f.). *Get started with voice features in Microsoft 365 Copilot*. Microsoft Support.",
+              "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/get-started-with-voice-features-in-microsoft-365-copilot",
+              "idioma": "en",
+              "nivel": "Inicial",
+              "tipo": "documentacion"
+            }
+          ]
+        }
       ]
     }
   ]

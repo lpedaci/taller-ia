@@ -1,95 +1,312 @@
 {
   "titulo": "IA para imagen",
   "objetivos": [
-    { "id": "m15-o1", "texto": "Explicar en términos simples cómo genera imágenes un modelo y qué tareas permite.", "competencia": "comprender" },
-    { "id": "m15-o2", "texto": "Escribir un prompt visual completo: sujeto, estilo, composición, luz, paleta, formato y qué evitar.", "competencia": "descripcion" },
-    { "id": "m15-o3", "texto": "Reconocer los límites de derechos y de uso, y cómo funcionan la procedencia y el etiquetado.", "competencia": "diligencia" }
+    {
+      "id": "m15-o1",
+      "texto": "Explicar en términos simples cómo genera imágenes un modelo y qué tareas permite.",
+      "competencia": "comprender"
+    },
+    {
+      "id": "m15-o2",
+      "texto": "Escribir un prompt visual completo: sujeto, estilo, composición, luz, paleta, formato y qué evitar.",
+      "competencia": "descripcion"
+    },
+    {
+      "id": "m15-o3",
+      "texto": "Reconocer los límites de derechos y de uso, y cómo funcionan la procedencia y el etiquetado.",
+      "competencia": "diligencia"
+    }
   ],
   "pasos": [
     {
       "titulo": "La imagen que no se parecía a nadie",
       "momento": "gancho",
       "bloques": [
-        { "tipo": "texto", "md": "Diego coordina la comunicación de una escuela técnica. Necesita una imagen para la inscripción de un curso de electricidad. Le pide a la IA \"estudiantes en un taller de electricidad\" y recibe una foto perfecta: luz de película, cuatro chicos sonrientes, impecables, con cascos que nadie usa así.\n\nEs linda y no se parece a nadie que vaya a esa escuela. Entonces escribe de nuevo: el aula real, con mesas de trabajo largas; estudiantes de distintas edades, varias mujeres; ropa de trabajo; luz de tubos fluorescentes; un estilo de foto documental, no publicitaria; formato vertical para historias.\n\nLa segunda imagen se parece a su escuela. La diferencia la hizo el **prompt visual**, que tiene sus propios componentes. Y antes de publicarla, Diego va a tener que decidir algo más: si avisa que fue generada." },
-        { "tipo": "objetivos" }
+        {
+          "tipo": "texto",
+          "md": "Diego coordina la comunicación de una escuela técnica. Necesita una imagen para la inscripción de un curso de electricidad. Le pide a la IA \"estudiantes en un taller de electricidad\" y recibe una foto perfecta: luz de película, cuatro chicos sonrientes, impecables, con cascos que nadie usa así.\n\nEs linda y no se parece a nadie que vaya a esa escuela. Entonces escribe de nuevo: el aula real, con mesas de trabajo largas; estudiantes de distintas edades, varias mujeres; ropa de trabajo; luz de tubos fluorescentes; un estilo de foto documental, no publicitaria; formato vertical para historias.\n\nLa segunda imagen se parece a su escuela. La diferencia la hizo el **prompt visual**, que tiene sus propios componentes. Y antes de publicarla, Diego va a tener que decidir algo más: si avisa que fue generada."
+        },
+        {
+          "tipo": "objetivos"
+        }
       ]
     },
     {
       "titulo": "Cómo funcionan y qué permiten",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "**En términos simples.** La mayoría de los modelos de imagen aprendieron con millones de imágenes y sus descripciones. Para generar, parten de una imagen de \"ruido\", como la nieve de un televisor viejo, y la van limpiando paso a paso hasta que aparece algo que coincide con tu descripción. No buscan una imagen guardada: la construyen. Por eso cada vez sale distinta, y por eso pueden aparecer errores como manos con seis dedos o letras sin sentido.\n\n**Qué se puede hacer:**\n\n- **Generar desde texto:** describís y aparece.\n- **Editar una imagen existente:** cambiar el fondo, agregar o quitar un objeto, cambiar la luz.\n- **Ampliar:** extender una imagen más allá de sus bordes o aumentar su resolución.\n- **Quitar fondos:** separar una persona u objeto del fondo.\n- **Mantener un estilo:** generar varias piezas que se vean como de una misma serie, usando una imagen de referencia o la misma descripción de estilo." },
-        { "tipo": "catalogo", "categoria": "imagen", "titulo": "Algunos ejemplos de herramientas" }
+        {
+          "tipo": "texto",
+          "md": "**En términos simples.** La mayoría de los modelos de imagen aprendieron con millones de imágenes y sus descripciones. Para generar, parten de una imagen de \"ruido\", como la nieve de un televisor viejo, y la van limpiando paso a paso hasta que aparece algo que coincide con tu descripción. No buscan una imagen guardada: la construyen. Por eso cada vez sale distinta, y por eso pueden aparecer errores como manos con seis dedos o letras sin sentido.\n\n**Qué se puede hacer:**\n\n- **Generar desde texto:** describís y aparece.\n- **Editar una imagen existente:** cambiar el fondo, agregar o quitar un objeto, cambiar la luz.\n- **Ampliar:** extender una imagen más allá de sus bordes o aumentar su resolución.\n- **Quitar fondos:** separar una persona u objeto del fondo.\n- **Mantener un estilo:** generar varias piezas que se vean como de una misma serie, usando una imagen de referencia o la misma descripción de estilo."
+        },
+        {
+          "tipo": "animacion",
+          "ref": "difusion"
+        },
+        {
+          "tipo": "catalogo",
+          "categoria": "imagen",
+          "titulo": "Algunos ejemplos de herramientas"
+        }
       ]
     },
     {
       "titulo": "El prompt visual",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "Un prompt visual describe lo que se ve. Estos son sus componentes:\n\n1. **Sujeto:** quién o qué, haciendo qué. Cuanto más concreto, mejor.\n2. **Estilo:** foto documental, ilustración plana, acuarela, 3D, dibujo técnico.\n3. **Composición y encuadre:** plano general, primer plano, desde arriba, a la altura de los ojos; qué va en el centro.\n4. **Luz:** natural de mañana, de estudio, de tubos fluorescentes, contraluz.\n5. **Paleta:** los colores dominantes, por ejemplo los de tu marca.\n6. **Formato y proporción:** cuadrado (1:1) para publicaciones, vertical (9:16) para historias, horizontal (16:9) para presentaciones.\n7. **Qué evitar:** texto dentro de la imagen, marcas, estereotipos, un look publicitario.\n\nCasi todo lo de los Módulos 5 y 6 sigue valiendo: el contexto (para qué es la imagen) cambia mucho el resultado, y una imagen de referencia funciona como un ejemplo." },
-        { "tipo": "comparador", "id": "antes-despues", "titulo": "La imagen de Diego, antes y después", "competencia": "descripcion", "objetivo": "m15-o2", "antes": { "titulo": "Prompt pobre", "texto": "Estudiantes en un taller de electricidad." }, "despues": { "titulo": "Prompt visual", "texto": "Foto de estilo documental de un aula-taller de electricidad en una escuela técnica: mesas de trabajo largas con tableros y cables.\n\nEstudiantes de distintas edades, varias mujeres, con ropa de trabajo, concentrados en una tarea.\n\nPlano general a la altura de los ojos. Luz de tubos fluorescentes. Colores naturales, algo apagados.\n\nFormato vertical 9:16.\n\nSin texto en la imagen, sin marcas y sin aspecto publicitario." }, "cambios": [
-          { "titulo": "Sujeto concreto", "texto": "El lugar, las mesas, quiénes están y qué hacen." },
-          { "titulo": "Estilo", "texto": "\"Documental\" en lugar del estilo publicitario que sale por defecto." },
-          { "titulo": "Composición y luz", "texto": "Plano general a la altura de los ojos y luz de tubos: parece un aula real." },
-          { "titulo": "Formato", "texto": "9:16 porque va en historias." },
-          { "titulo": "Qué evitar", "texto": "Sin texto (suele salir con errores), sin marcas y sin aspecto publicitario." }
-        ] }
+        {
+          "tipo": "texto",
+          "md": "Un prompt visual describe lo que se ve. Estos son sus componentes:\n\n1. **Sujeto:** quién o qué, haciendo qué. Cuanto más concreto, mejor.\n2. **Estilo:** foto documental, ilustración plana, acuarela, 3D, dibujo técnico.\n3. **Composición y encuadre:** plano general, primer plano, desde arriba, a la altura de los ojos; qué va en el centro.\n4. **Luz:** natural de mañana, de estudio, de tubos fluorescentes, contraluz.\n5. **Paleta:** los colores dominantes, por ejemplo los de tu marca.\n6. **Formato y proporción:** cuadrado (1:1) para publicaciones, vertical (9:16) para historias, horizontal (16:9) para presentaciones.\n7. **Qué evitar:** texto dentro de la imagen, marcas, estereotipos, un look publicitario.\n\nCasi todo lo de los Módulos 5 y 6 sigue valiendo: el contexto (para qué es la imagen) cambia mucho el resultado, y una imagen de referencia funciona como un ejemplo."
+        },
+        {
+          "tipo": "comparador",
+          "id": "antes-despues",
+          "titulo": "La imagen de Diego, antes y después",
+          "competencia": "descripcion",
+          "objetivo": "m15-o2",
+          "antes": {
+            "titulo": "Prompt pobre",
+            "texto": "Estudiantes en un taller de electricidad."
+          },
+          "despues": {
+            "titulo": "Prompt visual",
+            "texto": "Foto de estilo documental de un aula-taller de electricidad en una escuela técnica: mesas de trabajo largas con tableros y cables.\n\nEstudiantes de distintas edades, varias mujeres, con ropa de trabajo, concentrados en una tarea.\n\nPlano general a la altura de los ojos. Luz de tubos fluorescentes. Colores naturales, algo apagados.\n\nFormato vertical 9:16.\n\nSin texto en la imagen, sin marcas y sin aspecto publicitario."
+          },
+          "cambios": [
+            {
+              "titulo": "Sujeto concreto",
+              "texto": "El lugar, las mesas, quiénes están y qué hacen."
+            },
+            {
+              "titulo": "Estilo",
+              "texto": "\"Documental\" en lugar del estilo publicitario que sale por defecto."
+            },
+            {
+              "titulo": "Composición y luz",
+              "texto": "Plano general a la altura de los ojos y luz de tubos: parece un aula real."
+            },
+            {
+              "titulo": "Formato",
+              "texto": "9:16 porque va en historias."
+            },
+            {
+              "titulo": "Qué evitar",
+              "texto": "Sin texto (suele salir con errores), sin marcas y sin aspecto publicitario."
+            }
+          ]
+        }
       ]
     },
     {
       "titulo": "Constructor de prompt visual",
       "momento": "practica",
       "bloques": [
-        { "tipo": "texto", "md": "Armá el prompt de una imagen que necesites: una pieza para redes, una ilustración para un material, un boceto o la maqueta de una pantalla. Probalo en la herramienta que tengas y, si te sirve, guardalo en Mis prompts." },
-        { "tipo": "constructor", "id": "visual", "titulo": "Constructor de prompt visual", "modo": "visual", "competencia": "descripcion", "objetivo": "m15-o2", "evidencia": "Prompt visual armado con el constructor", "consigna": "Completá los campos. El prompt se arma abajo.", "campos": [
-          { "id": "sujeto", "etiqueta": "Sujeto", "obligatorio": true, "multilinea": true, "ayuda": "Quién o qué, haciendo qué, y dónde.", "ejemplo": "Una mujer de unos 50 años arma una vasija en un torno de cerámica, en un taller pequeño con estantes llenos de piezas." },
-          { "id": "estilo", "etiqueta": "Estilo", "ayuda": "Foto, ilustración, acuarela, 3D…", "ejemplo": "Fotografía documental, natural, sin retoques." },
-          { "id": "composicion", "etiqueta": "Composición y encuadre", "ayuda": "Plano, ángulo y qué va en el centro.", "ejemplo": "Plano medio desde un costado; las manos y la vasija en el centro." },
-          { "id": "luz", "etiqueta": "Luz", "ayuda": "Tipo de luz y momento del día.", "ejemplo": "Luz natural de tarde que entra por una ventana." },
-          { "id": "paleta", "etiqueta": "Paleta", "ayuda": "Colores dominantes.", "ejemplo": "Terracota, beige y blanco." },
-          { "id": "formato", "etiqueta": "Formato y proporción", "opciones": ["cuadrado (1:1)", "vertical (4:5)", "vertical para historias (9:16)", "horizontal (16:9)"], "ayuda": "Según dónde se va a usar.", "ejemplo": "vertical (4:5)" },
-          { "id": "evitar", "etiqueta": "Qué evitar", "ayuda": "Lo que no querés que aparezca.", "ejemplo": "Sin texto en la imagen, sin marcas, sin aspecto de publicidad." }
-        ], "plantilla": "{sujeto}\n\nEstilo: {estilo}\nComposición: {composicion}\nLuz: {luz}\nPaleta: {paleta}\nFormato: {formato}\n\nEvitá: {evitar}" }
+        {
+          "tipo": "texto",
+          "md": "Armá el prompt de una imagen que necesites: una pieza para redes, una ilustración para un material, un boceto o la maqueta de una pantalla. Probalo en la herramienta que tengas y, si te sirve, guardalo en Mis prompts."
+        },
+        {
+          "tipo": "constructor",
+          "id": "visual",
+          "titulo": "Constructor de prompt visual",
+          "modo": "visual",
+          "competencia": "descripcion",
+          "objetivo": "m15-o2",
+          "evidencia": "Prompt visual armado con el constructor",
+          "consigna": "Completá los campos. El prompt se arma abajo.",
+          "campos": [
+            {
+              "id": "sujeto",
+              "etiqueta": "Sujeto",
+              "obligatorio": true,
+              "multilinea": true,
+              "ayuda": "Quién o qué, haciendo qué, y dónde.",
+              "ejemplo": "Una mujer de unos 50 años arma una vasija en un torno de cerámica, en un taller pequeño con estantes llenos de piezas."
+            },
+            {
+              "id": "estilo",
+              "etiqueta": "Estilo",
+              "ayuda": "Foto, ilustración, acuarela, 3D…",
+              "ejemplo": "Fotografía documental, natural, sin retoques."
+            },
+            {
+              "id": "composicion",
+              "etiqueta": "Composición y encuadre",
+              "ayuda": "Plano, ángulo y qué va en el centro.",
+              "ejemplo": "Plano medio desde un costado; las manos y la vasija en el centro."
+            },
+            {
+              "id": "luz",
+              "etiqueta": "Luz",
+              "ayuda": "Tipo de luz y momento del día.",
+              "ejemplo": "Luz natural de tarde que entra por una ventana."
+            },
+            {
+              "id": "paleta",
+              "etiqueta": "Paleta",
+              "ayuda": "Colores dominantes.",
+              "ejemplo": "Terracota, beige y blanco."
+            },
+            {
+              "id": "formato",
+              "etiqueta": "Formato y proporción",
+              "opciones": [
+                "cuadrado (1:1)",
+                "vertical (4:5)",
+                "vertical para historias (9:16)",
+                "horizontal (16:9)"
+              ],
+              "ayuda": "Según dónde se va a usar.",
+              "ejemplo": "vertical (4:5)"
+            },
+            {
+              "id": "evitar",
+              "etiqueta": "Qué evitar",
+              "ayuda": "Lo que no querés que aparezca.",
+              "ejemplo": "Sin texto en la imagen, sin marcas, sin aspecto de publicidad."
+            }
+          ],
+          "plantilla": "{sujeto}\n\nEstilo: {estilo}\nComposición: {composicion}\nLuz: {luz}\nPaleta: {paleta}\nFormato: {formato}\n\nEvitá: {evitar}"
+        }
       ]
     },
     {
       "titulo": "Derechos, procedencia y etiquetado",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "**Derechos y límites:**\n\n- **Estilos de artistas vivos.** Pedir \"al estilo de\" una ilustradora que vive de su trabajo no siempre está prohibido, pero es discutible: usa su identidad y su trabajo sin pagarle. Mejor describir las características del estilo que querés.\n- **Personajes y marcas.** Los personajes de películas, las marcas y los logos están protegidos. No los uses en piezas propias, y menos comerciales.\n- **Personas reales.** No generes imágenes de personas reales sin su consentimiento, y nunca en situaciones que no vivieron.\n- **Licencias.** Cada herramienta tiene sus condiciones para el uso comercial. Revisalas antes de usar una imagen en una campaña.\n\n**Procedencia y etiquetado.** Hay dos iniciativas para saber de dónde viene una imagen:\n\n- Las **credenciales de contenido** (estándar C2PA) guardan dentro del archivo información sobre su origen y sus ediciones, como una etiqueta de ingredientes.\n- Las **marcas de agua invisibles**, como SynthID de Google, se insertan en la imagen de forma imperceptible y se pueden detectar con una herramienta.\n\n**Por qué es difícil detectar una imagen generada:** las señales visibles (manos raras, textos sin sentido) desaparecen a medida que mejoran los modelos; los metadatos se pierden con una captura de pantalla; y no todas las herramientas marcan sus imágenes. Por eso, cuando publicás algo generado, lo más honesto es decirlo." },
-        { "tipo": "catalogo", "categoria": "procedencia", "titulo": "Estándares y herramientas de procedencia" },
-        { "tipo": "vf", "id": "derechos", "titulo": "¿Qué te parece?", "competencia": "diligencia", "objetivo": "m15-o3", "afirmaciones": [
-          { "texto": "Si una imagen no tiene marca de agua visible, no fue generada con IA.", "verdadero": false, "explicacion": "Muchas marcas son invisibles, y otras imágenes no tienen ninguna. La ausencia de marca no prueba nada." },
-          { "texto": "Para una campaña comercial, conviene revisar la licencia de la herramienta antes de usar la imagen.", "verdadero": true, "explicacion": "Cada herramienta define si se permite el uso comercial y en qué condiciones." },
-          { "texto": "Generar una imagen de una compañera en una situación que no vivió, sin decirle, es un buen chiste para el grupo.", "verdadero": false, "explicacion": "Usa su imagen sin consentimiento y puede circular fuera de contexto. Es el camino a un deepfake." }
-        ] }
+        {
+          "tipo": "texto",
+          "md": "**Derechos y límites:**\n\n- **Estilos de artistas vivos.** Pedir \"al estilo de\" una ilustradora que vive de su trabajo no siempre está prohibido, pero es discutible: usa su identidad y su trabajo sin pagarle. Mejor describir las características del estilo que querés.\n- **Personajes y marcas.** Los personajes de películas, las marcas y los logos están protegidos. No los uses en piezas propias, y menos comerciales.\n- **Personas reales.** No generes imágenes de personas reales sin su consentimiento, y nunca en situaciones que no vivieron.\n- **Licencias.** Cada herramienta tiene sus condiciones para el uso comercial. Revisalas antes de usar una imagen en una campaña.\n\n**Procedencia y etiquetado.** Hay dos iniciativas para saber de dónde viene una imagen:\n\n- Las **credenciales de contenido** (estándar C2PA) guardan dentro del archivo información sobre su origen y sus ediciones, como una etiqueta de ingredientes.\n- Las **marcas de agua invisibles**, como SynthID de Google, se insertan en la imagen de forma imperceptible y se pueden detectar con una herramienta.\n\n**Por qué es difícil detectar una imagen generada:** las señales visibles (manos raras, textos sin sentido) desaparecen a medida que mejoran los modelos; los metadatos se pierden con una captura de pantalla; y no todas las herramientas marcan sus imágenes. Por eso, cuando publicás algo generado, lo más honesto es decirlo."
+        },
+        {
+          "tipo": "catalogo",
+          "categoria": "procedencia",
+          "titulo": "Estándares y herramientas de procedencia"
+        },
+        {
+          "tipo": "vf",
+          "id": "derechos",
+          "titulo": "¿Qué te parece?",
+          "competencia": "diligencia",
+          "objetivo": "m15-o3",
+          "afirmaciones": [
+            {
+              "texto": "Si una imagen no tiene marca de agua visible, no fue generada con IA.",
+              "verdadero": false,
+              "explicacion": "Muchas marcas son invisibles, y otras imágenes no tienen ninguna. La ausencia de marca no prueba nada."
+            },
+            {
+              "texto": "Para una campaña comercial, conviene revisar la licencia de la herramienta antes de usar la imagen.",
+              "verdadero": true,
+              "explicacion": "Cada herramienta define si se permite el uso comercial y en qué condiciones."
+            },
+            {
+              "texto": "Generar una imagen de una compañera en una situación que no vivió, sin decirle, es un buen chiste para el grupo.",
+              "verdadero": false,
+              "explicacion": "Usa su imagen sin consentimiento y puede circular fuera de contexto. Es el camino a un deepfake."
+            }
+          ]
+        }
       ]
     },
     {
       "titulo": "Chequeo y cierre",
       "momento": "evaluacion",
       "bloques": [
-        { "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "descripcion", "objetivo": "m15-o1", "preguntas": [
-          { "texto": "¿Por qué los modelos de imagen a veces dibujan manos con dedos de más?", "opciones": [
-            { "texto": "Porque construyen la imagen de a poco a partir de ruido, y las manos son difíciles de resolver bien.", "correcta": true, "feedback": "No copian una foto: la generan. Los detalles complejos son los primeros en fallar." },
-            { "texto": "Porque copian fotos mal tomadas.", "feedback": "No copian imágenes guardadas: generan una nueva cada vez." }
-          ] },
-          { "texto": "Querés una imagen para historias de Instagram. ¿Qué componente del prompt no puede faltar?", "opciones": [
-            { "texto": "El formato vertical (9:16).", "correcta": true, "feedback": "Si no lo pedís, puede salir cuadrada u horizontal y vas a tener que recortarla." },
-            { "texto": "El nombre de una artista famosa.", "feedback": "No hace falta, y es mejor describir el estilo que usar el nombre de alguien." }
-          ] },
-          { "texto": "Publicás una imagen generada en la página de tu organización. ¿Qué es lo más honesto?", "opciones": [
-            { "texto": "Indicar que fue creada con IA.", "correcta": true, "feedback": "Es transparencia (Módulo 8): evita que alguien la tome por una foto real." },
-            { "texto": "No decir nada si se ve realista.", "feedback": "Justamente cuando se ve realista es cuando más importa aclararlo." }
-          ] }
-        ] },
-        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "Probá el prompt que armaste. ¿Qué tuviste que cambiar para que la imagen se pareciera a lo que imaginabas? ¿La usarías? ¿Cómo indicarías que fue generada?" },
-        { "tipo": "profundizar", "fuentes": [
-          { "titulo": "Modelos de imagen de Google DeepMind", "apa": "Google DeepMind. (s.f.). *Gemini Image*.", "url": "https://deepmind.google/models/imagen/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
-          { "titulo": "C2PA, el estándar de credenciales de contenido", "apa": "Coalition for Content Provenance and Authenticity. (s.f.). *C2PA*.", "url": "https://c2pa.org/", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" },
-          { "titulo": "Content Authenticity Initiative", "apa": "Content Authenticity Initiative. (s.f.). *Content Authenticity Initiative*.", "url": "https://contentauthenticity.org/", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" },
-          { "titulo": "SynthID, marcas de agua invisibles", "apa": "Google DeepMind. (s.f.). *SynthID*.", "url": "https://deepmind.google/science/synthid/", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" }
-        ] }
+        {
+          "tipo": "quiz",
+          "id": "chequeo",
+          "titulo": "¿Qué te llevás?",
+          "competencia": "descripcion",
+          "objetivo": "m15-o1",
+          "preguntas": [
+            {
+              "texto": "¿Por qué los modelos de imagen a veces dibujan manos con dedos de más?",
+              "opciones": [
+                {
+                  "texto": "Porque construyen la imagen de a poco a partir de ruido, y las manos son difíciles de resolver bien.",
+                  "correcta": true,
+                  "feedback": "No copian una foto: la generan. Los detalles complejos son los primeros en fallar."
+                },
+                {
+                  "texto": "Porque copian fotos mal tomadas.",
+                  "feedback": "No copian imágenes guardadas: generan una nueva cada vez."
+                }
+              ]
+            },
+            {
+              "texto": "Querés una imagen para historias de Instagram. ¿Qué componente del prompt no puede faltar?",
+              "opciones": [
+                {
+                  "texto": "El formato vertical (9:16).",
+                  "correcta": true,
+                  "feedback": "Si no lo pedís, puede salir cuadrada u horizontal y vas a tener que recortarla."
+                },
+                {
+                  "texto": "El nombre de una artista famosa.",
+                  "feedback": "No hace falta, y es mejor describir el estilo que usar el nombre de alguien."
+                }
+              ]
+            },
+            {
+              "texto": "Publicás una imagen generada en la página de tu organización. ¿Qué es lo más honesto?",
+              "opciones": [
+                {
+                  "texto": "Indicar que fue creada con IA.",
+                  "correcta": true,
+                  "feedback": "Es transparencia (Módulo 8): evita que alguien la tome por una foto real."
+                },
+                {
+                  "texto": "No decir nada si se ve realista.",
+                  "feedback": "Justamente cuando se ve realista es cuando más importa aclararlo."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tipo": "reflexion",
+          "id": "diario",
+          "titulo": "Para tu diario",
+          "pregunta": "Probá el prompt que armaste. ¿Qué tuviste que cambiar para que la imagen se pareciera a lo que imaginabas? ¿La usarías? ¿Cómo indicarías que fue generada?"
+        },
+        {
+          "tipo": "profundizar",
+          "fuentes": [
+            {
+              "titulo": "Modelos de imagen de Google DeepMind",
+              "apa": "Google DeepMind. (s.f.). *Gemini Image*.",
+              "url": "https://deepmind.google/models/imagen/",
+              "idioma": "en",
+              "nivel": "Inicial",
+              "tipo": "documentacion"
+            },
+            {
+              "titulo": "C2PA, el estándar de credenciales de contenido",
+              "apa": "Coalition for Content Provenance and Authenticity. (s.f.). *C2PA*.",
+              "url": "https://c2pa.org/",
+              "idioma": "en",
+              "nivel": "Profundización",
+              "tipo": "documentacion"
+            },
+            {
+              "titulo": "Content Authenticity Initiative",
+              "apa": "Content Authenticity Initiative. (s.f.). *Content Authenticity Initiative*.",
+              "url": "https://contentauthenticity.org/",
+              "idioma": "en",
+              "nivel": "Profundización",
+              "tipo": "documentacion"
+            },
+            {
+              "titulo": "SynthID, marcas de agua invisibles",
+              "apa": "Google DeepMind. (s.f.). *SynthID*.",
+              "url": "https://deepmind.google/science/synthid/",
+              "idioma": "en",
+              "nivel": "Profundización",
+              "tipo": "documentacion"
+            }
+          ]
+        }
       ]
     }
   ]

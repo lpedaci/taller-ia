@@ -6,7 +6,7 @@ Es un sitio de HTML, CSS y JavaScript sin paso de compilación. Funciona publica
 
 ## Estado del proyecto
 
-Etapa 9 de 10 terminada: los 21 módulos tienen su lección y están el glosario, la Biblioteca, el diario y la guía para facilitadores. Quedan las animaciones pendientes y la etapa 10, la revisión final. El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
+Etapa 9 de 10 terminada, con las nueve animaciones propias. Queda la etapa 10, la revisión final. El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
 
 ## Ver el taller en tu computadora
 
@@ -64,6 +64,14 @@ Para revisar los estados de carga y error sin esperar a que pasen de verdad, agr
 ### Diagnóstico sin instalar nada
 
 Agregá `?diagnostico=1` a la dirección (por ejemplo, `https://lpedaci.github.io/taller-ia/?diagnostico=1`). Aparece un panel que analiza la pantalla actual con axe-core, en español, y un botón para ver el sitio en anchos de mobile, tablet y desktop. Solo se carga con ese parámetro.
+
+### Animaciones
+
+Cada animación tiene sus textos en `content/animaciones/<id>.json` (en pantalla, narración, descripción y qué se mueve) y su dibujo en `js/animaciones/<id>.js`. Las que explican un proceso se arman con las piezas de `js/animaciones/kit.js`. El guion de cada una se genera desde su JSON:
+
+```
+node scripts/generar-guiones.mjs
+```
 
 ### Grabar una animación en video
 

@@ -1,116 +1,360 @@
 {
   "titulo": "De la conversación a la automatización",
   "objetivos": [
-    { "id": "m18-o1", "texto": "Distinguir entre usar un chat, armar un flujo automatizado y delegar en un agente.", "competencia": "crear" },
-    { "id": "m18-o2", "texto": "Explicar sin código qué son un disparador, una acción, una condición, una integración y una API.", "competencia": "comprender" },
-    { "id": "m18-o3", "texto": "Decidir cuándo no conviene automatizar y dónde tiene que intervenir una persona.", "competencia": "delegacion" },
-    { "id": "m18-o4", "texto": "Diseñar un flujo de 3 a 5 pasos para una tarea repetitiva propia, con revisión humana.", "competencia": "crear" }
+    {
+      "id": "m18-o1",
+      "texto": "Distinguir entre usar un chat, armar un flujo automatizado y delegar en un agente.",
+      "competencia": "crear"
+    },
+    {
+      "id": "m18-o2",
+      "texto": "Explicar sin código qué son un disparador, una acción, una condición, una integración y una API.",
+      "competencia": "comprender"
+    },
+    {
+      "id": "m18-o3",
+      "texto": "Decidir cuándo no conviene automatizar y dónde tiene que intervenir una persona.",
+      "competencia": "delegacion"
+    },
+    {
+      "id": "m18-o4",
+      "texto": "Diseñar un flujo de 3 a 5 pasos para una tarea repetitiva propia, con revisión humana.",
+      "competencia": "crear"
+    }
   ],
   "pasos": [
     {
       "titulo": "Cuarenta correos iguales",
       "momento": "gancho",
       "bloques": [
-        { "tipo": "texto", "md": "Cada vez que alguien se inscribe a un curso, Sergio hace lo mismo: copia los datos del formulario a una planilla, le escribe un correo de bienvenida con la fecha y el enlace, y le agenda un recordatorio para el día anterior. Con cuarenta inscripciones por mes, se le van dos tardes.\n\nPrimero probó con un chat: le pedía el correo de bienvenida y lo pegaba. Ahorraba un poco, pero seguía haciendo todo a mano. Después armó un **flujo**: cuando llega una inscripción, los datos pasan solos a la planilla, la IA redacta el correo y él lo revisa antes de que salga. Ahora le lleva diez minutos por semana.\n\nLo que no automatizó: las respuestas a las personas que escriben con dudas o con problemas. Esas las sigue contestando él. En este módulo vas a aprender a ver esa diferencia y a diseñar tu propio flujo." },
-        { "tipo": "objetivos" }
+        {
+          "tipo": "texto",
+          "md": "Cada vez que alguien se inscribe a un curso, Sergio hace lo mismo: copia los datos del formulario a una planilla, le escribe un correo de bienvenida con la fecha y el enlace, y le agenda un recordatorio para el día anterior. Con cuarenta inscripciones por mes, se le van dos tardes.\n\nPrimero probó con un chat: le pedía el correo de bienvenida y lo pegaba. Ahorraba un poco, pero seguía haciendo todo a mano. Después armó un **flujo**: cuando llega una inscripción, los datos pasan solos a la planilla, la IA redacta el correo y él lo revisa antes de que salga. Ahora le lleva diez minutos por semana.\n\nLo que no automatizó: las respuestas a las personas que escriben con dudas o con problemas. Esas las sigue contestando él. En este módulo vas a aprender a ver esa diferencia y a diseñar tu propio flujo."
+        },
+        {
+          "tipo": "objetivos"
+        }
       ]
     },
     {
       "titulo": "Chat, flujo y agente",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "Tres formas de usar la IA, de menos a más autonomía:\n\n- **Chat.** Vos pedís, la IA responde, vos hacés algo con eso. Cada vez empieza de cero. Sirve para tareas puntuales.\n- **Flujo automatizado.** Una secuencia de pasos definida de antemano que se ejecuta sola cuando pasa algo: llega un formulario, entra un correo, es lunes a las 9. La IA puede ser uno de los pasos (redactar, clasificar, resumir). Hace siempre lo mismo, en el mismo orden.\n- **Agente.** Recibe un objetivo y decide por su cuenta qué pasos dar y qué herramientas usar, hasta terminar. Es más flexible y más difícil de prever.\n\nAnthropic, en su guía *Building effective agents* (diciembre de 2024), distingue justamente entre flujos, donde los pasos están definidos de antemano, y agentes, que dirigen su propio proceso. Y recomienda empezar por lo más simple que resuelva el problema: muchas veces, un flujo alcanza." },
-        { "tipo": "quiz", "id": "tres", "titulo": "¿Chat, flujo o agente?", "competencia": "crear", "objetivo": "m18-o1", "preguntas": [
-          { "texto": "Todos los lunes, la planilla de asistencia se resume y se manda por correo al equipo.", "opciones": [
-            { "texto": "Flujo automatizado.", "correcta": true, "feedback": "Pasa siempre igual y en el mismo momento: un flujo es lo justo." },
-            { "texto": "Agente.", "feedback": "No hace falta que decida nada: los pasos son siempre los mismos." },
-            { "texto": "Chat.", "feedback": "Podrías hacerlo a mano cada lunes, pero es justo lo que conviene automatizar." }
-          ] },
-          { "texto": "Querés investigar opciones de plataformas para un curso virtual: buscar, comparar y armar un informe.", "opciones": [
-            { "texto": "Agente, con revisión del informe final.", "correcta": true, "feedback": "Los pasos dependen de lo que va encontrando: es una tarea abierta, para un agente que vos revisás." },
-            { "texto": "Flujo automatizado.", "feedback": "No se puede definir de antemano qué va a buscar en cada paso." }
-          ] },
-          { "texto": "Necesitás una idea para el título de una charla.", "opciones": [
-            { "texto": "Chat.", "correcta": true, "feedback": "Es una tarea puntual: automatizarla no tiene sentido." },
-            { "texto": "Agente.", "feedback": "Es demasiado simple para un agente." }
-          ] }
-        ] }
+        {
+          "tipo": "texto",
+          "md": "Tres formas de usar la IA, de menos a más autonomía:\n\n- **Chat.** Vos pedís, la IA responde, vos hacés algo con eso. Cada vez empieza de cero. Sirve para tareas puntuales.\n- **Flujo automatizado.** Una secuencia de pasos definida de antemano que se ejecuta sola cuando pasa algo: llega un formulario, entra un correo, es lunes a las 9. La IA puede ser uno de los pasos (redactar, clasificar, resumir). Hace siempre lo mismo, en el mismo orden.\n- **Agente.** Recibe un objetivo y decide por su cuenta qué pasos dar y qué herramientas usar, hasta terminar. Es más flexible y más difícil de prever.\n\nAnthropic, en su guía *Building effective agents* (diciembre de 2024), distingue justamente entre flujos, donde los pasos están definidos de antemano, y agentes, que dirigen su propio proceso. Y recomienda empezar por lo más simple que resuelva el problema: muchas veces, un flujo alcanza."
+        },
+        {
+          "tipo": "animacion",
+          "ref": "agente"
+        },
+        {
+          "tipo": "quiz",
+          "id": "tres",
+          "titulo": "¿Chat, flujo o agente?",
+          "competencia": "crear",
+          "objetivo": "m18-o1",
+          "preguntas": [
+            {
+              "texto": "Todos los lunes, la planilla de asistencia se resume y se manda por correo al equipo.",
+              "opciones": [
+                {
+                  "texto": "Flujo automatizado.",
+                  "correcta": true,
+                  "feedback": "Pasa siempre igual y en el mismo momento: un flujo es lo justo."
+                },
+                {
+                  "texto": "Agente.",
+                  "feedback": "No hace falta que decida nada: los pasos son siempre los mismos."
+                },
+                {
+                  "texto": "Chat.",
+                  "feedback": "Podrías hacerlo a mano cada lunes, pero es justo lo que conviene automatizar."
+                }
+              ]
+            },
+            {
+              "texto": "Querés investigar opciones de plataformas para un curso virtual: buscar, comparar y armar un informe.",
+              "opciones": [
+                {
+                  "texto": "Agente, con revisión del informe final.",
+                  "correcta": true,
+                  "feedback": "Los pasos dependen de lo que va encontrando: es una tarea abierta, para un agente que vos revisás."
+                },
+                {
+                  "texto": "Flujo automatizado.",
+                  "feedback": "No se puede definir de antemano qué va a buscar en cada paso."
+                }
+              ]
+            },
+            {
+              "texto": "Necesitás una idea para el título de una charla.",
+              "opciones": [
+                {
+                  "texto": "Chat.",
+                  "correcta": true,
+                  "feedback": "Es una tarea puntual: automatizarla no tiene sentido."
+                },
+                {
+                  "texto": "Agente.",
+                  "feedback": "Es demasiado simple para un agente."
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
     {
       "titulo": "Conceptos clave, sin código",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "- **Disparador:** lo que pone en marcha el flujo. \"Cuando llega un formulario\", \"cuando entra un correo con la palabra inscripción\", \"todos los lunes a las 9\".\n- **Acción:** lo que hace cada paso. Copiar datos a una planilla, pedirle a la IA que redacte, enviar un correo, crear un evento.\n- **Condición:** una bifurcación. \"Si la persona marcó que necesita certificado, agregá este párrafo; si no, seguí\".\n- **Integración:** la conexión entre dos aplicaciones para que se pasen datos (el formulario con la planilla, la planilla con el correo).\n- **API:** la \"ventanilla\" por la que una aplicación le pide algo a otra de forma automática, con reglas fijas. Las herramientas sin código usan APIs por vos, sin que tengas que programar.\n- **Humano en el circuito** (*human-in-the-loop*): un paso donde una persona revisa o aprueba antes de seguir. Es la diferencia entre un flujo confiable y uno peligroso." },
-        { "tipo": "vf", "id": "conceptos", "titulo": "¿Lo tenés claro?", "competencia": "comprender", "objetivo": "m18-o2", "afirmaciones": [
-          { "texto": "\"Todos los viernes a las 17\" puede ser el disparador de un flujo.", "verdadero": true, "explicacion": "Un disparador puede ser un evento (llega un formulario) o un momento (una fecha y hora)." },
-          { "texto": "Para usar una API hace falta saber programar.", "verdadero": false, "explicacion": "Las herramientas sin código usan las APIs por vos: elegís las aplicaciones y qué datos pasan." },
-          { "texto": "Un paso de revisión humana hace más lento el flujo, así que conviene evitarlo.", "verdadero": false, "explicacion": "Lo hace un poco más lento y mucho más confiable. Donde un error afecta a personas, es imprescindible." }
-        ] }
+        {
+          "tipo": "texto",
+          "md": "- **Disparador:** lo que pone en marcha el flujo. \"Cuando llega un formulario\", \"cuando entra un correo con la palabra inscripción\", \"todos los lunes a las 9\".\n- **Acción:** lo que hace cada paso. Copiar datos a una planilla, pedirle a la IA que redacte, enviar un correo, crear un evento.\n- **Condición:** una bifurcación. \"Si la persona marcó que necesita certificado, agregá este párrafo; si no, seguí\".\n- **Integración:** la conexión entre dos aplicaciones para que se pasen datos (el formulario con la planilla, la planilla con el correo).\n- **API:** la \"ventanilla\" por la que una aplicación le pide algo a otra de forma automática, con reglas fijas. Las herramientas sin código usan APIs por vos, sin que tengas que programar.\n- **Humano en el circuito** (*human-in-the-loop*): un paso donde una persona revisa o aprueba antes de seguir. Es la diferencia entre un flujo confiable y uno peligroso."
+        },
+        {
+          "tipo": "animacion",
+          "ref": "flujo-revision"
+        },
+        {
+          "tipo": "vf",
+          "id": "conceptos",
+          "titulo": "¿Lo tenés claro?",
+          "competencia": "comprender",
+          "objetivo": "m18-o2",
+          "afirmaciones": [
+            {
+              "texto": "\"Todos los viernes a las 17\" puede ser el disparador de un flujo.",
+              "verdadero": true,
+              "explicacion": "Un disparador puede ser un evento (llega un formulario) o un momento (una fecha y hora)."
+            },
+            {
+              "texto": "Para usar una API hace falta saber programar.",
+              "verdadero": false,
+              "explicacion": "Las herramientas sin código usan las APIs por vos: elegís las aplicaciones y qué datos pasan."
+            },
+            {
+              "texto": "Un paso de revisión humana hace más lento el flujo, así que conviene evitarlo.",
+              "verdadero": false,
+              "explicacion": "Lo hace un poco más lento y mucho más confiable. Donde un error afecta a personas, es imprescindible."
+            }
+          ]
+        }
       ]
     },
     {
       "titulo": "Agentes que usan herramientas",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "Un agente es un modelo de lenguaje que, además de responder, puede **usar herramientas**: buscar en la web, leer un archivo, consultar una base de datos, enviar un mensaje. Funciona en un ciclo: piensa qué hacer, actúa con una herramienta, mira el resultado y decide el siguiente paso. Esa idea de alternar razonamiento y acción se estudió en un trabajo de 2022 llamado *ReAct*.\n\nDos ideas que vas a escuchar:\n\n- **RAG** (generación aumentada por recuperación): antes de responder, el sistema busca en tus documentos la información relevante y responde con eso, citando de dónde la sacó. Es lo que hace un asistente \"que conoce\" el reglamento de tu empresa.\n- **MCP** (Model Context Protocol): un estándar abierto para conectar aplicaciones de IA con otros sistemas (tu correo, tu calendario, tus archivos) de una forma común, en lugar de una conexión distinta para cada uno.\n\nCuantas más herramientas tiene un agente, más puede hacer por vos, y más importa decidir a qué le das acceso y qué tiene que pasar por una persona." },
-        { "tipo": "nota", "estado": "atencion", "titulo": "Lo que cambia rápido", "md": "Las herramientas para construir agentes cambian cada pocos meses. La propia guía de Anthropic de 2024 aclara que buena parte de lo que describía ya cambió. Los conceptos de este módulo (pasos, herramientas, revisión humana) son los que se mantienen." }
+        {
+          "tipo": "texto",
+          "md": "Un agente es un modelo de lenguaje que, además de responder, puede **usar herramientas**: buscar en la web, leer un archivo, consultar una base de datos, enviar un mensaje. Funciona en un ciclo: piensa qué hacer, actúa con una herramienta, mira el resultado y decide el siguiente paso. Esa idea de alternar razonamiento y acción se estudió en un trabajo de 2022 llamado *ReAct*.\n\nDos ideas que vas a escuchar:\n\n- **RAG** (generación aumentada por recuperación): antes de responder, el sistema busca en tus documentos la información relevante y responde con eso, citando de dónde la sacó. Es lo que hace un asistente \"que conoce\" el reglamento de tu empresa.\n- **MCP** (Model Context Protocol): un estándar abierto para conectar aplicaciones de IA con otros sistemas (tu correo, tu calendario, tus archivos) de una forma común, en lugar de una conexión distinta para cada uno.\n\nCuantas más herramientas tiene un agente, más puede hacer por vos, y más importa decidir a qué le das acceso y qué tiene que pasar por una persona."
+        },
+        {
+          "tipo": "animacion",
+          "ref": "rag"
+        },
+        {
+          "tipo": "nota",
+          "estado": "atencion",
+          "titulo": "Lo que cambia rápido",
+          "md": "Las herramientas para construir agentes cambian cada pocos meses. La propia guía de Anthropic de 2024 aclara que buena parte de lo que describía ya cambió. Los conceptos de este módulo (pasos, herramientas, revisión humana) son los que se mantienen."
+        }
       ]
     },
     {
       "titulo": "Herramientas y cuándo no automatizar",
       "momento": "contenido",
       "bloques": [
-        { "tipo": "texto", "md": "Hay plataformas sin código que conectan aplicaciones y suman pasos con IA. Funcionan parecido: elegís un disparador, agregás acciones y condiciones, y probás. Las diferencias están en con qué aplicaciones se conectan, dónde guardan los datos y cuánto cuestan. Si tu organización trabaja con Microsoft o con Google, empezá por la herramienta de ese ecosistema." },
-        { "tipo": "catalogo", "categoria": "automatizar", "titulo": "Algunas plataformas sin código" },
-        { "tipo": "texto", "md": "**Cuándo no automatizar** (retomando la Delegación y la Diligencia):\n\n- **Tareas de alto riesgo:** decisiones sobre personas, dinero o salud.\n- **Datos sensibles:** un flujo mueve datos entre varias aplicaciones; cada una es un lugar más donde pueden quedar.\n- **Lo que requiere criterio humano:** responder a alguien que está enojado, que tiene un problema personal o que necesita una excepción.\n- **Lo que todavía no sabés hacer bien a mano:** si el proceso no está claro, automatizarlo multiplica el desorden." },
-        { "tipo": "clasificador", "id": "automatizar", "titulo": "¿Lo automatizarías?", "competencia": "delegacion", "objetivo": "m18-o3", "categorias": [
-          { "id": "si", "titulo": "Automatizar", "descripcion": "Repetitivo y de bajo riesgo." },
-          { "id": "revision", "titulo": "Automatizar con revisión", "descripcion": "Una persona aprueba antes de que salga." },
-          { "id": "no", "titulo": "No automatizar", "descripcion": "Requiere criterio o es de alto riesgo." }
-        ], "items": [
-          { "texto": "Pasar las inscripciones de un formulario a una planilla.", "categoria": "si", "feedback": "Es mecánico, siempre igual y fácil de verificar." },
-          { "texto": "Enviar un recordatorio el día anterior a cada clase.", "categoria": "si", "feedback": "Repetitivo y de bajo riesgo. Revisá el texto una vez y dejalo andar." },
-          { "texto": "Redactar con IA el correo de bienvenida para cada persona inscripta.", "categoria": "revision", "feedback": "La IA lo redacta; una persona lo mira antes de enviarlo, al menos al principio." },
-          { "texto": "Resumir con IA las respuestas abiertas de la encuesta de cierre.", "categoria": "revision", "feedback": "El resumen ahorra tiempo, pero alguien tiene que leerlo antes de sacar conclusiones." },
-          { "texto": "Decidir quién aprueba el curso según sus respuestas.", "categoria": "no", "feedback": "Es una decisión sobre personas: la IA puede ayudar a corregir, pero decide una persona." },
-          { "texto": "Responder a quien escribe con un reclamo o un problema personal.", "categoria": "no", "feedback": "Requiere escucha y criterio. Automatizarlo empeora justo lo que más importa." }
-        ] }
+        {
+          "tipo": "texto",
+          "md": "Hay plataformas sin código que conectan aplicaciones y suman pasos con IA. Funcionan parecido: elegís un disparador, agregás acciones y condiciones, y probás. Las diferencias están en con qué aplicaciones se conectan, dónde guardan los datos y cuánto cuestan. Si tu organización trabaja con Microsoft o con Google, empezá por la herramienta de ese ecosistema."
+        },
+        {
+          "tipo": "catalogo",
+          "categoria": "automatizar",
+          "titulo": "Algunas plataformas sin código"
+        },
+        {
+          "tipo": "texto",
+          "md": "**Cuándo no automatizar** (retomando la Delegación y la Diligencia):\n\n- **Tareas de alto riesgo:** decisiones sobre personas, dinero o salud.\n- **Datos sensibles:** un flujo mueve datos entre varias aplicaciones; cada una es un lugar más donde pueden quedar.\n- **Lo que requiere criterio humano:** responder a alguien que está enojado, que tiene un problema personal o que necesita una excepción.\n- **Lo que todavía no sabés hacer bien a mano:** si el proceso no está claro, automatizarlo multiplica el desorden."
+        },
+        {
+          "tipo": "clasificador",
+          "id": "automatizar",
+          "titulo": "¿Lo automatizarías?",
+          "competencia": "delegacion",
+          "objetivo": "m18-o3",
+          "categorias": [
+            {
+              "id": "si",
+              "titulo": "Automatizar",
+              "descripcion": "Repetitivo y de bajo riesgo."
+            },
+            {
+              "id": "revision",
+              "titulo": "Automatizar con revisión",
+              "descripcion": "Una persona aprueba antes de que salga."
+            },
+            {
+              "id": "no",
+              "titulo": "No automatizar",
+              "descripcion": "Requiere criterio o es de alto riesgo."
+            }
+          ],
+          "items": [
+            {
+              "texto": "Pasar las inscripciones de un formulario a una planilla.",
+              "categoria": "si",
+              "feedback": "Es mecánico, siempre igual y fácil de verificar."
+            },
+            {
+              "texto": "Enviar un recordatorio el día anterior a cada clase.",
+              "categoria": "si",
+              "feedback": "Repetitivo y de bajo riesgo. Revisá el texto una vez y dejalo andar."
+            },
+            {
+              "texto": "Redactar con IA el correo de bienvenida para cada persona inscripta.",
+              "categoria": "revision",
+              "feedback": "La IA lo redacta; una persona lo mira antes de enviarlo, al menos al principio."
+            },
+            {
+              "texto": "Resumir con IA las respuestas abiertas de la encuesta de cierre.",
+              "categoria": "revision",
+              "feedback": "El resumen ahorra tiempo, pero alguien tiene que leerlo antes de sacar conclusiones."
+            },
+            {
+              "texto": "Decidir quién aprueba el curso según sus respuestas.",
+              "categoria": "no",
+              "feedback": "Es una decisión sobre personas: la IA puede ayudar a corregir, pero decide una persona."
+            },
+            {
+              "texto": "Responder a quien escribe con un reclamo o un problema personal.",
+              "categoria": "no",
+              "feedback": "Requiere escucha y criterio. Automatizarlo empeora justo lo que más importa."
+            }
+          ]
+        }
       ]
     },
     {
       "titulo": "Diseñá tu flujo",
       "momento": "practica",
       "bloques": [
-        { "tipo": "texto", "md": "Elegí una tarea repetitiva de tu trabajo y diseñá su flujo en 3 a 5 pasos. Para cada paso, elegí el tipo (disparador, acción, paso con IA, condición o revisión humana) y escribí qué pasa. No se ejecuta: es el plano que después podés armar en una herramienta. Marcá con cuidado dónde interviene la IA y dónde revisa una persona." },
-        { "tipo": "flujo", "id": "flujo", "titulo": "Mi flujo", "competencia": "crear", "objetivo": "m18-o4", "evidencia": "Diseño de un flujo de automatización con revisión humana", "consigna": "Entre 3 y 5 pasos. Al terminar, revisá tu flujo y descargá el diagrama." }
+        {
+          "tipo": "texto",
+          "md": "Elegí una tarea repetitiva de tu trabajo y diseñá su flujo en 3 a 5 pasos. Para cada paso, elegí el tipo (disparador, acción, paso con IA, condición o revisión humana) y escribí qué pasa. No se ejecuta: es el plano que después podés armar en una herramienta. Marcá con cuidado dónde interviene la IA y dónde revisa una persona."
+        },
+        {
+          "tipo": "flujo",
+          "id": "flujo",
+          "titulo": "Mi flujo",
+          "competencia": "crear",
+          "objetivo": "m18-o4",
+          "evidencia": "Diseño de un flujo de automatización con revisión humana",
+          "consigna": "Entre 3 y 5 pasos. Al terminar, revisá tu flujo y descargá el diagrama."
+        }
       ]
     },
     {
       "titulo": "Chequeo y cierre del bloque",
       "momento": "evaluacion",
       "bloques": [
-        { "tipo": "quiz", "id": "chequeo", "titulo": "¿Qué te llevás?", "competencia": "delegacion", "objetivo": "m18-o3", "preguntas": [
-          { "texto": "¿Qué conviene probar primero para automatizar una tarea?", "opciones": [
-            { "texto": "Lo más simple que la resuelva: muchas veces un flujo alcanza y no hace falta un agente.", "correcta": true, "feedback": "Es la recomendación de la guía de Anthropic: sumar complejidad solo cuando hace falta." },
-            { "texto": "Siempre un agente, porque es lo más avanzado.", "feedback": "Más autonomía es más difícil de prever y de controlar." }
-          ] },
-          { "texto": "En un flujo que responde consultas de estudiantes, ¿dónde va la revisión humana?", "opciones": [
-            { "texto": "Antes de que la respuesta se envíe, al menos para las consultas que no son de rutina.", "correcta": true, "feedback": "La persona revisa donde un error tiene consecuencias." },
-            { "texto": "No hace falta: la IA responde bien.", "feedback": "Puede equivocarse con seguridad (Módulo 3), y en un flujo el error se repite muchas veces." }
-          ] },
-          { "texto": "¿Qué es un disparador?", "opciones": [
-            { "texto": "Lo que pone en marcha el flujo: un evento o un momento.", "correcta": true, "feedback": "Por ejemplo, un formulario que llega o un día y una hora." },
-            { "texto": "El último paso del flujo.", "feedback": "Es el primero: lo que lo inicia." }
-          ] }
-        ] },
-        { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario, al cerrar el bloque", "pregunta": "¿Qué tarea de tu trabajo automatizarías primero? ¿Qué parte dejarías siempre en manos de una persona, y por qué?" },
-        { "tipo": "profundizar", "fuentes": [
-          { "titulo": "Cómo construir agentes efectivos, de Anthropic", "apa": "Anthropic. (2024, 19 de diciembre). *Building effective agents*. Anthropic Engineering.", "url": "https://www.anthropic.com/engineering/building-effective-agents", "idioma": "en", "nivel": "Profundización", "tipo": "articulo" },
-          { "titulo": "Model Context Protocol (MCP)", "apa": "Model Context Protocol. (s.f.). *What is the Model Context Protocol (MCP)?*", "url": "https://modelcontextprotocol.io/", "idioma": "en", "nivel": "Técnica (opcional)", "tipo": "documentacion" },
-          { "titulo": "ReAct: razonar y actuar", "apa": "Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K. y Cao, Y. (2022). ReAct: Synergizing reasoning and acting in language models. *arXiv*. https://doi.org/10.48550/arXiv.2210.03629", "url": "https://arxiv.org/abs/2210.03629", "idioma": "en", "nivel": "Técnica (opcional)", "tipo": "articulo" },
-          { "titulo": "RAG: generación aumentada por recuperación", "apa": "Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W., Rocktäschel, T., Riedel, S. y Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. *Advances in Neural Information Processing Systems, 33*. https://doi.org/10.48550/arXiv.2005.11401", "url": "https://arxiv.org/abs/2005.11401", "idioma": "en", "nivel": "Técnica (opcional)", "tipo": "articulo" }
-        ] }
+        {
+          "tipo": "quiz",
+          "id": "chequeo",
+          "titulo": "¿Qué te llevás?",
+          "competencia": "delegacion",
+          "objetivo": "m18-o3",
+          "preguntas": [
+            {
+              "texto": "¿Qué conviene probar primero para automatizar una tarea?",
+              "opciones": [
+                {
+                  "texto": "Lo más simple que la resuelva: muchas veces un flujo alcanza y no hace falta un agente.",
+                  "correcta": true,
+                  "feedback": "Es la recomendación de la guía de Anthropic: sumar complejidad solo cuando hace falta."
+                },
+                {
+                  "texto": "Siempre un agente, porque es lo más avanzado.",
+                  "feedback": "Más autonomía es más difícil de prever y de controlar."
+                }
+              ]
+            },
+            {
+              "texto": "En un flujo que responde consultas de estudiantes, ¿dónde va la revisión humana?",
+              "opciones": [
+                {
+                  "texto": "Antes de que la respuesta se envíe, al menos para las consultas que no son de rutina.",
+                  "correcta": true,
+                  "feedback": "La persona revisa donde un error tiene consecuencias."
+                },
+                {
+                  "texto": "No hace falta: la IA responde bien.",
+                  "feedback": "Puede equivocarse con seguridad (Módulo 3), y en un flujo el error se repite muchas veces."
+                }
+              ]
+            },
+            {
+              "texto": "¿Qué es un disparador?",
+              "opciones": [
+                {
+                  "texto": "Lo que pone en marcha el flujo: un evento o un momento.",
+                  "correcta": true,
+                  "feedback": "Por ejemplo, un formulario que llega o un día y una hora."
+                },
+                {
+                  "texto": "El último paso del flujo.",
+                  "feedback": "Es el primero: lo que lo inicia."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tipo": "reflexion",
+          "id": "diario",
+          "titulo": "Para tu diario, al cerrar el bloque",
+          "pregunta": "¿Qué tarea de tu trabajo automatizarías primero? ¿Qué parte dejarías siempre en manos de una persona, y por qué?"
+        },
+        {
+          "tipo": "profundizar",
+          "fuentes": [
+            {
+              "titulo": "Cómo construir agentes efectivos, de Anthropic",
+              "apa": "Anthropic. (2024, 19 de diciembre). *Building effective agents*. Anthropic Engineering.",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "idioma": "en",
+              "nivel": "Profundización",
+              "tipo": "articulo"
+            },
+            {
+              "titulo": "Model Context Protocol (MCP)",
+              "apa": "Model Context Protocol. (s.f.). *What is the Model Context Protocol (MCP)?*",
+              "url": "https://modelcontextprotocol.io/",
+              "idioma": "en",
+              "nivel": "Técnica (opcional)",
+              "tipo": "documentacion"
+            },
+            {
+              "titulo": "ReAct: razonar y actuar",
+              "apa": "Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K. y Cao, Y. (2022). ReAct: Synergizing reasoning and acting in language models. *arXiv*. https://doi.org/10.48550/arXiv.2210.03629",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "idioma": "en",
+              "nivel": "Técnica (opcional)",
+              "tipo": "articulo"
+            },
+            {
+              "titulo": "RAG: generación aumentada por recuperación",
+              "apa": "Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W., Rocktäschel, T., Riedel, S. y Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. *Advances in Neural Information Processing Systems, 33*. https://doi.org/10.48550/arXiv.2005.11401",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "idioma": "en",
+              "nivel": "Técnica (opcional)",
+              "tipo": "articulo"
+            }
+          ]
+        }
       ]
     }
   ]

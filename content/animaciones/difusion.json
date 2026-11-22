@@ -1,0 +1,46 @@
+{
+  "id": "difusion",
+  "titulo": "Cómo un modelo de imagen dibuja a partir de ruido",
+  "guion": "animaciones/guiones/06-difusion.md",
+  "modulo": 15,
+  "objetivo": "Explicar en términos simples que muchos modelos de imagen parten de ruido y lo limpian paso a paso guiados por el pedido, y por qué cada vez sale distinta.",
+  "nota": "Es una simplificación: la imagen es un dibujo de pocos píxeles y los pasos son ilustrativos.",
+  "datos": {
+    "pedido": "una casa con el sol de la tarde",
+    "pasos": 30
+  },
+  "escenas": [
+    {
+      "titulo": "Empieza con ruido",
+      "duracion": 11,
+      "pantalla": "El modelo no busca una imagen guardada. Empieza con ruido.",
+      "movimiento": "Aparece una grilla de píxeles al azar, como la nieve de un televisor.",
+      "narracion": "Diego pide una imagen: una casa con el sol de la tarde. El modelo no busca una foto en un archivo. Arranca con algo parecido a la nieve de un televisor viejo: puro ruido.",
+      "descripcion": "Una grilla de cuadraditos grises al azar, como ruido de televisor, con el pedido de Diego arriba."
+    },
+    {
+      "titulo": "Paso a paso, el ruido se limpia",
+      "duracion": 15,
+      "pantalla": "En cada paso, quita un poco de ruido. Al final aparece la imagen.",
+      "movimiento": "Los píxeles cambian de a poco y aparece una casa, el sol y el pasto. Un contador va del paso 1 al 30.",
+      "narracion": "En cada paso, el modelo quita un poco de ruido, en la dirección de lo que se pidió. Después de muchos pasos, aparece una casa, el sol y el pasto. Nadie la dibujó: se fue limpiando.",
+      "descripcion": "Los cuadraditos cambian de a poco hasta formar una casa azul con techo naranja, un sol y pasto verde. Un contador marca el paso, de 1 a 30."
+    },
+    {
+      "titulo": "El pedido guía cada paso",
+      "duracion": 12,
+      "pantalla": "El pedido decide hacia dónde limpia: por eso describir bien cambia la imagen.",
+      "movimiento": "El pedido se resalta con una flecha hacia la imagen terminada.",
+      "narracion": "El pedido es lo que orienta cada paso de limpieza. Por eso un prompt visual bien descripto, con el estilo, la luz y el encuadre, cambia tanto el resultado.",
+      "descripcion": "El pedido se resalta y una flecha lo une con la imagen terminada."
+    },
+    {
+      "titulo": "Otro ruido, otra imagen",
+      "duracion": 13,
+      "pantalla": "Con otro ruido inicial, el mismo pedido da otra imagen.",
+      "movimiento": "Aparecen dos imágenes pequeñas del mismo pedido, distintas entre sí.",
+      "narracion": "Si se repite el pedido, el ruido inicial es otro, y la imagen también: el sol en otro lugar, otra puerta. Por eso nunca sale dos veces igual, y por eso los detalles difíciles, como las manos o las letras, a veces fallan.",
+      "descripcion": "Dos imágenes chicas del mismo pedido, una al lado de la otra, con el sol y la puerta en lugares distintos."
+    }
+  ]
+}

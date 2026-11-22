@@ -1,0 +1,43 @@
+{
+  "id": "ciclo-4d",
+  "titulo": "El marco 4D en acción: describir, evaluar y volver a empezar",
+  "guion": "animaciones/guiones/04-marco-4d-y-ciclo.md",
+  "modulo": 7,
+  "objetivo": "Mostrar cómo se encadenan las cuatro dimensiones del marco 4D, con el ciclo entre descripción y discernimiento que se repite hasta que el resultado sirve.",
+  "nota": "El caso es inventado. El marco 4D es del curso AI Fluency (Dakan, Feller y Anthropic); el esquema es propio del taller.",
+  "datos": {},
+  "escenas": [
+    {
+      "titulo": "Antes de empezar, decidir",
+      "duracion": 11,
+      "pantalla": "Delegación: ¿esta tarea va con IA? ¿Qué parte hago yo?",
+      "movimiento": "Aparece la caja Delegación.",
+      "narracion": "Pablo tiene que mandar un aviso al personal de depósito sobre una capacitación. Antes de abrir el asistente, decide: la IA puede ayudar con el borrador; lo que se dice y a quién, lo decide él.",
+      "descripcion": "Una caja con el título Delegación: decidir si la tarea va con IA y qué parte queda en tus manos."
+    },
+    {
+      "titulo": "Describir y recibir",
+      "duracion": 12,
+      "pantalla": "Descripción: el pedido, con contexto. La IA devuelve una primera respuesta.",
+      "movimiento": "Una flecha lleva a Descripción y de ahí a Respuesta.",
+      "narracion": "Pablo escribe el pedido: para quién es, qué tiene que decir y en qué tono. La IA devuelve una primera versión. Suena a circular de oficina, y no dice ni el día ni el lugar.",
+      "descripcion": "Flechas de Delegación a Descripción y de Descripción a Respuesta. Un punto recorre el camino."
+    },
+    {
+      "titulo": "Evaluar y ajustar",
+      "duracion": 15,
+      "pantalla": "Discernimiento: ¿es correcto, está completo, respondió a lo pedido? Si no, se ajusta el pedido.",
+      "movimiento": "Aparece Discernimiento y una flecha curva vuelve a Descripción; el punto da dos vueltas.",
+      "narracion": "Pablo evalúa la respuesta: el tono no va y falta información. Ajusta el pedido y vuelve a evaluar. Este ida y vuelta entre describir y discernir es el centro del trabajo con IA. Rara vez la primera respuesta es la que sirve.",
+      "descripcion": "Una flecha va de Respuesta a Discernimiento y otra, curva y de color, vuelve a Descripción. Un punto recorre el ciclo dos veces."
+    },
+    {
+      "titulo": "Cuando sirve, y con responsabilidad",
+      "duracion": 13,
+      "pantalla": "Diligencia: sos responsable de todo el proceso, de lo que cargás a lo que publicás.",
+      "movimiento": "Aparece la caja Sirve y un marco punteado envuelve todo con el título Diligencia.",
+      "narracion": "Cuando el aviso sirve, Pablo lo revisa una última vez y lo envía con su nombre. Todo el recorrido, desde lo que cargó hasta lo que publicó, es su responsabilidad. Eso es la diligencia, y por eso envuelve a las otras tres.",
+      "descripcion": "Aparece una caja que dice Sirve. Un marco punteado envuelve todo el diagrama con el título Diligencia."
+    }
+  ]
+}

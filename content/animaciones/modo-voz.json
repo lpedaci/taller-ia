@@ -1,0 +1,15 @@
+{
+  "id": "modo-voz",
+  "titulo": "Qué pasa cuando le hablás a un asistente",
+  "guion": "animaciones/guiones/10-modo-de-voz.md",
+  "objetivo": "Explicar que el modo de voz encadena tres pasos (tu voz se vuelve texto, el modelo responde en texto y ese texto se vuelve voz) y que por eso valen los mismos cuidados que al escribir.",
+  "modulo": 12,
+  "nota": "La conversación es inventada. Algunos asistentes procesan la voz de forma más directa; el esquema muestra la idea general.",
+  "datos": { "dicho": "¿Cómo digo \"me gustaría reprogramar la reunión\" en inglés?", "respuesta": "Podés decir: I'd like to reschedule the meeting." },
+  "escenas": [
+    { "titulo": "Hablás", "duracion": 11, "pantalla": "Todo empieza con tu voz: un sonido, no un texto.", "movimiento": "Aparece la caja \"Hablás\" y una onda de sonido que late.", "narracion": "Martina está practicando inglés camino al trabajo. Toca el micrófono y pregunta en voz alta cómo decir una frase. Para el asistente, eso todavía no son palabras: es sonido.", "descripcion": "Una caja con un micrófono, \"Hablás\", y una onda de sonido animada con la pregunta de Martina." },
+    { "titulo": "Tu voz se vuelve texto", "duracion": 12, "pantalla": "Primero, tu voz se transcribe. Si entendió mal una palabra, todo lo que sigue parte de ese error.", "movimiento": "Una flecha lleva a \"Se transcribe\" y debajo aparece el texto de la pregunta.", "narracion": "El primer paso es pasar el sonido a texto. Con un acento fuerte, ruido o una palabra poco común, la transcripción puede fallar. Y si el texto está mal, el resto también.", "descripcion": "Una flecha va de \"Hablás\" a \"Se transcribe\". Aparece el texto de la pregunta transcripta." },
+    { "titulo": "El modelo responde en texto", "duracion": 12, "pantalla": "El modelo trabaja con el texto, igual que en el chat. Puede equivocarse igual.", "movimiento": "El texto viaja hasta \"El modelo\" y de ahí sale \"Texto de la respuesta\".", "narracion": "Con ese texto, el modelo arma una respuesta como en cualquier chat: prediciendo de a un fragmento. Por eso todo lo que aprendiste sobre verificar sigue valiendo, aunque después lo escuches.", "descripcion": "Flechas de \"Se transcribe\" a \"El modelo\" y de ahí a \"Texto de la respuesta\". Un punto recorre el camino." },
+    { "titulo": "Y el texto vuelve a ser voz", "duracion": 13, "pantalla": "Una voz sintética lee la respuesta. Podés interrumpirla y la ronda empieza otra vez.", "movimiento": "Una flecha lleva a \"Voz sintética\"; una flecha curva vuelve a \"Hablás\" con la etiqueta \"podés interrumpir\".", "narracion": "Por último, una voz sintética lee la respuesta. Suena natural y segura, aunque el contenido esté mal. Si Martina la interrumpe, la ronda empieza de nuevo desde su voz.", "descripcion": "Una flecha va de \"Texto de la respuesta\" a \"Voz sintética\" y otra, curva, vuelve a \"Hablás\" con la etiqueta \"podés interrumpir\"." }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "datos-carga",
+  "titulo": "Qué pasa con lo que le cargás a una IA",
+  "guion": "animaciones/guiones/05-datos-al-cargar.md",
+  "modulo": 10,
+  "objetivo": "Mostrar el recorrido de lo que se carga en una herramienta de IA (servidores, almacenamiento, posible entrenamiento y revisión humana) y lo que la persona puede hacer antes.",
+  "nota": "Es un esquema general: lo que pasa en cada herramienta depende del tipo de cuenta y de la configuración.",
+  "datos": {},
+  "escenas": [
+    {
+      "titulo": "Lo que escribís viaja",
+      "duracion": 12,
+      "pantalla": "Lo que escribís o adjuntás sale de tu computadora.",
+      "movimiento": "Aparece Vos y una flecha lleva un punto hasta Servidores de la empresa.",
+      "narracion": "Andrea pega un correo de trabajo en un asistente para pedir un resumen. En cuanto lo envía, el texto sale de su computadora y llega a los servidores de la empresa que ofrece la herramienta.",
+      "descripcion": "Una caja Vos, una flecha y una caja Servidores de la empresa. Un punto viaja de una a otra."
+    },
+    {
+      "titulo": "Se guarda",
+      "duracion": 11,
+      "pantalla": "Ahí se guarda un tiempo, aunque lo borres de tu pantalla.",
+      "movimiento": "Aparece la caja Se guarda debajo de los servidores.",
+      "narracion": "Ahí, lo que envió se guarda durante un tiempo. Borrar la conversación de su pantalla no siempre lo borra de los servidores.",
+      "descripcion": "Una flecha va de Servidores a una caja Se guarda, un tiempo."
+    },
+    {
+      "titulo": "Dos usos posibles",
+      "duracion": 14,
+      "pantalla": "Según la herramienta y la cuenta, puede usarse para entrenar y lo puede leer una persona.",
+      "movimiento": "Desde Se guarda salen dos flechas: Puede entrenar y Puede leerlo una persona, en color de alerta.",
+      "narracion": "Según la herramienta, el tipo de cuenta y la configuración, eso puede usarse para mejorar los modelos. Y por seguridad o control de calidad, alguna conversación la puede leer una persona de la empresa. En el correo de Andrea había nombres y un dato de salud de otras personas.",
+      "descripcion": "Dos flechas salen de Se guarda hacia dos cajas de alerta: Puede entrenar, si no lo desactivás, y Puede leerlo una persona."
+    },
+    {
+      "titulo": "Lo que podés hacer antes",
+      "duracion": 13,
+      "pantalla": "Antes de cargar: anonimizá, revisá la privacidad y usá la herramienta que autoriza tu organización.",
+      "movimiento": "Aparece una caja verde Antes de cargar, con una flecha hacia Vos.",
+      "narracion": "La parte que sí depende de vos está al principio: quitar los datos que no hacen falta, revisar si tu cuenta permite desactivar el entrenamiento y usar la herramienta que autorizó tu organización. Lo que no cargás, no viaja.",
+      "descripcion": "Una caja verde, Antes de cargar: anonimizar y revisar la privacidad, con una flecha que apunta a Vos."
+    }
+  ]
+}

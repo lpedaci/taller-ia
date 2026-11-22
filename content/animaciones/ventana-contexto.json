@@ -1,0 +1,83 @@
+{
+  "id": "ventana-contexto",
+  "titulo": "Lo que el modelo tiene a la vista",
+  "guion": "animaciones/guiones/03-ventana-de-contexto.md",
+  "modulo": 2,
+  "objetivo": "Explicar que el modelo solo usa lo que está dentro de su ventana de contexto, que en conversaciones largas lo primero queda afuera, y qué hacer al respecto.",
+  "nota": "La conversación es inventada y la ventana está achicada para que se vea: las reales son mucho más grandes, pero también se llenan.",
+  "datos": {
+    "mensajes": [
+      {
+        "q": "user",
+        "t": "Soy Ana, coordino capacitación en una aseguradora."
+      },
+      {
+        "q": "bot",
+        "t": "¡Hola, Ana! ¿En qué te ayudo?"
+      },
+      {
+        "q": "user",
+        "t": "El curso es para 20 personas de atención al cliente."
+      },
+      {
+        "q": "bot",
+        "t": "Perfecto. ¿Cuántas horas dura?"
+      },
+      {
+        "q": "user",
+        "t": "Son 8 horas. Armemos la agenda."
+      },
+      {
+        "q": "bot",
+        "t": "Te propongo cuatro bloques de dos horas…"
+      },
+      {
+        "q": "user",
+        "t": "Sumá un caso práctico en cada bloque."
+      },
+      {
+        "q": "bot",
+        "t": "Listo. Agregué un caso en cada bloque…"
+      },
+      {
+        "q": "user",
+        "t": "¿Para qué empresa era el curso?"
+      }
+    ],
+    "resumen": "Resumen: Ana, aseguradora, 20 personas, 8 horas, 4 bloques con casos."
+  },
+  "escenas": [
+    {
+      "titulo": "La conversación entra en la ventana",
+      "duracion": 12,
+      "pantalla": "Todo lo que escribís y todo lo que responde va entrando en una ventana.",
+      "movimiento": "Los primeros mensajes aparecen dentro de un marco.",
+      "narracion": "Ana empieza una conversación para armar un curso. Cada mensaje, suyo o del asistente, entra en lo que se llama la ventana de contexto: lo que el modelo tiene a la vista.",
+      "descripcion": "Un marco con el título Ventana de contexto. Adentro aparecen los primeros mensajes entre Ana y el asistente."
+    },
+    {
+      "titulo": "En cada respuesta, lee todo lo que está adentro",
+      "duracion": 12,
+      "pantalla": "Para cada respuesta, el modelo vuelve a leer todo lo que hay en la ventana.",
+      "movimiento": "Los mensajes de adentro se resaltan y una flecha los lleva al modelo.",
+      "narracion": "El modelo no recuerda como una persona. Cada vez que responde, vuelve a leer todo lo que hay en la ventana, de principio a fin. Eso es lo que le permite seguir el hilo.",
+      "descripcion": "Todos los mensajes del marco se resaltan y una flecha los lleva a una caja que dice El modelo."
+    },
+    {
+      "titulo": "Cuando se llena, lo primero queda afuera",
+      "duracion": 15,
+      "pantalla": "Si la conversación es muy larga, lo más viejo sale de la ventana. El modelo ya no lo ve.",
+      "movimiento": "Llegan más mensajes; los primeros suben y quedan fuera del marco, atenuados.",
+      "narracion": "La conversación sigue y la ventana se llena. Los mensajes más viejos quedan afuera, y con ellos el dato de que Ana trabaja en una aseguradora. Cuando ella pregunta para qué empresa era el curso, el modelo ya no lo tiene a la vista. Puede adivinar.",
+      "descripcion": "Llegan más mensajes. Los primeros suben y quedan afuera del marco, en gris. Abajo aparece la pregunta de Ana: para qué empresa era el curso."
+    },
+    {
+      "titulo": "Empezar de nuevo, con lo importante",
+      "duracion": 13,
+      "pantalla": "Una conversación nueva con un resumen de lo importante funciona mejor que una eterna.",
+      "movimiento": "La ventana se vacía y entra un mensaje de resumen y la pregunta nueva.",
+      "narracion": "La solución es simple: cuando una conversación se alarga, pedile un resumen de lo importante y empezá una nueva con ese resumen. Así todo lo que importa vuelve a estar a la vista.",
+      "descripcion": "El marco se vacía. Entra un mensaje con el resumen de lo importante y después la pregunta nueva."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.479
+Ana empieza una conversación para armar un curso.
+
+2
+00:00:03.479 --> 00:00:12.000
+Cada mensaje, suyo o del asistente, entra en lo que se llama la ventana de contexto: lo que el modelo tiene a la vista.
+
+3
+00:00:12.040 --> 00:00:14.826
+El modelo no recuerda como una persona.
+
+4
+00:00:14.826 --> 00:00:21.111
+Cada vez que responde, vuelve a leer todo lo que hay en la ventana, de principio a fin.
+
+5
+00:00:21.111 --> 00:00:24.040
+Eso es lo que le permite seguir el hilo.
+
+6
+00:00:24.080 --> 00:00:26.752
+La conversación sigue y la ventana se llena.
+
+7
+00:00:26.752 --> 00:00:32.703
+Los mensajes más viejos quedan afuera, y con ellos el dato de que Ana trabaja en una aseguradora.
+
+8
+00:00:32.703 --> 00:00:38.108
+Cuando ella pregunta para qué empresa era el curso, el modelo ya no lo tiene a la vista.
+
+9
+00:00:38.108 --> 00:00:39.080
+Puede adivinar.
+
+10
+00:00:39.120 --> 00:00:48.416
+La solución es simple: cuando una conversación se alarga, pedile un resumen de lo importante y empezá una nueva con ese resumen.
+
+11
+00:00:48.416 --> 00:00:52.120
+Así todo lo que importa vuelve a estar a la vista.

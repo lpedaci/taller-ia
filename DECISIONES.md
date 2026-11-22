@@ -72,6 +72,9 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-064 | 2026-11-21 | Guía para facilitadores por módulo | Vigente |
 | D-065 | 2026-11-21 | Diario de aprendizaje y portafolio imprimible en Mi aprendizaje | Vigente |
 | D-066 | 2026-11-21 | Etapa 9 (transversales): verificación | Vigente |
+| D-067 | 2026-11-22 | Piezas comunes para las animaciones de procesos | Vigente |
+| D-068 | 2026-11-22 | Animaciones prioritarias 3 a 10: guiones, escenas y ubicación | Vigente |
+| D-069 | 2026-11-22 | Animaciones: MP4 para facilitadores y verificación | Vigente |
 
 ---
 
@@ -1439,3 +1442,69 @@ Se revisaron todas las filas de botones del sitio. Las filas con una sola acció
 - `npm run verificar` completo: 876 capturas (73 pantallas, 6 anchos, claro y oscuro), sin problemas de axe-core, scroll, consola, movimiento, texto ni design system. Encontró dos problemas de áreas táctiles en mobile, ya corregidos: (1) en el glosario, el enlace "Se explica en el Módulo N" quedaba fuera de la excepción para enlaces dentro de un texto, porque su contenedor es flexible; ahora va dentro de su propia oración; (2) en Mi aprendizaje, en 360 px, los dos botones del encabezado se apilaban sin separación; las acciones del encabezado de cualquier vista ahora tienen 8 px entre filas. Después, `npm run verificar:rapido` y la medición de los botones, sin problemas.
 
 **Pendientes o riesgos:** quedan las animaciones prioritarias 4 a 10 (D-040, D-046, D-052, D-056 y D-059) y la etapa 10, la revisión final.
+
+## D-067 | 2026-11-22 | Piezas comunes para las animaciones
+
+**Solicitado:** producir las animaciones prioritarias pendientes del brief con el mismo motor de la piloto (D-031).
+
+**Decisión y motivo:**
+- Seis de las ocho animaciones explican un proceso. En lugar de dibujar cada una desde cero, se armó `js/animaciones/kit.js` con estas piezas comunes:
+  - cajas con un ícono, un título y una línea, en cuatro variantes (común, IA, persona y alerta);
+  - flechas que se dibujan con el avance, con su etiqueta al costado para no pisar la línea;
+  - un punto que recorre el camino, un marco que envuelve un grupo y un pulso alrededor de un ícono;
+  - el texto en pantalla.
+- **Escenas declarativas:** con `proceso()`, cada animación indica qué aparece en cada escena. Lo de las escenas anteriores ya está; lo nuevo entra en orden. Así hay continuidad entre escenas y cada animación es un archivo corto, fácil de corregir.
+- **Dos lienzos:** cada caja tiene una posición para el lienzo horizontal (1600 x 900) y otra para el vertical (720 x 900). En la columna de la lección, el reproductor mide menos de 600 px aun en desktop, así que **el vertical es el que más se ve**. Se diseñó primero ese: ciclos en sentido horario y sin flechas cruzadas. En el vertical, los textos son más grandes, para que se lean en un celular.
+
+**Archivos afectados:** `js/animaciones/kit.js`, `css/animacion.css`.
+
+**Verificación realizada:** ver D-069.
+
+**Pendientes o riesgos:** ninguno.
+
+## D-068 | 2026-11-22 | Animaciones prioritarias 3 a 10
+
+**Solicitado:** las animaciones prioritarias de la sección 5 del brief, con guion y storyboard previos, controles, transcripción, versión estática para movimiento reducido y MP4 con subtítulos.
+
+**Decisión y motivo:**
+- **Prioridad 2 (entrenamiento y ajuste):** no se animó. El Módulo 2 ya usa el video verificado de 3Blue1Brown, breve y oficial, que lo explica, como pide el brief ("si no hay un video oficial breve que las resuelva mejor").
+- **Las otras ocho**, cada una con cuatro escenas, de 45 a 55 segundos, y un caso con personas:
+  - 3, ventana de contexto: los mensajes de Ana llenan la ventana y lo primero queda afuera. Está en el Módulo 2, "Lo que el modelo tiene a la vista".
+  - 4, marco 4D y ciclo entre descripción y discernimiento: Pablo y su aviso, con la Diligencia como marco que envuelve todo. Módulo 7, "Iterar en lugar de aceptar".
+  - 5, qué pasa con los datos al cargarlos: el correo de Andrea viaja, se guarda, puede usarse para entrenar o leerlo una persona, y lo que se puede hacer antes. Módulo 10, "Qué pasa con lo que le cargás a una IA".
+  - 6, difusión: una grilla de ruido que se limpia paso a paso hasta formar una casa con el sol; con otro ruido, otra imagen. Módulo 15, "Cómo funcionan y qué permiten".
+  - 7, agente: el ciclo de planificar, usar herramientas y mirar el resultado, y la revisión humana al final. Módulo 18, "Chat, flujo y agente".
+  - 8, RAG: buscar en el reglamento y responder citando la página, comparado con responder sin buscar. Módulo 18, "Agentes que usan herramientas".
+  - 9, flujo con revisión humana: el flujo de Sergio y el error que la revisión frena. Módulo 18, "Conceptos clave, sin código".
+  - 10, modo de voz: voz, transcripción, modelo, texto y voz sintética, en un ciclo que se puede interrumpir. Módulo 12, "Qué es el modo de voz".
+- **Textos y guiones:** los textos de cada animación (en pantalla, narración, descripción y qué se mueve) están en `content/animaciones/<id>.json`. El guion en `animaciones/guiones/` se genera con `node scripts/generar-guiones.mjs`, así el guion y lo que se ve nunca se contradicen. El guion de la piloto, escrito a mano, no se toca.
+- **Ajustes después de revisar las capturas de cada escena en los dos lienzos:**
+  - en el vertical, el texto de las cajas quedaba en unos 11 px en un celular y se agrandó;
+  - las etiquetas de las flechas pisaban la línea y ahora van al costado;
+  - en la ventana de contexto, los mensajes que salían tapaban el título: ahora se recortan en el borde del marco y arriba se nombra lo que quedó afuera;
+  - en la difusión, el sol salía cuadrado y se agrandó la resolución de la grilla;
+  - en el modo de voz, la primera versión vertical tenía flechas cruzadas y se rediseñó como un ciclo.
+
+**Archivos afectados:** `content/animaciones/*.json`, `js/animaciones/*.js`, `animaciones/guiones/03` a `10`, `scripts/generar-guiones.mjs`, `content/modulo-02.json`, `content/modulo-07.json`, `content/modulo-10.json`, `content/modulo-12.json`, `content/modulo-15.json`, `content/modulo-18.json`.
+
+**Verificación realizada:** ver D-069.
+
+**Pendientes o riesgos:** **para Lourdes:** las ocho animaciones se presentan juntas para su revisión. El motor ya estaba aprobado con la piloto, pero conviene que mire el tono de las narraciones y los casos.
+
+## D-069 | 2026-11-22 | Animaciones: MP4 y verificación
+
+**Solicitado:** el MP4 con subtítulos de cada animación, para facilitadores, y la verificación completa.
+
+**Decisión y motivo:**
+- **Videos:** se grabaron con `scripts/grabar-animacion.mjs`, el mismo de la piloto (D-035). Quedan en `assets/video/` con sus subtítulos `.vtt`, y se ofrecen para descargar en la guía para facilitadores de los Módulos 2, 7, 10, 12, 15 y 18.
+- **Verificador:** suma dos pantallas con animaciones (Módulos 2 y 18).
+
+**Archivos afectados:** `assets/video/`, `content/facilitadores.json`, `scripts/pantallas.mjs`.
+
+**Verificación realizada:**
+- **Prueba de las ocho animaciones en 1280 px (claro) y 390 px (oscuro):** las cuatro escenas; reproducir y pausar; la descripción que cambia al pasar de escena; axe-core y la auditoría del design system sin problemas; sin errores de consola. Con "reducir movimiento", las ocho se muestran con escenas fijas y sin el botón de reproducir.
+- **Capturas** de las cuatro escenas de cada animación en los lienzos horizontal y vertical, revisadas una por una.
+- `npm run verificar` completo: 900 capturas (75 pantallas, 6 anchos, claro y oscuro), sin ningún problema: axe-core, scroll, áreas táctiles, consola, movimiento reducido, texto y design system.
+- Revisión de cuadros de los MP4 en 1920 x 1080. En la ventana de contexto, el aviso "Quedó afuera" aparecía cuando el primer mensaje todavía se veía en parte; ahora aparece cuando el mensaje salió entero, y se volvió a grabar ese video.
+
+**Pendientes o riesgos:** queda la etapa 10, la revisión final.

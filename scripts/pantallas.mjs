@@ -63,6 +63,8 @@ export const PANTALLAS = [
   { id: "glosario-termino", url: "index.html#/glosario/alucinacion" },
   { id: "facilitadores-modulo", url: "index.html#/facilitadores/2" },
   { id: "aprendizaje-diario", url: "index.html?demo=1#/aprendizaje/diario" },
+  { id: "anim-ventana-contexto", url: "index.html#/modulo/2/paso/5" },
+  { id: "anim-agente", url: "index.html#/modulo/18/paso/2" },
   { id: "recorrido", url: "index.html#/recorrido" },
   { id: "agenda-semana", url: "index.html#/agenda/semana" },
   { id: "agenda-mes", url: "index.html#/agenda/mes" },

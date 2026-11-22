@@ -56,3 +56,47 @@
 .an-inv-t{fill:var(--app-color-on-warning-container);font-weight:var(--md-sys-typescale-emphasized-weight)}
 .anim .an-warn-ic{font-family:"Material Symbols Rounded";fill:var(--app-color-warning)}
 .an-warn-t{fill:var(--app-color-warning);font-weight:var(--md-sys-typescale-emphasized-weight)}
+
+/* Piezas comunes de los diagramas animados (js/animaciones/kit.js, D-067) */
+.an-caja-r{fill:var(--app-color-card);stroke:var(--md-sys-color-outline-variant);stroke-width:2;transition:stroke var(--md-sys-motion-spring-fast-effects),stroke-width var(--md-sys-motion-spring-fast-effects)}
+.anim .an-caja-ic{font-family:"Material Symbols Rounded";fill:var(--md-sys-color-primary)}
+.an-caja-t{fill:var(--md-sys-color-on-surface);font-weight:500}
+.an-caja-s{fill:var(--md-sys-color-on-surface-variant)}
+.an-caja.is-on .an-caja-r{stroke:var(--md-sys-color-primary);stroke-width:5}
+.an-caja-ia .an-caja-r{fill:var(--md-sys-color-secondary-container)}
+.an-caja-ia .an-caja-t,.an-caja-ia .an-caja-s{fill:var(--md-sys-color-on-secondary-container)}
+.an-caja-persona .an-caja-r{fill:var(--app-color-success-container)}
+.an-caja-persona .an-caja-t,.an-caja-persona .an-caja-s{fill:var(--app-color-on-success-container)}
+.anim .an-caja-persona .an-caja-ic{fill:var(--app-color-on-success-container)}
+.an-caja-alerta .an-caja-r{fill:var(--app-color-warning-container)}
+.an-caja-alerta .an-caja-t,.an-caja-alerta .an-caja-s{fill:var(--app-color-on-warning-container)}
+.anim .an-caja-alerta .an-caja-ic{fill:var(--app-color-on-warning-container)}
+.an-fl-l{fill:none;stroke:var(--md-sys-color-on-surface-variant);stroke-width:4;stroke-linecap:round}
+.an-fl-p{fill:var(--md-sys-color-on-surface-variant)}
+.an-fl-t{fill:var(--md-sys-color-on-surface-variant)}
+.an-fl.an-fl-ciclo .an-fl-l{stroke:var(--md-sys-color-primary)}
+.an-fl.an-fl-ciclo .an-fl-p{fill:var(--md-sys-color-primary)}
+.an-fl.an-fl-ciclo .an-fl-t{fill:var(--md-sys-color-primary)}
+.an-viaje{fill:var(--md-sys-color-primary)}
+.an-marco-r{fill:none;stroke:var(--app-chart-4);stroke-width:3;stroke-dasharray:14 10}
+.an-marco-t{fill:var(--md-sys-color-on-surface);font-weight:500}
+.an-onda{fill:var(--md-sys-color-primary)}
+.an-texto{fill:var(--md-sys-color-on-surface)}
+.an-chip{fill:var(--md-sys-color-surface-container-highest);stroke:var(--md-sys-color-outline-variant);stroke-width:2}
+.an-ok{fill:var(--app-color-success)}
+.an-mal{fill:var(--md-sys-color-error)}
+.an-pulso{fill:none;stroke:var(--md-sys-color-primary);stroke-width:3}
+
+.an-ventana{fill:none;stroke:var(--md-sys-color-primary);stroke-width:3}
+.an-user.is-on,.an-bot.is-on{stroke:var(--md-sys-color-primary);stroke-width:3}
+.an-chip.is-on{stroke:var(--md-sys-color-primary);stroke-width:4}
+.an-ok-t{fill:var(--app-color-success);font-weight:var(--md-sys-typescale-emphasized-weight)}
+.an-caja.is-alerta .an-caja-r{stroke:var(--app-color-warning);stroke-width:5}
+.an-px-ruido{fill:var(--md-sys-color-on-surface)}
+.an-px-cielo{fill:var(--md-sys-color-secondary-container)}
+.an-px-sol{fill:var(--app-chart-2)}
+.an-px-pasto{fill:var(--app-chart-4)}
+.an-px-casa{fill:var(--app-chart-1)}
+.an-px-techo{fill:var(--app-chart-3)}
+.an-px-puerta{fill:var(--md-sys-color-on-surface-variant)}
+.an-px-ventana{fill:var(--app-color-warning-container)}

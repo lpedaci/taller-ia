@@ -1,0 +1,46 @@
+{
+  "id": "rag",
+  "titulo": "Responder buscando en tus documentos",
+  "guion": "animaciones/guiones/08-rag.md",
+  "modulo": 18,
+  "objetivo": "Explicar RAG en términos simples: antes de responder, el sistema busca en documentos y responde con lo que encontró, citando la fuente; y compararlo con responder sin buscar.",
+  "nota": "El reglamento y la pregunta son inventados.",
+  "datos": {
+    "pregunta": "¿Cuántos días de licencia por estudio tengo?",
+    "fragmentos": "Reglamento, pág. 4 y pág. 7"
+  },
+  "escenas": [
+    {
+      "titulo": "Una pregunta sobre tu reglamento",
+      "duracion": 10,
+      "pantalla": "Una pregunta cuya respuesta está en un documento de tu organización.",
+      "movimiento": "Aparece la caja Tu pregunta.",
+      "narracion": "Joaquín quiere saber cuántos días de licencia por estudio le corresponden. La respuesta está en el reglamento interno de su empresa, que ningún modelo leyó en su entrenamiento.",
+      "descripcion": "Una caja con la pregunta de Joaquín: cuántos días de licencia por estudio tiene."
+    },
+    {
+      "titulo": "Primero, busca",
+      "duracion": 12,
+      "pantalla": "Antes de responder, el sistema busca en los documentos los fragmentos relevantes.",
+      "movimiento": "Flechas llevan a Busca en tus documentos y a Encuentra dos fragmentos.",
+      "narracion": "Un asistente con RAG no responde de memoria. Primero busca en los documentos que le conectaron, y encuentra dos fragmentos del reglamento que hablan de licencias.",
+      "descripcion": "Flechas de Tu pregunta a Busca en tus documentos y de ahí a Encuentra fragmentos: reglamento, página 4 y página 7."
+    },
+    {
+      "titulo": "Responde con lo que encontró",
+      "duracion": 13,
+      "pantalla": "Responde usando esos fragmentos y te dice de dónde salió cada dato.",
+      "movimiento": "Los fragmentos viajan al modelo y aparece Respuesta con fuentes, en verde.",
+      "narracion": "El modelo recibe la pregunta junto con esos fragmentos y responde con esa información, indicando la página. Joaquín puede abrir el reglamento y comprobarlo.",
+      "descripcion": "Flechas llevan los fragmentos a El modelo y de ahí a una caja verde, Respuesta con fuentes: cita las páginas 4 y 7."
+    },
+    {
+      "titulo": "Sin buscar, adivina",
+      "duracion": 12,
+      "pantalla": "Sin buscar, el modelo responde lo más probable. Puede sonar igual de seguro.",
+      "movimiento": "Aparece una caja de alerta: Sin buscar, responde lo más probable.",
+      "narracion": "Sin RAG, el modelo respondería con lo más probable para cualquier empresa: diez días, quizás. Sonaría igual de seguro. La diferencia está en de dónde sale la respuesta.",
+      "descripcion": "Una flecha va de Tu pregunta a una caja de alerta: Sin buscar, responde lo más probable."
+    }
+  ]
+}

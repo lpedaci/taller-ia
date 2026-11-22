@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.198
+Martina está practicando inglés camino al trabajo.
+
+2
+00:00:03.198 --> 00:00:07.227
+Toca el micrófono y pregunta en voz alta cómo decir una frase.
+
+3
+00:00:07.227 --> 00:00:11.000
+Para el asistente, eso todavía no son palabras: es sonido.
+
+4
+00:00:11.040 --> 00:00:14.022
+El primer paso es pasar el sonido a texto.
+
+5
+00:00:14.022 --> 00:00:20.058
+Con un acento fuerte, ruido o una palabra poco común, la transcripción puede fallar.
+
+6
+00:00:20.058 --> 00:00:23.040
+Y si el texto está mal, el resto también.
+
+7
+00:00:23.080 --> 00:00:29.302
+Con ese texto, el modelo arma una respuesta como en cualquier chat: prediciendo de a un fragmento.
+
+8
+00:00:29.302 --> 00:00:35.080
+Por eso todo lo que aprendiste sobre verificar sigue valiendo, aunque después lo escuches.
+
+9
+00:00:35.120 --> 00:00:38.779
+Por último, una voz sintética lee la respuesta.
+
+10
+00:00:38.779 --> 00:00:42.982
+Suena natural y segura, aunque el contenido esté mal.
+
+11
+00:00:42.982 --> 00:00:48.120
+Si Martina la interrumpe, la ronda empieza de nuevo desde su voz.
