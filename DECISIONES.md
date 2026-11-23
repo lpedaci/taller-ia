@@ -78,6 +78,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-070 | 2026-11-22 | Etapa 10: revisión final y criterios de aceptación | Vigente |
 | D-071 | 2026-11-22 | Revisión UI/UX: foco, volver atrás y celular horizontal | Vigente |
 | D-072 | 2026-11-22 | Letra en rem y cortes de ventana en em | Vigente |
+| D-073 | 2026-11-23 | Datos verificados en la fuente oficial (leyes, asistentes, Codex y Sora) | Vigente |
 
 ---
 
@@ -1672,3 +1673,46 @@ Además, comprobar los criterios de aceptación (sección 9).
 **Pendientes o riesgos:**
 - **Letra al 150 %:** la prueba usa la letra al doble, el caso más exigente. Con 150 % (24 px), un ajuste más común, conviene una mirada a mano.
 - **Móviles:** en Chrome para Android y Safari para iOS, el tamaño de letra del sistema puede llegar a la página por otro camino que el ajuste de escritorio que simula la prueba. Conviene probarlo en un teléfono real.
+
+## D-073 | 2026-11-23 | Datos verificados en la fuente oficial
+
+**Solicitado:** seguir con el paso siguiente. Después de D-072, lo que quedaba y se podía hacer desde acá era verificar en la fuente oficial los datos marcados "a verificar" (D-047, D-051 y D-055):
+- cuatro leyes de datos personales (Chile, México, Colombia y Perú);
+- ocho funciones de ChatGPT, Claude y Copilot;
+- las páginas de Codex y Sora.
+
+**Decisión y motivo:** cada dato se leyó en la página oficial. Las de gobierno que no se dejan leer por programas se abrieron en un navegador. Lo que no se pudo leer queda "a verificar", sin completar de memoria.
+
+**Lo que se confirmó y se actualizó:**
+- **Chile** (Biblioteca del Congreso Nacional): Ley 21.719, promulgada el 25 de noviembre de 2024, publicada el 13 de diciembre de 2024. Entra en vigencia el 1 de diciembre de 2026. Ahora aparece en el Módulo 10.
+- **Colombia** (Gestor Normativo de Función Pública): Ley Estatutaria 1581 del 17 de octubre de 2012, reglamentada, entre otros, por el Decreto 1377 de 2013. Las quejas van a la Superintendencia de Industria y Comercio. Ahora aparece en el Módulo 10.
+- **ChatGPT** (centro de ayuda de OpenAI y página de precios):
+  - **Análisis de datos:** analiza los archivos que subís y arma tablas y gráficos; en el plan gratuito, con límites.
+  - **Proyectos:** sí, con hasta cinco archivos por proyecto en el plan gratuito.
+  - **Memoria:** sí. Se desactiva en Configuración > Personalización > Memoria; en el plan gratuito es limitada.
+  - **Suite de oficina:** funciona como panel lateral en Excel y Google Sheets.
+  - **GPTs:** se pueden usar los que ya existen, pero en las cuentas personales ya no se pueden crear nuevos. OpenAI anunció su retiro: en general, el 11 de diciembre de 2026. Los reemplaza por plugins.
+- **Claude** (ayuda y centro de privacidad de Anthropic):
+  - **Imágenes:** no crea imágenes, aunque sí analiza las que subís y arma diagramas. Para mostrarlo, la tabla del Módulo 11 suma un estado nuevo, "no", con ícono de cruz y su fuente. Así una función que la herramienta no tiene se distingue de una que no se pudo confirmar.
+  - **Entrenamiento:** la persona elige si sus chats se usan para entrenar, desde Configuración > Privacidad. Los chats de incógnito no se usan.
+- **Codex** (openai.com/codex): agente de programación que funciona en ChatGPT, el editor, la terminal y la nube. En el catálogo del Módulo 14 ahora muestra su descripción y su sitio oficial.
+- **Sora:** OpenAI la discontinuó. La web y la app cerraron el 26 de abril de 2026, y la API, el 24 de septiembre de 2026 (centro de ayuda de OpenAI). Se quitó del catálogo del Módulo 17.
+- **Módulo 6:** la mención de los asistentes a medida ahora dice que los GPTs de ChatGPT se están reemplazando por plugins.
+
+**Lo que sigue a verificar:**
+- **México y Perú:** los sitios oficiales no se pudieron leer.
+  - México: diputados.gob.mx rechaza la conexión y el certificado de dof.gob.mx no corresponde a su dirección.
+  - Perú: gob.pe responde "Acceso restringido".
+
+  En la página siguen sin mostrarse.
+- **Copilot:** el análisis de planillas no aparece en las páginas de ayuda leídas.
+
+**Verificación de enlaces:** el sitio de Función Pública de Colombia funciona en el navegador, pero su servidor no envía la cadena completa del certificado y Node no la completa. `npm run enlaces` ahora clasifica ese caso como "bloquea la lectura automática" (se revisa a mano), no como roto.
+
+**Archivos afectados:** `content/marco-legal.json`, `content/herramientas.json`, `content/modulo-06.json`, `js/activities/asistentes.js`, `css/activities.css`, `scripts/verificar-enlaces.mjs`.
+
+**Verificación realizada:** 
+- `npm run enlaces`: 96 enlaces; 95 funcionan y 1 se revisa a mano (Función Pública, abierto en el navegador).
+- `npm run textos`: 3.669 textos, sin hallazgos.
+- `npm run verificar`: 900 capturas, todo en 0. La tabla del Módulo 11 muestra el estado nuevo, "no la tiene".
+- `npm run auditar`: el design system cumple.

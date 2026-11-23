@@ -369,7 +369,7 @@
 .hr-funcs{margin:0;display:grid;gap:var(--app-space-3)}
 .hr-f dt{display:flex;align-items:center;gap:var(--app-space-2);font:var(--md-sys-typescale-title-small)}
 .hr-f dt .ms{font-size:20px;color:var(--app-color-success)}
-.hr-f.is-pend dt .ms{color:var(--md-sys-color-on-surface-variant)}
+.hr-f.is-pend dt .ms,.hr-f.is-no dt .ms{color:var(--md-sys-color-on-surface-variant)}
 .hr-f dd{margin:var(--app-space-1) 0 0 28px;font:var(--md-sys-typescale-body-medium)}
 .hr-f.is-pend dd{color:var(--md-sys-color-on-surface-variant)}
 .hr-ayuda{align-self:flex-end;margin-top:auto}

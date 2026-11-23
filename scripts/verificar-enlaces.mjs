@@ -2,7 +2,8 @@
    Uso: npm run enlaces (algunos sitios mandan cabeceras muy grandes: el script se corre con --max-http-header-size)
    Junta las URL de content/*.json, js/ e index.html, pide cada una y clasifica el resultado:
    - funciona (2xx o redirección que termina bien);
-   - bloquea la lectura automática (401, 403, 429 o 999): el sitio existe pero rechaza programas; se revisa a mano;
+   - bloquea la lectura automática (401, 403, 429 o 999, o un certificado sin la cadena completa, que el navegador sí
+     completa): el sitio existe pero no se deja leer por programas; se revisa a mano;
    - roto (404, 410, error de conexión): hay que corregirlo.
    Resultado: verificacion/enlaces.md. Termina con error si hay enlaces rotos. */
 import { readFile, readdir, writeFile, mkdir } from "node:fs/promises";
@@ -37,7 +38,11 @@ async function probarUna(u) {
       if (metodo === "HEAD" && [403, 405, 400, 404, 501].includes(r.status)) continue;  // algunos sitios no aceptan HEAD
       if ([401, 403, 429, 999, 402].includes(r.status)) return { estado: "bloquea", codigo: r.status };
       return { estado: "roto", codigo: r.status };
-    } catch (e) { if (metodo === "GET") return { estado: "roto", codigo: e.cause?.code || e.name }; }
+    } catch (e) {
+      // Certificado sin la cadena completa: los navegadores la completan solos y Node no. El sitio existe; se revisa a mano (D-073)
+      const cod = e.cause?.code || e.name;
+      if (metodo === "GET") return { estado: ["UNABLE_TO_VERIFY_LEAF_SIGNATURE", "UNABLE_TO_GET_ISSUER_CERT_LOCALLY"].includes(cod) ? "bloquea" : "roto", codigo: cod };
+    }
   }
 }
 const urls = [...donde.keys()], res = new Map();

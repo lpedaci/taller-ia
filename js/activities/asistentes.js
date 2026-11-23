@@ -32,8 +32,9 @@ registrar("herramientas", {
       box.innerHTML = `<ul class="hr-cards">${d.herramientas.map(h => `<li class="hr-card"><article aria-labelledby="hr-${esc(b.id || "t")}-${h.id}">` +
         `<header class="hr-head"><h5 id="hr-${esc(b.id || "t")}-${h.id}">${esc(h.nombre)}</h5><p class="hr-emp">${esc(h.empresa)}</p></header>` +
         (b.ecosistema !== false ? `<p class="hr-eco">${esc(h.ecosistema)}</p>` : "") +
-        `<dl class="hr-funcs">${claves.map(k => { const f = h.funciones[k] || { estado: "a-verificar" }, okf = f.estado === "si";
-          return `<div class="hr-f${okf ? "" : " is-pend"}"><dt>${icono(okf ? "check_circle" : "help", okf ? "fill" : "")}${esc(d.funciones[k])}</dt>` +
+        `<dl class="hr-funcs">${claves.map(k => { const f = h.funciones[k] || { estado: "a-verificar" }, okf = f.estado === "si" || f.estado === "no", no = f.estado === "no";
+          // "si": la tiene; "no": la ayuda oficial dice que no la tiene; "a-verificar": no se pudo confirmar (D-073)
+          return `<div class="hr-f${okf ? "" : " is-pend"}${no ? " is-no" : ""}"><dt>${icono(no ? "cancel" : okf ? "check_circle" : "help", okf ? "fill" : "")}${esc(d.funciones[k])}${no ? `<span class="sr-only">: no la tiene</span>` : ""}</dt>` +
             `<dd>${okf ? esc(f.detalle) + (f.url ? ` <a href="${esc(f.url)}" target="_blank" rel="noopener">Fuente<span class="sr-only"> sobre ${esc(d.funciones[k].toLowerCase())} en ${esc(h.nombre)} (se abre en otra pestaña)</span></a>` : "") : "Consultá la ayuda oficial."}</dd></div>`; }).join("")}</dl>` +
         `<a class="btn btn-text hr-ayuda" href="${esc(h.ayuda)}" target="_blank" rel="noopener">${icono("help")}Ayuda oficial<span class="sr-only"> de ${esc(h.nombre)} (se abre en otra pestaña)</span></a>` +
         `</article></li>`).join("")}</ul>` +

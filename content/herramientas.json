@@ -1,6 +1,6 @@
 {
   "actualizado": "noviembre de 2026",
-  "nota": "Cada función tiene \"estado\": \"si\" (confirmada en la ayuda oficial en la fecha de actualización, con su URL) o \"a-verificar\" (no se pudo confirmar: la página muestra \"Consultá la ayuda oficial\"). Ver DECISIONES.md, D-051.",
+  "nota": "Cada función tiene \"estado\": \"si\" (confirmada en la ayuda oficial en la fecha de actualización, con su URL), \"no\" (la ayuda oficial dice que no la tiene, con su URL) o \"a-verificar\" (no se pudo confirmar: la página muestra \"Consultá la ayuda oficial\"). Ver DECISIONES.md, D-051.",
   "funciones": {
     "archivos": "Subir archivos",
     "web": "Búsqueda web",
@@ -38,16 +38,24 @@
           "url": "https://chatgpt.com/"
         },
         "datos": {
-          "estado": "a-verificar"
+          "estado": "si",
+          "detalle": "Analiza los archivos que subís (planillas, CSV, PDF), responde preguntas sobre los datos y arma tablas y gráficos. En el plan gratuito, con límites.",
+          "url": "https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt"
         },
         "proyectos": {
-          "estado": "a-verificar"
+          "estado": "si",
+          "detalle": "Tiene proyectos, con archivos e instrucciones propias. En el plan gratuito, hasta cinco archivos por proyecto.",
+          "url": "https://help.openai.com/en/articles/10169521-projects-in-chatgpt"
         },
         "memoria": {
-          "estado": "a-verificar"
+          "estado": "si",
+          "detalle": "Recuerda preferencias y datos de tus chats. Se desactiva en Configuración > Personalización > Memoria. En el plan gratuito, limitada.",
+          "url": "https://help.openai.com/en/articles/8590148-memory-in-chatgpt"
         },
         "asistentes": {
-          "estado": "a-verificar"
+          "estado": "si",
+          "detalle": "Se pueden usar GPTs ya creados, pero en las cuentas personales ya no se pueden crear nuevos. OpenAI anunció su retiro (en general, el 11 de diciembre de 2026) y los reemplaza por plugins.",
+          "url": "https://help.openai.com/en/articles/8554407-gpts-in-chatgpt"
         },
         "voz": {
           "estado": "si",
@@ -60,7 +68,9 @@
           "url": "https://chatgpt.com/"
         },
         "suite": {
-          "estado": "a-verificar"
+          "estado": "si",
+          "detalle": "Funciona como panel lateral dentro de Excel y Google Sheets (en el plan gratuito, con uso limitado). También se conecta a servicios como Google Drive o SharePoint.",
+          "url": "https://help.openai.com/en/articles/20001063-chatgpt-for-excel-and-google-sheets"
         }
       }
     },
@@ -83,7 +93,9 @@
           "url": "https://support.claude.com/en/articles/10684626-enable-and-use-web-search"
         },
         "imagenes": {
-          "estado": "a-verificar"
+          "estado": "no",
+          "detalle": "No crea fotos ni ilustraciones como las herramientas de imagen. Sí analiza las imágenes que subís y arma diagramas y gráficos.",
+          "url": "https://support.claude.com/en/articles/9002504-can-claude-produce-images"
         },
         "datos": {
           "estado": "si",
@@ -111,7 +123,9 @@
           "url": "https://support.claude.com/en/articles/11101966-use-voice-mode"
         },
         "privacidad": {
-          "estado": "a-verificar"
+          "estado": "si",
+          "detalle": "Vos elegís si tus chats se usan para entrenar a Claude: se cambia en Configuración > Privacidad. Los chats de incógnito no se usan.",
+          "url": "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training"
         },
         "suite": {
           "estado": "si",
@@ -253,7 +267,9 @@
         "nombre": "Codex",
         "empresa": "OpenAI",
         "tipo": "Agente de programación",
-        "estado": "a-verificar"
+        "estado": "si",
+        "detalle": "Agente de programación de OpenAI: busca errores, reorganiza código y suma funciones. Funciona en ChatGPT, en el editor, en la terminal y en la nube.",
+        "url": "https://openai.com/codex/"
       },
       {
         "nombre": "Google Antigravity",
@@ -324,12 +340,6 @@
         "detalle": "Modelo de video de Google, con audio generado.",
         "url": "https://deepmind.google/models/veo/",
         "estado": "si"
-      },
-      {
-        "nombre": "Sora",
-        "empresa": "OpenAI",
-        "tipo": "Video desde texto o imagen",
-        "estado": "a-verificar"
       }
     ],
     "procedencia": [

@@ -1,5 +1,5 @@
 {
-  "revisado": "20 de noviembre de 2026",
+  "revisado": "23 de noviembre de 2026",
   "nota": "Solo se muestran los países con \"verificado\": true (texto oficial consultado en la fecha de revisión). Los demás quedan pendientes de verificar en la fuente oficial: ver DECISIONES.md, D-047.",
   "paises": [
     {
@@ -20,30 +20,32 @@
     },
     {
       "pais": "Chile",
-      "norma": "Ley 21.719 sobre protección y tratamiento de datos personales",
+      "norma": "Ley 21.719, que regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales",
       "anio": 2024,
-      "resumen": "A verificar: fecha de publicación y de entrada en vigencia.",
-      "verificado": false
+      "resumen": "Reemplaza la ley de protección de la vida privada (Ley 19.628) y crea una agencia de control. Se publicó el 13 de diciembre de 2024 y entra en vigencia el 1 de diciembre de 2026.",
+      "verificado": true,
+      "url": "https://www.bcn.cl/leychile/navegar?idNorma=1209272"
     },
     {
       "pais": "México",
       "norma": "Ley Federal de Protección de Datos Personales en Posesión de los Particulares (nueva ley)",
       "anio": 2025,
-      "resumen": "A verificar: fecha de publicación en el Diario Oficial de la Federación.",
+      "resumen": "A verificar en la fuente oficial: el sitio no se pudo leer en la revisión del 23 de noviembre de 2026.",
       "verificado": false
     },
     {
       "pais": "Colombia",
-      "norma": "Ley 1581",
+      "norma": "Ley Estatutaria 1581, de protección de datos personales",
       "anio": 2012,
-      "resumen": "A verificar en la fuente oficial.",
-      "verificado": false
+      "resumen": "Desarrolla el derecho de toda persona a conocer, actualizar y rectificar sus datos. Está reglamentada, entre otros, por el Decreto 1377 de 2013, y las quejas se presentan ante la Superintendencia de Industria y Comercio.",
+      "verificado": true,
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981"
     },
     {
       "pais": "Perú",
       "norma": "Ley 29733 de Protección de Datos Personales",
       "anio": 2011,
-      "resumen": "A verificar en la fuente oficial.",
+      "resumen": "A verificar en la fuente oficial: el sitio no se pudo leer en la revisión del 23 de noviembre de 2026.",
       "verificado": false
     }
   ]
