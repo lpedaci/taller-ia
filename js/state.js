@@ -124,9 +124,13 @@ export function completarPaso(id, paso) {
 export function completarModulo(id) {
   if (!modulo(id)) return;
   const p = est.progreso[id] || (est.progreso[id] = { vistos: [], completado: false });
-  p.completado = true; guardar();
+  p.completado = true;
+  if (!p.fecha) p.fecha = new Date().toISOString(); // fecha de la insignia: la primera vez que se completa (D-078)
+  guardar();
 }
 export const pasosVistos = id => prog(id).vistos;
+/** Fecha en que se completó el módulo por primera vez (ISO), o null si no se registró */
+export const fechaModulo = id => prog(id).fecha || null;
 
 /* ---------- Actividades ---------- */
 /** Guarda el resultado de una actividad evaluada o producida. resultado: correcto | parcial | incorrecto | hecho */

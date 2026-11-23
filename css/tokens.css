@@ -57,6 +57,16 @@
   --app-event-eval-container:#eaddff; --app-event-eval-on-container:#25005a; --app-event-eval-accent:#732ee4;
   --app-event-vivo-container:#d5e3ff; --app-event-vivo-on-container:#001c3b; --app-event-vivo-accent:#1f5fa8;
   --app-event-workshop-container:#95f8a7; --app-event-workshop-on-container:#00210a; --app-event-workshop-accent:#006d30;
+  /* Insignias: un color por bloque (contenedor, texto sobre el contenedor y acento). Ver D-078 */
+  --app-insignia-b1-container:#d5e3ff; --app-insignia-b1-on:#001c3b; --app-insignia-b1-accent:#1f5fa8;
+  --app-insignia-b2-container:#eaddff; --app-insignia-b2-on:#25005a; --app-insignia-b2-accent:#732ee4;
+  --app-insignia-b3-container:#f6d9bd; --app-insignia-b3-on:#2b1700; --app-insignia-b3-accent:#8c5a2a;
+  --app-insignia-b4-container:#a8eff0; --app-insignia-b4-on:#002022; --app-insignia-b4-accent:#00696e;
+  --app-insignia-b5-container:#95f8a7; --app-insignia-b5-on:#00210a; --app-insignia-b5-accent:#006d30;
+  --app-insignia-b6-container:#dfe0ff; --app-insignia-b6-on:#000f5c; --app-insignia-b6-accent:#4355b9;
+  --app-insignia-b7-container:#ffd8e7; --app-insignia-b7-on:#3d0024; --app-insignia-b7-accent:#a4307a;
+  /* Logro: la insignia de recorrido completo tiene su propio color, que no usa ningún bloque */
+  --app-insignia-logro-container:#ffe08b; --app-insignia-logro-on:#241a00; --app-insignia-logro-accent:#795900;
   color-scheme:light;
 }
 :root[data-theme="light"][data-contrast="medium"]{
@@ -185,6 +195,15 @@
   --app-event-eval-container:#5a00c6; --app-event-eval-on-container:#eaddff; --app-event-eval-accent:#d2bbff;
   --app-event-vivo-container:#004787; --app-event-vivo-on-container:#d5e3ff; --app-event-vivo-accent:#a7c8ff;
   --app-event-workshop-container:#005323; --app-event-workshop-on-container:#95f8a7; --app-event-workshop-accent:#79db8d;
+  /* Insignias: un color por bloque. Ver D-078 */
+  --app-insignia-b1-container:#004787; --app-insignia-b1-on:#d5e3ff; --app-insignia-b1-accent:#a7c8ff;
+  --app-insignia-b2-container:#5a00c6; --app-insignia-b2-on:#eaddff; --app-insignia-b2-accent:#d2bbff;
+  --app-insignia-b3-container:#5e3b17; --app-insignia-b3-on:#f6d9bd; --app-insignia-b3-accent:#e0a46c;
+  --app-insignia-b4-container:#004f53; --app-insignia-b4-on:#a8eff0; --app-insignia-b4-accent:#7cd3d8;
+  --app-insignia-b5-container:#005323; --app-insignia-b5-on:#95f8a7; --app-insignia-b5-accent:#79db8d;
+  --app-insignia-b6-container:#2a3ca0; --app-insignia-b6-on:#dfe0ff; --app-insignia-b6-accent:#bbc3ff;
+  --app-insignia-b7-container:#85145f; --app-insignia-b7-on:#ffd8e7; --app-insignia-b7-accent:#ffafd4;
+  --app-insignia-logro-container:#5c4300; --app-insignia-logro-on:#ffe08b; --app-insignia-logro-accent:#eec148;
   color-scheme:dark;
 }
 :root[data-theme="dark"][data-contrast="medium"]{

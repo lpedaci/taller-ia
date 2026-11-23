@@ -5,6 +5,7 @@
 import { esc, qs, pad2 } from "../util.js";
 import { datos, modulo, bloque, avance, pasosVistos, registrarVisita, completarPaso, completarModulo, leerJSON } from "../state.js";
 import { icono, lineal, vacio, aviso } from "../ui.js";
+import { insigniaSVG, CINTA } from "../insignias.js";
 import { href } from "../routes.js";
 import { dibujar } from "./bloques.js";
 // Las actividades se registran como tipos de bloque al importarse
@@ -151,9 +152,11 @@ function vistaPaso() {
 function completado(main, meta, leccion) {
   if (!meta.prueba) { leccion.pasos.forEach((_, i) => completarPaso(meta.id, i + 1)); completarModulo(meta.id); }
   const sig = !meta.prueba && modulo(+meta.id + 1);
-  main.innerHTML = `<div class="lesson-done card"><div class="badge-morph" aria-hidden="true">${icono("workspace_premium", "fill")}</div>` +
+  // La insignia real del módulo; la lección de prueba usa el ícono genérico (D-078)
+  const insignia = meta.prueba ? icono("workspace_premium", "fill") : insigniaSVG({ id: meta.id, bloque: meta.bloque, cinta: CINTA[meta.id], tam: 168, etiqueta: "" });
+  main.innerHTML = `<div class="lesson-done card"><div class="badge-morph${meta.prueba ? "" : " con-insignia"}" aria-hidden="true">${insignia}</div>` +
     `<h2 id="finT" tabindex="-1">${meta.prueba ? "Terminaste la lección de prueba" : `Completaste el Módulo ${meta.id}`}</h2>` +
-    `<p>${esc(meta.titulo)}${meta.prueba ? "" : ". La insignia del módulo queda en Mi aprendizaje."}</p>` +
+    `<p>${esc(meta.titulo)}${meta.prueba ? "" : `. Ganaste su insignia: la encontrás en <a href="${href("aprendizaje", "insignias")}">Mi aprendizaje</a>, para descargarla o enviarla.`}</p>` +
     `<div class="done-actions" data-excepcion-ds="acciones-alineacion"><a class="btn btn-text" href="${href("modulo", meta.id, "paso", 1)}">${icono("replay")}Repasar desde el principio</a>` +
     `<a class="btn btn-outlined" href="${href("recorrido")}">${icono("route")}Volver a Mi recorrido</a>` +
     (sig ? `<a class="btn btn-filled" href="${href("modulo", sig.id)}">Ir al Módulo ${sig.id}${icono("arrow_forward")}</a>` : "") + `</div></div>`;

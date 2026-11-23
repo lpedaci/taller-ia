@@ -604,6 +604,30 @@ a.cell:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offse
 .fa-ir{display:flex;justify-content:flex-end;margin-top:var(--app-space-3)}
 
 /* ---------- Diario en Mi aprendizaje ---------- */
+/* ---------- Insignias (D-078): colección en Mi aprendizaje, certificado y diálogo ---------- */
+.ins-intro{margin-bottom:var(--app-space-4);color:var(--md-sys-color-on-surface-variant)}
+.ins-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,8.5rem),1fr));gap:var(--app-space-2)}
+.ins-item{position:relative;isolation:isolate;width:100%;min-height:48px;display:grid;justify-items:center;gap:var(--app-space-1);padding:var(--app-space-3) var(--app-space-2);background:none;border:0;border-radius:var(--md-sys-shape-corner-large);color:var(--md-sys-color-on-surface);font:inherit;cursor:pointer;text-align:center}
+.ins-item::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--md-sys-color-on-surface);opacity:0;z-index:-1;transition:opacity var(--md-sys-motion-spring-fast-effects)}
+.ins-item:hover::after{opacity:var(--md-sys-state-hover-opacity)}
+.ins-item:active::after{opacity:var(--md-sys-state-pressed-opacity)}
+.ins-item:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:-3px}
+.ins-svg svg{display:block;width:104px;height:104px}
+.ins-nom{font:var(--md-sys-typescale-label-large)}
+.ins-est{font:var(--md-sys-typescale-body-small);color:var(--md-sys-color-on-surface-variant)}
+.ins-item:not(.is-pend) .ins-est{color:var(--md-sys-color-on-surface)}
+.ins-cert{display:flex;flex-wrap:wrap;align-items:center;gap:var(--app-space-3) var(--app-space-4);margin-top:var(--app-space-5);padding:var(--app-space-4);background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-large)}
+.ins-cert>.ms{font-size:32px;color:var(--app-insignia-logro-accent)}
+.ins-cert-txt{flex:1 1 16rem;display:grid;gap:var(--app-space-1)}
+.ins-cert-txt b{font:var(--md-sys-typescale-title-medium)}
+.ins-cert-txt span{color:var(--md-sys-color-on-surface-variant)}
+.ins-cert .actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:var(--app-space-2);margin-left:auto}
+.dlg-insignia{width:min(440px,calc(100vw - 48px));text-align:center}
+.dlg-insignia .dlg-ins-svg svg{display:block;margin:0 auto var(--app-space-4);width:200px;height:200px}
+.dlg-insignia h2{font:var(--md-sys-typescale-headline-small);margin-bottom:var(--app-space-2)}
+.dlg-insignia p{color:var(--md-sys-color-on-surface-variant)}
+/* Con letra grande, los botones del diálogo pasan a dos líneas en lugar de salirse (D-072) */
+.dlg-insignia .dlg-actions .btn{white-space:normal;text-align:center}
 .di-lista{list-style:none;margin:0;padding:0;display:grid;gap:var(--app-space-3)}
 .di-e{border-left:4px solid var(--md-sys-color-primary);padding:var(--app-space-1) 0 var(--app-space-1) var(--app-space-4);display:grid;gap:var(--app-space-1)}
 .di-meta{font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-on-surface-variant)}

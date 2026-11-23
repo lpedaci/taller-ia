@@ -82,6 +82,8 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-074 | 2026-11-23 | Revisión de ortografía y reglas nuevas en `npm run textos` | Vigente |
 | D-075 | 2026-11-23 | México y Perú en el marco legal de la región | Vigente |
 | D-076 | 2026-11-23 | Fuentes de la UNESCO en UNESDOC y en español | Vigente |
+| D-077 | 2026-11-23 | Login y registro: evaluado y descartado | Vigente |
+| D-078 | 2026-11-23 | Insignias por módulo, envío a la coordinación y descarga | Vigente |
 
 ---
 
@@ -1817,3 +1819,98 @@ Se actualizaron los módulos 8, 9 y 19, y la Biblioteca se regeneró conservando
 - `npm run enlaces`: 100 enlaces, ninguno roto. 93 funcionan y 7 se revisan a mano: entre ellos, los tres de UNESDOC, que responden 403 a los programas y se abrieron en el navegador.
 - `npm run textos`: sin hallazgos.
 - `npm run verificar`: 900 capturas, todo en 0.
+
+## D-077 | 2026-11-23 | Login y registro: evaluado y descartado
+
+**Solicitado:** evaluar un login con registro:
+- las cuentas las da de alta un encargado;
+- el ingreso es con cuenta y contraseña;
+- la doble autenticación es posible.
+
+**Lo que se definió en la conversación:**
+- **Para qué:** que el progreso viaje con la persona entre dispositivos y que Lourdes vea quiénes hacen el taller y cómo avanzan.
+- **Contenido:** sigue siendo público y el login es opcional.
+- **Quién administra:** una sola administradora, para unas 30 personas.
+- **Doble autenticación:** obligatoria solo para la cuenta de administración.
+
+**Enfoques evaluados:**
+- **Supabase (el recomendado):** cuentas, doble autenticación con app de códigos y base de datos con reglas de acceso. El sitio sigue estático.
+- **Firebase:** la doble autenticación con app pide un plan con tarjeta.
+- **Servidor propio:** más trabajo y más riesgo.
+
+Cualquiera de los tres implica guardar datos personales en un servidor de un tercero. Eso exige aviso de privacidad, consentimiento y cuidar la transferencia internacional (Ley 25.326).
+
+**Decisión:** Lourdes decidió no hacer el login. El taller sigue sin cuentas ni servidor, como pide el brief:
+- **Dónde queda el progreso:** en el navegador de cada persona (`localStorage`).
+- **Cómo pasarlo a otro dispositivo o navegador:** con "Exportar mi progreso" e "Importar progreso".
+- **Qué lo borra:** borrar los datos del sitio. Además, en una ventana privada el progreso no se guarda.
+
+**Archivos afectados:** ninguno (solo este registro).
+
+## D-078 | 2026-11-23 | Insignias por módulo, envío a la coordinación y descarga
+
+**Solicitado:**
+- **Insignias:** al terminar cada módulo y el recorrido completo, la persona gana una insignia (no una medalla), al estilo de las capacitaciones de Google, personalizada según la capacitación.
+- **Colección:** las insignias se ven en Mi aprendizaje.
+- **Envío:** se pueden enviar a Lourdes.
+- **Descarga:** se pueden descargar como imagen.
+- **Certificado:** pasa lo mismo con el certificado final.
+
+**Proceso de diseño, con Lourdes:**
+- **Muestra inicial:** tres insignias de muestra (módulos 2, 4 y 10) y la de recorrido completo, para aprobar el estilo antes de hacer el resto.
+- **Ajustes pedidos:**
+  - **Emblemas que se entiendan solos:**
+    - Modelos de lenguaje pasó de fichas de texto a un globo de diálogo con una red neuronal;
+    - Delegación pasó de una persona que pasa una tarjeta a una lista de tareas repartidas entre una persona y la IA.
+  - **Recorrido completo:** un birrete mitad clásico y mitad red neuronal, redibujado en vectores a partir de una imagen que hizo Lourdes. Sin decoraciones alrededor, con borde octogonal y un color propio de logro, dorado.
+  - **Ética y datos:** el bloque pasó a bronce.
+  - **Detalles:** sin el anillo apagado interior, con el globo del Módulo 2 un 10 % más angosto y los emblemas centrados por medición, no a ojo.
+
+**Decisión y motivo:**
+- **Generador (`js/insignias.js`):** SVG con base común:
+  - una forma de M3 Expressive por bloque;
+  - el color del bloque con tokens nuevos, `--app-insignia-b1` a `b7` y `--app-insignia-logro`, en claro y oscuro;
+  - el número y la cinta.
+
+  Cada módulo tiene un emblema propio que se entiende sin leer la cinta, y la IA se representa siempre con el destello de cuatro puntas. Como es SVG con tokens, se adapta a claro, oscuro y contraste alto.
+- **Centrado:** cada emblema se mide aislado (`g.emblema`) y se corre con un ajuste propio hasta que el centro de su caja cae en (120, 108), el centro de la forma. La auditoría suma la regla `insignia-centro`, que lo comprueba en cada pantalla donde aparecen.
+- **Colección en Mi aprendizaje:** las 22 insignias, ganadas a color y por ganar en gris con contorno punteado. Cada una abre un diálogo con su estado y fecha.
+  - **Ganada:** se puede descargar o enviar.
+  - **Por ganar:** el diálogo dice cómo ganarla y enlaza al módulo.
+  - **Recorrido completo:** se gana al terminar todos los módulos de la ruta elegida.
+- **Fecha de cada insignia:** el estado ahora guarda la fecha en que se completó cada módulo por primera vez (`fechaModulo`). Los módulos completados antes de este cambio muestran "Ganada", sin fecha.
+- **Envío a la coordinación:** el botón "Enviar a la coordinadora" abre el programa de correo de la persona con el mensaje escrito, dirigido a lpedaci@abc.gob.ar. La dirección se cambia en `content/modulos.json` (`coordinacion`).
+  - **Qué lleva el mensaje:** la insignia, la fecha y los módulos completados.
+  - **El límite, sin servidor:** el correo lo envía la persona, así que no prueba nada: sirve para enterarse, no como verificación.
+- **Descarga:** la insignia (800 × 1000) y el certificado (1400 × 1000) se arman como PNG en el navegador, con el nombre de la persona y la fecha. Siempre usan los colores del tema claro, para que se vean igual al compartirlas.
+- **Certificado:** también aparece en la tarjeta de insignias, con descarga y envío. Su texto se corrigió para no repetir "taller" ("completó Taller - IA: usar…"), y el certificado del Módulo 20 se ajustó igual.
+- **Cierre de cada módulo:** muestra la insignia real del módulo, en lugar del ícono genérico, con un enlace a Mi aprendizaje. Así se cumple lo que el texto ya prometía: "la insignia queda en Mi aprendizaje".
+
+**Archivos afectados:**
+- **Código y estilos:**
+  - `js/insignias.js` y `js/views/insignias.js` (nuevos);
+  - `js/views/aprendizaje.js`, `js/lesson/leccion.js`, `js/state.js` y `js/activities/aplicar.js`;
+  - `css/tokens.css`, `css/layout.css` y `css/lesson.css`.
+- **Contenido y catálogo:** `content/modulos.json` y `estilos.html`.
+- **Verificación:** `scripts/auditoria-ds.mjs` y `scripts/pantallas.mjs`.
+- **Documentación:** `referencia/design-system/README.md` y `README.md`.
+
+**Verificación realizada:** 
+- **Medición de los emblemas:** los 22 tienen su centro en (120, 108).
+- **Prueba de punta a punta con Playwright:** la colección cuenta bien las ganadas, con fecha. El diálogo descarga la insignia (`insignia-modulo-4.png`) y el certificado (`certificado-taller-ia.png`), y se revisaron las imágenes. El cierre del Módulo 4 muestra su insignia. Sin errores de consola.
+- **Primera corrida de `npm run verificar`:** encontró cuatro cosas, y se corrigieron:
+  - **Nombre accesible:** el de cada insignia de la colección no incluía su texto visible (WCAG 2.5.3). Ahora se arma con el texto visible más aclaraciones para lectores de pantalla.
+  - **Áreas táctiles:** el verificador medía los botones de atrás del diálogo modal. Ahora solo mide lo que está dentro del modal.
+  - **Espaciado:** la auditoría tomaba el margen automático con que se centra un diálogo como un espaciado fuera de escala. Los diálogos quedan excluidos de esa regla.
+  - **Letra al doble:** con letra al doble, en 360 px, "Enviar a la coordinadora" no entraba. Ahora los botones del diálogo pasan a dos líneas.
+- **Corrida final:**
+  - `npm run verificar`: 936 capturas (78 pantallas), todo en 0;
+  - `npm run auditar`: cumple;
+  - `npm run contraste`: sin problemas;
+  - `npm run letra`: sin problemas;
+  - `npm run textos`: sin hallazgos.
+
+**Pendientes o riesgos:**
+- **Fuente de las imágenes descargadas:** el navegador no puede usar la fuente web dentro de una imagen generada, así que el texto de los PNG usa la fuente del sistema (Roboto o Arial).
+- **Emblemas:** el estilo de los 18 restantes se ajusta a medida que se usen, como pidió Lourdes.
+

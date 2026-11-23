@@ -5,6 +5,7 @@ import { graficoHTML, montarGrafico } from "../charts.js";
 import { icono, cabecera, vacio, descargar, aviso } from "../ui.js";
 import { competenciasHTML, registroHTML, dibujarRegistro } from "./piezas.js";
 import { href } from "../routes.js";
+import { seccionInsignias, conectarInsignias } from "./insignias.js";
 
 let foco = null;
 /** Autodiagnóstico: punto de partida en barras; con el final, antes y después en mancuernas */
@@ -15,7 +16,7 @@ function autodiagCfg() {
   if (ad.final) return { forma: "mancuernas", titulo: "Tu confianza al empezar y al terminar", unidad: "de 1 (nada) a 5 (mucho)", min: 1, max: 5, ejeCategorias: "Tema", categorias: cats, series: [{ nombre: "Al empezar", valores: idx.map(i => ini.respuestas[i]) }, { nombre: "Al terminar", valores: idx.map(i => ad.final.respuestas[i]) }] };
   return { forma: "barras", titulo: "Tu confianza al empezar", unidad: "de 1 (nada) a 5 (mucho)", max: 5, ejeCategorias: "Tema", categorias: cats, series: [{ nombre: "Al empezar", valores: idx.map(i => ini.respuestas[i]) }] };
 }
-export function preparar(args) { foco = args[0] === "portafolio" ? "#hEv" : args[0] === "diario" ? "#hDi" : null; }
+export function preparar(args) { foco = args[0] === "portafolio" ? "#hEv" : args[0] === "diario" ? "#hDi" : args[0] === "insignias" ? "#hIns" : null; }
 const fechaCorta = iso => new Date(iso).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" });
 /** Diario en orden cronológico, de la primera reflexión a la última */
 const entradas = () => diario().slice().sort((a, b) => a.fecha.localeCompare(b.fecha));
@@ -39,6 +40,7 @@ export function render() {
         (!ev.length ? vacio("Todavía no tenés evidencias", "Cada producto que creás en el taller (prompts guardados, tu kit de trabajo, un brief, un storyboard) aparece acá para tu portafolio.", `<a class="btn btn-tonal" href="${href("recorrido")}">Ver Mi recorrido</a>`) : `<ul class="list">` +
         ev.map(e => `<li><a class="list-item" href="${href("modulo", e.modulo)}"><span class="li-lead-ic">${icono("description")}</span><span class="li-text"><span class="li-head">${esc(e.titulo)}</span><span class="li-sup">${esc(e.detalle)}</span></span><span class="li-trail">${icono("chevron_right")}</span></a></li>`).join("") +
       `</ul>`) + `</div></section>` +
+      seccionInsignias() +
       `<section class="card" aria-labelledby="hAd">${cabecera("insights", "Autodiagnóstico", "", "hAd")}<div class="card-body" id="adBox">` +
         (autodiagCfg() ? graficoHTML(autodiagCfg(), "ad-mi", 3) + `<p class="muted" style="font:var(--md-sys-typescale-body-small);margin-top:var(--app-space-2)">${autodiagnostico().final ? "Comparación entre el Módulo 0 y el Módulo 20." : "Al terminar el taller, en el Módulo 20, vas a ver la comparación."}</p>`
           : vacio("Todavía no hiciste el autodiagnóstico", "Son diez preguntas cortas en el Módulo 0. Sirven para ver al final cómo cambió tu confianza.", `<a class="btn btn-tonal" href="${href("modulo", 0, "paso", 3)}">Hacer el autodiagnóstico</a>`)) +
@@ -53,6 +55,7 @@ export function render() {
 
 let conectado = false;
 export function despues() {
+  conectarInsignias();
   if (!conectado) {
     conectado = true;
     document.addEventListener("click", e => {

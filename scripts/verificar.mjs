@@ -87,7 +87,10 @@ for (const modo of MODOS) {
         const chicos = await page.evaluate(() => {
           const sel = 'a[href], button, input:not([type=hidden]), select, textarea, [role="button"], [role="menuitem"], [tabindex="0"]';
           const out = [];
+          // Con un diálogo modal abierto, solo cuenta lo que está adentro: lo de atrás no se puede tocar (D-078)
+          const modal = [...document.querySelectorAll("dialog[open]")].find(d => d.matches(":modal"));
           for (const el of document.querySelectorAll(sel)) {
+            if (modal && !modal.contains(el)) continue;
             const r = el.getBoundingClientRect();
             if (!r.width || !r.height || getComputedStyle(el).visibility === "hidden") continue;
             if (el.closest("[hidden], dialog:not([open]), .sheet:not(.open), .menu[hidden], .sr-only, .skip")) continue;

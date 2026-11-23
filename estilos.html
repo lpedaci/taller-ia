@@ -198,6 +198,10 @@ document.documentElement.setAttribute("data-theme",m);document.documentElement.s
   </div>
   <div class="two" id="dsGraficos"></div>
 
+  <h2 id="insignias">Insignias</h2>
+  <p class="lead">Una insignia por módulo, más una por el recorrido completo. Base común (forma y color del bloque, número y cinta con el nombre) y un emblema propio del tema, centrado por medición. Recorrido completo usa el color de logro (dorado). Ganada, a color; por ganar, en gris con el contorno punteado.</p>
+  <div class="row" id="dsInsignias" style="gap:var(--app-space-4);align-items:flex-start;margin-bottom:var(--app-space-6)"></div>
+
   <h2 id="estados">Estados de carga, espera y error</h2>
   <p class="lead">Cada espera dice qué se está haciendo; a los 3 segundos el mensaje se actualiza y a los 10 ofrece una salida. Para verlos en el entorno: <a href="index.html?simular=lento#/inicio">?simular=lento</a>, <a href="index.html?simular=error#/inicio">?simular=error</a>, <a href="index.html?simular=error-leccion#/modulo/prueba/paso/2">?simular=error-leccion</a> y <a href="index.html?simular=sin-conexion#/modulo/prueba/paso/4">?simular=sin-conexion</a>.</p>
   <div class="two">
@@ -243,6 +247,11 @@ import { graficoHTML, montarGrafico } from "./js/charts.js";
 
 tema.aplicar();
 iniciarTooltips();
+import("./js/insignias.js").then(({ insigniaSVG, CINTA }) => {
+  const B = [1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 7, 7];
+  const muestras = [...B.map((bloque, id) => ({ id, bloque })), { id: "recorrido" }, { id: 4, bloque: 2, estado: "pendiente" }];
+  document.getElementById("dsInsignias").innerHTML = muestras.map(m => insigniaSVG({ ...m, cinta: CINTA[m.id], tam: 120, etiqueta: `Insignia ${CINTA[m.id]}${m.estado === "pendiente" ? ", por ganar" : ""}` })).join("");
+});
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 /* Convierte cualquier color calculado (también los que salen de color-mix) a #rrggbb */
 const hex = v => {

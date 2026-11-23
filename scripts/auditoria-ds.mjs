@@ -19,7 +19,8 @@ export const REGLAS = {
   "forma": "Forma: radios de esquina de la escala (0, 4, 8, 12, 16, 20, 28 px o completa).",
   "espaciado": "Espaciado: márgenes, rellenos y separaciones en múltiplos de 4 px (se aceptan 2 y 6 px para ajustes ópticos documentados).",
   "icono": "Íconos: Material Symbols Rounded en 16, 18, 20, 24, 32, 40 o 48 px.",
-  "color-texto": "Color de texto: siempre un color de los tokens (nunca un valor suelto)."
+  "color-texto": "Color de texto: siempre un color de los tokens (nunca un valor suelto).",
+  "insignia-centro": "Insignias: el emblema de cada insignia tiene su centro en (120, 108), el centro de la forma, con 1 unidad de tolerancia."
 };
 
 /** Se ejecuta dentro de la página (page.evaluate). No puede usar nada de afuera. */
@@ -161,9 +162,17 @@ export function auditar() {
     }
     // Espaciado (las casillas y botones de opción nativos se centran con márgenes de 3 px en su lugar de 24 px)
     if (el.matches("input[type=checkbox], input[type=radio]")) continue;
-    for (const p of ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "marginTop", "marginBottom", "rowGap", "columnGap"]) {
+    // Los diálogos se centran con margen automático: su margen no es un espaciado del sistema (D-078)
+    for (const p of el.matches("dialog") ? ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "rowGap", "columnGap"] : ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "marginTop", "marginBottom", "rowGap", "columnGap"]) {
       const v = cs[p]; if (v && v !== "normal" && !multiplo(v)) { falla("espaciado", el, `${p} de ${v}`); break; }
     }
+  }
+  // Insignias: el emblema se mide aislado (g.emblema) y su centro tiene que caer en el centro de la forma
+  for (const svg of document.querySelectorAll("svg.insignia")) {
+    const g = svg.querySelector("g.emblema"); if (!g || !visible(svg)) continue;
+    const s = svg.getBoundingClientRect(), r = g.getBoundingClientRect(), k = 240 / s.width;
+    const cx = ((r.left + r.right) / 2 - s.left) * k, cy = ((r.top + r.bottom) / 2 - s.top) * k;
+    if (Math.abs(cx - 120) > 1 || Math.abs(cy - 108) > 1) out.push({ regla: "insignia-centro", elemento: svg.getAttribute("aria-label") || svg.closest("[data-insignia]")?.dataset.insignia || "insignia", detalle: `centro en (${cx.toFixed(1)}, ${cy.toFixed(1)})` });
   }
   return out;
 }

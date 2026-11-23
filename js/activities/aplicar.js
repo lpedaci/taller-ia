@@ -120,7 +120,7 @@ registrar("certificado", {
       const vista = qs(".cert-vista", el);
       vista.innerHTML = `<article class="cert" aria-labelledby="${fid(ctx, b, "ct")}"><p class="cert-k">Certificado de finalización</p>` +
         `<h5 id="${fid(ctx, b, "ct")}" class="cert-nombre">${esc(nombre)}</h5>` +
-        `<p class="cert-txt">completó el taller <b>Taller - IA: usar la inteligencia artificial generativa con criterio</b>, ${hechos ? `con ${hechos} de ${total} módulos y ` : "con "}un proyecto final aplicado.</p>` +
+        `<p class="cert-txt">completó <b>Taller - IA: usar la inteligencia artificial generativa con criterio</b>, ${hechos ? `con ${hechos} de ${total} módulos y ` : "con "}un proyecto final aplicado.</p>` +
         `<p class="cert-fecha">${esc(fecha)}</p>` +
         `<div class="cert-firma"><p class="cert-firma-n">Lourdes Pedaci</p><p>Experience Designer, autora del taller</p></div>` +
         `<p class="cert-aviso">Este es un certificado del taller, emitido por su autora. No es un certificado de Anthropic, Google, OpenAI ni Microsoft, ni de ninguna institución educativa.</p></article>` +

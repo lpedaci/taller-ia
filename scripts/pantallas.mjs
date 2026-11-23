@@ -75,5 +75,9 @@ export const PANTALLAS = [
   { id: "facilitadores", url: "index.html#/facilitadores" },
   { id: "ayuda", url: "index.html#/ayuda" },
   { id: "ajustes", url: "index.html#/ajustes" },
-  { id: "estilos", url: "estilos.html" }
+  { id: "estilos", url: "estilos.html" },
+  { id: "aprendizaje-insignias", url: "index.html?demo=1#/aprendizaje/insignias" },
+  { id: "insignia-dialogo", url: "index.html?demo=1#/aprendizaje/insignias", clic: '[data-insignia="4"]' },
+  // Al final: abrir el cierre de un módulo lo marca como completado en esa pasada
+  { id: "m4-completado", url: "index.html#/modulo/4/completado" }
 ];

@@ -114,7 +114,7 @@ El contenido está separado del código, en la carpeta `content/`:
 
 | Archivo | Qué contiene |
 |---|---|
-| `modulos.json` | Bloques, módulos (título, descripción, pasos, minutos), competencias, niveles y rutas sugeridas |
+| `modulos.json` | Bloques, módulos (título, descripción, pasos, minutos), competencias, niveles, rutas sugeridas y `coordinacion`, el nombre y el correo a los que se envían las insignias y el certificado |
 | `agenda.json` | Fechas de la cursada por cohorte. Hoy está vacío: tiene un ejemplo del formato |
 | `demo.json` | Datos de ejemplo que se ven con `?demo=1` |
 | `glosario.json` | Los 40 términos del glosario, con su original en inglés, una definición propia y el módulo donde se explican |

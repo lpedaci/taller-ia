@@ -236,6 +236,38 @@ Todos los campos son delineados, de 56 px (`--app-size-field`), con esquina `ext
 
 **Listas dentro del texto:** sangría de 24 px (`--app-list-indent`).
 
+### Insignias
+
+Una por módulo, más una por el recorrido completo, al estilo de las insignias de las capacitaciones de Google (D-078). Están en `js/insignias.js` y se ven en `estilos.html#insignias`.
+
+**Base común**
+- **Forma:** una forma de M3 Expressive por bloque:
+  - Comprender: círculo;
+  - Criterio: galleta de ondas;
+  - Ética y datos: hexágono;
+  - Asistentes: trébol;
+  - Crear: sol;
+  - Automatizar: cuadrado redondeado;
+  - Aplicar: pentágono;
+  - Recorrido completo: octógono.
+- **Color:** el de su bloque, con los tokens `--app-insignia-b1` a `b7` (contenedor, texto y acento, en claro y oscuro). Ética y datos es bronce. Recorrido completo tiene su propio color de logro, dorado (`--app-insignia-logro`), que no usa ningún bloque.
+- **Número y cinta:** el número del módulo va arriba y la cinta con el nombre corto, abajo.
+
+**Emblema**
+- **Imagen propia:** cada módulo tiene un dibujo que se entiende sin leer la cinta. Por ejemplo, Modelos de lenguaje es un globo de diálogo con una red neuronal, y Delegación, una lista de tareas repartidas entre una persona y la IA.
+- **Trazo:** plano, de 4 px y con puntas redondeadas.
+- **La IA:** se representa siempre con el destello de cuatro puntas.
+- **Centrado medido:** cada emblema se centra midiendo su caja. La auditoría lo comprueba con la regla `insignia-centro`.
+
+**Estados**
+- **Ganada:** a color.
+- **Por ganar:** en gris, con el contorno punteado. Sin candado, porque los módulos no se bloquean.
+
+**Dónde aparecen**
+- **Mi aprendizaje:** la colección completa. Cada insignia abre un diálogo para descargarla como PNG o enviarla a la coordinación por correo.
+- **Cierre de cada módulo:** la insignia del módulo, con la animación de cambio de forma.
+- **Imágenes descargadas:** usan siempre los colores del tema claro.
+
 ### Patrones que no son componentes de M3
 
 Algunos patrones habituales en otros sistemas no son componentes de M3. Se resuelven así:
@@ -274,6 +306,7 @@ Estas reglas se revisan solas en cada pantalla, ancho y modo con `npm run audita
 | `espaciado` | Márgenes, rellenos y separaciones en múltiplos de 4 px (2 y 6 px solo como ajuste óptico). |
 | `icono` | Material Symbols Rounded en 16, 18, 20, 24, 32, 40 o 48 px. |
 | `color-texto` | El color de todo texto es un token. |
+| `insignia-centro` | El emblema de cada insignia tiene su centro en (120, 108), el centro de la forma, con 1 unidad de tolerancia. |
 
 **Excepciones:** se documentan en `DECISIONES.md` y se marcan en el HTML con `data-excepcion-ds="regla"`. Hoy son tres: los controles del reproductor de animaciones (patrón de reproductor, con "Reproducir" al centro), las acciones de la pantalla de cierre de un módulo (centradas, como el resto de esa pantalla) y las muestras de botones del catálogo `estilos.html`.
 

@@ -104,6 +104,9 @@ a.term{text-decoration-style:dotted}
 .done-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--app-space-3);margin-top:var(--app-space-2)}
 .badge-morph{width:112px;height:112px;display:grid;place-items:center;background:var(--app-color-success-container);color:var(--app-color-on-success-container);border-radius:var(--md-sys-shape-corner-extra-large);animation:badge-morph var(--md-sys-motion-spring-slow-spatial) both}
 .badge-morph .ms{font-size:48px}
+/* Con la insignia real del módulo: sin fondo propio, la insignia ya tiene su forma y su color (D-078) */
+.badge-morph.con-insignia{width:168px;height:168px;background:none;border-radius:0}
+.badge-morph.con-insignia svg{display:block}
 @keyframes badge-morph{0%{border-radius:50%;transform:scale(.6) rotate(-12deg)}100%{border-radius:var(--md-sys-shape-corner-extra-large);transform:none}}
 
 /* ---------- Transición entre pasos: muestra la dirección (avanzar o retroceder) ---------- */
