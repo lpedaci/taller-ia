@@ -69,7 +69,8 @@ export function registroHTML(id, conTabla) {
 export function dibujarRegistro(id) {
   const wrap = document.getElementById(id); if (!wrap || !wrap.clientWidth) return;
   const ACT = actividad(), h = hoy();
-  const celda = matchMedia("(max-width: 37.4375em)").matches ? 11 : 13;
+  // Las celdas crecen con la letra, para que las etiquetas de los días entren en su fila (D-072)
+  const celda = Math.round((matchMedia("(max-width: 37.4375em)").matches ? 11 : 13) * (parseFloat(getComputedStyle(document.documentElement).fontSize) || 16) / 16);
   const semanas = Math.max(8, Math.min(53, Math.floor((wrap.clientWidth - 40) / (celda + 3))));
   const inicio = sumarDias(h, -h.getDay() - (semanas - 1) * 7);
   let celdas = "", meses = "", total = 0; const porMes = {};

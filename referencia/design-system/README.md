@@ -83,7 +83,11 @@ Se generó con `@material/material-color-utilities`, el método de Material Them
 - **Pesos:** tres, y nada más. 400 (regular), 500 (títulos, etiquetas y botones) y el enfático de M3 Expressive, 650 (`--md-sys-typescale-emphasized-weight`): números clave, fechas, estados activos y negritas dentro del texto.
 - **Títulos de tarjeta:** dos estilos propios del taller, heredados del prototipo aprobado: `--app-typescale-card-title` (500, 17/24 px) para el título de una tarjeta y `--app-typescale-card-title-small` (500, 15/20 px) para el título de una tarjeta de módulo. Ningún otro tamaño fuera de la escala.
 - **Lectura:** el texto largo usa `body-large`, con un ancho de línea de 60 a 75 caracteres.
-- **Unidades:** los tamaños de letra y las alturas de línea están en `rem` (1rem = 16 px con la letra predeterminada del navegador). Si la persona agranda la letra en la configuración del navegador, todo el texto crece en proporción. Los íconos, espaciados, bordes y radios quedan en px. Los componentes que contienen texto usan alto mínimo (`min-height`), no alto fijo, para que el texto no se corte (D-072).
+- **Unidades:** los tamaños de letra y las alturas de línea están en `rem` (1rem = 16 px con la letra predeterminada del navegador). Si la persona agranda la letra en la configuración del navegador, todo el texto crece en proporción. Los íconos, espaciados, bordes y radios quedan en px. Los componentes que contienen texto usan alto mínimo (`min-height`), no alto fijo, para que el texto no se corte (D-072). Además:
+  - **Anchos que dependen del texto, en rem:** el ancho de lectura (47.5rem, 760 px con la letra predeterminada), los mínimos de las grillas de tarjetas y el panel de agenda.
+  - **Riel colapsado:** mide `calc(4rem + 32px)`, que da 96 px con la letra predeterminada y crece con la letra.
+  - **Barra inferior:** sus etiquetas tienen un tope de 12 px (`min(0.75rem, 12px)`), como las barras de pestañas de iOS y Android, porque cinco destinos no entran en 360 px con letra grande.
+  - **Palabras largas:** el sitio usa `overflow-wrap: break-word`. Una palabra que no entra en su caja se corta en vez de salirse.
 
 ### Forma
 Usa la escala de esquinas de M3 Expressive:

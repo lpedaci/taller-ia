@@ -339,7 +339,7 @@
   --app-window-expanded-max:1199px; --app-window-large-max:1599px;
 
   /* Navegación: riel colapsado y expandido (reemplaza al navigation drawer) */
-  --app-rail-collapsed-width:96px;
+  --app-rail-collapsed-width:calc(4rem + 32px); /* 96 px con la letra predeterminada; crece con la letra (D-072) */
   --app-rail-expanded-width:280px;
 }
 @media (prefers-reduced-motion: reduce){

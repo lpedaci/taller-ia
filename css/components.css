@@ -32,7 +32,7 @@
 b,strong{font-weight:var(--md-sys-typescale-emphasized-weight)}
 input[type=checkbox],input[type=radio]{cursor:pointer}
 html{height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;min-height:100%;font:var(--md-sys-typescale-body-large);background-color:var(--app-color-background);background-image:radial-gradient(var(--app-color-texture) 1px, transparent 1.2px);background-size:20px 20px;background-attachment:fixed;color:var(--md-sys-color-on-surface);-webkit-font-smoothing:antialiased}
+body{margin:0;min-height:100%;font:var(--md-sys-typescale-body-large);overflow-wrap:break-word;background-color:var(--app-color-background);background-image:radial-gradient(var(--app-color-texture) 1px, transparent 1.2px);background-size:20px 20px;background-attachment:fixed;color:var(--md-sys-color-on-surface);-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4,h5,h6,p{margin:0}
 button,input,select,textarea{font:inherit;color:inherit}
 a{color:var(--md-sys-color-primary)}
@@ -94,7 +94,7 @@ img,svg{max-width:100%}
 .connected .ms{font-size:18px}
 
 /* ---------- Chips ---------- */
-.chip{display:inline-flex;align-items:center;gap:4px;min-height:24px;padding:0 var(--app-space-2);border-radius:var(--md-sys-shape-corner-small);font:var(--md-sys-typescale-label-medium);white-space:nowrap}
+.chip{display:inline-flex;align-items:center;gap:4px;min-height:24px;padding:0 var(--app-space-2);border-radius:var(--md-sys-shape-corner-small);font:var(--md-sys-typescale-label-medium);max-width:100%}
 .chip .ms{font-size:16px}
 .chip-neutral{background:var(--md-sys-color-surface-container-highest);color:var(--md-sys-color-on-surface-variant)}
 .chip-primary{background:var(--md-sys-color-primary-container);color:var(--md-sys-color-on-primary-container)}

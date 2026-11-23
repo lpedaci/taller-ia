@@ -46,10 +46,33 @@ for (const w of [360, 768, 1024, 1280]) {
         // Se saltean el texto oculto a propósito (solo para lectores de pantalla), las zonas con scroll propio
         // y los títulos que se acortan con "…" a propósito (el título completo está en el contenido)
         const q = el.getBoundingClientRect();
-        if (q.width <= 1 || q.height <= 1 || (c.clip && c.clip !== "auto") || c.textOverflow === "ellipsis") continue;
+        // También los textos que se acortan a propósito a dos líneas (line-clamp) y las etiquetas del registro de actividad,
+        // que es un gráfico y se dibuja con su propia grilla
+        if (q.width <= 1 || q.height <= 1 || c.textOverflow === "ellipsis" || (c.webkitLineClamp && c.webkitLineClamp !== "none") || el.closest(".heat-wrap, .heat-grid")) continue;
+        let oculto = false;
+        for (let a = el; a && a !== document.body; a = a.parentElement) { const ca = getComputedStyle(a); const qa = a.getBoundingClientRect(); if ((ca.clip && ca.clip !== "auto") || qa.width <= 1 || qa.height <= 1) { oculto = true; break; } }
+        if (oculto) continue;
         if (/auto|scroll/.test(c.overflowX + c.overflowY) || el.matches("textarea, input, select, pre, code")) continue;
-        const alto = el.scrollHeight - el.clientHeight, ancho = el.scrollWidth - el.clientWidth;
-        if (el.clientHeight && (alto > 2 || ancho > 2)) out.cortes.push(`${el.tagName.toLowerCase()}${el.className && typeof el.className === "string" ? "." + el.className.trim().split(/\s+/)[0] : ""} "${el.textContent.trim().slice(0, 30)}" (${alto > 2 ? `+${alto}px alto` : ""}${ancho > 2 ? ` +${ancho}px ancho` : ""})`);
+        // Se mide el texto mismo (no la caja): sale de su elemento o lo recorta un contenedor con overflow oculto.
+        // No cuentan las áreas táctiles invisibles (::before de 48 px) que sobresalen de los botones.
+        const tolV = parseFloat(c.fontSize) * 0.3;
+        const cajas = [q];
+        for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) { const ca = getComputedStyle(a); if (/hidden|clip/.test(ca.overflowX + ca.overflowY)) cajas.push(a.getBoundingClientRect()); }
+        let fuera = null;
+        for (const t of el.childNodes) {
+          if (t.nodeType !== 3 || !t.textContent.trim()) continue;
+          const rg = document.createRange(); rg.selectNodeContents(t);
+          for (const tr of rg.getClientRects()) {
+            if (!tr.width) continue;
+            for (const k of cajas) {
+              const dx = Math.max(k.left - tr.left, tr.right - k.right), dy = Math.max(k.top - tr.top, tr.bottom - k.bottom);
+              if (dx > 2 || dy > tolV) { fuera = `${dx > 2 ? `${Math.round(dx)}px a lo ancho` : ""}${dy > tolV ? ` ${Math.round(dy)}px a lo alto` : ""}${k === q ? "" : ", recortado"}`.trim(); break; }
+            }
+            if (fuera) break;
+          }
+          if (fuera) break;
+        }
+        if (fuera) out.cortes.push(`${el.tagName.toLowerCase()}${el.className && typeof el.className === "string" ? "." + el.className.trim().split(/\s+/)[0] : ""} "${el.textContent.trim().slice(0, 30)}" (${fuera})`);
       }
       return out;
     });

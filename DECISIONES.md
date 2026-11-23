@@ -77,7 +77,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-069 | 2026-11-22 | Animaciones: MP4 para facilitadores y verificación | Vigente |
 | D-070 | 2026-11-22 | Etapa 10: revisión final y criterios de aceptación | Vigente |
 | D-071 | 2026-11-22 | Revisión UI/UX: foco, volver atrás y celular horizontal | Vigente |
-| D-072 | 2026-11-22 | Letra en rem y cortes de ventana en em | En curso |
+| D-072 | 2026-11-22 | Letra en rem y cortes de ventana en em | Vigente |
 
 ---
 
@@ -1647,16 +1647,28 @@ Además, comprobar los criterios de aceptación (sección 9).
 
   En el camino se encontró y se corrigió un error de la auditoría: en Chrome, las reglas de estilo también tienen `cssRules` (por el anidado de CSS), y el recorrido las salteaba.
 
-**Archivos afectados:** `css/tokens.css`, `css/components.css`, `css/layout.css`, `css/lesson.css`, `css/activities.css`, `css/charts.css`, `css/animacion.css`, `css/estados.css`, `js/shell.js`, `js/views/recorrido.js`, `js/views/piezas.js`, `scripts/auditoria-ds.mjs`, `scripts/verificar-letra.mjs`, `package.json`, `README.md`, `referencia/design-system/README.md`.
+**Segunda parte (2026-11-23), revisión con letra al doble:**
+- **Prueba más precisa:** `npm run letra` mide el texto mismo (con `Range`), no la caja. La versión anterior contaba como "texto cortado" el área táctil invisible de 48 px que sobresale de los botones y el texto oculto a propósito para lectores de pantalla. Saltea los textos que se acortan a propósito: los títulos con "…" y los avisos de la agenda, que se cortan a dos líneas según el brief.
+- **Riel colapsado:** mide `calc(4rem + 32px)`, que da 96 px con la letra predeterminada y crece con la letra. Antes cortaba "Recorrido" y "Aprendizaje". En el riel expandido, cada destino tiene alto mínimo.
+- **Barra inferior (Compact):** sus etiquetas no crecen más de 12 px y la insignia, no más de 11 px. Con letra grande, cinco destinos no entran en 360 px. Es el mismo criterio que usan iOS y Android para las barras de pestañas; el nombre accesible de cada destino no cambia. Lo controla `min(0.75rem, 12px)`, que la regla `tipografia-rem` acepta como tope documentado.
+- **Resumen del inicio:** las tarjetas tienen un ancho mínimo de 9rem. Con la letra predeterminada se ven igual (2 o 4 columnas); con letra grande pasan a menos columnas.
+- **Anchos que dependen del texto, en rem:**
+  - el ancho de lectura (47.5rem, que da 760 px con la letra predeterminada);
+  - las tarjetas de módulo, la Biblioteca y las áreas del kit;
+  - el panel de agenda;
+  - la columna de la hora en la agenda.
+- **Video:** el marco sigue siendo 16:9, pero la portada y los avisos (sin conexión, cargando) van en el flujo. Con letra grande el marco crece en lugar de cortar el texto.
+- **Registro de actividad:** las celdas crecen con la letra, para que las etiquetas de los días entren en su fila.
+- **Textos largos:** el sitio corta una palabra que no entra en su caja (`overflow-wrap: break-word`), en vez de dejarla salir. Con la letra predeterminada no cambia nada, porque solo actúa cuando una palabra no entra. Los encabezados de tabla usan guiones automáticos y los títulos de las tarjetas de módulo pueden cortar una palabra larga. Los chips pueden pasar a dos líneas.
 
-**Verificación realizada:** 
-- `npm run verificar`: 900 capturas, todo en 0, con la letra predeterminada. El sitio se ve igual que antes del cambio.
-- `npm run auditar`: el design system cumple, incluida la regla nueva `tipografia-rem`.
+**Archivos afectados:** `css/tokens.css`, `css/components.css`, `css/layout.css`, `css/lesson.css`, `css/activities.css`, `css/charts.css`, `css/animacion.css`, `css/estados.css`, `estilos.html`, `js/shell.js`, `js/views/recorrido.js`, `js/views/piezas.js`, `scripts/auditoria-ds.mjs`, `scripts/verificar-letra.mjs`, `package.json`, `README.md`, `referencia/design-system/README.md`.
 
-**Pendientes o riesgos:** queda en curso la revisión con letra al doble.
-- **Antes del cambio a alto mínimo:** `npm run letra` ya mostraba que el texto crece y que, con los cortes en em, la barra superior y el layout se adaptan. Todavía marcaba 20 componentes con texto fuera de su caja. Los principales eran los números de paso del índice, los chips, los botones, las etiquetas de la barra inferior en 360 px, los encabezados de tabla, el nombre del módulo en Continuar donde dejaste y las horas de la agenda. El alto mínimo resuelve la mayoría de los casos de alto.
-- **Lo que sigue:**
-  - volver a correr `npm run letra`;
-  - corregir lo que quede (sobre todo los textos que no entran a lo ancho en Compact y las etiquetas de la barra inferior);
-  - revisar las capturas de `verificacion/letra/`;
-  - pasar esta entrada a "Vigente".
+**Verificación realizada:**
+- `npm run letra`: las 75 pantallas en 360, 768, 1024 y 1280 px con la letra al doble. El texto crece, no hay scroll horizontal ni texto cortado. Las capturas se revisaron a mano en las cuatro clases de ventana.
+- `npm run verificar`: 900 capturas, todo en 0, con la letra predeterminada. La galería por clase de ventana se ve igual que antes del cambio.
+- `npm run contraste`: sin problemas; el progreso se mantiene.
+- `npm run auditar`: el design system cumple, incluida la regla `tipografia-rem`.
+
+**Pendientes o riesgos:**
+- **Letra al 150 %:** la prueba usa la letra al doble, el caso más exigente. Con 150 % (24 px), un ajuste más común, conviene una mirada a mano.
+- **Móviles:** en Chrome para Android y Safari para iOS, el tamaño de letra del sistema puede llegar a la página por otro camino que el ajuste de escritorio que simula la prueba. Conviene probarlo en un teléfono real.

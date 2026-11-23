@@ -132,7 +132,7 @@ export function auditar() {
   /* ---- Tipografía, forma, espaciado, íconos y color, recorriendo los elementos visibles ---- */
   // Tamaños de texto en rem: se revisan las reglas de las hojas de estilo; los íconos (Material Symbols) quedan en px
   for (const r of document.styleSheets ? [...document.styleSheets].flatMap(h => { try { return [...h.cssRules].flatMap(x => x instanceof CSSStyleRule ? [x] : x.cssRules ? [...x.cssRules] : []); } catch { return []; } }) : []) {
-    if (!r.style || !/px/.test(r.style.fontSize || "")) continue;
+    if (!r.style || !/^\d+(\.\d+)?px$/.test((r.style.fontSize || "").trim())) continue; // min(0.75rem, 12px) es un tope documentado
     const icono = /\.ms\b|\.chk\b|-ic\b|::after|::before/.test(r.selectorText || "") || /Material Symbols/.test(r.style.fontFamily || "");
     if (!icono) out.push({ regla: "tipografia-rem", elemento: r.selectorText, detalle: `font-size de ${r.style.fontSize}` });
   }
