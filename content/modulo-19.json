@@ -83,8 +83,8 @@
         ] },
         { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "Pensá en una consigna o evaluación que uses en tu trabajo. ¿La resolvería sola una IA? ¿Cómo la cambiarías después de este módulo?" },
         { "tipo": "profundizar", "fuentes": [
-          { "titulo": "Marco de competencias en IA para docentes", "apa": "UNESCO. (2024). *AI competency framework for teachers*. UNESCO.", "url": "https://www.unesco.org/en/articles/ai-competency-framework-teachers", "idioma": "en", "nivel": "Profundización", "tipo": "documento" },
-          { "titulo": "Marco de competencias en IA para estudiantes", "apa": "UNESCO. (2024). *AI competency framework for students*. UNESCO.", "url": "https://www.unesco.org/en/articles/ai-competency-framework-students", "idioma": "en", "nivel": "Profundización", "tipo": "documento" },
+          { "titulo": "Marco de competencias para docentes en materia de IA", "apa": "Miao, F. y Cukurova, M. (2025). *Marco de competencias para docentes en materia de IA*. UNESCO. https://doi.org/10.54675/AQKZ9414", "url": "https://unesdoc.unesco.org/ark:/48223/pf0000393813", "idioma": "es", "nivel": "Profundización", "tipo": "documento" },
+          { "titulo": "Marco de competencias para estudiantes en materia de IA", "apa": "Miao, F., Shiohira, K. y Lao, N. (2025). *Marco de competencias para estudiantes en materia de IA*. UNESCO. https://doi.org/10.54675/EKCU4552", "url": "https://unesdoc.unesco.org/ark:/48223/pf0000393812", "idioma": "es", "nivel": "Profundización", "tipo": "documento" },
           { "titulo": "OpenAI Academy, cursos para enseñar y aprender con IA", "apa": "OpenAI. (s.f.). *OpenAI Academy courses*.", "url": "https://academy.openai.com/pages/courses", "idioma": "en", "nivel": "Inicial", "tipo": "curso" }
         ] }
       ]

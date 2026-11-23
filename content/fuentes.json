@@ -263,10 +263,10 @@
       ]
     },
     {
-      "titulo": "Marco de competencias en IA para docentes",
-      "apa": "UNESCO. (2024). *AI competency framework for teachers*. UNESCO.",
-      "url": "https://www.unesco.org/en/articles/ai-competency-framework-teachers",
-      "idioma": "en",
+      "titulo": "Marco de competencias para docentes en materia de IA",
+      "apa": "Miao, F. y Cukurova, M. (2025). *Marco de competencias para docentes en materia de IA*. UNESCO. https://doi.org/10.54675/AQKZ9414",
+      "url": "https://unesdoc.unesco.org/ark:/48223/pf0000393813",
+      "idioma": "es",
       "nivel": "Inicial",
       "tipo": "documentación",
       "modulos": [
@@ -280,10 +280,10 @@
       ]
     },
     {
-      "titulo": "Marco de competencias en IA para estudiantes",
-      "apa": "UNESCO. (2024). *AI competency framework for students*. UNESCO.",
-      "url": "https://www.unesco.org/en/articles/ai-competency-framework-students",
-      "idioma": "en",
+      "titulo": "Marco de competencias para estudiantes en materia de IA",
+      "apa": "Miao, F., Shiohira, K. y Lao, N. (2025). *Marco de competencias para estudiantes en materia de IA*. UNESCO. https://doi.org/10.54675/EKCU4552",
+      "url": "https://unesdoc.unesco.org/ark:/48223/pf0000393812",
+      "idioma": "es",
       "nivel": "Inicial",
       "tipo": "documentación",
       "modulos": [
@@ -299,7 +299,7 @@
     {
       "titulo": "Recomendación sobre la Ética de la Inteligencia Artificial",
       "apa": "UNESCO. (2021). *Recomendación sobre la ética de la inteligencia artificial*. UNESCO.",
-      "url": "https://www.unesco.org/es/artificial-intelligence/recommendation-ethics",
+      "url": "https://unesdoc.unesco.org/ark:/48223/pf0000381137_spa",
       "idioma": "es",
       "nivel": "Inicial",
       "tipo": "normativa",

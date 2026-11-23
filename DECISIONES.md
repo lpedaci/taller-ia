@@ -81,6 +81,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-073 | 2026-11-23 | Datos verificados en la fuente oficial (leyes, asistentes, Codex y Sora) | Vigente |
 | D-074 | 2026-11-23 | Revisión de ortografía y reglas nuevas en `npm run textos` | Vigente |
 | D-075 | 2026-11-23 | México y Perú en el marco legal de la región | Vigente |
+| D-076 | 2026-11-23 | Fuentes de la UNESCO en UNESDOC y en español | Vigente |
 
 ---
 
@@ -1795,3 +1796,24 @@ Los seis países de la región (Brasil, Uruguay, Chile, México, Colombia y Per�
   - La UNESCO no cargó tampoco en el navegador en ese momento.
 
   Se dejan como están: conviene volver a correr `npm run enlaces` otro día y, si la UNESCO sigue sin responder, revisar sus direcciones.
+
+## D-076 | 2026-11-23 | Fuentes de la UNESCO en UNESDOC y en español
+
+**Solicitado:** resolver los enlaces de la UNESCO que fallaban (D-075). Lourdes probó los tres y ninguno abría. Buscó los documentos y pasó sus direcciones en UNESDOC, la biblioteca digital de la UNESCO.
+
+**Decisión y motivo:** los enlaces de UNESDOC son permanentes, así que son más estables que las páginas de unesco.org. Cada documento se abrió en el navegador antes de usarlo:
+- **Recomendación sobre la Ética de la Inteligencia Artificial:** el primer enlace que se encontró era un folleto de 2 páginas de 2023 (SHS/2023/PI/H/5), no la Recomendación que cita el taller. Se usa el texto completo en español: SHS/BIO/PI/2021/1, 43 páginas (pf0000381137_spa).
+- **Marcos de competencias en IA para docentes y para estudiantes:** antes se citaba la versión en inglés de 2024. Ahora se cita la edición oficial en español de 2025, con sus autores y su DOI, porque el taller es en español:
+  - Miao y Cukurova (2025), *Marco de competencias para docentes en materia de IA*, 52 páginas;
+  - Miao, Shiohira y Lao (2025), *Marco de competencias para estudiantes en materia de IA*, 80 páginas.
+
+  El título del taller también pasó al título oficial.
+
+Se actualizaron los módulos 8, 9 y 19, y la Biblioteca se regeneró conservando la línea de "por qué leerlo" de cada fuente.
+
+**Archivos afectados:** `content/modulo-08.json`, `content/modulo-09.json`, `content/modulo-19.json`, `content/fuentes.json`.
+
+**Verificación realizada:** 
+- `npm run enlaces`: 100 enlaces, ninguno roto. 93 funcionan y 7 se revisan a mano: entre ellos, los tres de UNESDOC, que responden 403 a los programas y se abrieron en el navegador.
+- `npm run textos`: sin hallazgos.
+- `npm run verificar`: 900 capturas, todo en 0.
