@@ -79,6 +79,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-071 | 2026-11-22 | Revisión UI/UX: foco, volver atrás y celular horizontal | Vigente |
 | D-072 | 2026-11-22 | Letra en rem y cortes de ventana en em | Vigente |
 | D-073 | 2026-11-23 | Datos verificados en la fuente oficial (leyes, asistentes, Codex y Sora) | Vigente |
+| D-074 | 2026-11-23 | Revisión de ortografía y reglas nuevas en `npm run textos` | Vigente |
 
 ---
 
@@ -1715,4 +1716,42 @@ Además, comprobar los criterios de aceptación (sección 9).
 - `npm run enlaces`: 96 enlaces; 95 funcionan y 1 se revisa a mano (Función Pública, abierto en el navegador).
 - `npm run textos`: 3.669 textos, sin hallazgos.
 - `npm run verificar`: 900 capturas, todo en 0. La tabla del Módulo 11 muestra el estado nuevo, "no la tiene".
+- `npm run auditar`: el design system cumple.
+
+## D-074 | 2026-11-23 | Revisión de ortografía
+
+**Solicitado:** seguir con el paso siguiente. Después de verificar los datos (D-073), lo que seguía era la revisión de ortografía que D-070 dejó pendiente.
+
+**Decisión y motivo:** releer de corrido 470 KB de contenido no garantiza encontrar los errores, así que se revisó por capas:
+- **Vocabulario:** se armó la lista de todas las palabras del contenido (4.486 distintas) y se leyeron una por una las 2.574 que aparecen una o dos veces, que es donde se esconde un error de tipeo. No había palabras mal escritas. Las que parecían sin tilde eran nombres de variables de las plantillas (`{composicion}`), fragmentos de tokens de la animación ("méd", "ico") o usos correctos ("aun" con el sentido de "incluso").
+- **Tildes diacríticas y errores frecuentes:**
+  - interrogativos sin tilde;
+  - más/mas, sé/se, está/esta, mí/mi, sí/si, él/el y tú/tu;
+  - tildes que no corresponden (fué, dió);
+  - homófonos (haber/a ver, hecho/echo, haya/halla);
+  - "de el" y "a el";
+  - minúscula después de punto.
+- **Textos de la interfaz:** la misma pasada de vocabulario sobre el JavaScript y el HTML. Las palabras sin tilde que aparecieron eran nombres de variables que no se ven en pantalla. "máicrosoft" es una ayuda de pronunciación a propósito.
+
+**Lo que se corrigió:**
+- **Módulo 8:** "¿Quien lo recibe…" pasa a "¿Quién lo recibe…".
+- **Animación de RAG:** la descripción decía "llevan los fragmentos a El modelo". Ahora nombra las cajas entre comillas: "a la caja "El modelo" … "Respuesta con fuentes"". Se regeneró su guion.
+
+**Para que no vuelva a pasar:** `npm run textos` suma las reglas de ortografía que se pueden revisar de forma automática:
+- interrogativos y "más" sin tilde;
+- tildes que no corresponden;
+- "sé" sin tilde;
+- homófonos frecuentes;
+- "de el" y "a el";
+- minúscula después de punto.
+
+Se probó con el error original: lo detecta.
+
+**Lo que esta revisión no cubre:** la concordancia, la puntuación fina y el estilo. Eso sigue siendo lectura humana. Una revisión automática encuentra errores de forma, pero no si una oración se entiende.
+
+**Archivos afectados:** `content/modulo-08.json`, `content/animaciones/rag.json`, `animaciones/guiones/08-rag.md`, `scripts/revisar-textos.mjs`, `README.md`.
+
+**Verificación realizada:** 
+- `npm run textos`: 3.669 textos, sin hallazgos, con las reglas nuevas.
+- `npm run verificar`: 900 capturas, todo en 0.
 - `npm run auditar`: el design system cumple.

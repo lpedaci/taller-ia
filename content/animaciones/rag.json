@@ -32,7 +32,7 @@
       "pantalla": "Responde usando esos fragmentos y te dice de dónde salió cada dato.",
       "movimiento": "Los fragmentos viajan al modelo y aparece Respuesta con fuentes, en verde.",
       "narracion": "El modelo recibe la pregunta junto con esos fragmentos y responde con esa información, indicando la página. Joaquín puede abrir el reglamento y comprobarlo.",
-      "descripcion": "Flechas llevan los fragmentos a El modelo y de ahí a una caja verde, Respuesta con fuentes: cita las páginas 4 y 7."
+      "descripcion": "Flechas llevan los fragmentos a la caja \"El modelo\" y de ahí a una caja verde, \"Respuesta con fuentes\", que cita las páginas 4 y 7."
     },
     {
       "titulo": "Sin buscar, adivina",

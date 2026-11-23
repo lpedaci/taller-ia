@@ -35,7 +35,7 @@
 - **En pantalla:** Responde usando esos fragmentos y te dice de dónde salió cada dato.
 - **Qué se mueve:** Los fragmentos viajan al modelo y aparece Respuesta con fuentes, en verde.
 - **Narración:** El modelo recibe la pregunta junto con esos fragmentos y responde con esa información, indicando la página. Joaquín puede abrir el reglamento y comprobarlo.
-- **Descripción para lectores de pantalla:** Flechas llevan los fragmentos a El modelo y de ahí a una caja verde, Respuesta con fuentes: cita las páginas 4 y 7.
+- **Descripción para lectores de pantalla:** Flechas llevan los fragmentos a la caja "El modelo" y de ahí a una caja verde, "Respuesta con fuentes", que cita las páginas 4 y 7.
 
 ### Escena 4 | Sin buscar, adivina (12 s)
 

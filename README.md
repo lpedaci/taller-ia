@@ -35,7 +35,7 @@ Antes de subir un cambio a `main`, corré lo que corresponda:
 | Comando | Qué revisa | Cuándo |
 |---|---|---|
 | `npm run auditar` | Que todo respete el design system (unos minutos) | Siempre que cambies algo visual |
-| `npm run textos` | Rayas, puntos medios, texto en inglés sin traducir, citas, signos sin par y palabras repetidas | Siempre que cambies un texto |
+| `npm run textos` | Rayas, puntos medios, texto en inglés sin traducir, citas, signos sin par, palabras repetidas y la ortografía que se puede revisar con reglas (tildes diacríticas, homófonos, "de el") | Siempre que cambies un texto |
 | `npm run enlaces` | Que todos los enlaces externos funcionen | Al sumar fuentes y cada tanto, porque los sitios cambian |
 | `npm run contraste` | Contraste alto en todas las pantallas y que el progreso se mantenga al cerrar el navegador | Antes de publicar una versión |
 | `npm run letra` | Que el sitio funcione con la letra del navegador al doble: que el texto crezca, sin scroll horizontal ni texto cortado | Siempre que cambies un componente o un layout |
