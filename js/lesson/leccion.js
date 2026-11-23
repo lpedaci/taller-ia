@@ -84,7 +84,7 @@ export async function mostrar(main, args) {
     // Retomar: el primer paso sin completar, o el primero si todo está hecho
     const vistos = pasosVistos(id);
     paso = Math.min(leccion.pasos.length, (vistos.length ? Math.max(...vistos) + 1 : 1));
-    history.replaceState(null, "", href("modulo", id, "paso", paso));
+    history.replaceState(history.state, "", href("modulo", id, "paso", paso));
   }
   paso = Math.max(1, Math.min(leccion.pasos.length, paso));
   const cambiaDePaso = actual && actual.id === id && actual.paso !== paso;

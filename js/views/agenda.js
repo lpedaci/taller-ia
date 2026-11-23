@@ -111,7 +111,7 @@ export function iniciar(rerender) {
     agregarEvento({ titulo: tit.value.trim(), tipo: qs("#evTipo").value, inicio: hora(qs("#evInicio").value || "09:00"), fin: fin ? hora(fin) : null });
     ref = new Date(y, mo - 1, d);
     dlg.dataset.sinRetorno = "1"; dlg.close();
-    if (location.hash.startsWith("#/agenda")) { history.replaceState(null, "", href("agenda", "dia", f)); vista = "dia"; }
+    if (location.hash.startsWith("#/agenda")) { history.replaceState(history.state, "", href("agenda", "dia", f)); vista = "dia"; }
     rerender();
     qs("[data-nuevo-evento]")?.focus();
     aviso("Evento agregado a tu agenda");
@@ -124,7 +124,7 @@ export function iniciar(rerender) {
     if (c) {
       const n = +c.dataset.cal;
       const nueva = n === 0 ? hoy() : vista === "dia" ? sumarDias(ref, n) : vista === "semana" ? sumarDias(ref, 7 * n) : new Date(ref.getFullYear(), ref.getMonth() + n, 1);
-      history.replaceState(null, "", href("agenda", vista, isoDia(nueva)));
+      history.replaceState(history.state, "", href("agenda", vista, isoDia(nueva)));
       ref = nueva;
       qs("#calLbl").textContent = etiqueta();
       qs("#calBody").innerHTML = cuerpo();

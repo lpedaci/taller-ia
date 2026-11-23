@@ -66,7 +66,7 @@ function abrirSelector() {
 }
 
 export function despues() {
-  if (abrirRutas) { abrirRutas = false; history.replaceState(null, "", href("recorrido")); abrirSelector(); }
+  if (abrirRutas) { abrirRutas = false; history.replaceState(history.state, "", href("recorrido")); abrirSelector(); }
 }
 
 export function iniciar(rerender) {

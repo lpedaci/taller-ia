@@ -24,7 +24,7 @@ function imprimir(nodo) {
 
 /* ===================== Rúbrica ===================== */
 export function rubricaHTML(r, id) {
-  return `<div class="tbl-edit-wrap rub-wrap" role="region" tabindex="0" aria-label="${esc(r.titulo || "Rúbrica del proyecto final")} (se puede desplazar)"><table class="tbl rub"><caption class="sr-only">${esc(r.titulo || "Rúbrica del proyecto final")}</caption>` +
+  return `<div class="rub-wrap"><table class="tbl rub"><caption class="sr-only">${esc(r.titulo || "Rúbrica del proyecto final")}</caption>` +
     `<thead><tr><th scope="col">Criterio</th>${NIVELES.map(n => `<th scope="col">${n}</th>`).join("")}</tr></thead><tbody>` +
     r.criterios.map(c => `<tr><th scope="row"><b>${esc(c.titulo)}</b><span>${esc(c.descripcion || "")}</span></th>${c.niveles.map((n, i) => `<td data-col="${NIVELES[i]}">${esc(n)}</td>`).join("")}</tr>`).join("") +
     `</tbody></table></div>`;

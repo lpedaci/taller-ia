@@ -122,9 +122,9 @@ for (const modo of MODOS) {
       });
       malos.forEach(m => textos.push(`${caso}: ${m}`));
 
-      // axe-core. La barra flotante de la lección se fija en su lugar para medir el tamaño real de los objetivos:
-      // si no, axe cuenta como "tapado" lo que queda debajo de ella en el borde de la ventana.
-      await page.addStyleTag({ content: ".lesson-bar{position:static!important}" });
+      // axe-core. La barra superior y la barra flotante de la lección se fijan en su lugar para medir el tamaño real de los objetivos:
+      // si no, axe cuenta como "tapado" lo que queda debajo de ellas en el borde de la ventana (D-071).
+      await page.addStyleTag({ content: ".lesson-bar,.topbar{position:static!important}" });
       const res = await new AxeBuilder({ page, axeSource }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"]).analyze();
       corridasAxe++;
       for (const v of res.violations) {
@@ -234,7 +234,7 @@ Reglas en \`referencia/design-system/README.md\` (sección "Reglas verificables"
 
 ${seccionAuditoria(auditoria)}
 
-Nota: durante el análisis de axe-core, la barra flotante de las lecciones se fija en su lugar, para que no cuente como "tapado" el contenido que queda debajo de ella en el borde de la ventana. Para el teclado, el sitio usa \`scroll-padding\`: el elemento con foco siempre queda visible por encima de la barra.
+Nota: durante el análisis de axe-core, la barra superior y la barra flotante de las lecciones se fijan en su lugar, para que no cuente como "tapado" el contenido que queda debajo de ellas en el borde de la ventana. Para el teclado, el sitio usa \`scroll-padding\`: el elemento con foco siempre queda visible entre las barras.
 
 ## Qué se revisa a mano
 

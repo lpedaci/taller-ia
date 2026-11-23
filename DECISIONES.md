@@ -76,6 +76,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-068 | 2026-11-22 | Animaciones prioritarias 3 a 10: guiones, escenas y ubicación | Vigente |
 | D-069 | 2026-11-22 | Animaciones: MP4 para facilitadores y verificación | Vigente |
 | D-070 | 2026-11-22 | Etapa 10: revisión final y criterios de aceptación | Vigente |
+| D-071 | 2026-11-22 | Revisión UI/UX: foco, volver atrás y celular horizontal | Vigente |
 
 ---
 
@@ -1594,3 +1595,39 @@ Además, comprobar los criterios de aceptación (sección 9).
   - las duraciones de la guía para facilitadores (D-064);
   - los dilemas del Módulo 8 (D-040);
   - las narraciones de las ocho animaciones nuevas (D-068).
+
+## D-071 | 2026-11-22 | Revisión UI/UX después de la etapa 10
+
+**Solicitado:** seguir con el paso siguiente usando la guía UI/UX instalada. Con las diez etapas del brief cerradas, el paso siguiente es revisar el sitio contra las reglas de esa guía que la verificación no cubría:
+- foco tapado por las barras fijas;
+- celular en horizontal;
+- volver atrás con el navegador;
+- jerarquía de títulos;
+- etiquetas de campos;
+- cursor en los controles;
+- texto agrandado.
+
+**Decisión y motivo:** se armó una prueba con Playwright que recorre las 75 pantallas en mobile (390 × 844), desktop (1280 × 900) y celular horizontal (844 × 390). En cada pantalla navega con Tab y comprueba si una barra fija tapa el elemento con foco. Encontró cuatro problemas y se corrigieron los cuatro:
+- **Foco tapado en mobile:** fuera de las lecciones, la barra de navegación inferior tapaba el elemento enfocado al avanzar con Tab (glosario, guía para facilitadores, Mi aprendizaje, Agregar tarea). Ahora la página reserva el alto de la barra superior y, en Compact, el de la barra inferior (`scroll-padding`), como ya hacían las lecciones. Cumple WCAG 2.4.11.
+- **Volver atrás:** el botón Atrás del navegador llevaba siempre al principio de la página, y la Biblioteca perdía los filtros. Ahora cada entrada del historial recuerda su altura de scroll. La búsqueda del glosario y los filtros de la Biblioteca se conservan durante la sesión (`sessionStorage`, con el prefijo `tia.`). Un enlace directo a un término del glosario sigue mostrando la lista completa.
+- **Índice de la lección en celular horizontal:** el índice lateral queda fijo al costado y era más alto que la ventana (435 px en 390 px), así que su final no se podía ver. Ahora tiene un alto máximo y su propio scroll.
+- **Rúbrica del proyecto final:** se anunciaba como "se puede desplazar" y recibía foco con Tab, pero nunca se desplaza, porque en anchos chicos pasa a tarjetas. Se quitó ese foco, que sumaba una parada de Tab sin función.
+- **Verificación del glosario:** el caso que D-070 aceptaba como conocido (el índice de letras "tapado" después de un enlace directo a un término) volvió a aparecer en `npm run verificar` con el nuevo `scroll-padding`. El aviso no viene del sitio: depende de dónde quedó el scroll en la captura. Por eso, durante el análisis de axe-core, la barra superior también se fija en su lugar, como ya se hacía con la barra de la lección. El foco con teclado lo controla la prueba de este registro. `npm run contraste` ya no necesita la excepción.
+- **Detalle:** las casillas y los botones de opción muestran la mano al pasar el mouse, como el resto de los controles.
+
+**Lo que se revisó y estaba bien:**
+- un solo `h1` y títulos sin saltos;
+- todos los campos con etiqueta visible;
+- foco al contenido nuevo y título del documento en cada cambio de pantalla;
+- enlace "Saltar al contenido";
+- sin scroll horizontal en celular horizontal.
+
+**Lo que queda como está:** los tamaños de letra del design system están en píxeles (`tokens.css`, que el brief pide usar tal cual). Por eso, el tamaño de letra que la persona elige en el navegador no cambia el texto. El zoom del navegador sí lo agranda sin scroll horizontal, que es lo que pide WCAG 1.4.4. Pasarlos a `rem` cambiaría el archivo de tokens y queda a decisión de Lourdes.
+
+**Archivos afectados:** `js/app.js`, `js/views/recursos.js`, `js/lesson/leccion.js`, `js/views/agenda.js`, `js/views/recorrido.js`, `js/activities/aplicar.js`, `css/layout.css`, `css/lesson.css`, `css/activities.css`, `css/components.css`.
+
+**Verificación realizada:** 
+- prueba propia de foco, volver atrás y celular horizontal: sin foco tapado en ninguna pantalla; Atrás devuelve la altura (1500 px en el glosario) y los filtros de la Biblioteca;
+- `npm run verificar`: 900 capturas, todo en 0;
+- `npm run contraste`: sin problemas, ya sin excepciones; el progreso se mantiene;
+- `npm run auditar`: el design system cumple.

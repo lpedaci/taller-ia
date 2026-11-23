@@ -45,6 +45,15 @@ const esqueletoLista = () => `<div id="esperaLista"></div><div class="learn-grid
 
 /** Dibuja la ruta actual. mantenerFoco: true cuando se vuelve a dibujar la misma pantalla. */
 let turno = 0;
+/* Altura de scroll por entrada del historial: cada entrada recibe una clave en history.state */
+const posiciones = new Map();
+let claveActual = null, volviendo = false;
+function marcarEntrada() {
+  if (claveActual != null) posiciones.set(claveActual, scrollY);
+  volviendo = history.state?.k != null && posiciones.has(history.state.k);
+  if (history.state?.k == null) history.replaceState({ ...(history.state || {}), k: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}` }, "");
+  claveActual = history.state.k;
+}
 async function render(mantenerFoco) {
   const { id, args } = leerHash();
   const r = marcarActual(id);
@@ -70,8 +79,10 @@ async function render(mantenerFoco) {
   if (!primera && !mantenerFoco && clave !== ultimaRuta) {
     // Al cambiar de pantalla, el foco va al título del contenido nuevo (o al contenido) y la página vuelve arriba
     if (!(id === "recorrido" && args[0] === "rutas") && !(id === "aprendizaje" && args[0])) {
-      const f = res.foco && qs(res.foco);
-      (f || main).focus({ preventScroll: true }); scrollTo({ top: 0 });
+      // Con Atrás o Adelante del navegador, la página vuelve a la altura en la que estaba
+      const y = volviendo ? posiciones.get(history.state?.k) : undefined;
+      const f = y === undefined && res.foco && qs(res.foco);
+      (f || main).focus({ preventScroll: true }); scrollTo({ top: y || 0 });
     }
   }
   ultimaRuta = location.hash; primera = false;
@@ -116,10 +127,11 @@ async function arrancar() {
   addEventListener("hashchange", () => {
     const h = location.hash;
     if (h && !h.startsWith("#/") && document.getElementById(h.slice(1))) return; // ancla interna
-    render(false);
+    marcarEntrada(); render(false);
   });
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   if (!location.hash) history.replaceState(null, "", href("inicio"));
-  render(false);
+  marcarEntrada(); render(false);
   // Panel de diagnóstico de accesibilidad: solo con ?diagnostico=1
   if (new URLSearchParams(location.search).get("diagnostico") === "1") import("./diagnostico.js").then(m => m.iniciar());
 }

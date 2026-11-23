@@ -23,7 +23,7 @@ for (const modo of ["light", "dark"]) for (const w of [390, 1280]) {
     if (pt.clic) { await p.click(pt.clic).catch(() => {}); await p.waitForTimeout(250); }
     const alto = await p.evaluate(() => document.documentElement.getAttribute("data-contrast"));
     if (alto !== "high") problemas.set("sin contraste alto", (problemas.get("sin contraste alto") || []).concat(pt.id));
-    await p.addStyleTag({ content: ".lesson-bar{position:static!important}" });
+    await p.addStyleTag({ content: ".lesson-bar,.topbar{position:static!important}" });
     const r = await new AxeBuilder({ page: p }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze(); n++;
     r.violations.forEach(v => { const k = `axe ${v.id}`; problemas.set(k, (problemas.get(k) || []).concat(`${pt.id} ${w} ${modo} ${v.nodes[0].target}`)); });
     (await p.evaluate(auditar)).forEach(f => { const k = `ds ${f.regla}`; problemas.set(k, (problemas.get(k) || []).concat(`${pt.id} ${w} ${modo} ${f.elemento} ${f.detalle}`)); });
@@ -46,6 +46,4 @@ await b.close(); s.close();
 console.log(`Contraste alto: ${n} análisis (${PANTALLAS.length} pantallas, 390 y 1280 px, claro y oscuro).`);
 console.log(problemas.size ? [...problemas].map(([k, v]) => `${k}: ${v.length} casos. Ej.: ${v.slice(0, 3).join(" | ")}`).join("\n") : "Sin problemas de axe-core ni de design system.");
 console.log(persiste >= 1 ? "Progreso: se mantiene al cerrar y volver a abrir el navegador." : "FALLA: el progreso no se mantuvo al volver a abrir el navegador.");
-// Se aceptan como conocidos los objetivos tapados por la barra superior fija después de un salto con scroll (ver D-070)
-const reales = [...problemas].filter(([k]) => k !== "axe target-size");
-process.exitCode = reales.length || persiste < 1 ? 1 : 0;
+process.exitCode = problemas.size || persiste < 1 ? 1 : 0;

@@ -9,7 +9,12 @@ import { href } from "../routes.js";
 export const slugTermino = t => norm(t).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const cache = {};
 const cargarJSON = ruta => (cache[ruta] ||= leerJSON(ruta).catch(e => { delete cache[ruta]; throw e; }));
-const enlaceModulo = id => `<a href="${href("modulo", id)}">Módulo ${id}</a>`;
+/* La búsqueda y los filtros se conservan durante la sesión, para que Atrás devuelva la misma lista */
+const sesion = {
+  leer: k => { try { return JSON.parse(sessionStorage.getItem(`tia.${k}`)); } catch { return null; } },
+  guardar: (k, v) => { try { sessionStorage.setItem(`tia.${k}`, JSON.stringify(v)); } catch { /* sin almacenamiento: no se recuerda */ } }
+};
+const enlaceModulo = id =>`<a href="${href("modulo", id)}">Módulo ${id}</a>`;
 const sel = (id, etiqueta, opciones) => `<div class="tf"><label for="${id}">${etiqueta}</label><span class="sel"><select class="field" id="${id}"><option value="">Todos</option>` +
   opciones.map(([v, t]) => `<option value="${esc(v)}">${esc(t)}</option>`).join("") + `</select><span class="ms tf-ic" aria-hidden="true">arrow_drop_down</span></span></div>`;
 
@@ -35,7 +40,9 @@ export async function glosario(main, args) {
     qs(".gl-vacio").hidden = total > 0;
     n.textContent = v ? (total === 1 ? "1 término" : `${total} términos`) : "";
   };
-  q.addEventListener("input", filtrar);
+  q.addEventListener("input", () => { sesion.guardar("glosario", q.value); filtrar(); });
+  // Un enlace directo a un término muestra la lista completa; si no, vuelve la última búsqueda
+  if (args[0]) sesion.guardar("glosario", ""); else { q.value = sesion.leer("glosario") || ""; if (q.value) filtrar(); }
   qs(".gl-letras").addEventListener("click", e => { const a = e.target.closest("[data-letra]"); if (!a) return; e.preventDefault(); const h = qs(`#gl-${a.dataset.letra}`); h.scrollIntoView({ block: "start" }); h.focus({ preventScroll: true }); });
   // Enlace directo desde una lección: #/glosario/alucinacion (también por alias, como "tokens")
   let foco = "#glT";
@@ -75,8 +82,12 @@ export async function biblioteca(main) {
     qs(".gl-vacio").hidden = total > 0;
     n.textContent = total === 1 ? "1 fuente" : `${total} fuentes`;
   };
-  f.addEventListener("change", filtrar);
-  f.addEventListener("reset", () => setTimeout(filtrar));
+  const ids = ["biB", "biN", "biI", "biT2"];
+  const guardar = () => sesion.guardar("biblioteca", Object.fromEntries(ids.map(i => [i, qs(`#${i}`).value])));
+  const previos = sesion.leer("biblioteca") || {};
+  ids.forEach(i => { const s = qs(`#${i}`); if (previos[i] && [...s.options].some(o => o.value === previos[i])) s.value = previos[i]; });
+  f.addEventListener("change", () => { guardar(); filtrar(); });
+  f.addEventListener("reset", () => setTimeout(() => { guardar(); filtrar(); }));
   filtrar();
   return { titulo: "Biblioteca", foco: "#biT" };
 }

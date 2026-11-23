@@ -92,7 +92,8 @@ a.term{text-decoration-style:dotted}
 @media (min-width:840px){
   .lesson{grid-template-columns:minmax(0,760px) minmax(260px,300px);justify-content:center;column-gap:var(--app-space-6)}
   .lesson-main{margin:0}
-  .lesson-side{position:sticky;top:80px}
+  /* Si la ventana es más baja que el índice (celular horizontal), el índice tiene su propio scroll */
+  .lesson-side{position:sticky;top:80px;max-height:calc(100dvh - 80px - var(--app-space-4));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
 }
 
 /* ---------- Fin del módulo: la insignia cambia de forma (M3 Expressive) ---------- */

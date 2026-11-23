@@ -436,7 +436,7 @@
   .rub td{border:0;padding:var(--app-space-1) 0}
   .rub td::before{content:attr(data-col);display:block;font:var(--md-sys-typescale-label-medium);color:var(--md-sys-color-on-surface-variant);margin-bottom:var(--app-space-1)}
 }
-.rub-wrap:focus-visible{outline:3px solid var(--md-sys-color-primary);outline-offset:2px}
+/* La rúbrica pasa a tarjetas en anchos chicos, así que nunca necesita scroll ni foco propio */
 .rub-box h4{font:var(--md-sys-typescale-title-medium)}
 .rub th[scope=row]{display:table-cell;text-align:left;vertical-align:top;min-width:160px}
 .rub th[scope=row] b{display:block;font:var(--md-sys-typescale-title-small)}

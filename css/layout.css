@@ -63,6 +63,9 @@
 /* =====================================================================
    BARRA DE NAVEGACIÓN INFERIOR (Compact) Y HOJA "MÁS"
    ===================================================================== */
+/* El foco nunca queda debajo de la barra superior ni de la barra inferior (WCAG 2.4.11). Las lecciones suman su barra en lesson.css */
+html{scroll-padding-top:calc(64px + var(--app-space-2))}
+@media (max-width:599px){ html{scroll-padding-bottom:calc(64px + env(safe-area-inset-bottom) + var(--app-space-2))} }
 .navbar{position:fixed;left:0;right:0;bottom:0;z-index:30;height:calc(64px + env(safe-area-inset-bottom));background:var(--app-color-chrome);display:flex;justify-content:space-around;align-items:center;padding-bottom:env(safe-area-inset-bottom)}
 .navbar a,.navbar button{flex:1;min-width:0;background:none;border:0;padding:6px 0;color:var(--md-sys-color-on-surface-variant);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px;font:var(--md-sys-typescale-label-medium);cursor:pointer;min-height:56px;white-space:nowrap}
 .navbar .ind{width:56px;height:32px;border-radius:var(--md-sys-shape-corner-full);display:grid;place-items:center;transition:background var(--md-sys-motion-spring-fast-effects);position:relative}
