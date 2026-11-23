@@ -80,6 +80,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-072 | 2026-11-22 | Letra en rem y cortes de ventana en em | Vigente |
 | D-073 | 2026-11-23 | Datos verificados en la fuente oficial (leyes, asistentes, Codex y Sora) | Vigente |
 | D-074 | 2026-11-23 | Revisión de ortografía y reglas nuevas en `npm run textos` | Vigente |
+| D-075 | 2026-11-23 | México y Perú en el marco legal de la región | Vigente |
 
 ---
 
@@ -1755,3 +1756,42 @@ Se probó con el error original: lo detecta.
 - `npm run textos`: 3.669 textos, sin hallazgos, con las reglas nuevas.
 - `npm run verificar`: 900 capturas, todo en 0.
 - `npm run auditar`: el design system cumple.
+
+## D-075 | 2026-11-23 | México y Perú en el marco legal de la región
+
+**Solicitado:** completar las leyes de México y Perú, que D-073 dejó pendientes porque sus sitios oficiales no se dejaban leer desde la sesión. Lourdes buscó los textos oficiales y pasó los datos y los enlaces.
+
+**Decisión y motivo:** se cargan los dos países con los datos que Lourdes contrastó en las fuentes oficiales. Como enlace va el que ella pudo abrir en su navegador, no el primero de la lista:
+- **México:** Ley Federal de Protección de Datos Personales en Posesión de los Particulares.
+  - Se publicó en el Diario Oficial de la Federación el 20 de marzo de 2025 y entró en vigor al día siguiente.
+  - Abrogó la ley de 2010.
+  - La autoridad es la Secretaría Anticorrupción y Buen Gobierno, que asumió las funciones del INAI.
+  - **Enlace:** el decreto en el DOF.
+  - **Enlaces descartados:**
+    - los de la Cámara de Diputados dieron 404 o no cargaron;
+    - el PDF de gob.mx, porque por su número de archivo corresponde a la ley de 2010.
+- **Perú:** Ley N.° 29733, publicada en El Peruano el 3 de julio de 2011.
+  - Su reglamento vigente es el Decreto Supremo N.° 016-2024-JUS: se publicó el 30 de noviembre de 2024 y rige desde el 31 de marzo de 2025.
+  - La autoridad es la Autoridad Nacional de Protección de Datos Personales, del Ministerio de Justicia y Derechos Humanos.
+  - **Enlace:** la ficha del reglamento en el sitio de la ANPD. El facsímil de la ley en el sitio del Congreso dio 404.
+
+El marco legal principal del taller sigue siendo el argentino:
+- la Constitución Nacional (hábeas data);
+- la Ley 25.326 y su Decreto 1558/2001;
+- la AAIP como autoridad.
+
+Los seis países de la región (Brasil, Uruguay, Chile, México, Colombia y Perú) son una referencia complementaria.
+
+**Verificación de enlaces:** `npm run enlaces` suma una lista de sitios oficiales "revisados a mano": los que no se dejan leer por programas, pero que una persona abrió en el navegador, con quién y cuándo. Si fallan, cuentan como "bloquea la lectura automática", no como rotos. Hoy son el DOF (su certificado no corresponde a la dirección con "www") y la ficha de gob.pe.
+
+**Archivos afectados:** `content/marco-legal.json`, `scripts/verificar-enlaces.mjs`.
+
+**Verificación realizada:** 
+- `npm run verificar`: 900 capturas, todo en 0. El Módulo 10 muestra los seis países de la región debajo del marco argentino.
+- `npm run textos`: sin hallazgos.
+- `npm run enlaces`: 98 enlaces; los dos de México y Colombia figuran como revisados a mano.
+  - Los de la UNESCO y la OCDE fallaron de forma intermitente (conexión cortada): en cada corrida falla uno distinto, y en todas las revisiones anteriores funcionaban.
+  - La OCDE se abrió bien en el navegador.
+  - La UNESCO no cargó tampoco en el navegador en ese momento.
+
+  Se dejan como están: conviene volver a correr `npm run enlaces` otro día y, si la UNESCO sigue sin responder, revisar sus direcciones.

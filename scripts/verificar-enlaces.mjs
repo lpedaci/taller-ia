@@ -24,8 +24,15 @@ for (const f of archivos) {
   }
 }
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36";
+// Sitios oficiales que no se dejan leer por programas, pero que una persona abrió en el navegador.
+// Si fallan acá, cuentan como "bloquea la lectura automática" (se revisan a mano), no como rotos. Al sumar uno, anotá quién y cuándo.
+const REVISADOS_A_MANO = new Map([
+  ["https://www.dof.gob.mx/nota_detalle.php?codigo=5752569&fecha=20/03/2025", "Lourdes, 23/11/2026 (D-075)"],
+  ["https://www.gob.pe/institucion/anpd/normas-legales/6554453-16-2024-jus", "Lourdes, 23/11/2026 (D-075)"]
+]);
 async function probar(u, intento = 1) {
   const r = await probarUna(u);
+  if (r.estado !== "funciona" && REVISADOS_A_MANO.has(u)) return { estado: "bloquea", codigo: `${r.codigo}; abierto en el navegador por ${REVISADOS_A_MANO.get(u)}` };
   // Una conexión cortada puede ser pasajera: se reintenta dos veces
   if (r.estado === "roto" && /ECONNRESET|ETIMEDOUT|TimeoutError|ECONNREFUSED/.test(String(r.codigo)) && intento < 3) { await new Promise(x => setTimeout(x, 3000)); return probar(u, intento + 1); }
   return r;

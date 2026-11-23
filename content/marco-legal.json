@@ -1,6 +1,6 @@
 {
   "revisado": "23 de noviembre de 2026",
-  "nota": "Solo se muestran los países con \"verificado\": true (texto oficial consultado en la fecha de revisión). Los demás quedan pendientes de verificar en la fuente oficial: ver DECISIONES.md, D-047.",
+  "nota": "Solo se muestran los países con \"verificado\": true (texto oficial consultado en la fecha de revisión). Ver DECISIONES.md, D-047, D-073 y D-075.",
   "paises": [
     {
       "pais": "Brasil",
@@ -28,10 +28,11 @@
     },
     {
       "pais": "México",
-      "norma": "Ley Federal de Protección de Datos Personales en Posesión de los Particulares (nueva ley)",
+      "norma": "Ley Federal de Protección de Datos Personales en Posesión de los Particulares",
       "anio": 2025,
-      "resumen": "A verificar en la fuente oficial: el sitio no se pudo leer en la revisión del 23 de noviembre de 2026.",
-      "verificado": false
+      "resumen": "Reemplazó a la ley de 2010. Se publicó en el Diario Oficial de la Federación el 20 de marzo de 2025 y entró en vigor al día siguiente. La autoridad de control es la Secretaría Anticorrupción y Buen Gobierno, que asumió las funciones del INAI.",
+      "verificado": true,
+      "url": "https://www.dof.gob.mx/nota_detalle.php?codigo=5752569&fecha=20/03/2025"
     },
     {
       "pais": "Colombia",
@@ -43,10 +44,11 @@
     },
     {
       "pais": "Perú",
-      "norma": "Ley 29733 de Protección de Datos Personales",
+      "norma": "Ley N.° 29733, Ley de Protección de Datos Personales, y su reglamento (Decreto Supremo N.° 016-2024-JUS)",
       "anio": 2011,
-      "resumen": "A verificar en la fuente oficial: el sitio no se pudo leer en la revisión del 23 de noviembre de 2026.",
-      "verificado": false
+      "resumen": "La ley se publicó en El Peruano el 3 de julio de 2011. Su reglamento vigente, publicado el 30 de noviembre de 2024, rige desde el 31 de marzo de 2025. La controla la Autoridad Nacional de Protección de Datos Personales, del Ministerio de Justicia y Derechos Humanos.",
+      "verificado": true,
+      "url": "https://www.gob.pe/institucion/anpd/normas-legales/6554453-16-2024-jus"
     }
   ]
 }
