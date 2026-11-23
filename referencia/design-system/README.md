@@ -83,6 +83,7 @@ Se generó con `@material/material-color-utilities`, el método de Material Them
 - **Pesos:** tres, y nada más. 400 (regular), 500 (títulos, etiquetas y botones) y el enfático de M3 Expressive, 650 (`--md-sys-typescale-emphasized-weight`): números clave, fechas, estados activos y negritas dentro del texto.
 - **Títulos de tarjeta:** dos estilos propios del taller, heredados del prototipo aprobado: `--app-typescale-card-title` (500, 17/24 px) para el título de una tarjeta y `--app-typescale-card-title-small` (500, 15/20 px) para el título de una tarjeta de módulo. Ningún otro tamaño fuera de la escala.
 - **Lectura:** el texto largo usa `body-large`, con un ancho de línea de 60 a 75 caracteres.
+- **Unidades:** los tamaños de letra y las alturas de línea están en `rem` (1rem = 16 px con la letra predeterminada del navegador). Si la persona agranda la letra en la configuración del navegador, todo el texto crece en proporción. Los íconos, espaciados, bordes y radios quedan en px. Los componentes que contienen texto usan alto mínimo (`min-height`), no alto fijo, para que el texto no se corte (D-072).
 
 ### Forma
 Usa la escala de esquinas de M3 Expressive:
@@ -133,6 +134,8 @@ Con `prefers-reduced-motion` todo pasa a ser instantáneo. Estos valores viven e
 | Medium | 600 a 839 px | Riel colapsado; expandido es modal | Un panel |
 | Expanded | 840 a 1199 px | Riel colapsado; expandido es modal | Un panel en dos columnas |
 | Large y Extra-large | 1200 px o más | Riel expandido no modal, colapsable, que recuerda la preferencia | Contenido principal y panel de agenda a la derecha (320 a 360 px) |
+
+En el CSS, los cortes se escriben en `em` (600 px = 37.5em, 840 px = 52.5em y 1200 px = 75em), igual que las consultas de contenedor. Con la letra predeterminada dan los mismos anchos. Con letra agrandada, la ventana pasa a la clase que le corresponde por su ancho en letras, como pasa con el zoom: una pantalla de 1280 px con letra al doble se ve como Medium (D-072).
 
 **Navegación**
 - **Riel en lugar de drawer:** M3 Expressive reemplazó el *navigation drawer* por el **riel de navegación expandido**. El botón de menú alterna entre colapsado y expandido.
@@ -262,12 +265,15 @@ Estas reglas se revisan solas en cada pantalla, ancho y modo con `npm run audita
 | `acciones-orden` | En una fila de acciones hay un solo botón relleno, y va último (a la derecha). Antes van las acciones de menor prioridad. |
 | `acciones-alineacion` | Las filas de acciones se alinean al final del contenedor. No aplica a la navegación anterior y siguiente. |
 | `tipografia` | Solo tamaños y pesos de la escala (M3 y `--app-typescale-*`). |
+| `tipografia-rem` | Ningún tamaño de texto en px en las hojas de estilo: va en `rem`. Los íconos (Material Symbols) quedan en px. |
 | `forma` | Radios de esquina de la escala de forma, o completos. |
 | `espaciado` | Márgenes, rellenos y separaciones en múltiplos de 4 px (2 y 6 px solo como ajuste óptico). |
 | `icono` | Material Symbols Rounded en 16, 18, 20, 24, 32, 40 o 48 px. |
 | `color-texto` | El color de todo texto es un token. |
 
 **Excepciones:** se documentan en `DECISIONES.md` y se marcan en el HTML con `data-excepcion-ds="regla"`. Hoy son tres: los controles del reproductor de animaciones (patrón de reproductor, con "Reproducir" al centro), las acciones de la pantalla de cierre de un módulo (centradas, como el resto de esa pantalla) y las muestras de botones del catálogo `estilos.html`.
+
+**Letra agrandada:** `npm run letra` simula la letra del navegador al doble (32 px) en 360, 768, 1024 y 1280 px. Revisa que el texto crezca, que no haya scroll horizontal y que ningún texto se salga de su caja, y guarda capturas en `verificacion/letra/`.
 
 **Qué no se revisa solo** (sigue siendo revisión a mano con las capturas): la jerarquía visual, el ancho de los textos explicativos, el tono de los textos y la consistencia entre pantallas parecidas.
 

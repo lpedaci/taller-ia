@@ -8,8 +8,9 @@ import { datos, eventos, moduloActual, pasoActual, hayProgreso, perfil, rutaActu
 import { aviso, menu, confirmar, descargar, icono } from "./ui.js";
 import { SIMULAR, demoraSimulada, procesoDeterminado } from "./estados.js";
 
-const LARGE = 1200, MEDIUM = 600;
-const esLarge = () => innerWidth >= LARGE;
+/* Clases de ventana de M3 en em: con letra agrandada en el navegador, la ventana se comporta como una más chica (D-072) */
+const mqLarge = matchMedia("(min-width: 75em)"), mqMedium = matchMedia("(min-width: 37.5em)");
+const esLarge = () => mqLarge.matches, esMedium = () => mqMedium.matches;
 let rail, appEl, scrim, railToggle, sheet, moreBtn;
 let gruposAbiertos = { main: true, res: false, sup: false };
 let actual = "inicio";
@@ -64,7 +65,7 @@ function setRail(exp, recordar) {
   railToggle.setAttribute("aria-expanded", String(exp));
   railToggle.setAttribute("aria-label", exp ? "Contraer navegación" : "Expandir navegación");
   qs("#railToggleIcon").textContent = exp ? "menu_open" : "menu";
-  const modal = exp && !esLarge() && innerWidth >= MEDIUM;
+  const modal = exp && !esLarge() && esMedium();
   appEl.classList.toggle("rail-modal", modal);
   scrim.classList.toggle("open", modal || !sheet.hidden);
   if (recordar && esLarge()) store.set("rielExpandido", exp);
@@ -244,7 +245,7 @@ export function iniciarShell({ render }) {
   // Vista previa: solo con mouse, con el riel colapsado y desde 600 px
   const conMouse = matchMedia("(hover: hover) and (pointer: fine)");
   rail.addEventListener("mouseenter", () => {
-    if (rail.classList.contains("expanded") || !conMouse.matches || innerWidth < MEDIUM) return;
+    if (rail.classList.contains("expanded") || !conMouse.matches || !esMedium()) return;
     clearTimeout(peekT); peekT = setTimeout(iniciarPeek, 700);
   });
   rail.addEventListener("mouseleave", terminarPeek);
@@ -252,7 +253,7 @@ export function iniciarShell({ render }) {
   let eraLarge = esLarge();
   addEventListener("resize", () => {
     if (esLarge() !== eraLarge) { eraLarge = esLarge(); terminarPeek(); setRail(eraLarge ? store.get("rielExpandido", true) : false); }
-    if (innerWidth >= MEDIUM) cerrarHoja(false);
+    if (esMedium()) cerrarHoja(false);
   });
 
   moreBtn.addEventListener("click", abrirHoja);

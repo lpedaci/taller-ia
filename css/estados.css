@@ -67,5 +67,5 @@
 .video-resumen{background:var(--app-color-card-item);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-4) var(--app-space-5)}
 .video-resumen h4{display:flex;align-items:center;gap:var(--app-space-2);font:var(--md-sys-typescale-title-small);margin-bottom:var(--app-space-2)}
 .video-resumen ul{margin:0;padding-left:var(--app-list-indent);display:grid;gap:var(--app-space-2);font:var(--md-sys-typescale-body-large)}
-@media (max-width:599px){ .video-play{padding:var(--app-space-3)} .vp-t{font:var(--md-sys-typescale-title-medium)} .vp-ic{width:56px;height:56px} .video-carga{padding:var(--app-space-4)} .video-estado{padding:var(--app-space-4);font:var(--md-sys-typescale-body-medium)} }
+@media (max-width:37.4375em){ .video-play{padding:var(--app-space-3)} .vp-t{font:var(--md-sys-typescale-title-medium)} .vp-ic{width:56px;height:56px} .video-carga{padding:var(--app-space-4)} .video-estado{padding:var(--app-space-4);font:var(--md-sys-typescale-body-medium)} }
 @media (prefers-reduced-motion: reduce){ .act-guardado:not(:empty){animation:none} }

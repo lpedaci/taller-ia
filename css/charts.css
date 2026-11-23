@@ -19,9 +19,9 @@
 .chart-plot{position:relative;min-height:120px}
 .chart svg{display:block;width:100%;height:auto;overflow:visible}
 .chart text{font-family:var(--md-ref-typeface-plain)}
-.chart .ax-lbl{font-size:12px;fill:var(--md-sys-color-on-surface-variant)}
-.chart .cat-lbl{font-size:13px;fill:var(--md-sys-color-on-surface)}
-.chart .val-lbl{font-size:12px;fill:var(--md-sys-color-on-surface);font-weight:var(--md-sys-typescale-emphasized-weight)}
+.chart .ax-lbl{font-size:0.75rem;fill:var(--md-sys-color-on-surface-variant)}
+.chart .cat-lbl{font-size:0.8125rem;fill:var(--md-sys-color-on-surface)}
+.chart .val-lbl{font-size:0.75rem;fill:var(--md-sys-color-on-surface);font-weight:var(--md-sys-typescale-emphasized-weight)}
 .chart .grid{stroke:var(--md-sys-color-outline-variant);stroke-width:1}
 .chart .base{stroke:var(--md-sys-color-outline);stroke-width:1}
 .chart .s1{fill:var(--app-chart-1);stroke:var(--app-chart-1)}.chart .s2{fill:var(--app-chart-2);stroke:var(--app-chart-2)}

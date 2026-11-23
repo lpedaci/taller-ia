@@ -44,7 +44,7 @@ export function render() {
 }
 
 /* ---------- Mobile: bloques desplegables ---------- */
-const mqCompacto = matchMedia("(max-width: 599px)");
+const mqCompacto = matchMedia("(max-width: 37.4375em)");
 const compacto = () => mqCompacto.matches;
 // Abierto al entrar: el bloque del módulo en curso. Lo que abre la persona se mantiene mientras navega, no se guarda.
 const abiertos = new Set();

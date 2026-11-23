@@ -12,7 +12,8 @@
     "enlaces": "node --max-http-header-size=131072 scripts/verificar-enlaces.mjs",
     "textos": "node scripts/revisar-textos.mjs",
     "contraste": "node scripts/verificar-contraste.mjs",
-    "galeria": "node scripts/galeria.mjs"
+    "galeria": "node scripts/galeria.mjs",
+    "letra": "node scripts/verificar-letra.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

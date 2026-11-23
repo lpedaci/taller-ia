@@ -5,7 +5,7 @@
    ===================================================================== */
 /* El foco nunca queda debajo de la barra superior ni de la barra flotante (WCAG 2.4.11) */
 html:has(.lesson-bar){scroll-padding-top:152px;scroll-padding-bottom:24px}
-@media (max-width:599px){ html:has(.lesson-bar){scroll-padding-top:144px;scroll-padding-bottom:88px} }
+@media (max-width:37.4375em){ html:has(.lesson-bar){scroll-padding-top:144px;scroll-padding-bottom:88px} }
 .lesson{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--app-space-4);align-items:start}
 .lesson-main{display:grid;gap:var(--app-space-4);min-width:0;max-width:760px;width:100%;margin:0 auto}
 .lesson-head{padding:var(--app-space-5)}
@@ -24,13 +24,13 @@ html:has(.lesson-bar){scroll-padding-top:152px;scroll-padding-bottom:24px}
 .lesson-text p+p,.lesson-text p+ul,.lesson-text ul+p,.lesson-text p+ol,.lesson-text ol+p{margin-top:var(--app-space-4)}
 .lesson-text ul,.lesson-text ol{margin:0;padding-left:var(--app-list-indent);display:grid;gap:var(--app-space-2)}
 .lesson-text strong{font-weight:var(--md-sys-typescale-emphasized-weight)}
-.lesson-text code{font-family:ui-monospace,Consolas,monospace;font-size:14px;background:var(--app-color-card-item);padding:2px 6px;border-radius:var(--md-sys-shape-corner-extra-small)}
+.lesson-text code{font-family:ui-monospace,Consolas,monospace;font-size:0.875rem;background:var(--app-color-card-item);padding:2px 6px;border-radius:var(--md-sys-shape-corner-extra-small)}
 .lesson-text a,.status a{color:inherit;text-underline-offset:3px}
 .lesson-text a{color:var(--md-sys-color-primary)}
 a.term{text-decoration-style:dotted}
 .status p{margin:0}
 .status p+p{margin-top:var(--app-space-2)}
-.lang-tag{display:inline-flex;align-items:center;height:20px;padding:0 6px;border-radius:var(--md-sys-shape-corner-extra-small);background:var(--app-color-info-container);color:var(--app-color-on-info-container);font:var(--md-sys-typescale-label-small);white-space:nowrap;vertical-align:1px}
+.lang-tag{display:inline-flex;align-items:center;min-height:20px;padding:0 6px;border-radius:var(--md-sys-shape-corner-extra-small);background:var(--app-color-info-container);color:var(--app-color-on-info-container);font:var(--md-sys-typescale-label-small);white-space:nowrap;vertical-align:1px}
 /* Objetivos */
 .lesson-goals{background:var(--md-sys-color-primary-container);color:var(--md-sys-color-on-primary-container);border-radius:var(--md-sys-shape-corner-large);padding:var(--app-space-4) var(--app-space-5)}
 .lesson-goals h4{font:var(--md-sys-typescale-title-medium);margin-bottom:var(--app-space-3)}
@@ -59,7 +59,7 @@ a.term{text-decoration-style:dotted}
 .lb-prev{justify-self:start}
 .lb-listen{display:flex;justify-content:center;grid-column:2}
 .lb-next{justify-self:end;grid-column:3}
-@media (max-width:599px){
+@media (max-width:37.4375em){
   /* Mobile: Anterior y Escuchar solo con ícono; el nombre accesible no cambia */
   .lesson-bar .lb-lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .lesson-bar .lb-prev{width:var(--app-size-target);min-width:var(--app-size-target);padding:0}
@@ -68,7 +68,7 @@ a.term{text-decoration-style:dotted}
   .lesson-bar #btnEscuchar .ms,.lesson-bar .lb-prev .ms{font-size:var(--app-size-icon)}
   .lesson-step{padding:var(--app-space-5) var(--app-space-4)}
 }
-@media (min-width:600px){ .lesson-bar{top:calc(64px + var(--app-space-3))} }
+@media (min-width:37.5em){ .lesson-bar{top:calc(64px + var(--app-space-3))} }
 
 /* ---------- Índice del módulo ---------- */
 .lesson-side{padding:var(--app-space-4)}
@@ -81,15 +81,15 @@ a.term{text-decoration-style:dotted}
 .step-link.is-here{background:var(--md-sys-color-secondary-container);color:var(--md-sys-color-on-secondary-container);font-weight:var(--md-sys-typescale-emphasized-weight)}
 .step-ic{width:24px;height:24px;display:grid;place-items:center;flex:none;color:var(--md-sys-color-primary)}
 .step-link.is-here .step-ic{color:inherit}
-.step-n{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--md-sys-color-outline);display:grid;place-items:center;font:var(--md-sys-typescale-label-small);color:var(--md-sys-color-on-surface-variant)}
+.step-n{min-width:22px;min-height:22px;border-radius:50%;border:1.5px solid var(--md-sys-color-outline);display:grid;place-items:center;font:var(--md-sys-typescale-label-small);color:var(--md-sys-color-on-surface-variant)}
 .step-txt{min-width:0}
 .side-goals{margin-top:var(--app-space-3);border-top:1px solid var(--md-sys-color-outline-variant);padding-top:var(--app-space-2);font:var(--md-sys-typescale-body-medium)}
 .side-goals summary{display:flex;align-items:center;gap:var(--app-space-2);min-height:48px;padding:0 var(--app-space-2);cursor:pointer;font:var(--md-sys-typescale-label-large);color:var(--md-sys-color-primary)}
 .side-goals ul{margin:0 0 var(--app-space-2);padding-left:2.2em;display:grid;gap:var(--app-space-2);color:var(--md-sys-color-on-surface-variant)}
 /* Mobile y tablet vertical: el índice va después de la lección */
-@media (max-width:839px){ .lesson-side{order:2} }
+@media (max-width:52.4375em){ .lesson-side{order:2} }
 /* Expanded y Large: dos paneles; el índice queda fijo al costado */
-@media (min-width:840px){
+@media (min-width:52.5em){
   .lesson{grid-template-columns:minmax(0,760px) minmax(260px,300px);justify-content:center;column-gap:var(--app-space-6)}
   .lesson-main{margin:0}
   /* Si la ventana es más baja que el índice (celular horizontal), el índice tiene su propio scroll */

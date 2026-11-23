@@ -38,6 +38,7 @@ Antes de subir un cambio a `main`, corré lo que corresponda:
 | `npm run textos` | Rayas, puntos medios, texto en inglés sin traducir, citas, signos sin par y palabras repetidas | Siempre que cambies un texto |
 | `npm run enlaces` | Que todos los enlaces externos funcionen | Al sumar fuentes y cada tanto, porque los sitios cambian |
 | `npm run contraste` | Contraste alto en todas las pantallas y que el progreso se mantenga al cerrar el navegador | Antes de publicar una versión |
+| `npm run letra` | Que el sitio funcione con la letra del navegador al doble: que el texto crezca, sin scroll horizontal ni texto cortado | Siempre que cambies un componente o un layout |
 | `npm run verificar` | Todo lo anterior de accesibilidad y diseño, con capturas en 6 anchos y 2 modos | Antes de publicar una versión |
 
 Los resultados quedan en `verificacion/` (esa carpeta no se publica).
@@ -158,7 +159,7 @@ Cada módulo es un archivo `content/modulo-XX.json` (por ejemplo, `modulo-03.jso
 ```
 index.html          el entorno
 estilos.html        tokens y componentes
-css/tokens.css      tokens de Material 3 generados (no se editan a mano)
+css/tokens.css      tokens de Material 3 (la escala tipográfica pasó a rem en D-072)
 css/components.css  componentes M3
 css/layout.css      clases de ventana, navegación y paneles
 js/app.js           arranque y enrutamiento por hash (#/seccion)

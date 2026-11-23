@@ -77,6 +77,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-069 | 2026-11-22 | Animaciones: MP4 para facilitadores y verificación | Vigente |
 | D-070 | 2026-11-22 | Etapa 10: revisión final y criterios de aceptación | Vigente |
 | D-071 | 2026-11-22 | Revisión UI/UX: foco, volver atrás y celular horizontal | Vigente |
+| D-072 | 2026-11-22 | Letra en rem y cortes de ventana en em | En curso |
 
 ---
 
@@ -1631,3 +1632,31 @@ Además, comprobar los criterios de aceptación (sección 9).
 - `npm run verificar`: 900 capturas, todo en 0;
 - `npm run contraste`: sin problemas, ya sin excepciones; el progreso se mantiene;
 - `npm run auditar`: el design system cumple.
+
+## D-072 | 2026-11-22 | Letra en rem y cortes de ventana en em
+
+**Solicitado:** pasar los tamaños de letra a `rem`, verificar que todo cumpla y se vea bien en cada clase de ventana, actualizar la documentación y subir a main. Así, el texto respeta el tamaño de letra que cada persona eligió en su navegador. Implica modificar `tokens.css`, que el brief pedía usar tal cual. Lourdes lo autorizó.
+
+**Decisión y motivo:**
+- **Escala tipográfica en rem:** las 15 escalas de M3 en `tokens.css`, los dos títulos de tarjeta propios (`--app-typescale-card-title*`) y los tamaños de texto sueltos (gráficos, código, marco 4D, registro de actividad). 16 px es `1rem`. Los íconos, espaciados, bordes y radios quedan en px: así crece el texto sin que todo se infle, como recomienda M3.
+- **Cortes de ventana en em:** las consultas de medios y de contenedor pasaron de px a em (600 px = 37.5em), y también las del JavaScript (`shell.js`, `recorrido.js`, `piezas.js`). Con la letra predeterminada dan los mismos anchos. Con letra agrandada, la ventana pasa a la clase que le corresponde por su ancho en letras, como con el zoom. Sin esto, una pantalla de 1280 px con letra al doble mantenía el layout de escritorio: la barra superior no entraba y aparecía scroll horizontal.
+- **Alto mínimo en vez de alto fijo:** botones, chips, chips de filtro, insignias, etiquetas de idioma y números de paso. Con la letra predeterminada miden lo mismo; con letra grande crecen en lugar de cortar el texto.
+- **Verificación nueva:**
+  - `npm run letra` simula la letra del navegador al doble (el mismo ajuste que Configuración > Apariencia > Tamaño de fuente en Chrome), en las cuatro clases de ventana;
+  - la auditoría del design system suma la regla `tipografia-rem`, que marca cualquier tamaño de texto en px en las hojas de estilo.
+
+  En el camino se encontró y se corrigió un error de la auditoría: en Chrome, las reglas de estilo también tienen `cssRules` (por el anidado de CSS), y el recorrido las salteaba.
+
+**Archivos afectados:** `css/tokens.css`, `css/components.css`, `css/layout.css`, `css/lesson.css`, `css/activities.css`, `css/charts.css`, `css/animacion.css`, `css/estados.css`, `js/shell.js`, `js/views/recorrido.js`, `js/views/piezas.js`, `scripts/auditoria-ds.mjs`, `scripts/verificar-letra.mjs`, `package.json`, `README.md`, `referencia/design-system/README.md`.
+
+**Verificación realizada:** 
+- `npm run verificar`: 900 capturas, todo en 0, con la letra predeterminada. El sitio se ve igual que antes del cambio.
+- `npm run auditar`: el design system cumple, incluida la regla nueva `tipografia-rem`.
+
+**Pendientes o riesgos:** queda en curso la revisión con letra al doble.
+- **Antes del cambio a alto mínimo:** `npm run letra` ya mostraba que el texto crece y que, con los cortes en em, la barra superior y el layout se adaptan. Todavía marcaba 20 componentes con texto fuera de su caja. Los principales eran los números de paso del índice, los chips, los botones, las etiquetas de la barra inferior en 360 px, los encabezados de tabla, el nombre del módulo en Continuar donde dejaste y las horas de la agenda. El alto mínimo resuelve la mayoría de los casos de alto.
+- **Lo que sigue:**
+  - volver a correr `npm run letra`;
+  - corregir lo que quede (sobre todo los textos que no entran a lo ancho en Compact y las etiquetas de la barra inferior);
+  - revisar las capturas de `verificacion/letra/`;
+  - pasar esta entrada a "Vigente".

@@ -15,6 +15,7 @@ export const REGLAS = {
   "acciones-orden": "Fila de acciones: un solo botón relleno, ubicado último (a la derecha); antes, las acciones de menor prioridad.",
   "acciones-alineacion": "Fila de acciones: alineada al final del contenedor (salvo la navegación anterior y siguiente).",
   "tipografia": "Tipografía: solo tamaños y pesos de la escala tipográfica de M3.",
+  "tipografia-rem": "Tamaños de texto en rem, para que sigan el tamaño de letra elegido en el navegador (los íconos quedan en px).",
   "forma": "Forma: radios de esquina de la escala (0, 4, 8, 12, 16, 20, 28 px o completa).",
   "espaciado": "Espaciado: márgenes, rellenos y separaciones en múltiplos de 4 px (se aceptan 2 y 6 px para ajustes ópticos documentados).",
   "icono": "Íconos: Material Symbols Rounded en 16, 18, 20, 24, 32, 40 o 48 px.",
@@ -47,11 +48,13 @@ export function auditar() {
   const unicos = [...new Set(props)];
   // Tamaños y pesos: los de la escala de M3 (--md-sys-typescale-*) y los propios del taller (--app-typescale-*)
   const tamTipo = new Set(), pesoTipo = new Set();
+  const base = px(raiz.fontSize) || 16; // 1rem en esta página
   unicos.filter(p => /^--(md-sys|app)-typescale-/.test(p)).forEach(p => {
     const v = raiz.getPropertyValue(p).trim();
     if (/-weight$/.test(p)) { if (+v) pesoTipo.add(+v); return; }
     if (/-(tracking|line-height|font|size)$/.test(p)) return;
-    const m = v.match(/^(\d{3})?\s*(\d+(?:\.\d+)?)px/); if (m) { tamTipo.add(+m[2]); if (m[1]) pesoTipo.add(+m[1]); }
+    const m = v.match(/^(\d{3})?\s*(\d+(?:\.\d+)?)(px|rem)/);
+    if (m) { tamTipo.add(Math.round((m[3] === "rem" ? +m[2] * base : +m[2]) * 10) / 10); if (m[1]) pesoTipo.add(+m[1]); }
   });
   const radios = new Set([0]);
   unicos.filter(p => p.startsWith("--md-sys-shape-corner-")).forEach(p => { const v = px(raiz.getPropertyValue(p)); if (v < 1000) radios.add(v); });
@@ -127,6 +130,12 @@ export function auditar() {
   }
 
   /* ---- Tipografía, forma, espaciado, íconos y color, recorriendo los elementos visibles ---- */
+  // Tamaños de texto en rem: se revisan las reglas de las hojas de estilo; los íconos (Material Symbols) quedan en px
+  for (const r of document.styleSheets ? [...document.styleSheets].flatMap(h => { try { return [...h.cssRules].flatMap(x => x instanceof CSSStyleRule ? [x] : x.cssRules ? [...x.cssRules] : []); } catch { return []; } }) : []) {
+    if (!r.style || !/px/.test(r.style.fontSize || "")) continue;
+    const icono = /\.ms\b|\.chk\b|-ic\b|::after|::before/.test(r.selectorText || "") || /Material Symbols/.test(r.style.fontFamily || "");
+    if (!icono) out.push({ regla: "tipografia-rem", elemento: r.selectorText, detalle: `font-size de ${r.style.fontSize}` });
+  }
   const multiplo = v => { const n = Math.abs(px(v)); return n === 0 || n % 4 === 0 || n === 2 || n === 6 || n === 1; };
   for (const el of document.body.querySelectorAll("*")) {
     if (el.closest("svg, .anim, .chart, .heat-wrap, .sr-only, script, style") || !visible(el)) continue;
