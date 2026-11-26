@@ -14,7 +14,7 @@ Vas a recibir `verificacion/vencimientos.json`. Para cada elemento de la lista `
 2. **Compará lo que dice la página con `afirma` y `estado`.** Recordá lo que significa cada estado:
    - `si`: la herramienta tiene la función, confirmado en la ayuda oficial.
    - `no`: la ayuda oficial dice que no la tiene.
-   - `a-verificar`: no se pudo confirmar. Tu objetivo es confirmarlo o dejarlo como está.
+   - `a-verificar`: no se pudo confirmar, y puede no tener texto en `afirma`. Tu objetivo es confirmarlo o dejarlo como está. Si lo confirmás, usá el veredicto `vigente`, completá `estado_sugerido` (`si` o `no`) y escribí en `sugerencia` el texto propuesto para `detalle`, porque hoy no hay ninguno.
    - `verificado` (leyes): el texto oficial de la norma se consultó y coincide con el resumen.
 3. **Elegí un veredicto:**
    - `vigente`: la fuente sigue diciendo lo que afirma el taller.
@@ -25,6 +25,7 @@ Vas a recibir `verificacion/vencimientos.json`. Para cada elemento de la lista `
    - **no respalda el dato:** habla del tema, pero no dice lo que afirma el taller;
    - **no es oficial:** un blog, una noticia o un sitio de terceros donde existe la fuente oficial;
    - **está en inglés y existe la versión oficial en español** (regla del brief: la traducción oficial va primero);
+   - **habla de otro producto o de otro plan:** por ejemplo, Copilot en Excel (incluido en Microsoft 365, con licencia) en lugar del asistente Microsoft Copilot que compara el taller, o una función solo de planes pagos cuando el taller habla de la versión gratuita. El brief pide que toda consigna pueda hacerse con la versión gratuita cuando sea posible;
    - **quedó vieja:** la página misma remite a otra más nueva, o la norma tiene un texto actualizado o un reemplazo.
 5. **Si el veredicto es `cambio` o `no-verificable`, o la fuente no es acorde, proponé hasta dos fuentes de reemplazo** (ver la sección siguiente).
 
@@ -34,12 +35,13 @@ El objetivo es que Lourdes pueda reparar el dato sin salir a buscar. Cada propue
 
 - **Solo fuentes oficiales**, en este orden de preferencia:
   1. la página específica del centro de ayuda oficial de la herramienta, o el texto oficial de la norma;
-  2. su versión oficial en español, si existe (por ejemplo, la ayuda en español o EUR-Lex en español);
+  2. su versión oficial en español, si existe (por ejemplo, la ayuda en español o EUR-Lex en español). **Entre las versiones en español, preferí la latinoamericana** (`es-419` en la dirección) frente a la de España (`es-es`): el taller es para LATAM, y el mismo artículo puede estar traducido distinto en cada una;
   3. la página de un organismo oficial (autoridad de datos personales, UNESCO, OCDE).
 - **Si el tema lo trabaja la UNESCO** (ética de la IA, IA en educación, competencias en IA, datos personales, contenido sintético), buscá también en su biblioteca digital, UNESDOC, aunque la fuente actual no sea de la UNESCO: puede haber un documento oficial, en español y más sólido para respaldar el dato. Cómo buscar y qué enlace usar está en el apartado "Documentos de la UNESCO".
+- **Mismo producto y mismo plan.** La fuente tiene que hablar de la herramienta que nombra el taller (el asistente general, no una integración en otra aplicación) y del plan que el taller describe. Si la única fuente que encontraste habla de otro producto o plan, no la propongas como respaldo: decilo en `motivo`.
 - **Tenés que haberla leído en esta corrida** y copiar la frase que respalda el dato. Una URL que no abriste no se propone. La única excepción son los documentos de UNESDOC, con las condiciones del apartado "Documentos de la UNESCO".
 - **Una propuesta por necesidad, no por cantidad.** Si encontrás una que resuelve, no agregues otra. Si no encontrás ninguna que cumpla, decilo: "Sin reemplazo encontrado". Es mejor que una propuesta floja.
-- **Escribí la referencia en APA 7**, con el mismo formato que ya usa `content/fuentes.json`: autor o empresa, fecha o "(s.f.)", título en cursiva, sitio.
+- **Escribí la referencia en APA 7**, con el mismo formato que ya usa `content/fuentes.json`: autor o empresa, fecha o "(s.f.)", título en cursiva, sitio. Las páginas de ayuda de las herramientas cambian seguido, así que en APA 7 llevan la fecha de consulta: terminá la referencia con "Recuperado el [día] de [mes] de [año] de [URL]", con la fecha de esta corrida.
 - **Indicá el idioma** (`es` o `en`), porque el taller lo muestra junto al enlace.
 - **Para una ley que fue reemplazada**, proponé la norma nueva y aclarás desde cuándo rige, con la frase del texto oficial que lo dice.
 
@@ -78,11 +80,11 @@ Un único JSON, sin texto antes ni después:
       "motivo": "una oración: por qué este veredicto",
       "sugerencia": "nuevo texto para 'detalle' o 'resumen', solo si el veredicto es 'cambio'",
       "fuente_acorde": true,
-      "problema_fuente": "general | no-respalda | no-oficial | hay-version-en-espanol | vieja | null",
+      "problema_fuente": "general | no-respalda | no-oficial | hay-version-en-espanol | otro-producto | vieja | null",
       "fuentes_propuestas": [
         {
           "url": "URL leída en esta corrida",
-          "apa": "Referencia en APA 7",
+          "apa": "Referencia en APA 7, con 'Recuperado el ... de URL' si es una página de ayuda",
           "idioma": "es | en",
           "evidencia": "frase exacta de esta fuente que respalda el dato",
           "a_confirmar": "solo para UNESDOC sin poder abrir el documento; si no, se omite",

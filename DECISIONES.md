@@ -85,6 +85,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-077 | 2026-11-23 | Login y registro: evaluado y descartado | Vigente |
 | D-078 | 2026-11-23 | Insignias por módulo, envío a la coordinación y descarga | Vigente |
 | D-079 | 2026-11-26 | Verificación automática de fuentes y de cambios: piloto en los Módulos 10 y 11 | Vigente |
+| D-080 | 2026-11-26 | Ajustes del sistema de verificación tras la primera corrida (Issue #2) | Vigente |
 
 ---
 
@@ -1956,4 +1957,37 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
 - `node scripts/vencimientos.mjs`: 46 datos, 6 para revisar ahora y 0 que vencen en 7 días. Son los mismos 6 que en el clon con LF.
 - `node scripts/armar-informe.mjs armar --modo periodico`, sin resultado de la IA: avisa "ATENCIÓN: el paso con IA no escribió su resultado. Quedaron sin revisar: 6.", el informe lista los 6 y se escribe `verificacion/falla-ia`. No se escribe `sin-novedades`.
 - **Lo que no se probó acá:** que la corrida termine en rojo. Eso lo hace el workflow, y se ve recién en GitHub Actions.
+
+## D-080 | 2026-11-26 | Ajustes del sistema de verificación tras la primera corrida (Issue #2)
+
+**Solicitado:** Lourdes revisó el Issue #2, el informe de la primera corrida del sistema de verificación (D-079), y actualizó `revision-ia/prompt-fuentes.md` y `scripts/armar-informe.mjs` con los ajustes. Pidió comprobar el script, registrar la decisión y subir los cambios en una rama, sin abrir el pull request. No se modificó el contenido de esos dos archivos.
+
+**Qué mostró la revisión del Issue #2 y qué se ajustó:**
+- **La cita de ChatGPT se confirmó en la ayuda en español latinoamericano (`es-419`).** El prompt solo pedía preferir la versión oficial en español, sin distinguir variantes, y el mismo artículo puede estar traducido distinto en la versión de España (`es-es`).
+  - **Ajuste en el prompt:** entre las versiones en español, se prefiere la latinoamericana, porque el taller es para LATAM.
+  - **Referencias APA 7:** las páginas de ayuda cambian seguido, así que la referencia termina con "Recuperado el [fecha] de [URL]", con la fecha de la corrida.
+  - **Ajuste en el script:** como esa referencia ya trae la URL, el informe no la repite al final.
+- **La fuente propuesta para Copilot era de otro producto.** Hablaba de Copilot en Excel, que viene con la licencia de Microsoft 365, y no del asistente Microsoft Copilot que compara el taller. Una fuente así no respalda el dato, aunque sea oficial y hable de la misma función. Además, el brief pide que las consignas se puedan hacer con la versión gratuita.
+  - **Ajuste en el prompt:** un problema nuevo de la fuente, "habla de otro producto o de otro plan" (`otro-producto`), y una regla, "mismo producto y mismo plan". Si la única fuente encontrada es de otro producto o plan, no se propone y se explica en `motivo`.
+  - **Ajuste en el script:** el informe muestra ese problema como "Habla de otro producto o plan".
+- **Los datos "a verificar" que la IA confirmó aparecían como vigentes.** Esos datos no tienen texto en el taller, así que no "siguen vigentes": hay que decidir si se acepta la redacción que propone la IA. Además, como vigentes quedaban registrados como verificados en el Issue.
+  - **Ajuste en el prompt:** si la IA confirma un dato "a verificar", completa `estado_sugerido` (`si` o `no`) y propone en `sugerencia` el texto para `detalle`.
+  - **Ajuste en el script:**
+    - **Sección propia:** "Se puede confirmar", dentro de "Para decidir", con el estado y la redacción propuestos y la evidencia.
+    - **No cuentan como vigentes:** quedan fuera de "Sin cambios" y del registro de fechas de verificación, y no generan mejoras de fuente.
+    - **Siempre abren Issue:** con un dato para confirmar, la corrida nunca marca "Sin novedades".
+
+**Archivos afectados:** `revision-ia/prompt-fuentes.md`, `scripts/armar-informe.mjs` y este registro.
+
+**Verificación realizada:**
+- **En la copia de trabajo, sin resultado de la IA:** `node scripts/armar-informe.mjs armar --modo periodico` avisa "ATENCIÓN: el paso con IA no escribió su resultado. Quedaron sin revisar: 6." y escribe `verificacion/falla-ia`, como en D-079.
+- **En un clon temporal, con un resultado de la IA inventado para la prueba:** un dato "a verificar" confirmado (Copilot, "Analizar datos") y una fuente vigente pero de otro producto (ChatGPT, "Subir archivos"), con una propuesta cuya referencia APA ya incluye la URL.
+  - **Copilot:** sale en "Se puede confirmar" con "La tiene" y la redacción propuesta.
+  - **ChatGPT:** sale en "Mejoras" como "habla de otro producto o plan". La referencia APA aparece una sola vez, con "Recuperado el…" y sin la URL repetida.
+  - **Registro de fechas:** solo incluye el dato vigente, no el confirmable.
+  - **Faltaban 4 de los 6 datos:** el informe lo marcó como revisión incompleta.
+
+**Pendientes o riesgos:**
+- **Las reglas nuevas del prompt dependen del modelo:** preferir `es-419` y descartar fuentes de otro producto se van a poder comprobar recién en la próxima corrida real.
+- **Datos confirmados:** aunque se acepte la redacción propuesta, el dato sigue como "a verificar" en `herramientas.json` hasta que Lourdes lo cambie en un commit. Mientras tanto, vuelve a aparecer en cada corrida.
 

@@ -30,7 +30,7 @@ const hoy = new Date().toLocaleDateString("sv-SE", { timeZone: "America/Argentin
 const celda = t => String(t ?? "").replace(/\s+/g, " ").replace(/\|/g, "\\|").trim() || "(sin dato)";
 const cita = t => t ? `"${celda(t)}"` : "(sin evidencia)";
 const sinPunto = t => celda(t).replace(/[.]+$/, "");
-const PROBLEMA = { general: "Demasiado general", "no-respalda": "No respalda el dato", "no-oficial": "No es oficial", "hay-version-en-espanol": "Existe la versión oficial en español", vieja: "Quedó vieja", cambio: "El dato cambió", "no-verificable": "No se pudo verificar" };
+const PROBLEMA = { general: "Demasiado general", "no-respalda": "No respalda el dato", "no-oficial": "No es oficial", "hay-version-en-espanol": "Existe la versión oficial en español", vieja: "Quedó vieja", "otro-producto": "Habla de otro producto o plan", cambio: "El dato cambió", "no-verificable": "No se pudo verificar" };
 const problema = c => PROBLEMA[c] || celda(c);
 const bloque = (...partes) => partes.filter(Boolean).join("\n\n");
 
@@ -73,7 +73,11 @@ if (modo === "pr" && process.env.HUBO_CAMBIOS_PILOTO === "1") {
   catch { fallaIA = { motivo: "el resultado del paso con IA no es un JSON válido", faltan: [] }; }
 }
 const grupo = v => fuentes.filter(r => r.veredicto === v);
-const cambios = grupo("cambio"), noVerif = grupo("no-verificable"), vigentes = grupo("vigente");
+const cambios = grupo("cambio"), noVerif = grupo("no-verificable");
+// Un dato "a verificar" que la IA pudo confirmar no "sigue vigente": nunca tuvo texto. Es una decisión distinta:
+// aceptar o no la redacción propuesta para completarlo.
+const confirmables = grupo("vigente").filter(r => porId[r.id]?.estado === "a-verificar");
+const vigentes = grupo("vigente").filter(r => !confirmables.includes(r));
 const propuestas = fuentes.filter(r => (r.fuentes_propuestas || []).length);
 const sinReemplazo = fuentes.filter(r => (r.veredicto !== "vigente" || r.fuente_acorde === false) && !(r.fuentes_propuestas || []).length);
 
@@ -103,11 +107,13 @@ if (fallaIA) s.push(`## ⚠️ La revisión con IA no se completó\n\nMotivo: ${
 // Para decidir: errores, desactualizados y mejoras
 const errores = [...cambios.filter(r => r.estado_sugerido !== porId[r.id]?.estado)], errP = hallazgosP.filter(h => h.gravedad === "error");
 const desact = cambios.filter(r => !errores.includes(r)), desP = hallazgosP.filter(h => h.gravedad === "desactualizado");
-const mejP = hallazgosP.filter(h => h.gravedad === "mejora"), mejF = fuentes.filter(r => r.veredicto === "vigente" && r.fuente_acorde === false);
+const mejP = hallazgosP.filter(h => h.gravedad === "mejora"), mejF = vigentes.filter(r => r.fuente_acorde === false);
 s.push(`## Para decidir`);
 s.push(bloque(`### Errores (${errores.length + errP.length})\nEl taller afirma algo que la fuente contradice. Conviene corregir antes de la próxima clase.`, errores.length && tablaDatos(errores), errP.length && tablaParafrasis(errP), !errores.length && !errP.length && "Ninguno."));
 s.push(bloque(`### Desactualizados (${desact.length + desP.length})\nEl dato era cierto, pero la fuente cambió.`, desact.length && tablaDatos(desact), desP.length && tablaParafrasis(desP), !desact.length && !desP.length && "Ninguno."));
 s.push(bloque(`### Mejoras (${mejP.length + mejF.length})\nNo hay error. Hay una forma mejor de decirlo o de citarlo.`, mejF.length && mejF.map(r => `- **${celda(r.que)}**: el dato sigue vigente, pero la fuente no es acorde (${problema(r.problema_fuente).toLowerCase()}). Ver "Fuentes propuestas".`).join("\n"), mejP.length && tablaParafrasis(mejP), !mejP.length && !mejF.length && "Ninguna."));
+
+if (confirmables.length) s.push(`### Se puede confirmar (${confirmables.length})\nDatos marcados "a verificar" que la fuente permite completar. Decidí si aceptás la redacción propuesta.\n\n| Dato | Estado propuesto | Redacción propuesta | Qué dice la fuente |\n|---|---|---|---|\n${confirmables.map(r => `| ${celda(r.que)} | ${r.estado_sugerido === "no" ? "No la tiene" : "La tiene"} | ${celda(r.sugerencia || "(sin redacción propuesta)")} | ${cita(r.evidencia)}${r.url_leida ? ` ([fuente](${r.url_leida}))` : ""} |`).join("\n")}`);
 
 // Fuentes propuestas
 const todas = [...propuestas.map(r => ({ que: r.que, problema: r.problema_fuente || r.veredicto, lista: r.fuentes_propuestas })), ...propuestasP.map(f => ({ que: f.fragmento, problema: "no sostiene el fragmento", lista: f.fuentes_propuestas }))];
@@ -116,7 +122,7 @@ const aConfirmar = todas.flatMap(p => p.lista.filter(x => x.a_confirmar).map(x =
 s.push(`## Fuentes propuestas (${confirmadas.length})\n\nCada propuesta se leyó en esta corrida y trae la frase que respalda el dato.\n\n` +
   (confirmadas.length ? `| Dato | Problema de la fuente actual | Fuente propuesta | Qué dice | Por qué |\n|---|---|---|---|---|\n` +
     confirmadas.map(x => `| ${celda(x.que)} | ${problema(x.problema)} | [${x.idioma === "en" ? "En inglés" : "En español"}](${x.url}) | ${cita(x.evidencia)} | ${celda(x.por_que)} |`).join("\n") +
-    `\n\n<details><summary>Referencias en APA 7, listas para copiar a fuentes.json</summary>\n\n${confirmadas.map(x => `- ${x.apa} ${x.url}`).join("\n")}\n\n</details>` : "Ninguna.") +
+    `\n\n<details><summary>Referencias en APA 7, listas para copiar a fuentes.json</summary>\n\n${confirmadas.map(x => `- ${x.apa}${String(x.apa).includes(x.url) ? "" : ` ${x.url}`}`).join("\n")}\n\n</details>` : "Ninguna.") +
   (sinReemplazo.length ? `\n\nSin reemplazo encontrado (${sinReemplazo.length}): ${sinReemplazo.map(r => `${celda(r.que)}. Motivo: ${sinPunto(r.motivo)}`).join("; ")}.` : ""));
 
 // Revisar a mano
@@ -140,7 +146,7 @@ if (modo === "periodico") for (const r of vigentes) registro[r.id] = hoy;
 s.push(`---\nLa IA propone; Lourdes Pedaci decide. Nada se cambia en el repo sin su revisión. Para resolver un hallazgo, se corrige en un commit que menciona este ${modo === "pr" ? "pull request" : "Issue"}.`);
 if (modo === "periodico") s.push(`<!-- verificaciones: ${JSON.stringify(registro)} -->`);
 
-const hayAlgo = !!fallaIA || errores.length + errP.length + desact.length + desP.length + mejP.length + mejF.length + confirmadas.length + aMano.length + sinReemplazo.length + rotos + hallazgosTextos > 0 || (process.env.ACCESIBILIDAD && process.env.ACCESIBILIDAD !== "0");
+const hayAlgo = !!fallaIA || confirmables.length || errores.length + errP.length + desact.length + desP.length + mejP.length + mejF.length + confirmadas.length + aMano.length + sinReemplazo.length + rotos + hallazgosTextos > 0 || (process.env.ACCESIBILIDAD && process.env.ACCESIBILIDAD !== "0");
 await mkdir(V, { recursive: true });
 await writeFile(join(V, "informe.md"), s.join("\n\n") + "\n", "utf8");
 await writeFile(join(V, "titulo.txt"), `Verificación | Taller - IA | ${hoy}`, "utf8");
@@ -148,4 +154,4 @@ await writeFile(join(V, "titulo.txt"), `Verificación | Taller - IA | ${hoy}`, "
 if (!hayAlgo && !vigentes.length) await writeFile(join(V, "sin-novedades"), "", "utf8");
 if (fallaIA) await writeFile(join(V, "falla-ia"), fallaIA.motivo, "utf8");
 if (fallaIA) console.log(`ATENCIÓN: ${fallaIA.motivo}. Quedaron sin revisar: ${fallaIA.faltan.length}.`);
-console.log(`Informe armado: ${errores.length + errP.length} errores, ${desact.length + desP.length} desactualizados, ${mejP.length + mejF.length} mejoras, ${confirmadas.length} fuentes propuestas, ${aMano.length} para revisar a mano, ${vigentes.length} vigentes.${!hayAlgo && !vigentes.length ? " Sin novedades." : ""}`);
+console.log(`Informe armado: ${errores.length + errP.length} errores, ${desact.length + desP.length} desactualizados, ${mejP.length + mejF.length} mejoras, ${confirmadas.length} fuentes propuestas, ${aMano.length} para revisar a mano, ${vigentes.length} vigentes, ${confirmables.length} para confirmar.${!hayAlgo && !vigentes.length ? " Sin novedades." : ""}`);
