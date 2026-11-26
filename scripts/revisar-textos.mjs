@@ -7,6 +7,7 @@
    - palabras repetidas ("de de"), signos de apertura sin cierre (¿ ?, ¡ !) y comillas o paréntesis sin cerrar;
    - espacios dobles y espacios antes de un signo de puntuación;
    - menciones a niñas, niños o menores (el taller es para personas adultas);
+   - precios en el texto sin la nota con fecha que pide el brief ("dato de noviembre de 2026"): cambian todo el tiempo (D-083);
    - ortografía que se puede revisar con reglas: interrogativos y "más" sin tilde, tildes que no corresponden,
      homófonos frecuentes (haber/a ver, hecho/echo), "de el" y "a el", y minúscula después de punto (D-074).
    Resultado: verificacion/textos.md. Termina con error si encuentra algo. */
@@ -29,6 +30,8 @@ const ORTOGRAFIA = [
 ];
 const INGLES = /\b(the|and|with|your|you|for|this|that|from|are|is|of|to|how|what|why)\b/gi;
 const PERMITIDO_EN = /(AI Fluency|Building effective agents|What is ChatGPT doing|Prompt engineering|Prompting best practices|Model Context Protocol|Content Authenticity|Weapons of math|AI snake oil|Co-intelligence|AI engineering|Artificial intelligence: a guide|Energy and AI|Copyright and|Making AI less|Chain-of-thought|ReAct|Retrieval-augmented|Get started|Tips to write|Get help|Large language model|Human-in-the-loop|Few-shot|Content Credentials|Voice mode|Application programming|Use voice mode|How Claude remembers|Creating a GitHub|Intro to large|OpenAI Academy|AI competency framework|AI Act|OECD AI Principles|Elements of AI|Guidance for|chain of thought|vibe coding|deep learning|machine learning)/i;
+// Un monto con moneda: siglas como palabra entera (no "eur" dentro de "neuronales"), símbolo con número, o número con moneda
+const PRECIO = /(?<![\p{L}\d])(?:US\$|U\$S|USD|EUR)(?!\p{L})|€\s?\d|\d[\d.,]*\s?€|\$\s?\d|\d[\d.,]*\s?(?:dólares|euros|pesos|reales)(?!\p{L})/iu;
 const hallazgos = [];
 const textos = [];
 function recorrer(v, ruta, archivo) {
@@ -58,6 +61,8 @@ for (const x of textos) {
   if (!/segmentos/.test(x.ruta) && (sinEnum.match(/\(/g) || []).length !== (sinEnum.match(/\)/g) || []).length) agregar("Paréntesis sin cerrar", x, `«${t.slice(0, 90)}»`);
   if (!/codigo/.test(x.ruta) && / {2,}\S/.test(t.replace(/^ +/gm, ""))) agregar("Espacio doble", x, `«${t.slice(0, 60)}»`);
   if (/ [,.;:!?)]/.test(t)) agregar("Espacio antes de un signo", x, `«${t.match(/.{0,20} [,.;:!?)].{0,10}/)[0]}»`);
+  // Precios: una moneda o un monto con moneda, sin la nota "dato de <mes> de <año>" en el mismo texto (D-083)
+  if (PRECIO.test(t) && !/dato de \p{L}+ de \d{4}/iu.test(t) && !/precio|plantilla|codigo/.test(x.ruta)) agregar("Precio sin fecha", x, `«${t.match(new RegExp(".{0,40}(?:" + PRECIO.source + ").{0,20}", "iu"))[0]}»`);
   if (/\b(niñ[oa]s?|menores de edad|chic[oa]s de primaria|escuela primaria)\b/i.test(t)) agregar("Mención a menores", x, `«${t.slice(0, 90)}»`);
   // Ortografía que se puede revisar con reglas (D-074). No se revisan el código, los tokens ni las plantillas con {variables}
   if (!/codigo|tokens|plantilla/.test(x.ruta)) for (const [tipo, re] of ORTOGRAFIA) { const m = t.match(re); if (m) agregar(tipo, x, `«${t.slice(Math.max(0, m.index - 30), m.index + m[0].length + 30)}»`); }
