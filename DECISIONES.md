@@ -2252,7 +2252,7 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
 - **Corrida manual:** las opciones "Revisar los 46 datos" y la corrida de prueba coinciden con el workflow.
 - **`revision-ia/`:** tiene la rúbrica, los dos prompts y la plantilla.
 - **Costo:** el repositorio es público, que es la condición para que GitHub Actions no tenga costo.
-- **Lo que no se comprobó acá:** el dato "18 datos cambiados en el primer uso real (#8), sin ningún error falso" sale de la revisión automática del PR #8, que no se volvió a leer para este registro.
+- **Dato del PR #8, confirmado por Lourdes:** la sección dice "18 datos cambiados en el primer uso real (#8), sin ningún error falso". El comentario de la revisión automática del PR #8 dice "Datos verificados en la fuente: 18", "Errores (0)" y "Desactualizados (0)".
 
 **Pendientes o riesgos:** la sección tiene cifras que van a cambiar cuando el sistema se extienda a otros módulos o cambie la cantidad de datos (los 46 datos y los resultados de la validación). Hay que actualizarlas junto con esos cambios.
 
