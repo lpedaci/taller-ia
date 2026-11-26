@@ -47,13 +47,31 @@ if (process.argv[2] === "leer") {
 /* ---------- armar ---------- */
 const modo = arg("--modo") || "periodico";
 const venc = await leerJSON("vencimientos.json");
-const fuentes = (await leerJSON("resultado-fuentes.json"))?.resultados || [];
-const parafrasis = await leerJSON("resultado-parafrasis.json") || [];
+const leerSeguro = async f => { try { return await leerJSON(f); } catch { return null; } };
+const fuentes = (await leerSeguro("resultado-fuentes.json"))?.resultados || [];
+const parafrasis = await leerSeguro("resultado-parafrasis.json") || [];
 const previas = await leerJSON("verificaciones-previas.json") || {};
 const enlaces = await leerTexto("enlaces.md");
 const textos = await leerTexto("textos.md");
 
 const porId = Object.fromEntries((venc?.revisar || []).map(d => [d.id, d]));
+
+// Control: si había datos para revisar y el paso con IA no devolvió un resultado válido para cada uno, la corrida
+// NO es "sin novedades": es una falla. Se informa qué quedó sin revisar y el workflow termina en rojo.
+const archivoIA = modo === "periodico" ? "resultado-fuentes.json" : "resultado-parafrasis.json";
+let fallaIA = null;
+if (modo === "periodico" && (venc?.revisar || []).length) {
+  let r = null; try { r = await leerJSON(archivoIA); } catch { r = "invalido"; }
+  const ids = new Set((r?.resultados || []).map(x => x.id));
+  const faltan = venc.revisar.filter(d => !ids.has(d.id));
+  if (r === null) fallaIA = { motivo: "el paso con IA no escribió su resultado", faltan };
+  else if (r === "invalido") fallaIA = { motivo: "el resultado del paso con IA no es un JSON válido", faltan };
+  else if (faltan.length) fallaIA = { motivo: `el paso con IA revisó ${venc.revisar.length - faltan.length} de ${venc.revisar.length} datos`, faltan };
+}
+if (modo === "pr" && process.env.HUBO_CAMBIOS_PILOTO === "1") {
+  try { if (!(await leerJSON(archivoIA))) fallaIA = { motivo: "el paso con IA no escribió su resultado", faltan: [] }; }
+  catch { fallaIA = { motivo: "el resultado del paso con IA no es un JSON válido", faltan: [] }; }
+}
 const grupo = v => fuentes.filter(r => r.veredicto === v);
 const cambios = grupo("cambio"), noVerif = grupo("no-verificable"), vigentes = grupo("vigente");
 const propuestas = fuentes.filter(r => (r.fuentes_propuestas || []).length);
@@ -79,6 +97,8 @@ if (modo === "periodico") {
 } else {
   s.push(`Revisión automática del pull request #${arg("--pr") || "?"}, del ${hoy}. Fragmentos revisados: ${(Array.isArray(parafrasis) ? parafrasis : [parafrasis]).length}.`);
 }
+
+if (fallaIA) s.push(`## ⚠️ La revisión con IA no se completó\n\nMotivo: ${fallaIA.motivo}. Esta corrida no sirve como verificación: los datos que siguen no se revisaron y vuelven a aparecer en la próxima.${fallaIA.faltan.length ? `\n\n${fallaIA.faltan.map(d => `- ${celda(d.que)} (${celda(d.motivo)})`).join("\n")}` : ""}${process.env.URL_CORRIDA ? `\n\nDetalle del error: [corrida en GitHub Actions](${process.env.URL_CORRIDA}).` : ""}`);
 
 // Para decidir: errores, desactualizados y mejoras
 const errores = [...cambios.filter(r => r.estado_sugerido !== porId[r.id]?.estado)], errP = hallazgosP.filter(h => h.gravedad === "error");
@@ -120,10 +140,12 @@ if (modo === "periodico") for (const r of vigentes) registro[r.id] = hoy;
 s.push(`---\nLa IA propone; Lourdes Pedaci decide. Nada se cambia en el repo sin su revisión. Para resolver un hallazgo, se corrige en un commit que menciona este ${modo === "pr" ? "pull request" : "Issue"}.`);
 if (modo === "periodico") s.push(`<!-- verificaciones: ${JSON.stringify(registro)} -->`);
 
-const hayAlgo = errores.length + errP.length + desact.length + desP.length + mejP.length + mejF.length + confirmadas.length + aMano.length + sinReemplazo.length + rotos + hallazgosTextos > 0 || (process.env.ACCESIBILIDAD && process.env.ACCESIBILIDAD !== "0");
+const hayAlgo = !!fallaIA || errores.length + errP.length + desact.length + desP.length + mejP.length + mejF.length + confirmadas.length + aMano.length + sinReemplazo.length + rotos + hallazgosTextos > 0 || (process.env.ACCESIBILIDAD && process.env.ACCESIBILIDAD !== "0");
 await mkdir(V, { recursive: true });
 await writeFile(join(V, "informe.md"), s.join("\n\n") + "\n", "utf8");
 await writeFile(join(V, "titulo.txt"), `Verificación | Taller - IA | ${hoy}`, "utf8");
 // Aun sin novedades, si hubo datos vigentes conviene abrir el Issue: es el registro de que se verificaron
 if (!hayAlgo && !vigentes.length) await writeFile(join(V, "sin-novedades"), "", "utf8");
+if (fallaIA) await writeFile(join(V, "falla-ia"), fallaIA.motivo, "utf8");
+if (fallaIA) console.log(`ATENCIÓN: ${fallaIA.motivo}. Quedaron sin revisar: ${fallaIA.faltan.length}.`);
 console.log(`Informe armado: ${errores.length + errP.length} errores, ${desact.length + desP.length} desactualizados, ${mejP.length + mejF.length} mejoras, ${confirmadas.length} fuentes propuestas, ${aMano.length} para revisar a mano, ${vigentes.length} vigentes.${!hayAlgo && !vigentes.length ? " Sin novedades." : ""}`);

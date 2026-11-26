@@ -83,9 +83,13 @@ jobs:
             --max-turns 60
 
       # Paso 4: informe
+      # Estos pasos corren aunque el paso con IA haya fallado (if: always()), para que una falla nunca se lea
+      # como "sin novedades": el Issue la informa y la corrida termina en rojo.
       - name: Armar el informe
+        if: always()
         run: node scripts/armar-informe.mjs armar --modo periodico
       - name: Abrir el Issue
+        if: always()
         run: |
           if [ -f verificacion/sin-novedades ]; then
             echo "Sin novedades: no se abre Issue."
@@ -93,6 +97,13 @@ jobs:
           fi
           gh label create verificacion --color 0E8A16 --description "Informe del sistema de verificación" 2>/dev/null || true
           gh issue create --label verificacion --title "$(cat verificacion/titulo.txt)" --body-file verificacion/informe.md
+      - name: Marcar la corrida como fallida si la IA no completó la revisión
+        if: always()
+        run: |
+          if [ -f verificacion/falla-ia ]; then
+            echo "::error::La revisión con IA no se completó: $(cat verificacion/falla-ia)"
+            exit 1
+          fi
 
       - name: Guardar los informes de la corrida
         if: always()

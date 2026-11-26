@@ -1939,8 +1939,21 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
 - **Salidas en `verificacion/`:** esa carpeta está en `.gitignore`, así que no se suben.
 
 **Pendientes o riesgos:**
-- **Corridas locales en Windows:** mientras la expresión no admita CRLF, `vencimientos.mjs` subestima los datos del Módulo 11 sin avisar. En Actions no pasa. Se resuelve agregando `\r?` a la expresión o con un `.gitattributes` que fije LF para `content/*.json`. Queda para decidir, porque Lourdes pidió no modificar los scripts.
-- **Si el paso con IA falla:** `armar-informe.mjs` no mira `vencimientos.json` para decidir si hay novedades. Si Claude no escribe `resultado-fuentes.json`, la corrida dice "Sin novedades" y no abre Issue aunque haya datos para revisar.
-- **Secreto:** los dos workflows necesitan `CLAUDE_CODE_OAUTH_TOKEN` en los secretos del repo.
+- **Corridas locales en Windows:** resuelto, ver "Corrección" abajo.
+- **Si el paso con IA falla:** resuelto, ver "Corrección" abajo.
+- **Secreto:** resuelto. Los dos workflows necesitan `CLAUDE_CODE_OAUTH_TOKEN` en los secretos del repo, y Lourdes confirmó el 2026-11-26 que ya está cargado.
 - **Este pull request no dispara la revisión:** solo cambia `.github/`, `scripts/`, `revision-ia/` y este registro, que no están en los `paths` del workflow de cambios. La verificación periódica se puede probar a mano desde la pestaña Actions después de fusionar.
+
+**Corrección (2026-11-26):** Lourdes reemplazó cuatro archivos con versiones corregidas. No se modificó su contenido.
+- **Saltos de línea de Windows:** `scripts/vencimientos.mjs` separa las líneas con `\r?\n`, así que lee igual los archivos con LF o con CRLF. Además, frena con un error si lee menos funciones o leyes de las que tiene cada archivo, en lugar de informar sobre menos datos sin avisar.
+- **Falla del paso con IA:** ya no se lee como "Sin novedades".
+  - **Qué detecta `scripts/armar-informe.mjs`:** que la IA no escribió su resultado, que lo escribió con un JSON inválido o que revisó menos datos de los pedidos.
+  - **Qué hace:** el informe abre con "La revisión con IA no se completó", con el motivo y la lista de lo que quedó sin revisar. Escribe `verificacion/falla-ia` y no marca "sin novedades", así que el Issue se abre igual.
+  - **En el pull request:** lo mismo, cuando el cambio toca el piloto.
+- **Corrida en rojo:** en los dos workflows, el informe se arma y se publica aunque falle el paso con IA (`if: always()`). Un paso final termina la corrida con error si existe `verificacion/falla-ia`.
+
+**Verificación de la corrección, en la copia de trabajo (Windows, CRLF):**
+- `node scripts/vencimientos.mjs`: 46 datos, 6 para revisar ahora y 0 que vencen en 7 días. Son los mismos 6 que en el clon con LF.
+- `node scripts/armar-informe.mjs armar --modo periodico`, sin resultado de la IA: avisa "ATENCIÓN: el paso con IA no escribió su resultado. Quedaron sin revisar: 6.", el informe lista los 6 y se escribe `verificacion/falla-ia`. No se escribe `sin-novedades`.
+- **Lo que no se probó acá:** que la corrida termine en rojo. Eso lo hace el workflow, y se ve recién en GitHub Actions.
 

@@ -49,7 +49,7 @@ function fechasPorLinea(archivo) {
 /* Recorre el JSON como texto y devuelve, para cada dato, el rango de líneas que ocupa.
    Usa la indentación de 2 espacios con la que se guardan los archivos del taller. */
 function rangos(texto, inicio, fin) {
-  const lineas = texto.split("\n"), salida = [];
+  const lineas = texto.split(/\r?\n/), salida = [];
   let actual = null;
   lineas.forEach((l, i) => {
     const abre = l.match(inicio);
@@ -67,7 +67,7 @@ const datos = [];
   const texto = await readFile(join(RAIZ, archivo), "utf8");
   const json = JSON.parse(texto);
   const fechas = fechasPorLinea(archivo);
-  const lineas = texto.split("\n");
+  const lineas = texto.split(/\r?\n/);
   let herramienta = null;
   lineas.forEach((l, i) => {
     const id = l.match(/^ {6}"id": "([^"]+)"/); if (id) herramienta = id[1];
@@ -82,6 +82,11 @@ const datos = [];
       cambio: Math.max(...fechas.slice(i, j + 1)), archivo, lineas: `${i + 1}-${j + 1}`
     });
   });
+  // Control: si se leyeron menos funciones de las que tiene el archivo, algo falló al recorrerlo. Mejor frenar que
+  // informar "todo en orden" sobre datos que nunca se revisaron.
+  const esperadas = json.herramientas.reduce((n, h) => n + Object.keys(h.funciones || {}).length, 0);
+  const leidas = datos.filter(d => d.tipo === "herramienta").length;
+  if (leidas !== esperadas) throw new Error(`${archivo}: se leyeron ${leidas} funciones de ${esperadas}. Revisá el formato del archivo (indentación o saltos de línea).`);
 }
 
 /* Módulo 10: cada ley de la región es un dato */
@@ -98,6 +103,8 @@ const datos = [];
       cambio: Math.max(...fechas.slice(r.desde - 1, r.hasta + 1)), archivo, lineas: `${r.desde}-${r.hasta + 1}`
     });
   }
+  const leidas = datos.filter(d => d.tipo === "ley").length;
+  if (leidas !== json.paises.length) throw new Error(`${archivo}: se leyeron ${leidas} leyes de ${json.paises.length}. Revisá el formato del archivo (indentación o saltos de línea).`);
 }
 
 /* Aplicar la regla */

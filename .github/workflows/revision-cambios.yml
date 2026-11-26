@@ -85,12 +85,23 @@ jobs:
             --max-turns 40
 
       # Paso 3: informe como comentario
+      # Corren aunque el paso con IA haya fallado, para que la falla quede escrita en el comentario
       - name: Armar el informe
+        if: always()
         env:
           ACCESIBILIDAD: ${{ steps.accesibilidad.outputs.codigo }}
+          HUBO_CAMBIOS_PILOTO: ${{ steps.cambios.outputs.lineas != '0' && '1' || '0' }}
         run: node scripts/armar-informe.mjs armar --modo pr --pr ${{ github.event.pull_request.number }}
       - name: Comentar en el pull request
+        if: always()
         run: gh pr comment ${{ github.event.pull_request.number }} --body-file verificacion/informe.md
+      - name: Marcar la corrida como fallida si la IA no completó la revisión
+        if: always()
+        run: |
+          if [ -f verificacion/falla-ia ]; then
+            echo "::error::La revisión con IA no se completó: $(cat verificacion/falla-ia)"
+            exit 1
+          fi
 
       - name: Guardar los informes y las capturas
         if: always()
