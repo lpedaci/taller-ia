@@ -1,7 +1,9 @@
 /* Taller - IA | Revisa los enlaces externos del contenido (solo desarrollo)
    Uso: npm run enlaces (algunos sitios mandan cabeceras muy grandes: el script se corre con --max-http-header-size)
    Junta las URL de content/*.json, js/ e index.html, pide cada una y clasifica el resultado:
-   - funciona (2xx o redirección que termina bien);
+   - funciona (2xx, o una redirección a la misma página con otra dirección);
+   - redirige a otra página (2xx, pero la dirección final es otra página: otro artículo, otro documento). El enlace
+     anda, pero la página original puede haberse reemplazado; conviene revisar si actualizar la URL (D-082);
    - bloquea la lectura automática (401, 403, 429 o 999, o un certificado sin la cadena completa, que el navegador sí
      completa): el sitio existe pero no se deja leer por programas; se revisa a mano;
    - roto (404, 410, error de conexión): hay que corregirlo.
@@ -37,11 +39,22 @@ async function probar(u, intento = 1) {
   if (r.estado === "roto" && /ECONNRESET|ETIMEDOUT|TimeoutError|ECONNREFUSED/.test(String(r.codigo)) && intento < 3) { await new Promise(x => setTimeout(x, 3000)); return probar(u, intento + 1); }
   return r;
 }
+/* Identidad de una página, para saber si una redirección lleva a la misma o a otra. Se ignoran el idioma o la región
+   en la dirección (es-419, es-es, en-us...), la barra final, mayúsculas y el nombre descriptivo que sigue al número de
+   un artículo (8555545-file-uploads-faq y 8555545-uploading-files son el mismo artículo). */
+function identidad(u) {
+  try {
+    const x = new URL(u);
+    let p = x.pathname.toLowerCase().replace(/\/(?:[a-z]{2}(?:-[a-z0-9]{2,3})?)(?=\/|$)/g, "").replace(/\/+$/, "");
+    p = p.replace(/\/(\d{4,})-[^/]*/g, "/$1");
+    return x.host.replace(/^www\./, "") + p;
+  } catch { return u; }
+}
 async function probarUna(u) {
   for (const metodo of ["HEAD", "GET"]) {
     try {
       const r = await fetch(u, { method: metodo, redirect: "follow", headers: { "user-agent": UA, "accept-language": "es-AR,es;q=0.9,en;q=0.8" }, signal: AbortSignal.timeout(20000) });
-      if (r.ok) return { estado: "funciona", codigo: r.status };
+      if (r.ok) return r.redirected && identidad(r.url) !== identidad(u) ? { estado: "redirige", codigo: `${r.status}, lleva a ${r.url}` } : { estado: "funciona", codigo: r.status };
       if (metodo === "HEAD" && [403, 405, 400, 404, 501].includes(r.status)) continue;  // algunos sitios no aceptan HEAD
       if ([401, 403, 429, 999, 402].includes(r.status)) return { estado: "bloquea", codigo: r.status };
       return { estado: "roto", codigo: r.status };
@@ -57,8 +70,9 @@ for (let i = 0; i < urls.length; i += 6) await Promise.all(urls.slice(i, i + 6).
 const grupo = e => urls.filter(u => res.get(u).estado === e);
 const linea = u => `- ${u} (${res.get(u).codigo}). En: ${[...donde.get(u)].join(", ")}`;
 await mkdir(join(RAIZ, "verificacion"), { recursive: true });
-await writeFile(join(RAIZ, "verificacion", "enlaces.md"), `# Enlaces externos | Taller - IA\n\nRevisados el ${new Date().toLocaleString("es-AR")} con \`node scripts/verificar-enlaces.mjs\`: ${urls.length} enlaces.\n\n## Rotos (${grupo("roto").length})\n\n${grupo("roto").map(linea).join("\n") || "Ninguno."}\n\n## Bloquean la lectura automática (${grupo("bloquea").length})\n\nEl sitio responde, pero rechaza a los programas. Se revisan abriéndolos en el navegador.\n\n${grupo("bloquea").map(linea).join("\n") || "Ninguno."}\n\n## Funcionan (${grupo("funciona").length})\n\n${grupo("funciona").map(linea).join("\n")}\n`, "utf8");
-console.log(`${urls.length} enlaces: ${grupo("funciona").length} funcionan, ${grupo("bloquea").length} bloquean la lectura automática, ${grupo("roto").length} rotos.`);
+await writeFile(join(RAIZ, "verificacion", "enlaces.md"), `# Enlaces externos | Taller - IA\n\nRevisados el ${new Date().toLocaleString("es-AR")} con \`node scripts/verificar-enlaces.mjs\`: ${urls.length} enlaces.\n\n## Rotos (${grupo("roto").length})\n\n${grupo("roto").map(linea).join("\n") || "Ninguno."}\n\n## Redirigen a otra página (${grupo("redirige").length})\n\nEl enlace funciona, pero lleva a otra página. Puede que la original se haya reemplazado: revisá si conviene actualizar la URL.\n\n${grupo("redirige").map(linea).join("\n") || "Ninguno."}\n\n## Bloquean la lectura automática (${grupo("bloquea").length})\n\nEl sitio responde, pero rechaza a los programas. Se revisan abriéndolos en el navegador.\n\n${grupo("bloquea").map(linea).join("\n") || "Ninguno."}\n\n## Funcionan (${grupo("funciona").length})\n\n${grupo("funciona").map(linea).join("\n")}\n`, "utf8");
+console.log(`${urls.length} enlaces: ${grupo("funciona").length} funcionan, ${grupo("redirige").length} redirigen a otra página, ${grupo("bloquea").length} bloquean la lectura automática, ${grupo("roto").length} rotos.`);
 grupo("roto").forEach(u => console.log("ROTO", linea(u)));
+grupo("redirige").forEach(u => console.log("REDIRIGE", u, res.get(u).codigo));
 grupo("bloquea").forEach(u => console.log("BLOQUEA", u, res.get(u).codigo));
 process.exitCode = grupo("roto").length ? 1 : 0;

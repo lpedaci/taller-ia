@@ -18,7 +18,16 @@ on:
     # GitHub encola muchos workflows y pueden demorarse.
     - cron: "23 14 1,11,21 * *"
   workflow_dispatch:
-    # Para correrlo a mano desde la pestaña Actions (la primera vez, y cuando quieras)
+    # Para correrlo a mano desde la pestaña Actions. Se puede elegir la rama.
+    inputs:
+      revision_completa:
+        description: "Revisar los 46 datos, no solo los vencidos"
+        type: boolean
+        default: false
+      prueba:
+        description: "Corrida de prueba: no guarda fechas de verificación (para ramas de validación)"
+        type: boolean
+        default: false
 
 permissions:
   contents: read   # leer el repo; nunca escribir
@@ -35,6 +44,9 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       DISPARADOR: ${{ github.event_name == 'schedule' && 'periódico' || 'manual' }}
+      PRUEBA: ${{ inputs.prueba == true && 'true' || 'false' }}
+      RAMA: ${{ github.ref_name }}
+      ETIQUETA: ${{ inputs.prueba == true && 'verificacion-prueba' || 'verificacion' }}
       URL_CORRIDA: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - name: Traer el repo con todo su historial
@@ -61,7 +73,7 @@ jobs:
       - name: Calcular vencimientos
         id: vencimientos
         run: |
-          node scripts/vencimientos.mjs --verificaciones verificacion/verificaciones-previas.json
+          node scripts/vencimientos.mjs --verificaciones verificacion/verificaciones-previas.json ${{ inputs.revision_completa == true && '--todos' || '' }}
           echo "cantidad=$(node -p "require('./verificacion/vencimientos.json').revisar.length")" >> "$GITHUB_OUTPUT"
 
       # Paso 3: verificación con IA, solo si hay algo para revisar
@@ -80,7 +92,7 @@ jobs:
             No modifiques ningún otro archivo.
           claude_args: |
             --allowedTools "Read,Glob,Grep,WebFetch,WebSearch,Write"
-            --max-turns 60
+            --max-turns ${{ inputs.revision_completa == true && '150' || '60' }}
 
       # Paso 4: informe
       # Estos pasos corren aunque el paso con IA haya fallado (if: always()), para que una falla nunca se lea
@@ -95,8 +107,8 @@ jobs:
             echo "Sin novedades: no se abre Issue."
             exit 0
           fi
-          gh label create verificacion --color 0E8A16 --description "Informe del sistema de verificación" 2>/dev/null || true
-          gh issue create --label verificacion --title "$(cat verificacion/titulo.txt)" --body-file verificacion/informe.md
+          gh label create "$ETIQUETA" --color 0E8A16 --description "Informe del sistema de verificación" 2>/dev/null || true
+          gh issue create --label "$ETIQUETA" --title "$(cat verificacion/titulo.txt)" --body-file verificacion/informe.md
       - name: Marcar la corrida como fallida si la IA no completó la revisión
         if: always()
         run: |
