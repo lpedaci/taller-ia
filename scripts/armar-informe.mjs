@@ -134,10 +134,10 @@ s.push(`## Fuentes propuestas (${confirmadas.length})\n\nCada propuesta se leyó
     `\n\n<details><summary>Referencias en APA 7, listas para copiar a fuentes.json</summary>\n\n${confirmadas.map(x => `- ${x.apa}${String(x.apa).includes(x.url) ? "" : ` ${x.url}`}`).join("\n")}\n\n</details>` : "Ninguna.") +
   (sinReemplazo.length ? `\n\nSin reemplazo encontrado (${sinReemplazo.length}): ${sinReemplazo.map(r => `${celda(r.que)}. Motivo: ${sinPunto(r.motivo)}`).join("; ")}.` : ""));
 
-// Revisar a mano
+// Revisión manual
 const aMano = [...noVerif.filter(r => !cambiadosSinVerificar.includes(r)).map(r => `- ${celda(r.que)}${porId[r.id]?.url ? ` ([abrir](${porId[r.id].url}))` : ""}. Motivo: ${celda(r.motivo)}`),
   ...aConfirmar.map(x => `- Fuente propuesta a confirmar para ${celda(x.que)}: ${x.apa} ([abrir](${x.url})). Motivo: ${celda(x.a_confirmar)}. Antes de usarla, confirmá que sea el documento completo y no un folleto.`)];
-s.push(`## Revisar a mano (${aMano.length})\n\nEl sistema no pudo leer estas fuentes. No es un error del taller: hay que abrirlas en el navegador.\n\n${aMano.join("\n") || "Nada."}`);
+s.push(`## Revisión manual (${aMano.length})\n\nEl sistema no pudo leer estas fuentes. No es un error del taller: hay que abrirlas en el navegador.\n\n${aMano.join("\n") || "Nada."}`);
 
 // Sin cambios, plegado
 if (vigentes.length) s.push(`## Sin cambios (${vigentes.length})\n\n<details><summary>${vigentes.length === 1 ? "Ver el dato que sigue vigente" : `Ver los ${vigentes.length} datos que siguen vigentes`}</summary>\n\n| Dato | Evidencia | Fuente |\n|---|---|---|\n${vigentes.map(r => `| ${celda(r.que)} | ${cita(r.evidencia)} | ${r.url_leida ? `[abrir](${r.url_leida})` : "(sin URL)"} |`).join("\n")}\n\n</details>`);
@@ -163,4 +163,4 @@ await writeFile(join(V, "titulo.txt"), `${prueba ? "[Prueba] " : ""}Verificació
 if (!hayAlgo && !vigentes.length) await writeFile(join(V, "sin-novedades"), "", "utf8");
 if (fallaIA) await writeFile(join(V, "falla-ia"), fallaIA.motivo, "utf8");
 if (fallaIA) console.log(`ATENCIÓN: ${fallaIA.motivo}. Quedaron sin revisar: ${fallaIA.faltan.length}.`);
-console.log(`Informe armado: ${errores.length + errP.length} errores, ${desact.length + desP.length} desactualizados, ${mejP.length + mejF.length} mejoras, ${confirmadas.length} fuentes propuestas, ${aMano.length} para revisar a mano, ${vigentes.length} vigentes, ${confirmables.length} para confirmar.${!hayAlgo && !vigentes.length ? " Sin novedades." : ""}`);
+console.log(`Informe armado: ${errores.length + errP.length} errores, ${desact.length + desP.length} desactualizados, ${mejP.length + mejF.length} mejoras, ${confirmadas.length} fuentes propuestas, ${aMano.length} para revisión manual, ${vigentes.length} vigentes, ${confirmables.length} para confirmar.${!hayAlgo && !vigentes.length ? " Sin novedades." : ""}`);

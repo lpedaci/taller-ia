@@ -91,6 +91,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-083 | 2026-11-26 | Ajustes de la versión 3 del sistema de verificación, tras la validación a ciegas del PR #6 | Vigente |
 | D-084 | 2026-11-26 | Hallazgos reales de la verificación aplicados al contenido: Brasil, Claude, Microsoft Copilot y mudanzas | Vigente |
 | D-085 | 2026-11-26 | README: sección "Verificación automática con IA" y tres datos actualizados | Vigente |
+| D-086 | 2026-11-26 | La sección "Revisar a mano" del informe pasa a llamarse "Revisión manual" | Vigente |
 
 ---
 
@@ -2255,4 +2256,26 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
 - **Dato del PR #8, confirmado por Lourdes:** la sección dice "18 datos cambiados en el primer uso real (#8), sin ningún error falso". El comentario de la revisión automática del PR #8 dice "Datos verificados en la fuente: 18", "Errores (0)" y "Desactualizados (0)".
 
 **Pendientes o riesgos:** la sección tiene cifras que van a cambiar cuando el sistema se extienda a otros módulos o cambie la cantidad de datos (los 46 datos y los resultados de la validación). Hay que actualizarlas junto con esos cambios.
+
+## D-086 | 2026-11-26 | La sección "Revisar a mano" del informe pasa a llamarse "Revisión manual"
+
+**Solicitado:** Lourdes reemplazó `scripts/armar-informe.mjs`, `revision-ia/plantilla-informe.md` y `revision-ia/prompt-fuentes.md` para que la sección "Revisar a mano" del informe de verificación pase a llamarse "Revisión manual". Pidió correr el script, registrar la decisión y subir el cambio en una rama, sin abrir el pull request. No se modificó el contenido de esos archivos.
+
+**Decisión y motivo:**
+- **Por qué:** "Revisión manual" responde al registro profesional del taller y coincide con el nombre que se usa en el caso del portfolio.
+- **Qué cambia:** solo el nombre, en todo lo que se ve del informe:
+  - el título de la sección que arma `armar-informe.mjs`;
+  - el resumen que el script muestra en la consola ("para revisión manual");
+  - la plantilla del informe;
+  - la mención en `prompt-fuentes.md` (adónde van las propuestas de UNESDOC sin confirmar).
+
+  Qué va en la sección y cómo se arma no cambia.
+- **Registros históricos:** los informes anteriores (Issue #2 y las revisiones automáticas de los PR #6 y #8) quedan como están, con "Revisar a mano", porque son registros de lo que el sistema informó en ese momento. Por lo mismo, las entradas anteriores de este registro (D-079 a D-084) conservan el nombre viejo.
+
+**Archivos afectados:** `scripts/armar-informe.mjs`, `revision-ia/plantilla-informe.md`, `revision-ia/prompt-fuentes.md` y este registro.
+
+**Verificación realizada:**
+- **Cambios:** el diff de los tres archivos tiene seis líneas, y en todas el único cambio es el nombre de la sección.
+- **Sin el nombre viejo:** ya no queda "Revisar a mano" en `scripts/`, `revision-ia/`, `.github/` ni `README.md`. La única coincidencia, "capturas para revisar a mano" en `scripts/galeria.mjs`, no tiene que ver con el informe.
+- **`node scripts/armar-informe.mjs armar --modo periodico`**, sin resultado de la IA: avisa "ATENCIÓN: el paso con IA no escribió su resultado. Quedaron sin revisar: 2." y muestra "Informe armado: 0 errores, 0 desactualizados, 0 mejoras, 0 fuentes propuestas, 0 para revisión manual, 0 vigentes, 0 para confirmar." El informe tiene la sección "## Revisión manual (0)".
 
