@@ -1,0 +1,112 @@
+# Taller - IA | Revisión automática de cada cambio (pull request)
+#
+# Qué hace, en orden:
+#   1. Corre la verificación que el brief pide después de cada cambio (sección 10), sin IA:
+#      textos, accesibilidad en 3 anchos con modo claro y oscuro, y auditoría del design system.
+#   2. Si el cambio toca los Módulos 10 u 11 o la Biblioteca, Claude revisa la paráfrasis y la traducción
+#      de lo que cambió (revision-ia/prompt-parafrasis.md, con revision-ia/rubrica.md).
+#   3. Un script arma el informe y lo publica como comentario en el pull request.
+#
+# Frontera: no aprueba, no fusiona y no corrige. Comenta. La decisión de fusionar es de Lourdes.
+
+name: Revisión de cambios
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "content/**"
+      - "css/**"
+      - "js/**"
+      - "index.html"
+
+permissions:
+  contents: read        # leer el repo; nunca escribir
+  pull-requests: write  # comentar el informe en el pull request
+
+concurrency:
+  group: revision-${{ github.event.pull_request.number }}
+  cancel-in-progress: true   # si subís otro commit, la revisión anterior se cancela y arranca de nuevo
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      URL_CORRIDA: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Traer el repo con todo su historial
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Preparar Node y las dependencias de verificación
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+
+      # Paso 1: la verificación completa del brief, sin IA
+      - name: Revisar textos
+        run: npm run textos || true
+      - name: Verificar accesibilidad y design system
+        id: accesibilidad
+        run: |
+          set +e
+          npm run verificar:rapido
+          echo "codigo=$?" >> "$GITHUB_OUTPUT"
+
+      # Paso 2: revisión con IA, solo si el cambio toca el piloto
+      - name: Juntar lo que cambió en el piloto
+        id: cambios
+        run: |
+          mkdir -p verificacion
+          git diff "origin/${{ github.base_ref }}...HEAD" -- \
+            content/modulo-10.json content/modulo-11.json content/fuentes.json \
+            content/herramientas.json content/marco-legal.json > verificacion/cambios.diff
+          echo "lineas=$(wc -l < verificacion/cambios.diff)" >> "$GITHUB_OUTPUT"
+
+      - name: Revisar paráfrasis y traducción (Claude)
+        if: steps.cambios.outputs.lineas != '0'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ github.token }}
+          prompt: |
+            Seguí al pie de la letra las instrucciones de revision-ia/prompt-parafrasis.md.
+            El diff del pull request está en verificacion/cambios.diff.
+            Escribí el resultado, solo el JSON pedido, en verificacion/resultado-parafrasis.json.
+            No modifiques ningún otro archivo.
+          claude_args: |
+            --allowedTools "Read,Glob,Grep,WebFetch,WebSearch,Write"
+            --max-turns 40
+
+      # Paso 3: informe como comentario
+      # Corren aunque el paso con IA haya fallado, para que la falla quede escrita en el comentario
+      - name: Armar el informe
+        if: always()
+        env:
+          ACCESIBILIDAD: ${{ steps.accesibilidad.outputs.codigo }}
+          HUBO_CAMBIOS_PILOTO: ${{ steps.cambios.outputs.lineas != '0' && '1' || '0' }}
+        run: node scripts/armar-informe.mjs armar --modo pr --pr ${{ github.event.pull_request.number }}
+      - name: Comentar en el pull request
+        if: always()
+        run: gh pr comment ${{ github.event.pull_request.number }} --body-file verificacion/informe.md
+      - name: Marcar la corrida como fallida si la IA no completó la revisión
+        if: always()
+        run: |
+          if [ -f verificacion/falla-ia ]; then
+            echo "::error::La revisión con IA no se completó: $(cat verificacion/falla-ia)"
+            exit 1
+          fi
+
+      - name: Guardar los informes y las capturas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: revision-pr-${{ github.event.pull_request.number }}-${{ github.run_number }}
+          path: verificacion/
+          retention-days: 30
