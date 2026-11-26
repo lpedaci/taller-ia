@@ -32,8 +32,18 @@ const REVISADOS_A_MANO = new Map([
   ["https://www.dof.gob.mx/nota_detalle.php?codigo=5752569&fecha=20/03/2025", "Lourdes, 23/11/2026 (D-075)"],
   ["https://www.gob.pe/institucion/anpd/normas-legales/6554453-16-2024-jus", "Lourdes, 23/11/2026 (D-075)"]
 ]);
+// Redirecciones que se revisaron y están bien: el sitio redirige a propósito (al inicio de sesión, a su documentación).
+// Cuentan como "funciona". Al sumar una, anotá quién la revisó, cuándo y por qué (D-082).
+const REDIRECCIONES_ACEPTADAS = new Map([
+  // ["https://claude.ai/", "Lourdes, AAAA-MM-DD: lleva al inicio de sesión"],
+  ["https://claude.ai/", "Lourdes, 2026-11-26: lleva al inicio de sesión"],
+  ["https://modelcontextprotocol.io/", "Lourdes, 2026-11-26: lleva a su documentación"],
+]);
+// Los DOI redirigen siempre, por diseño: doi.org envía al lugar donde hoy está publicado el trabajo. APA 7 pide citar el DOI.
+const esDOI = u => /^https?:\/\/(dx\.)?doi\.org\//i.test(u);
 async function probar(u, intento = 1) {
   const r = await probarUna(u);
+  if (r.estado === "redirige" && (esDOI(u) || REDIRECCIONES_ACEPTADAS.has(u))) return { estado: "funciona", codigo: `${r.codigo}${REDIRECCIONES_ACEPTADAS.has(u) ? `; aceptada por ${REDIRECCIONES_ACEPTADAS.get(u)}` : "; DOI"}` };
   if (r.estado !== "funciona" && REVISADOS_A_MANO.has(u)) return { estado: "bloquea", codigo: `${r.codigo}; abierto en el navegador por ${REVISADOS_A_MANO.get(u)}` };
   // Una conexión cortada puede ser pasajera: se reintenta dos veces
   if (r.estado === "roto" && /ECONNRESET|ETIMEDOUT|TimeoutError|ECONNREFUSED/.test(String(r.codigo)) && intento < 3) { await new Promise(x => setTimeout(x, 3000)); return probar(u, intento + 1); }

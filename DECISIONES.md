@@ -2083,10 +2083,32 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
   - **`claude.ai/`:** lleva a la página para iniciar sesión.
   - **`modelcontextprotocol.io/`:** lleva a la documentación vigente.
 
-  Como cualquier redirección cuenta como novedad, la corrida periódica va a abrir un Issue siempre, hasta que se decida qué hacer con estos casos (por ejemplo, ignorar `doi.org`).
+  Resuelto, ver "Ajuste: DOI y redirecciones aceptadas" abajo.
 - **Redirecciones para revisar:** los otros 6 pueden ser páginas reemplazadas:
   - las dos de la ayuda de Microsoft Copilot, que ahora llevan a Microsoft 365 Copilot, el mismo problema de "otro producto" de D-080;
   - `copilot.microsoft.com` a `copilot.com`;
   - Imagen a Gemini Image y SynthID, en DeepMind;
   - el artículo de Anthropic sobre agentes, que pasó de `engineering` a `research`.
+
+**Ajuste: DOI y redirecciones aceptadas (2026-11-26):**
+- **Qué cambió:** Lourdes reemplazó `scripts/verificar-enlaces.mjs`.
+  - **DOI:** los enlaces de `doi.org` cuentan como "funciona", porque los DOI redirigen siempre, por diseño, y APA 7 pide citarlos.
+  - **Lista `REDIRECCIONES_ACEPTADAS`:** reúne redirecciones ya revisadas, que también cuentan como "funciona". Cada una anota quién la revisó, cuándo y por qué.
+- **Redirecciones aceptadas:** con la aprobación de Lourdes, se sumaron dos, con la URL exacta que figura en el repo. No se agregó ninguna otra.
+  - `https://claude.ai/` (en `herramientas.json`): "Lourdes, 2026-11-26: lleva al inicio de sesión".
+  - `https://modelcontextprotocol.io/` (en `fuentes.json` y `modulo-18.json`): "Lourdes, 2026-11-26: lleva a su documentación".
+- **`npm run enlaces`:** 104 enlaces: 91 funcionan, 6 redirigen a otra página, 7 bloquean la lectura automática y 0 están rotos.
+  - **Pasaron a "funciona":** los 4 DOI y las 2 aceptadas, con la anotación "; DOI" o "; aceptada por…".
+  - **Siguen en "Redirigen a otra página":**
+
+    | Enlace en el taller | Lleva a |
+    |---|---|
+    | `support.microsoft.com/en-us/topic/learn-about-copilot-prompts-f6c3b467-…` | `support.microsoft.com/en-us/microsoft-365-copilot/get-started-writing-prompts-in-microsoft-365-copilot` |
+    | `support.microsoft.com/en-us/microsoft-copilot/` | `support.microsoft.com/en-us/microsoft-365-copilot/` |
+    | `deepmind.google/models/imagen/` | `deepmind.google/models/gemini-image/` |
+    | `deepmind.google/science/synthid/` | `deepmind.google/models/synthid/` |
+    | `www.anthropic.com/engineering/building-effective-agents` | `www.anthropic.com/research/building-effective-agents` |
+    | `copilot.microsoft.com/` | `copilot.com/` |
+
+- **Pendiente:** revisar esas 6, una por una. Mientras sigan, la corrida periódica va a abrir un Issue.
 
