@@ -59,7 +59,30 @@ jobs:
           npm run verificar:rapido
           echo "codigo=$?" >> "$GITHUB_OUTPUT"
 
-      # Paso 2: revisión con IA, solo si el cambio toca el piloto
+      # Paso 2a: datos que cambió el pull request, verificados en su fuente (un cambio reinicia la fecha del dato,
+      # así que la verificación periódica no los miraría hasta que venzan)
+      - name: Detectar datos cambiados
+        id: datos
+        run: |
+          node scripts/vencimientos.mjs --cambios-desde "origin/${{ github.base_ref }}"
+          echo "cantidad=$(node -p "require('./verificacion/vencimientos.json').revisar.length")" >> "$GITHUB_OUTPUT"
+      - name: Verificar en la fuente los datos cambiados (Claude)
+        if: steps.datos.outputs.cantidad != '0'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ github.token }}
+          prompt: |
+            Seguí al pie de la letra las instrucciones de revision-ia/prompt-fuentes.md.
+            La entrada es verificacion/vencimientos.json: revisá cada elemento de la lista "revisar".
+            Son datos que cambiaron en este pull request: verificá el valor nuevo.
+            Escribí el resultado, solo el JSON pedido, en verificacion/resultado-fuentes.json.
+            No modifiques ningún otro archivo.
+          claude_args: |
+            --allowedTools "Read,Glob,Grep,WebFetch,WebSearch,Write"
+            --max-turns 60
+
+      # Paso 2b: revisión de paráfrasis con IA, solo si el cambio toca el piloto
       - name: Juntar lo que cambió en el piloto
         id: cambios
         run: |

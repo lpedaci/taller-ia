@@ -58,19 +58,18 @@ const porId = Object.fromEntries((venc?.revisar || []).map(d => [d.id, d]));
 
 // Control: si había datos para revisar y el paso con IA no devolvió un resultado válido para cada uno, la corrida
 // NO es "sin novedades": es una falla. Se informa qué quedó sin revisar y el workflow termina en rojo.
-const archivoIA = modo === "periodico" ? "resultado-fuentes.json" : "resultado-parafrasis.json";
 let fallaIA = null;
-if (modo === "periodico" && (venc?.revisar || []).length) {
-  let r = null; try { r = await leerJSON(archivoIA); } catch { r = "invalido"; }
+if ((venc?.revisar || []).length) {
+  let r = null; try { r = await leerJSON("resultado-fuentes.json"); } catch { r = "invalido"; }
   const ids = new Set((r?.resultados || []).map(x => x.id));
   const faltan = venc.revisar.filter(d => !ids.has(d.id));
   if (r === null) fallaIA = { motivo: "el paso con IA no escribió su resultado", faltan };
   else if (r === "invalido") fallaIA = { motivo: "el resultado del paso con IA no es un JSON válido", faltan };
   else if (faltan.length) fallaIA = { motivo: `el paso con IA revisó ${venc.revisar.length - faltan.length} de ${venc.revisar.length} datos`, faltan };
 }
-if (modo === "pr" && process.env.HUBO_CAMBIOS_PILOTO === "1") {
-  try { if (!(await leerJSON(archivoIA))) fallaIA = { motivo: "el paso con IA no escribió su resultado", faltan: [] }; }
-  catch { fallaIA = { motivo: "el resultado del paso con IA no es un JSON válido", faltan: [] }; }
+if (!fallaIA && modo === "pr" && process.env.HUBO_CAMBIOS_PILOTO === "1") {
+  try { if (!(await leerJSON("resultado-parafrasis.json"))) fallaIA = { motivo: "la revisión de paráfrasis con IA no escribió su resultado", faltan: [] }; }
+  catch { fallaIA = { motivo: "el resultado de la revisión de paráfrasis no es un JSON válido", faltan: [] }; }
 }
 const grupo = v => fuentes.filter(r => r.veredicto === v);
 const cambios = grupo("cambio"), noVerif = grupo("no-verificable");
@@ -87,7 +86,7 @@ const propuestasP = (Array.isArray(parafrasis) ? parafrasis : [parafrasis]).filt
 
 // Chequeos automáticos, leídos de los informes que ya generan los scripts del taller
 const n = (t, re) => Number(t?.match(re)?.[1] ?? 0);
-const rotos = n(enlaces, /## Rotos \((\d+)\)/), bloquean = n(enlaces, /## Bloquean la lectura automática \((\d+)\)/), funcionan = n(enlaces, /## Funcionan \((\d+)\)/);
+const redirigen = n(enlaces, /## Redirigen a otra página \((\d+)\)/), rotos = n(enlaces, /## Rotos \((\d+)\)/), bloquean = n(enlaces, /## Bloquean la lectura automática \((\d+)\)/), funcionan = n(enlaces, /## Funcionan \((\d+)\)/);
 const hallazgosTextos = (textos?.match(/^- \*\*/gm) || []).length;
 
 const s = [];
@@ -96,16 +95,20 @@ const tablaDatos = lista => `| Dato | Qué dice el taller | Qué dice la fuente 
 const tablaParafrasis = lista => `| Fragmento | Criterio | Qué dice el taller | Qué dice la fuente | Sugerencia |\n|---|---|---|---|---|\n` +
   lista.map(h => `| \`${celda(h.fragmento)}\` | ${h.criterio} (puntaje ${h.puntaje}) | ${cita(h.evidencia_taller)} | ${cita(h.evidencia_fuente)} | ${celda(h.sugerencia)} |`).join("\n");
 
+const prueba = process.env.PRUEBA === "true";
+if (prueba) s.push(`> **Corrida de prueba.** No cuenta como verificación: no guarda fechas y no afecta a la próxima corrida periódica. Rama: \`${process.env.RAMA || "?"}\`.`);
 if (modo === "periodico") {
   s.push(`Corrida del ${hoy} sobre los Módulos 10 y 11. Revisados: ${fuentes.length} de ${venc?.total ?? "?"} datos (los vencidos, los "a verificar" y los que no tienen una fuente específica). Disparador: ${process.env.DISPARADOR || "manual"}.`);
 } else {
-  s.push(`Revisión automática del pull request #${arg("--pr") || "?"}, del ${hoy}. Fragmentos revisados: ${(Array.isArray(parafrasis) ? parafrasis : [parafrasis]).length}.`);
+  s.push(`Revisión automática del pull request #${arg("--pr") || "?"}, del ${hoy}. Datos verificados en la fuente: ${fuentes.length} (los que cambió este pull request). Fragmentos de texto revisados: ${(Array.isArray(parafrasis) ? parafrasis : [parafrasis]).length}.`);
 }
 
 if (fallaIA) s.push(`## ⚠️ La revisión con IA no se completó\n\nMotivo: ${fallaIA.motivo}. Esta corrida no sirve como verificación: los datos que siguen no se revisaron y vuelven a aparecer en la próxima.${fallaIA.faltan.length ? `\n\n${fallaIA.faltan.map(d => `- ${celda(d.que)} (${celda(d.motivo)})`).join("\n")}` : ""}${process.env.URL_CORRIDA ? `\n\nDetalle del error: [corrida en GitHub Actions](${process.env.URL_CORRIDA}).` : ""}`);
 
 // Para decidir: errores, desactualizados y mejoras
-const errores = [...cambios.filter(r => r.estado_sugerido !== porId[r.id]?.estado)], errP = hallazgosP.filter(h => h.gravedad === "error");
+// En un pull request, si el valor nuevo contradice la fuente, lo introdujo la edición: es un error, no un dato
+// que quedó viejo. En la corrida periódica, es error si cambia el estado (tiene/no tiene) y desactualizado si no.
+const errores = modo === "pr" ? [...cambios] : [...cambios.filter(r => r.estado_sugerido !== porId[r.id]?.estado)], errP = hallazgosP.filter(h => h.gravedad === "error");
 const desact = cambios.filter(r => !errores.includes(r)), desP = hallazgosP.filter(h => h.gravedad === "desactualizado");
 const mejP = hallazgosP.filter(h => h.gravedad === "mejora"), mejF = vigentes.filter(r => r.fuente_acorde === false);
 s.push(`## Para decidir`);
@@ -135,7 +138,7 @@ if (vigentes.length) s.push(`## Sin cambios (${vigentes.length})\n\n<details><su
 
 // Chequeos automáticos
 const chequeos = [];
-if (enlaces) chequeos.push(`- Enlaces: ${funcionan} funcionan, ${bloquean} bloquean la lectura automática, ${rotos} rotos.`);
+if (enlaces) chequeos.push(`- Enlaces: ${funcionan} funcionan, ${redirigen} redirigen a otra página (revisar si conviene actualizar la URL), ${bloquean} bloquean la lectura automática, ${rotos} rotos.`);
 if (textos) chequeos.push(`- Textos: ${hallazgosTextos} hallazgos.`);
 if (process.env.ACCESIBILIDAD) chequeos.push(`- Accesibilidad y design system: ${process.env.ACCESIBILIDAD === "0" ? "sin problemas" : "hay problemas, ver el informe adjunto a la corrida"}.`);
 if (chequeos.length) s.push(`## Chequeos automáticos\n\n${chequeos.join("\n")}${process.env.URL_CORRIDA ? `\n\nInformes completos: [corrida en GitHub Actions](${process.env.URL_CORRIDA}).` : ""}`);
@@ -144,12 +147,12 @@ if (chequeos.length) s.push(`## Chequeos automáticos\n\n${chequeos.join("\n")}$
 const registro = { ...previas };
 if (modo === "periodico") for (const r of vigentes) registro[r.id] = hoy;
 s.push(`---\nLa IA propone; Lourdes Pedaci decide. Nada se cambia en el repo sin su revisión. Para resolver un hallazgo, se corrige en un commit que menciona este ${modo === "pr" ? "pull request" : "Issue"}.`);
-if (modo === "periodico") s.push(`<!-- verificaciones: ${JSON.stringify(registro)} -->`);
+if (modo === "periodico" && !prueba) s.push(`<!-- verificaciones: ${JSON.stringify(registro)} -->`);
 
-const hayAlgo = !!fallaIA || confirmables.length || errores.length + errP.length + desact.length + desP.length + mejP.length + mejF.length + confirmadas.length + aMano.length + sinReemplazo.length + rotos + hallazgosTextos > 0 || (process.env.ACCESIBILIDAD && process.env.ACCESIBILIDAD !== "0");
+const hayAlgo = !!fallaIA || confirmables.length || redirigen || errores.length + errP.length + desact.length + desP.length + mejP.length + mejF.length + confirmadas.length + aMano.length + sinReemplazo.length + rotos + hallazgosTextos > 0 || (process.env.ACCESIBILIDAD && process.env.ACCESIBILIDAD !== "0");
 await mkdir(V, { recursive: true });
 await writeFile(join(V, "informe.md"), s.join("\n\n") + "\n", "utf8");
-await writeFile(join(V, "titulo.txt"), `Verificación | Taller - IA | ${hoy}`, "utf8");
+await writeFile(join(V, "titulo.txt"), `${prueba ? "[Prueba] " : ""}Verificación | Taller - IA | ${hoy}`, "utf8");
 // Aun sin novedades, si hubo datos vigentes conviene abrir el Issue: es el registro de que se verificaron
 if (!hayAlgo && !vigentes.length) await writeFile(join(V, "sin-novedades"), "", "utf8");
 if (fallaIA) await writeFile(join(V, "falla-ia"), fallaIA.motivo, "utf8");

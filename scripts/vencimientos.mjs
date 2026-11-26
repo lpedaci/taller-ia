@@ -15,6 +15,12 @@
    que los respalde por sí sola (sin URL, o con la portada de un sitio): para esos, el paso con IA busca una
    fuente específica que proponer.
 
+   Modos especiales:
+   --cambios-desde <ref>   Solo los datos que cambiaron respecto de esa rama o commit (revisión de un pull request).
+                           Hace falta porque un cambio reinicia la fecha del dato: sin esto, un dato recién editado
+                           no se verificaría hasta que venza.
+   --todos                 Todos los datos, vencidos o no (revisión completa y pruebas de validación).
+
    Alcance del piloto: Módulo 11 (herramientas.json, funciones de los asistentes) y Módulo 10 (marco-legal.json).
    Resultado: verificacion/vencimientos.md (para leer) y verificacion/vencimientos.json (para el paso con IA). */
 import { readFile, writeFile, mkdir } from "node:fs/promises";
@@ -99,13 +105,25 @@ const datos = [];
     const p = json.paises.find(x => x.pais === r.clave); if (!p) continue;
     datos.push({
       id: `marco-legal/${p.pais.toLowerCase()}`, tipo: "ley", modulo: 10,
-      que: `${p.pais}: ${p.norma}`, estado: p.verificado ? "verificado" : "a-verificar", afirma: p.resumen, url: p.url,
+      que: `${p.pais}: ${p.norma}`, estado: p.verificado ? "verificado" : "a-verificar", afirma: `${p.norma} (${p.anio}). ${p.resumen}`, url: p.url,
       cambio: Math.max(...fechas.slice(r.desde - 1, r.hasta + 1)), archivo, lineas: `${r.desde}-${r.hasta + 1}`
     });
   }
   const leidas = datos.filter(d => d.tipo === "ley").length;
   if (leidas !== json.paises.length) throw new Error(`${archivo}: se leyeron ${leidas} leyes de ${json.paises.length}. Revisá el formato del archivo (indentación o saltos de línea).`);
 }
+
+/* Huella de cada dato: si cambia cualquiera de estos campos, el dato cambió */
+const huella = d => JSON.stringify([d.estado, d.afirma, d.url]);
+async function huellasEn(ref) {
+  const leerEn = f => { try { return JSON.parse(execFileSync("git", ["show", `${ref}:${f}`], { cwd: RAIZ, encoding: "utf8", maxBuffer: 32 * 1024 * 1024 })); } catch { return null; } };
+  const h = leerEn("content/herramientas.json"), m = leerEn("content/marco-legal.json"), mapa = {};
+  for (const x of h?.herramientas || []) for (const [k, v] of Object.entries(x.funciones || {})) mapa[`herramientas/${x.id}/${k}`] = huella({ estado: v.estado, afirma: v.detalle, url: v.url });
+  for (const p of m?.paises || []) mapa[`marco-legal/${p.pais.toLowerCase()}`] = huella({ estado: p.verificado ? "verificado" : "a-verificar", afirma: `${p.norma} (${p.anio}). ${p.resumen}`, url: p.url });
+  return mapa;
+}
+const desde = arg("--cambios-desde"), todos = process.argv.includes("--todos");
+const antes = desde ? await huellasEn(desde) : null;
 
 /* Aplicar la regla */
 const fecha = ms => new Date(ms).toISOString().slice(0, 10);
@@ -124,14 +142,22 @@ for (const d of datos) {
     : general ? (d.url ? "Fuente demasiado general: portada del sitio" : "Sin fuente") : null;
   delete d.cambio;
 }
-const revisar = datos.filter(d => d.motivo);
-const proximos = datos.filter(d => !d.motivo && d.diasRestantes <= 7);
+let revisar = datos.filter(d => d.motivo);
+let proximos = datos.filter(d => !d.motivo && d.diasRestantes <= 7);
+if (antes) {
+  // Revisión de un pull request: solo lo que cambió, sin importar el vencimiento
+  revisar = datos.filter(d => antes[d.id] !== huella(d)).map(d => ({ ...d, motivo: antes[d.id] ? "Cambió en este pull request" : "Dato nuevo en este pull request" }));
+  proximos = [];
+} else if (todos) {
+  revisar = datos.map(d => ({ ...d, motivo: d.motivo || "Revisión completa" }));
+  proximos = [];
+}
 
 /* Salida */
 const fila = d => `| ${d.que} | ${d.fechaCambio} | ${d.fechaVerificacion || "sin registro"} | ${d.vence} | ${d.motivo || `vence en ${d.diasRestantes} ${d.diasRestantes === 1 ? "día" : "días"}`} |`;
 const tabla = lista => lista.length ? `| Dato | Último cambio | Última verificación | Vence | Situación |\n|---|---|---|---|---|\n${lista.map(fila).join("\n")}` : "Ninguno.";
 await mkdir(join(RAIZ, "verificacion"), { recursive: true });
-await writeFile(join(RAIZ, "verificacion", "vencimientos.json"), JSON.stringify({ hoy: fecha(hoy.getTime()), reglas: REGLAS, revisar, proximos, total: datos.length }, null, 2) + "\n", "utf8");
+await writeFile(join(RAIZ, "verificacion", "vencimientos.json"), JSON.stringify({ hoy: fecha(hoy.getTime()), modo: antes ? "cambios" : todos ? "completa" : "vencimientos", reglas: REGLAS, revisar, proximos, total: datos.length }, null, 2) + "\n", "utf8");
 await writeFile(join(RAIZ, "verificacion", "vencimientos.md"), `# Datos para verificar | Taller - IA\n\nCalculado el ${fecha(hoy.getTime())} sobre ${datos.length} datos de los Módulos 10 y 11.\n\nReglas: ${Object.entries(REGLAS).map(([k, r]) => `${k}, cada ${r.dias} días`).join("; ")}.\n\n## Para revisar ahora (${revisar.length})\n\n${tabla(revisar)}\n\n## Vencen en los próximos 7 días (${proximos.length})\n\n${tabla(proximos)}\n`, "utf8");
-console.log(`${datos.length} datos: ${revisar.length} para revisar ahora, ${proximos.length} vencen en 7 días.`);
+console.log(`${datos.length} datos${antes ? ` (solo los que cambiaron desde ${desde})` : todos ? " (revisión completa)" : ""}: ${revisar.length} para revisar ahora, ${proximos.length} vencen en 7 días.`);
 revisar.forEach(d => console.log(`- ${d.que} (${d.motivo})`));

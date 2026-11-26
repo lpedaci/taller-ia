@@ -87,6 +87,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-079 | 2026-11-26 | Verificación automática de fuentes y de cambios: piloto en los Módulos 10 y 11 | Vigente |
 | D-080 | 2026-11-26 | Ajustes del sistema de verificación tras la primera corrida (Issue #2) | Vigente |
 | D-081 | 2026-11-26 | Fuentes de ChatGPT aceptadas del Issue #2; Copilot rechazada | Vigente |
+| D-082 | 2026-11-26 | Verificación: datos cambiados en cada pull request, modo de prueba, revisión completa y enlaces que redirigen | Vigente |
 
 ---
 
@@ -2038,4 +2039,76 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
   También confirma que el plan Free tiene acceso, aunque limitado.
 - **Decisión:** se cita directamente `https://help.openai.com/es-419/articles/20001274-chatgpt-voice`, para no depender de la redirección. `detalle` y `estado` no cambian.
 - **Dato para la próxima revisión, que no cambia el del taller:** según la misma página, los modos de voz Avanzado y Estándar dejan de estar disponibles el 11 de diciembre de 2026, y quedará solo Live. El taller no nombra esos modos, así que el dato sigue siendo correcto.
+
+## D-082 | 2026-11-26 | Verificación: datos cambiados en cada pull request, modo de prueba, revisión completa y enlaces que redirigen
+
+**Solicitado:** Lourdes reemplazó cinco archivos con mejoras de validación: los dos workflows, `scripts/vencimientos.mjs`, `scripts/armar-informe.mjs` y `scripts/verificar-enlaces.mjs`. Pidió correr `npm run enlaces`, registrar la decisión y subir los cambios en una rama desde `main`, sin abrir el pull request. No se modificó el contenido de esos archivos.
+
+**Decisión y motivo:**
+- **La revisión de cambios verifica en la fuente los datos que cambia el pull request.**
+  - **El problema:** la fecha de cambio de cada dato sale de git blame (D-079), así que editar un dato reinicia su plazo. Un valor recién cambiado, aunque estuviera mal, no se habría verificado hasta 30 o 180 días después.
+  - **En `vencimientos.mjs`:** el modo nuevo `--cambios-desde <rama>` compara cada dato con su versión en la rama base (estado, texto y URL) y devuelve solo los que cambiaron o son nuevos, sin importar el vencimiento.
+  - **En `revision-cambios.yml`:** un paso nuevo usa ese modo contra la rama base. Si hay datos cambiados, Claude los verifica con `prompt-fuentes.md`, igual que en la corrida periódica.
+  - **En `armar-informe.mjs`:** en un pull request, si el valor nuevo contradice la fuente, se informa como error y no como desactualizado, porque lo introdujo la edición.
+  - **Sin respuesta de la IA:** si la IA no devuelve el resultado de esos datos, la revisión del pull request también termina en rojo.
+- **Modo de prueba y revisión completa en la verificación periódica.** Al correrla a mano desde Actions se puede elegir la rama y dos opciones:
+  - **Revisión completa:** usa `vencimientos.mjs --todos` para revisar los 46 datos, no solo los vencidos, con más turnos para la IA (150 en lugar de 60).
+  - **Corrida de prueba:** para validar en ramas. No guarda fechas de verificación, así que no afecta a la próxima corrida periódica. El Issue sale con "[Prueba]" en el título, con un aviso y la rama, y con la etiqueta `verificacion-prueba`. Como la próxima corrida lee el último Issue con la etiqueta `verificacion`, una prueba nunca se toma como verificación real.
+- **El año de cada ley entra en lo que se verifica.** Lo que se verifica de cada ley ahora es "norma (año). resumen", no solo el resumen. Así la IA también comprueba el año, y un cambio de año cuenta como cambio del dato en el pull request.
+- **Aviso de enlaces que redirigen a otra página.**
+  - **El caso:** el del modo de voz de la D-081. El enlace respondía bien, pero llevaba a otro artículo.
+  - **En `verificar-enlaces.mjs`:** una categoría nueva, "Redirigen a otra página". Para decidir si es la misma página o no, ignora el idioma en la dirección, la barra final y el nombre que sigue al número de un artículo.
+  - **En el informe:** `armar-informe.mjs` lo suma a los chequeos automáticos, y cuenta como novedad.
+
+**Archivos afectados:** los cinco de arriba y este registro.
+
+**Verificación realizada:**
+- **`npm run enlaces`:** 104 enlaces: 85 funcionan, 12 redirigen a otra página, 7 bloquean la lectura automática y 0 están rotos. La sección "Redirigen a otra página" aparece en `verificacion/enlaces.md`.
+- **`node scripts/vencimientos.mjs`:**
+
+  | Modo | Resultado |
+  |---|---|
+  | Sin opciones | 46 datos, 2 para revisar (igual que en D-081) |
+  | `--todos` | 46 para revisar |
+  | `--cambios-desde origin/main` | 0 |
+  | `--cambios-desde c3fac68` | 1: el modo de voz, que cambió en el segundo commit de D-081 |
+  | `--cambios-desde a4639ee` | 4: las cuatro URL de D-081 |
+
+- **Año de cada ley:** se incluye en lo que se verifica. Por ejemplo, "Ley General de Protección de Datos Personales (LGPD), Ley 13.709 (2018). Es la ley general…".
+- **Lo que no se probó acá:** los workflows, con el paso nuevo de la revisión de cambios y las dos opciones de la corrida manual. Se ven recién en GitHub Actions.
+
+**Pendientes o riesgos:**
+- **Redirecciones que no hay que corregir:** de los 12 enlaces que redirigen, 6 son esperables:
+  - **Los cuatro DOI** (`doi.org/10.48550/arXiv…` a `arxiv.org`): APA 7 pide citar el DOI.
+  - **`claude.ai/`:** lleva a la página para iniciar sesión.
+  - **`modelcontextprotocol.io/`:** lleva a la documentación vigente.
+
+  Resuelto, ver "Ajuste: DOI y redirecciones aceptadas" abajo.
+- **Redirecciones para revisar:** los otros 6 pueden ser páginas reemplazadas:
+  - las dos de la ayuda de Microsoft Copilot, que ahora llevan a Microsoft 365 Copilot, el mismo problema de "otro producto" de D-080;
+  - `copilot.microsoft.com` a `copilot.com`;
+  - Imagen a Gemini Image y SynthID, en DeepMind;
+  - el artículo de Anthropic sobre agentes, que pasó de `engineering` a `research`.
+
+**Ajuste: DOI y redirecciones aceptadas (2026-11-26):**
+- **Qué cambió:** Lourdes reemplazó `scripts/verificar-enlaces.mjs`.
+  - **DOI:** los enlaces de `doi.org` cuentan como "funciona", porque los DOI redirigen siempre, por diseño, y APA 7 pide citarlos.
+  - **Lista `REDIRECCIONES_ACEPTADAS`:** reúne redirecciones ya revisadas, que también cuentan como "funciona". Cada una anota quién la revisó, cuándo y por qué.
+- **Redirecciones aceptadas:** con la aprobación de Lourdes, se sumaron dos, con la URL exacta que figura en el repo. No se agregó ninguna otra.
+  - `https://claude.ai/` (en `herramientas.json`): "Lourdes, 2026-11-26: lleva al inicio de sesión".
+  - `https://modelcontextprotocol.io/` (en `fuentes.json` y `modulo-18.json`): "Lourdes, 2026-11-26: lleva a su documentación".
+- **`npm run enlaces`:** 104 enlaces: 91 funcionan, 6 redirigen a otra página, 7 bloquean la lectura automática y 0 están rotos.
+  - **Pasaron a "funciona":** los 4 DOI y las 2 aceptadas, con la anotación "; DOI" o "; aceptada por…".
+  - **Siguen en "Redirigen a otra página":**
+
+    | Enlace en el taller | Lleva a |
+    |---|---|
+    | `support.microsoft.com/en-us/topic/learn-about-copilot-prompts-f6c3b467-…` | `support.microsoft.com/en-us/microsoft-365-copilot/get-started-writing-prompts-in-microsoft-365-copilot` |
+    | `support.microsoft.com/en-us/microsoft-copilot/` | `support.microsoft.com/en-us/microsoft-365-copilot/` |
+    | `deepmind.google/models/imagen/` | `deepmind.google/models/gemini-image/` |
+    | `deepmind.google/science/synthid/` | `deepmind.google/models/synthid/` |
+    | `www.anthropic.com/engineering/building-effective-agents` | `www.anthropic.com/research/building-effective-agents` |
+    | `copilot.microsoft.com/` | `copilot.com/` |
+
+- **Pendiente:** revisar esas 6, una por una. Mientras sigan, la corrida periódica va a abrir un Issue.
 
