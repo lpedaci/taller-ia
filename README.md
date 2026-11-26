@@ -4,9 +4,67 @@ Entorno de aprendizaje para usar la inteligencia artificial generativa con crite
 
 Es un sitio de HTML, CSS y JavaScript sin paso de compilación. Funciona publicado tal cual en GitHub Pages: no hay servidor, cuentas ni analítica. El progreso de cada persona se guarda en su navegador.
 
+El contenido se mantiene al día con un **sistema de verificación asistido por IA**: revisa las fuentes y la redacción, propone cómo corregirlas y deja cada decisión a una persona. Ver [Verificación automática con IA](#verificación-automática-con-ia).
+
 ## Estado del proyecto
 
 Las 10 etapas del brief están terminadas: 21 módulos con lección, actividades, nueve animaciones propias, glosario, Biblioteca, diario y guía para facilitadores. Lo que queda pendiente de verificar a mano está al final de [DECISIONES.md](DECISIONES.md) (D-070). El entorno muestra el progreso real de cada persona; con `?demo=1` muestra datos de ejemplo para revisar el diseño. La lección de prueba, con un ejemplo de cada tipo de bloque, está en `#/modulo/prueba`. El registro de pedidos y decisiones está en [DECISIONES.md](DECISIONES.md).
+
+## Verificación automática con IA
+
+Un curso sobre IA envejece rápido: las herramientas cambian funciones, las leyes se reforman y las páginas de ayuda se mudan. Este repositorio tiene un sistema que lo revisa solo, en piloto sobre los Módulos 10 (marco legal) y 11 (asistentes): **46 datos verificables**, 40 funciones de asistentes y 6 leyes de la región.
+
+**La regla central: la IA propone, una persona decide.** Los workflows solo pueden leer el repositorio y escribir informes. No publican, no corrigen y no fusionan.
+
+### Qué revisa y quién lo revisa
+
+| Lo revisa | Qué | Por qué así |
+|---|---|---|
+| Scripts, sin IA | Enlaces rotos o que redirigen a otra página, datos vencidos, ortografía, precios sin fecha, accesibilidad y el armado del informe | Es regla: gratis, rápido y siempre igual |
+| IA (Claude) | Si la fuente oficial sigue diciendo lo que afirma el taller, si una paráfrasis es fiel y natural, y qué fuente oficial sirve para reparar un dato | Es criterio: necesita leer y comparar |
+
+Cada veredicto de la IA trae la **frase exacta de la fuente**, leída en esa corrida. Si una fuente no carga, el dato va a revisión manual: el sistema nunca completa de memoria.
+
+### Cuándo corre
+
+| Disparador | Qué hace | Dónde deja el informe |
+|---|---|---|
+| Los días 1, 11 y 21 de cada mes (`verificacion-fuentes.yml`) | Revisa enlaces y textos, calcula qué datos vencieron (30 días las herramientas, 180 las leyes) y verifica solo esos en su fuente oficial | Un Issue con la etiqueta `verificacion` |
+| Cada pull request que toca contenido, estilos o código (`revision-cambios.yml`) | Corre la verificación completa del taller, verifica en la fuente los datos que cambian y revisa la paráfrasis con la rúbrica | Un comentario en el pull request |
+
+Las fechas no se escriben a mano: cuándo cambió un dato sale del historial de commits, y cuándo se verificó queda guardado en el último Issue.
+
+### Cómo se usa
+
+1. **Leer el informe.** Arriba va lo que hay que decidir, ordenado por gravedad; después las fuentes propuestas, con la referencia en APA 7 lista para copiar; lo que está bien queda plegado.
+2. **Comprobar lo dudoso** en la fuente, sobre todo las fuentes propuestas: que hablen del mismo producto y del mismo plan que el taller.
+3. **Corregir en un pull request** que mencione el informe. El propio pull request vuelve a revisar los datos que cambian.
+
+Para correrlo a mano: **Actions > Verificación de fuentes > Run workflow**. Se puede elegir la rama y marcar **"Revisar los 46 datos"** o **"Corrida de prueba"**, que abre un Issue "[Prueba]" sin guardar fechas.
+
+### Cómo se validó
+
+Con una **prueba a ciegas** de 21 casos sembrados en una rama aparte (pull request #6, cerrado sin fusionar): 19 errores en datos, textos y ortografía, y 2 controles correctos que no debían marcarse.
+
+| Resultado | |
+|---|---|
+| Errores detectados | 17 de 19 |
+| Controles sin falsa alarma | 2 de 2 |
+| Problemas reales encontrados que no se habían sembrado | 2 |
+| Datos cambiados en el primer uso real (#8), sin ningún error falso | 18 |
+
+Cada falla de la prueba se convirtió en un ajuste de la versión 3 (D-083).
+
+### Archivos y costo
+
+- `.github/workflows/`: los dos workflows.
+- `scripts/vencimientos.mjs`: qué datos revisar (`--todos` para todos, `--cambios-desde <rama>` para los de un pull request).
+- `scripts/armar-informe.mjs`: arma el informe y detecta si la IA no completó la revisión.
+- `revision-ia/`: la rúbrica, los dos prompts y la plantilla del informe.
+
+No tiene costo adicional: GitHub Actions es gratis en repositorios públicos, y la IA usa una suscripción de Claude a través del secret `CLAUDE_CODE_OAUTH_TOKEN`. GitHub pausa los workflows programados después de 60 días sin actividad en el repositorio: si pasa, se reactivan desde **Actions**.
+
+Las decisiones están registradas en [DECISIONES.md](DECISIONES.md), de la D-079 a la D-084.
 
 ## Ver el taller en tu computadora
 
@@ -35,8 +93,8 @@ Antes de subir un cambio a `main`, corré lo que corresponda:
 | Comando | Qué revisa | Cuándo |
 |---|---|---|
 | `npm run auditar` | Que todo respete el design system (unos minutos) | Siempre que cambies algo visual |
-| `npm run textos` | Rayas, puntos medios, texto en inglés sin traducir, citas, signos sin par, palabras repetidas y la ortografía que se puede revisar con reglas (tildes diacríticas, homófonos, "de el") | Siempre que cambies un texto |
-| `npm run enlaces` | Que todos los enlaces externos funcionen | Al sumar fuentes y cada tanto, porque los sitios cambian |
+| `npm run textos` | Rayas, puntos medios, texto en inglés sin traducir, citas, signos sin par, palabras repetidas, precios sin la nota con fecha y la ortografía que se puede revisar con reglas (tildes diacríticas, homófonos, "de el") | Siempre que cambies un texto |
+| `npm run enlaces` | Que todos los enlaces externos funcionen, y cuáles redirigen a otra página (la original puede haberse reemplazado) | Al sumar fuentes. La verificación automática lo corre los días 1, 11 y 21 |
 | `npm run contraste` | Contraste alto en todas las pantallas y que el progreso se mantenga al cerrar el navegador | Antes de publicar una versión |
 | `npm run letra` | Que el sitio funcione con la letra del navegador al doble: que el texto crezca, sin scroll horizontal ni texto cortado | Siempre que cambies un componente o un layout |
 | `npm run verificar` | Todo lo anterior de accesibilidad y diseño, con capturas en 6 anchos y 2 modos | Antes de publicar una versión |
@@ -120,7 +178,7 @@ El contenido está separado del código, en la carpeta `content/`:
 | `glosario.json` | Los 40 términos del glosario, con su original en inglés, una definición propia y el módulo donde se explican |
 | `fuentes.json` | La Biblioteca. Se arma con `node scripts/generar-fuentes.mjs` a partir de "Para profundizar" de cada módulo; el "por qué leerlo" se escribe a mano |
 | `facilitadores.json` | La guía para facilitadores, módulo por módulo (los objetivos salen de cada lección) |
-| `herramientas.json` | Funciones de ChatGPT, Claude, Gemini y Copilot, con fecha y la URL de la ayuda oficial donde se confirmó cada dato. Es lo primero que hay que actualizar cuando cambian las herramientas |
+| `herramientas.json` | Funciones de ChatGPT, Claude, Gemini y Copilot, con la URL de la ayuda oficial donde se confirmó cada dato. La fecha de cada dato sale del historial de commits, y la verificación automática avisa cuando vence |
 | `marco-legal.json` | Leyes de protección de datos de otros países de la región. Solo se muestran las que tienen `"verificado": true` |
 | `modulo-XX.json` | La lección de cada módulo (ver abajo). `modulo-prueba.json` muestra todos los tipos de bloque |
 
@@ -172,5 +230,7 @@ content/            contenido en JSON
 assets/svg/         ícono del sitio
 assets/video/       animaciones grabadas en MP4 con subtítulos, para facilitadores
 scripts/            servidor local, verificación y grabación de animaciones (solo desarrollo)
+revision-ia/        rúbrica, prompts y plantilla del informe de la verificación con IA
+.github/workflows/  verificación periódica de fuentes y revisión de cada pull request
 referencia/         prototipo aprobado y design system (no forma parte del taller)
 ```
