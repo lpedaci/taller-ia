@@ -2002,7 +2002,7 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
 |---|---|---|
 | Subir archivos | `https://chatgpt.com/` | `https://help.openai.com/es-419/articles/8555545-file-uploads-faq` |
 | Búsqueda web | `https://chatgpt.com/` | `https://help.openai.com/es-419/articles/9237897-chatgpt-search` |
-| Modo de voz | `https://chatgpt.com/` | `https://help.openai.com/es-419/articles/8400625-voice-mode-faq` |
+| Modo de voz | `https://chatgpt.com/` | `https://help.openai.com/es-419/articles/20001274-chatgpt-voice` (ver abajo) |
 | Entrenamiento con tus conversaciones | `https://chatgpt.com/` | `https://help.openai.com/es-419/articles/7730893-data-controls-faq` |
 
 - **Motivo:** la fuente era la portada de ChatGPT, que no respalda el dato por sí sola. En el modo de voz, además, la portada ni siquiera lo menciona. Cada propuesta es la página específica de la ayuda oficial, la IA la leyó en la corrida y trae la frase que respalda el dato.
@@ -2025,7 +2025,17 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
 - **Las cuatro URL responden:** devuelven 200. Tres redirigen al mismo artículo con otro nombre en la dirección (por ejemplo, `8555545-uploading-files-and-audio-to-chatgpt`).
 
 **Pendientes o riesgos:**
-- **Modo de voz:** `8400625-voice-mode-faq` redirige a otro artículo, `20001274-chatgpt-voice`. Puede ser que OpenAI haya reemplazado la página. Se usó la URL propuesta, como se pidió. Conviene revisar si la página nueva sigue diciendo lo mismo y, si es así, citar esa directamente.
+- **Modo de voz:** resuelto en un segundo commit, ver "Modo de voz: URL actualizada" abajo.
 - **Fechas de verificación:** con estos cambios, las cuatro funciones toman como fecha de cambio la de este commit (git blame), así que vencen en 30 días.
 - **Copilot e imágenes:** siguen en la lista de la próxima corrida.
+
+**Modo de voz: URL actualizada (2026-11-26):**
+- **Qué pasaba:** la URL que propuso el Issue, `https://help.openai.com/es-419/articles/8400625-voice-mode-faq`, redirigía a otro artículo, "ChatGPT Voz" (`20001274-chatgpt-voice`). OpenAI reemplazó la página de preguntas frecuentes por esa.
+- **Qué dice la página nueva:** se leyó en `es-419` y respalda el dato "Tiene un modo de voz que se abre desde el ícono de voz del chat":
+  - en la web: "Selecciona el ícono de Voz en el cuadro del prompt.";
+  - en iOS y Android: "Selecciona el ícono de Voz en la barra de mensajes.".
+
+  También confirma que el plan Free tiene acceso, aunque limitado.
+- **Decisión:** se cita directamente `https://help.openai.com/es-419/articles/20001274-chatgpt-voice`, para no depender de la redirección. `detalle` y `estado` no cambian.
+- **Dato para la próxima revisión, que no cambia el del taller:** según la misma página, los modos de voz Avanzado y Estándar dejan de estar disponibles el 11 de diciembre de 2026, y quedará solo Live. El taller no nombra esos modos, así que el dato sigue siendo correcto.
 

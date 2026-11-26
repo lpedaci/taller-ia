@@ -60,7 +60,7 @@
         "voz": {
           "estado": "si",
           "detalle": "Tiene un modo de voz que se abre desde el ícono de voz del chat. Idiomas y planes: consultá la ayuda oficial.",
-          "url": "https://help.openai.com/es-419/articles/8400625-voice-mode-faq"
+          "url": "https://help.openai.com/es-419/articles/20001274-chatgpt-voice"
         },
         "privacidad": {
           "estado": "si",
