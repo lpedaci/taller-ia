@@ -276,7 +276,7 @@
             {
               "titulo": "Modelos de imagen de Google DeepMind",
               "apa": "Google DeepMind. (s.f.). *Gemini Image*.",
-              "url": "https://deepmind.google/models/imagen/",
+              "url": "https://deepmind.google/models/gemini-image/",
               "idioma": "en",
               "nivel": "Inicial",
               "tipo": "documentacion"
@@ -300,7 +300,7 @@
             {
               "titulo": "SynthID, marcas de agua invisibles",
               "apa": "Google DeepMind. (s.f.). *SynthID*.",
-              "url": "https://deepmind.google/science/synthid/",
+              "url": "https://deepmind.google/models/synthid/",
               "idioma": "en",
               "nivel": "Profundización",
               "tipo": "documentacion"

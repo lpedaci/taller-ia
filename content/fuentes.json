@@ -157,16 +157,16 @@
     },
     {
       "titulo": "Cómo escribir prompts en Copilot",
-      "apa": "Microsoft. (s.f.). *Get started writing prompts in Microsoft Copilot*. Microsoft Support.",
-      "url": "https://support.microsoft.com/en-us/topic/learn-about-copilot-prompts-f6c3b467-f07c-4db1-ae54-ffac96184dd5",
-      "idioma": "en",
+      "apa": "Microsoft. (s.f.). *Explorar Microsoft Copilot Chat*. Soporte técnico de Microsoft.",
+      "url": "https://support.microsoft.com/es-es/microsoft-365-copilot/get-started-with-microsoft-365-copilot-chat",
+      "idioma": "es",
       "nivel": "Inicial",
       "tipo": "documentación",
       "modulos": [
         5,
         13
       ],
-      "porque": "Cómo propone Microsoft escribir prompts: objetivo, contexto, fuentes y expectativas.",
+      "porque": "Cómo propone Microsoft escribir prompts: objetivo, contexto, detalles y datos. El artículo aclara que vale también para el Copilot gratuito.",
       "bloques": [
         2,
         4
@@ -447,9 +447,9 @@
     },
     {
       "titulo": "Centro de ayuda de Claude",
-      "apa": "Anthropic. (s.f.). *Claude Help Center*.",
-      "url": "https://support.claude.com/en/",
-      "idioma": "en",
+      "apa": "Anthropic. (s.f.). *Centro de ayuda de Anthropic*.",
+      "url": "https://support.claude.com/es/",
+      "idioma": "es",
       "nivel": "Inicial",
       "tipo": "documentación",
       "modulos": [
@@ -477,9 +477,9 @@
     },
     {
       "titulo": "Ayuda de Microsoft Copilot",
-      "apa": "Microsoft. (s.f.). *Get help with Copilot*. Microsoft Support.",
-      "url": "https://support.microsoft.com/en-us/microsoft-copilot/",
-      "idioma": "en",
+      "apa": "Microsoft. (s.f.). *Ayuda y aprendizaje de Microsoft Copilot*. Soporte técnico de Microsoft.",
+      "url": "https://support.microsoft.com/es-es/microsoft-copilot/",
+      "idioma": "es",
       "nivel": "Inicial",
       "tipo": "documentación",
       "modulos": [
@@ -523,9 +523,9 @@
     },
     {
       "titulo": "Modo de voz de Claude",
-      "apa": "Anthropic. (s.f.). *Use voice mode*. Claude Help Center.",
-      "url": "https://support.claude.com/en/articles/11101966-use-voice-mode",
-      "idioma": "en",
+      "apa": "Anthropic. (s.f.). *Usar modo de voz*. Centro de ayuda de Anthropic.",
+      "url": "https://support.claude.com/es/articles/11101966-usar-modo-de-voz",
+      "idioma": "es",
       "nivel": "Inicial",
       "tipo": "documentación",
       "modulos": [
@@ -659,7 +659,7 @@
     {
       "titulo": "Modelos de imagen de Google DeepMind",
       "apa": "Google DeepMind. (s.f.). *Gemini Image*.",
-      "url": "https://deepmind.google/models/imagen/",
+      "url": "https://deepmind.google/models/gemini-image/",
       "idioma": "en",
       "nivel": "Inicial",
       "tipo": "documentación",
@@ -705,7 +705,7 @@
     {
       "titulo": "SynthID, marcas de agua invisibles",
       "apa": "Google DeepMind. (s.f.). *SynthID*.",
-      "url": "https://deepmind.google/science/synthid/",
+      "url": "https://deepmind.google/models/synthid/",
       "idioma": "en",
       "nivel": "Profundización",
       "tipo": "documentación",
@@ -781,7 +781,7 @@
     {
       "titulo": "Cómo construir agentes efectivos, de Anthropic",
       "apa": "Anthropic. (2024, 19 de diciembre). *Building effective agents*. Anthropic Engineering.",
-      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "url": "https://www.anthropic.com/research/building-effective-agents",
       "idioma": "en",
       "nivel": "Profundización",
       "tipo": "artículo",

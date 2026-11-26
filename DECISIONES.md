@@ -89,6 +89,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-081 | 2026-11-26 | Fuentes de ChatGPT aceptadas del Issue #2; Copilot rechazada | Vigente |
 | D-082 | 2026-11-26 | Verificación: datos cambiados en cada pull request, modo de prueba, revisión completa y enlaces que redirigen | Vigente |
 | D-083 | 2026-11-26 | Ajustes de la versión 3 del sistema de verificación, tras la validación a ciegas del PR #6 | Vigente |
+| D-084 | 2026-11-26 | Hallazgos reales de la verificación aplicados al contenido: Brasil, Claude, Microsoft Copilot y mudanzas | Vigente |
 
 ---
 
@@ -2150,5 +2151,72 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
 
 **Pendientes o riesgos:**
 - **Repetir la prueba:** conviene volver a sembrar los mismos casos para medir la versión 3, sobre todo Chile, la búsqueda web de ChatGPT y las versiones en español.
-- **Hallazgos reales del PR #6:** la reorganización de la ANPD de Brasil y la ayuda de Claude en español siguen sin aplicarse al contenido. Ese pull request se cerró sin fusionar.
+- **Hallazgos reales del PR #6:** la reorganización de la ANPD de Brasil y la ayuda de Claude en español siguen sin aplicarse al contenido. Ese pull request se cerró sin fusionar. Resuelto en D-084.
+
+## D-084 | 2026-11-26 | Hallazgos reales de la verificación aplicados al contenido: Brasil, Claude, Microsoft Copilot y mudanzas
+
+**Solicitado:** aplicar al contenido los hallazgos reales del sistema de verificación: los dos que no se habían sembrado en la validación del PR #6 (D-083) y las seis redirecciones que quedaron pendientes en D-082. Primero se investigaron Brasil y Microsoft Copilot sin editar nada, y Lourdes decidió qué hacer con cada uno. Después se aplicaron los cambios, se regeneró la Biblioteca y se corrieron los chequeos.
+
+**Decisión y motivo:**
+- **Brasil (`marco-legal.json`).**
+  - **La norma:** la Lei 15.352, del 25 de febrero de 2026, viene de la Medida Provisória 1.317 de 2025. Se leyó en planalto.gov.br.
+    - **Art. 1º:** reescribe el art. 55-A de la LGPD. Ahora dice que se crea la "Agência Nacional de Proteção de Dados (ANPD), autarquia de natureza especial", con autonomía funcional, técnica, decisoria, administrativa y financiera.
+    - **Art. 8º:** suma la ANPD a la lista de agencias reguladoras de la Lei 13.848.
+    - **Art. 15:** la nueva ANPD sucede a la antigua Autoridade Nacional.
+  - **El resumen nuevo**, con la redacción de Lourdes: "Es la ley general de datos personales de Brasil. Su cumplimiento lo controla la Agencia Nacional de Protección de Datos (ANPD), que en 2026 pasó a ser una agencia reguladora con autonomía propia. Tuvo otras modificaciones posteriores."
+  - **La URL no cambia:** el texto consolidado de la LGPD en planalto ya incluye el art. 55-A nuevo.
+  - **Errata de planalto:** en el texto consolidado, una de las notas del art. 55-A dice "Redação dada pela Lei nº 15.452, de 2026". Las demás notas de la misma reforma dicen 15.352, que es el número correcto.
+- **Claude: ayuda en español.**
+  - **Los enlaces:** los enlaces a `support.claude.com/en/` (10 distintos, 12 apariciones) pasan a su versión `/es/`, con el mismo número de artículo. Antes de cambiar cada uno se comprobó que la página en español abre (lang="es") y dice lo mismo que el dato del taller y que la versión en inglés.
+  - **Referencias APA:** quedan con el título en español y el idioma `es`. "*Claude Help Center*" pasa a "*Centro de ayuda de Anthropic*", y "*Use voice mode*", a "*Usar modo de voz*. Centro de ayuda de Anthropic".
+  - **Fuera de este cambio:** el enlace de privacidad, en `privacy.claude.com/en/`, es de otro dominio.
+- **Claude: dos datos corregidos según la ayuda en español.** Se hizo el menor cambio posible, sin sumar límites ni precios, y el estado sigue en "si".
+  - **Proyectos:**
+    - **Antes:** "Tiene proyectos, con documentos e instrucciones propias. En el plan gratuito, hasta cinco."
+    - **Ahora:** "Tiene proyectos, con documentos propios. En el plan gratuito, hasta cinco. Las instrucciones propias de cada proyecto son solo de los planes pagos."
+    - **Qué dice la ayuda:** los proyectos están disponibles para todos, también en cuentas gratuitas (hasta cinco proyectos), pero las instrucciones del proyecto son "solo planes pagos".
+  - **Complemento para Google Workspace:**
+    - **Antes:** "Tiene un complemento para Google Docs, Sheets y Slides."
+    - **Ahora:** "Tiene un complemento para Google Docs, Sheets y Slides, en beta y solo para los planes pagos."
+    - **Qué dice la ayuda:** está "disponible en versión beta para planes Pro, Max, Ultra, Team y Enterprise".
+- **Mudanzas (D-082):**
+  - SynthID pasa a `deepmind.google/models/synthid/`.
+  - "Building effective agents" pasa a `www.anthropic.com/research/building-effective-agents`. La página mantiene el mismo título y la misma fecha (19 de diciembre de 2024), así que la referencia APA no cambia.
+  - Gemini Image pasa a `deepmind.google/models/gemini-image/`. La referencia APA ya decía "*Gemini Image*".
+  - `copilot.microsoft.com` pasa a `copilot.com`, en `herramientas.json` y en `js/activities/asistentes.js` y `produccion.js`. La propia ayuda de Microsoft enlaza "Prueba Microsoft Copilot ahora" a `https://copilot.com`, así que es el Copilot gratuito.
+- **Microsoft Copilot (opción B, decidida por Lourdes).**
+  - **El problema:** Microsoft está pasando la ayuda del Copilot gratuito a la de Microsoft 365 Copilot. En inglés, la portada de la ayuda del Copilot gratuito ya redirige a Microsoft 365. No hay versión `es-419`: todas las direcciones con `es-419` redirigen a `es-es`.
+  - **Ayuda general** (Módulos 11 y 13, y `ayuda` en `herramientas.json`): pasa a la portada "Ayuda y aprendizaje de Microsoft Copilot" (`support.microsoft.com/es-es/microsoft-copilot/`), que sigue siendo del producto gratuito.
+  - **Prompts** (Módulos 5 y 13): pasa a "Explorar Microsoft Copilot Chat" (`es-es/microsoft-365-copilot/get-started-with-microsoft-365-copilot-chat`). Es la página a la que hoy lleva "Comenzar con Microsoft Copilot" desde la ayuda del gratuito. El artículo declara que se aplica a "todas las experiencias de Microsoft Copilot", entre ellas las cuentas personales y el Copilot Chat gratuito. Su "porque" se corrigió, porque la guía cambió: ahora propone objetivo, contexto, detalles y datos, en lugar de objetivo, contexto, fuentes y expectativas.
+  - **Funciones con página propia del producto gratuito, en `es-es`:**
+    - **Imágenes:** pasa a "Uso de la generación de imágenes en Microsoft Copilot".
+    - **Memoria y privacidad:** pasan a la versión `es-es` de "Controles de privacidad de Microsoft Copilot", que es la misma página que ya se citaba en inglés.
+  - **Proyectos, asistentes y suite:** apuntaban a la portada en inglés y pasan a la portada en español.
+  - **Subir archivos y Voz:** pasan a la portada en español, sin cambiar el estado. Sus páginas propias ("Carga de archivos" y "Copilot Voice") redirigen a Microsoft 365, aun en español.
+  - **Sin contradicciones:** ninguna página nueva contradice un detalle ni un estado, y no se cambió ninguno.
+
+**Archivos afectados:**
+- **Contenido:** `content/herramientas.json`, `marco-legal.json`, `modulo-05.json`, `modulo-11.json`, `modulo-12.json`, `modulo-13.json`, `modulo-15.json`, `modulo-17.json` y `modulo-18.json`.
+- **Código:** `js/activities/asistentes.js` y `produccion.js`.
+- **Biblioteca y registro:** `content/fuentes.json` (regenerada) y este registro.
+
+**La Biblioteca (`fuentes.json`):**
+- **Cómo se regeneró:** con `scripts/generar-fuentes.mjs`, sin editarla a mano.
+- **El "porque" de las fuentes que cambiaron de URL:** el generador lo conserva según la URL de cada fuente, así que siete fuentes lo perdieron.
+  - **Seis siguen siendo ciertas:** el centro de ayuda de Claude, el modo de voz de Claude, la ayuda de Microsoft Copilot, los modelos de imagen y SynthID de DeepMind, y "Building effective agents". Su "porque" se recuperó sin cambios, pasándole al generador la URL nueva de cada una.
+  - **La de prompts tiene "porque" nuevo**, aprobado por Lourdes: "Cómo propone Microsoft escribir prompts: objetivo, contexto, detalles y datos. El artículo aclara que vale también para el Copilot gratuito."
+
+**Verificación realizada:**
+- **Cambios:** fuera de los dos datos de Claude corregidos a pedido de Lourdes, el diff solo toca `url`, `ayuda`, `web`, `apa`, `idioma`, el `resumen` de Brasil y el "porque" de prompts.
+- **`node scripts/generar-fuentes.mjs`:** 56 fuentes. Todas tienen "porque".
+- **`npm run textos`:** 3672 textos revisados, sin hallazgos.
+- **`npm run enlaces`:** 105 enlaces: 98 funcionan, 0 redirigen a otra página, 7 bloquean la lectura automática (los mismos de antes) y 0 están rotos.
+- **`npm run auditar`:** el design system cumple.
+- **`node scripts/vencimientos.mjs`:** 46 datos, 2 para revisar ahora (ChatGPT, "Crear imágenes", y Copilot, "Analizar datos"), igual que antes.
+
+**Pendientes o riesgos:**
+- **Copilot, "Subir archivos" y "Voz":** no hay una página del producto gratuito que los respalde. Por eso citan la portada.
+- **La portada como fuente:** subir archivos, voz, proyectos, asistentes y la suite de Copilot citan la portada en español. `vencimientos.mjs` no la marca como "fuente demasiado general", porque solo reconoce como portada la raíz de un sitio (`/`), y esta está en `/es-es/microsoft-copilot/`.
+- **La portada `es-es` puede terminar redirigiendo a Microsoft 365,** como ya pasó con la de `en-us`. La revisión de enlaces lo va a avisar.
+- **Controles de privacidad de Copilot:** la página aclara que describe la versión anterior de la app (antes del 18 de agosto de 2026) y remite a otra página para la nueva. El detalle de privacidad ya lo advierte. El de memoria, no.
 

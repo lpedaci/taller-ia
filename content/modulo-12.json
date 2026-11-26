@@ -343,9 +343,9 @@
           "fuentes": [
             {
               "titulo": "Modo de voz de Claude",
-              "apa": "Anthropic. (s.f.). *Use voice mode*. Claude Help Center.",
-              "url": "https://support.claude.com/en/articles/11101966-use-voice-mode",
-              "idioma": "en",
+              "apa": "Anthropic. (s.f.). *Usar modo de voz*. Centro de ayuda de Anthropic.",
+              "url": "https://support.claude.com/es/articles/11101966-usar-modo-de-voz",
+              "idioma": "es",
               "nivel": "Inicial",
               "tipo": "documentacion"
             },
