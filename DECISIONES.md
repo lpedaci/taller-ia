@@ -86,6 +86,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-078 | 2026-11-23 | Insignias por módulo, envío a la coordinación y descarga | Vigente |
 | D-079 | 2026-11-26 | Verificación automática de fuentes y de cambios: piloto en los Módulos 10 y 11 | Vigente |
 | D-080 | 2026-11-26 | Ajustes del sistema de verificación tras la primera corrida (Issue #2) | Vigente |
+| D-081 | 2026-11-26 | Fuentes de ChatGPT aceptadas del Issue #2; Copilot rechazada | Vigente |
 
 ---
 
@@ -1990,4 +1991,41 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
 **Pendientes o riesgos:**
 - **Las reglas nuevas del prompt dependen del modelo:** preferir `es-419` y descartar fuentes de otro producto se van a poder comprobar recién en la próxima corrida real.
 - **Datos confirmados:** aunque se acepte la redacción propuesta, el dato sigue como "a verificar" en `herramientas.json` hasta que Lourdes lo cambie en un commit. Mientras tanto, vuelve a aparecer en cada corrida.
+
+## D-081 | 2026-11-26 | Fuentes de ChatGPT aceptadas del Issue #2; Copilot rechazada
+
+**Solicitado:** con el Issue #2 (primera corrida de la verificación, D-079), cambiar en `content/herramientas.json` la `url` de cuatro funciones de ChatGPT (archivos, web, voz y privacidad) por la fuente que propone el Issue. Si alguna propuesta era de `es-es`, usar la misma página en `es-419`. Sin cambiar `detalle` ni `estado`, y sin tocar Copilot ni "imagenes".
+
+**Qué se aceptó, y por qué:**
+
+| Función | Antes | Ahora |
+|---|---|---|
+| Subir archivos | `https://chatgpt.com/` | `https://help.openai.com/es-419/articles/8555545-file-uploads-faq` |
+| Búsqueda web | `https://chatgpt.com/` | `https://help.openai.com/es-419/articles/9237897-chatgpt-search` |
+| Modo de voz | `https://chatgpt.com/` | `https://help.openai.com/es-419/articles/8400625-voice-mode-faq` |
+| Entrenamiento con tus conversaciones | `https://chatgpt.com/` | `https://help.openai.com/es-419/articles/7730893-data-controls-faq` |
+
+- **Motivo:** la fuente era la portada de ChatGPT, que no respalda el dato por sí sola. En el modo de voz, además, la portada ni siquiera lo menciona. Cada propuesta es la página específica de la ayuda oficial, la IA la leyó en la corrida y trae la frase que respalda el dato.
+- **Idioma:** las cuatro ya estaban en `es-419`, así que no hubo que buscar otra versión.
+- **Sin cambios en el resto:** `detalle` y `estado` quedan igual, porque el Issue dice que los cuatro datos siguen vigentes.
+
+**Qué se rechazó o quedó sin cambios, y por qué:**
+- **Copilot, "Analizar datos": rechazada.** La propuesta era "Obtener información sobre los datos con Copilot en Excel", en `support.microsoft.com/es-es`.
+  - **Otro producto:** habla de Copilot en Excel, que viene con la licencia de Microsoft 365, y no del asistente Microsoft Copilot que compara el taller. Es el caso que llevó a la regla "mismo producto y mismo plan" de D-080.
+  - **Variante de España:** además, estaba en la versión de España.
+  - **El dato sigue "a verificar":** el Issue lo informó como vigente sin que tuviera texto, el otro problema que corrigió D-080.
+- **ChatGPT, "Crear imágenes": sin cambios.** El Issue no encontró reemplazo: las páginas de ayuda que probó dieron 404, y la portada solo muestra el botón "Create image".
+
+**Archivos afectados:** `content/herramientas.json` (cuatro URL) y este registro.
+
+**Verificación realizada:**
+- **Cambios:** solo cambiaron las cuatro URL. `estado` y `detalle` siguen igual, y Copilot e "imagenes" no se tocaron.
+- **`npm run textos`:** 3672 textos revisados, sin hallazgos.
+- **`node scripts/vencimientos.mjs`:** 46 datos, 2 para revisar ahora (ChatGPT, "Crear imágenes", por fuente demasiado general, y Copilot, "Analizar datos", marcado "a verificar") y 0 que vencen en 7 días.
+- **Las cuatro URL responden:** devuelven 200. Tres redirigen al mismo artículo con otro nombre en la dirección (por ejemplo, `8555545-uploading-files-and-audio-to-chatgpt`).
+
+**Pendientes o riesgos:**
+- **Modo de voz:** `8400625-voice-mode-faq` redirige a otro artículo, `20001274-chatgpt-voice`. Puede ser que OpenAI haya reemplazado la página. Se usó la URL propuesta, como se pidió. Conviene revisar si la página nueva sigue diciendo lo mismo y, si es así, citar esa directamente.
+- **Fechas de verificación:** con estos cambios, las cuatro funciones toman como fecha de cambio la de este commit (git blame), así que vencen en 30 días.
+- **Copilot e imágenes:** siguen en la lista de la próxima corrida.
 

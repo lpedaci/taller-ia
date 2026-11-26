@@ -25,12 +25,12 @@
         "archivos": {
           "estado": "si",
           "detalle": "Permite adjuntar archivos con la sesión iniciada.",
-          "url": "https://chatgpt.com/"
+          "url": "https://help.openai.com/es-419/articles/8555545-file-uploads-faq"
         },
         "web": {
           "estado": "si",
           "detalle": "Tiene búsqueda web entre las opciones del chat.",
-          "url": "https://chatgpt.com/"
+          "url": "https://help.openai.com/es-419/articles/9237897-chatgpt-search"
         },
         "imagenes": {
           "estado": "si",
@@ -60,12 +60,12 @@
         "voz": {
           "estado": "si",
           "detalle": "Tiene un modo de voz que se abre desde el ícono de voz del chat. Idiomas y planes: consultá la ayuda oficial.",
-          "url": "https://chatgpt.com/"
+          "url": "https://help.openai.com/es-419/articles/8400625-voice-mode-faq"
         },
         "privacidad": {
           "estado": "si",
           "detalle": "Avisa que las conversaciones pueden revisarse y usarse para mejorar sus modelos. Cómo desactivarlo: ayuda oficial.",
-          "url": "https://chatgpt.com/"
+          "url": "https://help.openai.com/es-419/articles/7730893-data-controls-faq"
         },
         "suite": {
           "estado": "si",
