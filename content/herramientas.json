@@ -79,48 +79,48 @@
       "nombre": "Claude",
       "empresa": "Anthropic",
       "ecosistema": "Asistente independiente, en la web, en apps y en escritorio. Se conecta con herramientas como Gmail, Google Calendar y Google Docs.",
-      "ayuda": "https://support.claude.com/en/",
+      "ayuda": "https://support.claude.com/es/",
       "web": "https://claude.ai/",
       "funciones": {
         "archivos": {
           "estado": "si",
           "detalle": "Permite subir archivos a la conversación.",
-          "url": "https://support.claude.com/en/articles/8241126-upload-files-to-claude"
+          "url": "https://support.claude.com/es/articles/8241126-cargar-archivos-en-claude"
         },
         "web": {
           "estado": "si",
           "detalle": "Tiene búsqueda web, que se activa desde la conversación.",
-          "url": "https://support.claude.com/en/articles/10684626-enable-and-use-web-search"
+          "url": "https://support.claude.com/es/articles/10684626-habilitar-y-usar-busqueda-web"
         },
         "imagenes": {
           "estado": "no",
           "detalle": "No crea fotos ni ilustraciones como las herramientas de imagen. Sí analiza las imágenes que subís y arma diagramas y gráficos.",
-          "url": "https://support.claude.com/en/articles/9002504-can-claude-produce-images"
+          "url": "https://support.claude.com/es/articles/9002504-puede-claude-producir-imagenes"
         },
         "datos": {
           "estado": "si",
           "detalle": "Ejecuta código para analizar datos subidos (por ejemplo, CSV) y crea planillas de Excel con fórmulas. Disponible en todos los planes.",
-          "url": "https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude"
+          "url": "https://support.claude.com/es/articles/12111783-crear-y-editar-archivos-con-claude"
         },
         "proyectos": {
           "estado": "si",
-          "detalle": "Tiene proyectos, con documentos e instrucciones propias. En el plan gratuito, hasta cinco.",
-          "url": "https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features"
+          "detalle": "Tiene proyectos, con documentos propios. En el plan gratuito, hasta cinco. Las instrucciones propias de cada proyecto son solo de los planes pagos.",
+          "url": "https://support.claude.com/es/articles/10185728-comprender-las-funciones-de-personalizacion-de-claude"
         },
         "memoria": {
           "estado": "si",
           "detalle": "Viene activada en los planes individuales. Se desactiva o se borra en Ajustes, y hay chats de incógnito que no se guardan.",
-          "url": "https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context"
+          "url": "https://support.claude.com/es/articles/11817273-usa-la-busqueda-de-chat-y-la-memoria-de-claude-para-construir-sobre-contexto-anterior"
         },
         "asistentes": {
           "estado": "si",
           "detalle": "Instrucciones por proyecto y \"skills\" (habilidades) reutilizables.",
-          "url": "https://support.claude.com/en/articles/12512176-what-are-skills"
+          "url": "https://support.claude.com/es/articles/12512176-que-son-las-habilidades"
         },
         "voz": {
           "estado": "si",
           "detalle": "\"Modo de voz\", en beta: en el celular, en escritorio y en la web, en todos los planes. Los idiomas distintos del inglés están en beta. Por defecto no guarda el audio, solo la transcripción.",
-          "url": "https://support.claude.com/en/articles/11101966-use-voice-mode"
+          "url": "https://support.claude.com/es/articles/11101966-usar-modo-de-voz"
         },
         "privacidad": {
           "estado": "si",
@@ -129,8 +129,8 @@
         },
         "suite": {
           "estado": "si",
-          "detalle": "Tiene un complemento para Google Docs, Sheets y Slides.",
-          "url": "https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides"
+          "detalle": "Tiene un complemento para Google Docs, Sheets y Slides, en beta y solo para los planes pagos.",
+          "url": "https://support.claude.com/es/articles/16951679-usa-claude-en-google-docs-sheets-y-slides"
         }
       }
     },
@@ -199,13 +199,13 @@
       "nombre": "Copilot",
       "empresa": "Microsoft",
       "ecosistema": "Asistente de Microsoft, integrado con Word, Excel, PowerPoint, Outlook y Teams en Microsoft 365.",
-      "ayuda": "https://support.microsoft.com/en-us/microsoft-copilot/",
-      "web": "https://copilot.microsoft.com/",
+      "ayuda": "https://support.microsoft.com/es-es/microsoft-copilot/",
+      "web": "https://copilot.com/",
       "funciones": {
         "archivos": {
           "estado": "si",
           "detalle": "Permite trabajar con tus archivos en la conversación.",
-          "url": "https://support.microsoft.com/en-us/microsoft-copilot/"
+          "url": "https://support.microsoft.com/es-es/microsoft-copilot/"
         },
         "web": {
           "estado": "si",
@@ -215,7 +215,7 @@
         "imagenes": {
           "estado": "si",
           "detalle": "Crea imágenes, afiches y más a partir de una descripción.",
-          "url": "https://support.microsoft.com/en-us/microsoft-copilot/"
+          "url": "https://support.microsoft.com/es-es/microsoft-copilot/using-image-generation-in-microsoft-copilot"
         },
         "datos": {
           "estado": "a-verificar"
@@ -223,32 +223,32 @@
         "proyectos": {
           "estado": "si",
           "detalle": "\"Copilot Notebooks\" reúne chats, archivos y notas en un lugar.",
-          "url": "https://support.microsoft.com/en-us/microsoft-copilot/"
+          "url": "https://support.microsoft.com/es-es/microsoft-copilot/"
         },
         "memoria": {
           "estado": "si",
           "detalle": "Recuerda datos y preferencias de tus conversaciones. Se desactiva o se borra desde tu perfil.",
-          "url": "https://support.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-privacy-controls"
+          "url": "https://support.microsoft.com/es-es/microsoft-copilot/microsoft-copilot-privacy-controls"
         },
         "asistentes": {
           "estado": "si",
           "detalle": "Agentes para tareas repetitivas: se buscan, se agregan o se crean.",
-          "url": "https://support.microsoft.com/en-us/microsoft-copilot/"
+          "url": "https://support.microsoft.com/es-es/microsoft-copilot/"
         },
         "voz": {
           "estado": "si",
           "detalle": "\"Copilot Voice\": conversación hablada en tiempo real, en cuentas personales y de trabajo. Depende de la suscripción y la región.",
-          "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/get-started-with-voice-features-in-microsoft-365-copilot"
+          "url": "https://support.microsoft.com/es-es/microsoft-copilot/"
         },
         "privacidad": {
           "estado": "si",
           "detalle": "Se puede excluir del entrenamiento desde Privacidad, en el perfil. La ayuda lo describe para la versión anterior de la app: revisá la vigente.",
-          "url": "https://support.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-privacy-controls"
+          "url": "https://support.microsoft.com/es-es/microsoft-copilot/microsoft-copilot-privacy-controls"
         },
         "suite": {
           "estado": "si",
           "detalle": "Convierte una idea en un archivo de Word, PowerPoint o Excel, y ordena las tareas de las reuniones de Teams.",
-          "url": "https://support.microsoft.com/en-us/microsoft-copilot/"
+          "url": "https://support.microsoft.com/es-es/microsoft-copilot/"
         }
       }
     }
@@ -302,7 +302,7 @@
         "empresa": "Google DeepMind",
         "tipo": "Generar y editar imágenes",
         "detalle": "Modelos de imagen de Google para crear y editar, construidos sobre Gemini.",
-        "url": "https://deepmind.google/models/imagen/",
+        "url": "https://deepmind.google/models/gemini-image/",
         "estado": "si"
       },
       {
@@ -364,7 +364,7 @@
         "empresa": "Google DeepMind",
         "tipo": "Marca de agua invisible",
         "detalle": "Marca de agua imperceptible en imágenes, audio, texto y video generados, que se puede detectar.",
-        "url": "https://deepmind.google/science/synthid/",
+        "url": "https://deepmind.google/models/synthid/",
         "estado": "si"
       }
     ],

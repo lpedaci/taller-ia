@@ -107,9 +107,9 @@
         { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario, al cerrar el bloque", "pregunta": "Probá uno de los prompts de tu kit con una tarea real de esta semana. ¿Qué le cambiaste después de ver el resultado? ¿Cuánto tiempo te ahorró, y qué parte seguiste haciendo vos?" },
         { "tipo": "profundizar", "fuentes": [
           { "titulo": "Gemini en las apps de Google Workspace", "apa": "Google. (s.f.). *Usar Gemini con Gmail, Docs y Drive*. Ayuda de Gemini Apps.", "url": "https://support.google.com/gemini/answer/15229592?hl=es", "idioma": "es", "nivel": "Inicial", "tipo": "documentacion" },
-          { "titulo": "Ayuda de Microsoft Copilot", "apa": "Microsoft. (s.f.). *Get help with Copilot*. Microsoft Support.", "url": "https://support.microsoft.com/en-us/microsoft-copilot/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Ayuda de Microsoft Copilot", "apa": "Microsoft. (s.f.). *Ayuda y aprendizaje de Microsoft Copilot*. Soporte técnico de Microsoft.", "url": "https://support.microsoft.com/es-es/microsoft-copilot/", "idioma": "es", "nivel": "Inicial", "tipo": "documentacion" },
           { "titulo": "Consejos para escribir prompts en Gemini", "apa": "Google. (s.f.). *Tips to write prompts for Gemini*. Google Workspace Learning Center.", "url": "https://support.google.com/a/users/answer/14200040", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
-          { "titulo": "Cómo escribir prompts en Copilot", "apa": "Microsoft. (s.f.). *Get started writing prompts in Microsoft Copilot*. Microsoft Support.", "url": "https://support.microsoft.com/en-us/topic/learn-about-copilot-prompts-f6c3b467-f07c-4db1-ae54-ffac96184dd5", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" }
+          { "titulo": "Cómo escribir prompts en Copilot", "apa": "Microsoft. (s.f.). *Explorar Microsoft Copilot Chat*. Soporte técnico de Microsoft.", "url": "https://support.microsoft.com/es-es/microsoft-365-copilot/get-started-with-microsoft-365-copilot-chat", "idioma": "es", "nivel": "Inicial", "tipo": "documentacion" }
         ] }
       ]
     }

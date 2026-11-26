@@ -15,7 +15,7 @@ const ASISTENTES = [
   { n: "Claude", url: "https://claude.ai/new" },
   { n: "ChatGPT", url: "https://chatgpt.com/" },
   { n: "Gemini", url: "https://gemini.google.com/app" },
-  { n: "Copilot", url: "https://copilot.microsoft.com/" }
+  { n: "Copilot", url: "https://copilot.com/" }
 ];
 
 /* ===================== Fichas de herramientas ===================== */

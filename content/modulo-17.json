@@ -71,7 +71,7 @@
         { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario, al cerrar el bloque", "pregunta": "En este bloque creaste un brief, un prompt visual, un guion para voz y un storyboard. ¿Cuál de esos productos te sirve más en tu trabajo? ¿Qué parte del proceso seguiría siendo tuya aunque la IA pudiera hacerlo todo?" },
         { "tipo": "profundizar", "fuentes": [
           { "titulo": "Veo, el modelo de video de Google DeepMind", "apa": "Google DeepMind. (s.f.). *Veo*.", "url": "https://deepmind.google/models/veo/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
-          { "titulo": "SynthID, marcas de agua invisibles en video", "apa": "Google DeepMind. (s.f.). *SynthID*.", "url": "https://deepmind.google/science/synthid/", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" },
+          { "titulo": "SynthID, marcas de agua invisibles en video", "apa": "Google DeepMind. (s.f.). *SynthID*.", "url": "https://deepmind.google/models/synthid/", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" },
           { "titulo": "Content Authenticity Initiative", "apa": "Content Authenticity Initiative. (s.f.). *Content Authenticity Initiative*.", "url": "https://contentauthenticity.org/", "idioma": "en", "nivel": "Profundización", "tipo": "documentacion" }
         ] }
       ]

@@ -84,9 +84,9 @@
         ] },
         { "tipo": "reflexion", "id": "diario", "titulo": "Para tu diario", "pregunta": "¿Qué asistente vas a usar para tu trabajo y por qué? Respondé con los cuatro criterios: tarea, ecosistema, datos y política de tu organización." },
         { "tipo": "profundizar", "fuentes": [
-          { "titulo": "Centro de ayuda de Claude", "apa": "Anthropic. (s.f.). *Claude Help Center*.", "url": "https://support.claude.com/en/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Centro de ayuda de Claude", "apa": "Anthropic. (s.f.). *Centro de ayuda de Anthropic*.", "url": "https://support.claude.com/es/", "idioma": "es", "nivel": "Inicial", "tipo": "documentacion" },
           { "titulo": "Centro de ayuda de Gemini", "apa": "Google. (s.f.). *Ayuda de Gemini Apps*.", "url": "https://support.google.com/gemini/", "idioma": "es", "nivel": "Inicial", "tipo": "documentacion" },
-          { "titulo": "Ayuda de Microsoft Copilot", "apa": "Microsoft. (s.f.). *Get help with Copilot*. Microsoft Support.", "url": "https://support.microsoft.com/en-us/microsoft-copilot/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
+          { "titulo": "Ayuda de Microsoft Copilot", "apa": "Microsoft. (s.f.). *Ayuda y aprendizaje de Microsoft Copilot*. Soporte técnico de Microsoft.", "url": "https://support.microsoft.com/es-es/microsoft-copilot/", "idioma": "es", "nivel": "Inicial", "tipo": "documentacion" },
           { "titulo": "Centro de ayuda de ChatGPT", "apa": "OpenAI. (s.f.). *OpenAI Help Center*.", "url": "https://help.openai.com/", "idioma": "en", "nivel": "Inicial", "tipo": "documentacion" },
           { "titulo": "OpenAI Academy", "apa": "OpenAI. (s.f.). *OpenAI Academy* [Cursos en línea].", "url": "https://academy.openai.com/", "idioma": "en", "nivel": "Inicial", "tipo": "curso" }
         ] }
