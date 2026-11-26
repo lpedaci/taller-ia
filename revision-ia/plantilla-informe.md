@@ -57,7 +57,7 @@ Para los datos que quedaron desactualizados, que no se pudieron verificar o cuya
 
 Sin reemplazo encontrado (N): Copilot: Analizar datos. Motivo: ninguna página oficial leída en esta corrida lo menciona.
 
-## Revisar a mano (N)
+## Revisión manual (N)
 
 El sistema no pudo leer estas fuentes. No es un error del taller: hay que abrirlas en el navegador.
 
@@ -91,5 +91,5 @@ La IA propone; Lourdes Pedaci decide. Nada se cambia en el repo sin su revisión
 - **Lo que pide decisión va primero**, ordenado por gravedad. Lo que está bien queda plegado: cumple como evidencia de que se revisó, sin ocupar la vista.
 - **Las fuentes propuestas van justo después de lo que hay que decidir**, porque son la forma de resolverlo: el problema y su reparación quedan juntos.
 - **"Sin reemplazo encontrado" se dice explícitamente.** Así sabés que el sistema buscó y no encontró, en lugar de suponer que no buscó.
-- **"Revisar a mano" tiene su propia sección** para que un sitio bloqueado no se lea como una falla del taller.
+- **"Revisión manual" tiene su propia sección** para que un sitio bloqueado no se lea como una falla del taller.
 - **Las columnas "Qué dice el taller" y "Qué dice la fuente" van lado a lado:** decidís comparando, sin abrir cinco pestañas.
