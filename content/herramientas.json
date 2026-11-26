@@ -24,13 +24,13 @@
       "funciones": {
         "archivos": {
           "estado": "si",
-          "detalle": "Permite adjuntar archivos con la sesión iniciada.",
+          "detalle": "Permite adjuntar archivos solo en los planes pagos.",
           "url": "https://help.openai.com/es-419/articles/8555545-file-uploads-faq"
         },
         "web": {
           "estado": "si",
           "detalle": "Tiene búsqueda web entre las opciones del chat.",
-          "url": "https://help.openai.com/es-419/articles/9237897-chatgpt-search"
+          "url": "https://help.openai.com/es-419/articles/9237001-busqueda-web"
         },
         "imagenes": {
           "estado": "si",
@@ -65,7 +65,7 @@
         "privacidad": {
           "estado": "si",
           "detalle": "Avisa que las conversaciones pueden revisarse y usarse para mejorar sus modelos. Cómo desactivarlo: ayuda oficial.",
-          "url": "https://help.openai.com/es-419/articles/7730893-data-controls-faq"
+          "url": "https://help.openai.com/en/articles/7730893-data-controls-faq"
         },
         "suite": {
           "estado": "si",
@@ -84,7 +84,7 @@
       "funciones": {
         "archivos": {
           "estado": "si",
-          "detalle": "Permite subir archivos a la conversación.",
+          "detalle": "Permite adjuntar archivos a la conversación.",
           "url": "https://support.claude.com/en/articles/8241126-upload-files-to-claude"
         },
         "web": {
@@ -93,8 +93,8 @@
           "url": "https://support.claude.com/en/articles/10684626-enable-and-use-web-search"
         },
         "imagenes": {
-          "estado": "no",
-          "detalle": "No crea fotos ni ilustraciones como las herramientas de imagen. Sí analiza las imágenes que subís y arma diagramas y gráficos.",
+          "estado": "si",
+          "detalle": "Crea fotos e ilustraciones desde el chat, como las herramientas de imagen.",
           "url": "https://support.claude.com/en/articles/9002504-can-claude-produce-images"
         },
         "datos": {
@@ -145,7 +145,7 @@
         "archivos": {
           "estado": "si",
           "detalle": "Documentos, planillas, fotos, videos y más: hasta 10 archivos por consulta.",
-          "url": "https://support.google.com/gemini/answer/14903178?hl=es"
+          "url": "https://gemini.google.com/"
         },
         "web": {
           "estado": "si",
@@ -210,7 +210,7 @@
         "web": {
           "estado": "si",
           "detalle": "Puede buscar en la web para mejorar sus respuestas.",
-          "url": "https://support.microsoft.com/en-us/privacy/microsoft-copilot/privacy-controls"
+          "url": "https://support.microsoft.com/es-es/Excel/copilot/get-started-with-copilot-in-excel"
         },
         "imagenes": {
           "estado": "si",
