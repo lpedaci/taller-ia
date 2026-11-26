@@ -1,0 +1,103 @@
+# Taller - IA | Verificación periódica de fuentes (Módulos 10 y 11)
+#
+# Qué hace, en orden:
+#   1. Revisa enlaces y textos con los scripts que ya tiene el taller (sin IA).
+#   2. Calcula qué datos vencieron (scripts/vencimientos.mjs), con las fechas del historial de commits
+#      y las de la última verificación, que lee del Issue anterior.
+#   3. Si hay datos para revisar, Claude los verifica en sus fuentes oficiales y propone reemplazos
+#      (revision-ia/prompt-fuentes.md). Claude solo escribe un JSON: no puede tocar el repo.
+#   4. Un script arma el informe y abre un Issue con la etiqueta "verificacion".
+#
+# Frontera: este workflow no publica, no commitea y no decide. Solo informa. Lourdes revisa y corrige.
+
+name: Verificación de fuentes
+
+on:
+  schedule:
+    # Días 1, 11 y 21 de cada mes, a las 11:23 de Buenos Aires (14:23 UTC). Minuto no redondo: a la hora en punto
+    # GitHub encola muchos workflows y pueden demorarse.
+    - cron: "23 14 1,11,21 * *"
+  workflow_dispatch:
+    # Para correrlo a mano desde la pestaña Actions (la primera vez, y cuando quieras)
+
+permissions:
+  contents: read   # leer el repo; nunca escribir
+  issues: write    # abrir el Issue del informe y leer el anterior
+
+concurrency:
+  group: verificacion-fuentes
+  cancel-in-progress: false
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      DISPARADOR: ${{ github.event_name == 'schedule' && 'periódico' || 'manual' }}
+      URL_CORRIDA: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Traer el repo con todo su historial
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0   # sin esto, git blame no ve las fechas reales de cada dato
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Paso 1: chequeos sin IA. No cortan la corrida si encuentran algo: el resultado va al informe.
+      - name: Revisar enlaces
+        run: npm run enlaces || true
+      - name: Revisar textos
+        run: npm run textos || true
+
+      # Paso 2: qué datos vencieron
+      - name: Leer las fechas de la última verificación
+        run: |
+          gh issue list --label verificacion --state all --limit 1 --json body --jq '.[0].body // ""' \
+            | node scripts/armar-informe.mjs leer
+      - name: Calcular vencimientos
+        id: vencimientos
+        run: |
+          node scripts/vencimientos.mjs --verificaciones verificacion/verificaciones-previas.json
+          echo "cantidad=$(node -p "require('./verificacion/vencimientos.json').revisar.length")" >> "$GITHUB_OUTPUT"
+
+      # Paso 3: verificación con IA, solo si hay algo para revisar
+      - name: Verificar en las fuentes oficiales (Claude)
+        if: steps.vencimientos.outputs.cantidad != '0'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # Con el token del propio workflow no hace falta instalar la app de Claude en GitHub,
+          # que pide permisos amplios. Este token solo puede leer el repo y escribir Issues.
+          github_token: ${{ github.token }}
+          prompt: |
+            Seguí al pie de la letra las instrucciones de revision-ia/prompt-fuentes.md.
+            La entrada es verificacion/vencimientos.json: revisá cada elemento de la lista "revisar".
+            Escribí el resultado, solo el JSON pedido, en verificacion/resultado-fuentes.json.
+            No modifiques ningún otro archivo.
+          claude_args: |
+            --allowedTools "Read,Glob,Grep,WebFetch,WebSearch,Write"
+            --max-turns 60
+
+      # Paso 4: informe
+      - name: Armar el informe
+        run: node scripts/armar-informe.mjs armar --modo periodico
+      - name: Abrir el Issue
+        run: |
+          if [ -f verificacion/sin-novedades ]; then
+            echo "Sin novedades: no se abre Issue."
+            exit 0
+          fi
+          gh label create verificacion --color 0E8A16 --description "Informe del sistema de verificación" 2>/dev/null || true
+          gh issue create --label verificacion --title "$(cat verificacion/titulo.txt)" --body-file verificacion/informe.md
+
+      - name: Guardar los informes de la corrida
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verificacion-${{ github.run_number }}
+          path: verificacion/
+          retention-days: 90

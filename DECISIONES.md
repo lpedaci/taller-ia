@@ -84,6 +84,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-076 | 2026-11-23 | Fuentes de la UNESCO en UNESDOC y en español | Vigente |
 | D-077 | 2026-11-23 | Login y registro: evaluado y descartado | Vigente |
 | D-078 | 2026-11-23 | Insignias por módulo, envío a la coordinación y descarga | Vigente |
+| D-079 | 2026-11-26 | Verificación automática de fuentes y de cambios: piloto en los Módulos 10 y 11 | Vigente |
 
 ---
 
@@ -1913,4 +1914,33 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
 **Pendientes o riesgos:**
 - **Fuente de las imágenes descargadas:** el navegador no puede usar la fuente web dentro de una imagen generada, así que el texto de los PNG usa la fuente del sistema (Roboto o Arial).
 - **Emblemas:** el estilo de los 18 restantes se ajusta a medida que se usen, como pidió Lourdes.
+
+## D-079 | 2026-11-26 | Verificación automática de fuentes y de cambios: piloto en los Módulos 10 y 11
+
+**Solicitado:** Lourdes sumó al proyecto el sistema de verificación automática del piloto (Módulos 10 y 11), sin modificar su contenido. Pidió comprobar que los scripts funcionan en el repo, registrar la decisión y abrir un pull request hacia `main`, sin fusionarlo.
+
+**Decisión y motivo:**
+- **Qué se suma:** los archivos se suben tal como los preparó Lourdes:
+  - `.github/workflows/verificacion-fuentes.yml`: corrida periódica (días 1, 11 y 21 de cada mes, 11:23 de Buenos Aires) o manual. Revisa enlaces y textos, calcula qué datos vencieron, le pide a Claude que verifique solo esos en la fuente oficial y abre un Issue con la etiqueta `verificacion`.
+  - `.github/workflows/revision-cambios.yml`: en cada pull request que toca `content/`, `css/`, `js/` o `index.html`, corre textos, accesibilidad y auditoría del design system. Si el cambio toca los Módulos 10 u 11, `fuentes.json`, `herramientas.json` o `marco-legal.json`, Claude revisa la paráfrasis y la traducción. Publica el informe como comentario.
+  - `scripts/vencimientos.mjs`: calcula los vencimientos con las fechas de git blame y las de la última verificación, que se guardan en el Issue anterior. Reglas: funciones de los asistentes cada 30 días, leyes cada 180.
+  - `scripts/armar-informe.mjs`: arma el informe a partir del JSON que devuelve el modelo.
+  - `revision-ia/`: rúbrica, los dos prompts (fuentes y paráfrasis) y la plantilla del informe.
+- **Frontera:** los workflows solo leen el repo y escriben Issues o comentarios. No commitean, no aprueban y no fusionan. La IA propone; Lourdes decide.
+- **El informe lo arma un script, no el modelo:** así tiene siempre la misma forma y se puede probar sin gastar uso del plan.
+
+**Archivos afectados:** los cinco grupos de arriba (nuevos) y este registro. No se modificó su contenido.
+
+**Verificación realizada:**
+- **En la copia de trabajo (Windows):** los dos scripts corren sin errores, pero `vencimientos.mjs` solo encontró 6 datos (las leyes del Módulo 10) y ninguna función del Módulo 11. Causa: con `core.autocrlf=true`, git deja los archivos con fin de línea CRLF, y la expresión que reconoce cada función (`"…": {` al final de la línea) no admite el `\r`. La de las leyes no exige el fin de línea, por eso esas sí aparecen. En el repo los archivos están en LF.
+- **En un clon temporal con LF, como lo ve GitHub Actions:**
+  - `node scripts/vencimientos.mjs`: 46 datos (40 funciones y 6 leyes), 6 para revisar ahora y 0 que vencen en 7 días. Los 6: cinco funciones de ChatGPT cuya fuente es la portada `https://chatgpt.com/` ("Fuente demasiado general") y Copilot, "Analizar datos" (marcado "a verificar").
+  - `node scripts/armar-informe.mjs armar --modo periodico`: arma `informe.md` y `titulo.txt` y marca "Sin novedades", lo esperable sin el paso con IA, que es el que escribe `resultado-fuentes.json`.
+- **Salidas en `verificacion/`:** esa carpeta está en `.gitignore`, así que no se suben.
+
+**Pendientes o riesgos:**
+- **Corridas locales en Windows:** mientras la expresión no admita CRLF, `vencimientos.mjs` subestima los datos del Módulo 11 sin avisar. En Actions no pasa. Se resuelve agregando `\r?` a la expresión o con un `.gitattributes` que fije LF para `content/*.json`. Queda para decidir, porque Lourdes pidió no modificar los scripts.
+- **Si el paso con IA falla:** `armar-informe.mjs` no mira `vencimientos.json` para decidir si hay novedades. Si Claude no escribe `resultado-fuentes.json`, la corrida dice "Sin novedades" y no abre Issue aunque haya datos para revisar.
+- **Secreto:** los dos workflows necesitan `CLAUDE_CODE_OAUTH_TOKEN` en los secretos del repo.
+- **Este pull request no dispara la revisión:** solo cambia `.github/`, `scripts/`, `revision-ia/` y este registro, que no están en los `paths` del workflow de cambios. La verificación periódica se puede probar a mano desde la pestaña Actions después de fusionar.
 
