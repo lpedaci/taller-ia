@@ -90,6 +90,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-082 | 2026-11-26 | Verificación: datos cambiados en cada pull request, modo de prueba, revisión completa y enlaces que redirigen | Vigente |
 | D-083 | 2026-11-26 | Ajustes de la versión 3 del sistema de verificación, tras la validación a ciegas del PR #6 | Vigente |
 | D-084 | 2026-11-26 | Hallazgos reales de la verificación aplicados al contenido: Brasil, Claude, Microsoft Copilot y mudanzas | Vigente |
+| D-085 | 2026-11-26 | README: sección "Verificación automática con IA" y tres datos actualizados | Vigente |
 
 ---
 
@@ -2219,4 +2220,39 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
 - **La portada como fuente:** subir archivos, voz, proyectos, asistentes y la suite de Copilot citan la portada en español. `vencimientos.mjs` no la marca como "fuente demasiado general", porque solo reconoce como portada la raíz de un sitio (`/`), y esta está en `/es-es/microsoft-copilot/`.
 - **La portada `es-es` puede terminar redirigiendo a Microsoft 365,** como ya pasó con la de `en-us`. La revisión de enlaces lo va a avisar.
 - **Controles de privacidad de Copilot:** la página aclara que describe la versión anterior de la app (antes del 18 de agosto de 2026) y remite a otra página para la nueva. El detalle de privacidad ya lo advierte. El de memoria, no.
+
+## D-085 | 2026-11-26 | README: sección "Verificación automática con IA" y tres datos actualizados
+
+**Solicitado:** Lourdes reemplazó `README.md` por una versión que suma la sección "Verificación automática con IA" y corrige tres datos desactualizados. Pidió registrar la decisión y subir el cambio en una rama, sin abrir el pull request. No se modificaron los textos.
+
+**Decisión y motivo:**
+- **Sección nueva, "Verificación automática con IA".** Explica el sistema de las D-079 a la D-084 a quien llegue al repositorio:
+  - **Alcance:** el piloto en los Módulos 10 y 11, con 46 datos.
+  - **La regla central:** "la IA propone, una persona decide".
+  - **Quién revisa qué:** qué revisan los scripts y qué la IA.
+  - **Cuándo corre:** la corrida periódica y la revisión de cada pull request.
+  - **Cómo se usa:** el informe y cómo correrlo a mano.
+  - **Cómo se validó:** la prueba a ciegas del PR #6.
+  - **Archivos y costo.**
+
+  Además, un párrafo al principio presenta el sistema y enlaza a la sección.
+- **Tres datos que habían quedado viejos:**
+  - **`npm run textos`:** ahora menciona los precios sin la nota con fecha, el chequeo que sumó la D-083.
+  - **`npm run enlaces`:** ahora menciona los enlaces que redirigen a otra página (D-082) y que la verificación automática lo corre los días 1, 11 y 21.
+  - **`herramientas.json`:** ya no dice que cada dato tiene su fecha en el archivo. La fecha sale del historial de commits y la verificación avisa cuando vence (D-079).
+- **Estructura del proyecto:** suma las carpetas `revision-ia/` y `.github/workflows/`.
+
+**Archivos afectados:** `README.md` y este registro.
+
+**Verificación realizada:** se comprobaron contra el repositorio las afirmaciones de la sección nueva, sin cambiar el texto.
+- **Calendario:** días 1, 11 y 21 (`cron: "23 14 1,11,21 * *"` en `verificacion-fuentes.yml`).
+- **Disparador de los pull requests:** los cambios en `content/`, `css/`, `js/` e `index.html` (`revision-cambios.yml`).
+- **Plazos:** 30 días para las herramientas y 180 para las leyes (`REGLAS` en `vencimientos.mjs`).
+- **Datos:** `node scripts/vencimientos.mjs` informa 46.
+- **Corrida manual:** las opciones "Revisar los 46 datos" y la corrida de prueba coinciden con el workflow.
+- **`revision-ia/`:** tiene la rúbrica, los dos prompts y la plantilla.
+- **Costo:** el repositorio es público, que es la condición para que GitHub Actions no tenga costo.
+- **Lo que no se comprobó acá:** el dato "18 datos cambiados en el primer uso real (#8), sin ningún error falso" sale de la revisión automática del PR #8, que no se volvió a leer para este registro.
+
+**Pendientes o riesgos:** la sección tiene cifras que van a cambiar cuando el sistema se extienda a otros módulos o cambie la cantidad de datos (los 46 datos y los resultados de la validación). Hay que actualizarlas junto con esos cambios.
 
