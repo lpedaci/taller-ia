@@ -32,6 +32,8 @@ const cita = t => t ? `"${celda(t)}"` : "(sin evidencia)";
 const sinPunto = t => celda(t).replace(/[.]+$/, "");
 const PROBLEMA = { general: "Demasiado general", "no-respalda": "No respalda el dato", "no-oficial": "No es oficial", "hay-version-en-espanol": "Existe la versión oficial en español", vieja: "Quedó vieja", "otro-producto": "Habla de otro producto o plan", cambio: "El dato cambió", "no-verificable": "No se pudo verificar" };
 const problema = c => PROBLEMA[c] || celda(c);
+const IDIOMA = { es: "En español", en: "En inglés", pt: "En portugués", fr: "En francés", de: "En alemán", it: "En italiano" };
+const idioma = c => IDIOMA[c] || `Idioma: ${celda(c)}`;
 const bloque = (...partes) => partes.filter(Boolean).join("\n\n");
 
 /* ---------- leer: fechas de verificación guardadas en el último Issue ---------- */
@@ -105,6 +107,10 @@ if (modo === "periodico") {
 
 if (fallaIA) s.push(`## ⚠️ La revisión con IA no se completó\n\nMotivo: ${fallaIA.motivo}. Esta corrida no sirve como verificación: los datos que siguen no se revisaron y vuelven a aparecer en la próxima.${fallaIA.faltan.length ? `\n\n${fallaIA.faltan.map(d => `- ${celda(d.que)} (${celda(d.motivo)})`).join("\n")}` : ""}${process.env.URL_CORRIDA ? `\n\nDetalle del error: [corrida en GitHub Actions](${process.env.URL_CORRIDA}).` : ""}`);
 
+// En un pull request, un dato que cambió y no se pudo verificar no puede quedar perdido al final: va primero
+const cambiadosSinVerificar = modo === "pr" ? noVerif : [];
+if (cambiadosSinVerificar.length) s.push(`## ⚠️ Cambiaron y no se pudieron verificar (${cambiadosSinVerificar.length})\n\nEste pull request cambia estos datos y el sistema no pudo leer su fuente. Antes de fusionar, comprobalos en el navegador.\n\n${cambiadosSinVerificar.map(r => `- **${celda(r.que)}**: ${cita(porId[r.id]?.afirma)}${porId[r.id]?.url ? ` ([abrir](${porId[r.id].url}))` : ""}. Motivo: ${sinPunto(r.motivo)}.`).join("\n")}`);
+
 // Para decidir: errores, desactualizados y mejoras
 // En un pull request, si el valor nuevo contradice la fuente, lo introdujo la edición: es un error, no un dato
 // que quedó viejo. En la corrida periódica, es error si cambia el estado (tiene/no tiene) y desactualizado si no.
@@ -114,7 +120,7 @@ const mejP = hallazgosP.filter(h => h.gravedad === "mejora"), mejF = vigentes.fi
 s.push(`## Para decidir`);
 s.push(bloque(`### Errores (${errores.length + errP.length})\nEl taller afirma algo que la fuente contradice. Conviene corregir antes de la próxima clase.`, errores.length && tablaDatos(errores), errP.length && tablaParafrasis(errP), !errores.length && !errP.length && "Ninguno."));
 s.push(bloque(`### Desactualizados (${desact.length + desP.length})\nEl dato era cierto, pero la fuente cambió.`, desact.length && tablaDatos(desact), desP.length && tablaParafrasis(desP), !desact.length && !desP.length && "Ninguno."));
-s.push(bloque(`### Mejoras (${mejP.length + mejF.length})\nNo hay error. Hay una forma mejor de decirlo o de citarlo.`, mejF.length && mejF.map(r => `- **${celda(r.que)}**: el dato sigue vigente, pero la fuente no es acorde (${problema(r.problema_fuente).toLowerCase()}). Ver "Fuentes propuestas".`).join("\n"), mejP.length && tablaParafrasis(mejP), !mejP.length && !mejF.length && "Ninguna."));
+s.push(bloque(`### Mejoras (${mejP.length + mejF.length})\nNo hay error. Hay una forma mejor de decirlo o de citarlo.`, mejF.length && mejF.map(r => `- **${celda(r.que)}**: el dato sigue vigente, pero la fuente no es acorde (${problema(r.problema_fuente).toLowerCase()}). ${r.problema_fuente === "hay-version-en-espanol" && !(r.fuentes_propuestas || []).length ? "⚠️ Dice que existe la versión en español, pero no la propuso: buscala a mano." : "Ver \"Fuentes propuestas\"."}`).join("\n"), mejP.length && tablaParafrasis(mejP), !mejP.length && !mejF.length && "Ninguna."));
 
 if (confirmables.length) s.push(`### Se puede confirmar (${confirmables.length})\nDatos marcados "a verificar" que la fuente permite completar. Decidí si aceptás la redacción propuesta.\n\n| Dato | Estado propuesto | Redacción propuesta | Qué dice la fuente |\n|---|---|---|---|\n${confirmables.map(r => `| ${celda(r.que)} | ${r.estado_sugerido === "no" ? "No la tiene" : "La tiene"} | ${celda(r.sugerencia || "(sin redacción propuesta)")} | ${cita(r.evidencia)}${r.url_leida ? ` ([fuente](${r.url_leida}))` : ""} |`).join("\n")}`);
 
@@ -124,12 +130,12 @@ const confirmadas = todas.flatMap(p => p.lista.filter(x => !x.a_confirmar).map(x
 const aConfirmar = todas.flatMap(p => p.lista.filter(x => x.a_confirmar).map(x => ({ ...x, que: p.que })));
 s.push(`## Fuentes propuestas (${confirmadas.length})\n\nCada propuesta se leyó en esta corrida y trae la frase que respalda el dato.\n\n` +
   (confirmadas.length ? `| Dato | Problema de la fuente actual | Fuente propuesta | Qué dice | Por qué |\n|---|---|---|---|---|\n` +
-    confirmadas.map(x => `| ${celda(x.que)} | ${problema(x.problema)} | [${x.idioma === "en" ? "En inglés" : "En español"}](${x.url}) | ${cita(x.evidencia)} | ${celda(x.por_que)} |`).join("\n") +
+    confirmadas.map(x => `| ${celda(x.que)} | ${problema(x.problema)} | [${idioma(x.idioma)}](${x.url}) | ${cita(x.evidencia)} | ${celda(x.por_que)} |`).join("\n") +
     `\n\n<details><summary>Referencias en APA 7, listas para copiar a fuentes.json</summary>\n\n${confirmadas.map(x => `- ${x.apa}${String(x.apa).includes(x.url) ? "" : ` ${x.url}`}`).join("\n")}\n\n</details>` : "Ninguna.") +
   (sinReemplazo.length ? `\n\nSin reemplazo encontrado (${sinReemplazo.length}): ${sinReemplazo.map(r => `${celda(r.que)}. Motivo: ${sinPunto(r.motivo)}`).join("; ")}.` : ""));
 
 // Revisar a mano
-const aMano = [...noVerif.map(r => `- ${celda(r.que)}${porId[r.id]?.url ? ` ([abrir](${porId[r.id].url}))` : ""}. Motivo: ${celda(r.motivo)}`),
+const aMano = [...noVerif.filter(r => !cambiadosSinVerificar.includes(r)).map(r => `- ${celda(r.que)}${porId[r.id]?.url ? ` ([abrir](${porId[r.id].url}))` : ""}. Motivo: ${celda(r.motivo)}`),
   ...aConfirmar.map(x => `- Fuente propuesta a confirmar para ${celda(x.que)}: ${x.apa} ([abrir](${x.url})). Motivo: ${celda(x.a_confirmar)}. Antes de usarla, confirmá que sea el documento completo y no un folleto.`)];
 s.push(`## Revisar a mano (${aMano.length})\n\nEl sistema no pudo leer estas fuentes. No es un error del taller: hay que abrirlas en el navegador.\n\n${aMano.join("\n") || "Nada."}`);
 

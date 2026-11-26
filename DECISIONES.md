@@ -88,6 +88,7 @@ Registro de desarrollo del proyecto. Cada entrada tiene fecha, lo solicitado (re
 | D-080 | 2026-11-26 | Ajustes del sistema de verificación tras la primera corrida (Issue #2) | Vigente |
 | D-081 | 2026-11-26 | Fuentes de ChatGPT aceptadas del Issue #2; Copilot rechazada | Vigente |
 | D-082 | 2026-11-26 | Verificación: datos cambiados en cada pull request, modo de prueba, revisión completa y enlaces que redirigen | Vigente |
+| D-083 | 2026-11-26 | Ajustes de la versión 3 del sistema de verificación, tras la validación a ciegas del PR #6 | Vigente |
 
 ---
 
@@ -2111,4 +2112,43 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
     | `copilot.microsoft.com/` | `copilot.com/` |
 
 - **Pendiente:** revisar esas 6, una por una. Mientras sigan, la corrida periódica va a abrir un Issue.
+
+## D-083 | 2026-11-26 | Ajustes de la versión 3 del sistema de verificación, tras la validación a ciegas del PR #6
+
+**Solicitado:** Lourdes reemplazó `revision-ia/prompt-fuentes.md`, `scripts/armar-informe.mjs` y `scripts/revisar-textos.mjs` con los ajustes que salieron de la validación a ciegas del PR #6. Pidió correr `npm run textos` sobre `main`, registrar la decisión con el caso que motivó cada ajuste y subir los cambios en una rama, sin abrir el pull request. No se modificó el contenido de esos tres archivos.
+
+**La validación (PR #6):**
+- **Cómo se hizo:** un script que está fuera del repo, para que el revisor con IA no pudiera leer la lista de casos, sembró 21 cambios en `herramientas.json`, `marco-legal.json`, `modulo-10.json` y `modulo-11.json`. Eran 19 errores y 2 controles correctos. El pull request se abrió con un título neutro, sin describir los cambios, y se cerró sin fusionar.
+- **Resultado:**
+  - **Errores:** detectó 17 de 19.
+  - **Controles:** acertó en los 2, sin falsas alarmas. Eran dos cambios de redacción correctos: "subir" por "adjuntar" archivos, y "se resumen en cuatro" por "son cuatro".
+  - **Hallazgos reales que no se habían sembrado:** 2. La autoridad de datos de Brasil (ANPD) fue reorganizada como Agencia Nacional de Protección de Datos, y la ayuda de Claude sobre subir archivos tiene versión oficial en español.
+- **Los 2 errores que no detectó:**
+  - **El precio de ChatGPT Plus** ("paga ChatGPT Plus, que cuesta 20 dólares por mes"). El brief pide que los precios no vayan en el texto principal, o que vayan con fecha, y ningún chequeo lo miraba.
+  - **El dato de Chile** ("Reemplaza a la Ley 25.326…", que es una ley argentina). La página de LeyChile no cargó, el dato quedó como "no se pudo verificar" y el informe lo mandó al final, a "Revisar a mano", como si fuera un dato viejo y no uno que cambió el pull request.
+
+**Ajustes y caso que motivó cada uno:**
+- **Precios sin fecha, en `revisar-textos.mjs`.** El caso: el precio de ChatGPT Plus pasó sin aviso. Ahora un hallazgo nuevo, "Precio sin fecha", marca cualquier monto con moneda (US$, USD, EUR, €, $ con número, o un número con "dólares", "euros", "pesos" o "reales") que no tenga en el mismo texto la nota "dato de <mes> de <año>". La expresión toma las siglas como palabra entera, para no marcar "eur" dentro de "neuronales".
+- **Datos que cambiaron y no se pudieron verificar, al principio del informe, en `armar-informe.mjs`.** El caso: Chile. En un pull request, esos datos ahora abren el informe en una sección propia, "Cambiaron y no se pudieron verificar", con el texto nuevo, el enlace y el pedido de comprobarlos en el navegador antes de fusionar. Ya no aparecen en "Revisar a mano".
+- **Antes de "no se pudo verificar", otra copia oficial, en `prompt-fuentes.md`.** El caso: también Chile. Si la página oficial no carga, la IA tiene que probar otra copia oficial del mismo texto: el boletín o diario oficial, el congreso o la biblioteca legislativa, o el organismo de control. Si responde `no-verificable`, en `motivo` dice qué copias probó.
+- **Separar el dato de su fuente, en `prompt-fuentes.md`.** El caso: la búsqueda web de ChatGPT. El cambio sembrado era solo la URL, que llevaba a una página inexistente (404), pero el informe lo puso en "Errores" y propuso reescribir un detalle que era correcto. Ahora, si el problema es la fuente (error, demasiado general, otro idioma u otro producto) y otra página oficial confirma el dato, el veredicto es `vigente`, con `fuente_acorde: false` y la fuente nueva propuesta. `cambio` queda solo para cuando el dato mismo es distinto de lo que dice la fuente.
+- **Si se marca "existe la versión en español", proponerla.**
+  - **Los casos:** la URL de los controles de datos de ChatGPT, que se había cambiado a la versión en inglés, y la ayuda de Claude para subir archivos, que fue uno de los hallazgos reales. En los dos, la IA dijo que existía la versión en español, pero no la propuso: quedaron en "Sin reemplazo encontrado".
+  - **En `prompt-fuentes.md`:** ahora la IA tiene que proponer esa versión o explicar en `motivo` por qué no pudo abrirla.
+  - **En `armar-informe.mjs`:** si igual falta, el informe avisa "Dice que existe la versión en español, pero no la propuso: buscala a mano".
+- **La sugerencia no agrega precios, límites ni nombres de modelos, en `prompt-fuentes.md`.** El caso: subir archivos en ChatGPT. La IA detectó bien el error sembrado ("solo en los planes pagos"), pero su redacción propuesta agregaba "un límite de 3 archivos por día", un dato que el brief pide dejar fuera del texto principal porque cambia todo el tiempo. Ahora un límite así va en `motivo`, no en la sugerencia.
+- **El idioma real de cada fuente propuesta, en `armar-informe.mjs`.** El caso: Brasil. La fuente propuesta, el texto oficial de la LGPD, está en portugués, pero el informe la mostró como "En inglés", porque solo distinguía español e inglés. Ahora también muestra portugués, francés, alemán e italiano, y cualquier otro idioma con su código.
+
+**Archivos afectados:** `revision-ia/prompt-fuentes.md`, `scripts/armar-informe.mjs`, `scripts/revisar-textos.mjs` y este registro.
+
+**Verificación realizada:**
+- **`npm run textos` sobre `main`:** 3672 textos revisados, sin hallazgos. La regla de precios no da falsas alarmas en el contenido actual.
+- **Sobre el contenido sembrado del PR #6, en un clon temporal:**
+  - **Versión anterior de `revisar-textos.mjs`:** los mismos 2 hallazgos que informó el PR ("Raya o punto medio" en el Módulo 11 y "Más" sin tilde en el Módulo 10).
+  - **Versión nueva:** además marca "Precio sin fecha" en el Módulo 11, en "…paga ChatGPT Plus, que cuesta 20 dólares por mes".
+- **Lo que no se probó acá:** los cambios en `prompt-fuentes.md` y las secciones nuevas de `armar-informe.mjs`. Dependen de una corrida real con IA.
+
+**Pendientes o riesgos:**
+- **Repetir la prueba:** conviene volver a sembrar los mismos casos para medir la versión 3, sobre todo Chile, la búsqueda web de ChatGPT y las versiones en español.
+- **Hallazgos reales del PR #6:** la reorganización de la ANPD de Brasil y la ayuda de Claude en español siguen sin aplicarse al contenido. Ese pull request se cerró sin fusionar.
 

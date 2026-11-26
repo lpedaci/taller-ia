@@ -29,6 +29,14 @@ Vas a recibir `verificacion/vencimientos.json`. Para cada elemento de la lista `
    - **quedó vieja:** la página misma remite a otra más nueva, o la norma tiene un texto actualizado o un reemplazo.
 5. **Si el veredicto es `cambio` o `no-verificable`, o la fuente no es acorde, proponé hasta dos fuentes de reemplazo** (ver la sección siguiente).
 
+### Separá el dato de su fuente
+
+Un problema de la fuente no es un problema del dato. Si la URL da error, es demasiado general, está en otro idioma o habla de otro producto, pero encontraste en otra página oficial que **el dato es correcto**, el veredicto es `vigente`, con `fuente_acorde: false` y la fuente nueva en `fuentes_propuestas`. No uses `cambio` y no reescribas el detalle: `cambio` es solo para cuando el dato mismo dice algo distinto de la fuente.
+
+### Si la página oficial no carga
+
+Antes de responder `no-verificable`, probá otra copia oficial del mismo texto: la versión del boletín o diario oficial, la del congreso o la biblioteca legislativa, o la del organismo de control. Si ninguna carga, recién ahí `no-verificable`, y en `motivo` decí qué copias probaste.
+
 ## Cómo proponer fuentes de reemplazo
 
 El objetivo es que Lourdes pueda reparar el dato sin salir a buscar. Cada propuesta tiene que poder usarse tal cual.
@@ -37,6 +45,7 @@ El objetivo es que Lourdes pueda reparar el dato sin salir a buscar. Cada propue
   1. la página específica del centro de ayuda oficial de la herramienta, o el texto oficial de la norma;
   2. su versión oficial en español, si existe (por ejemplo, la ayuda en español o EUR-Lex en español). **Entre las versiones en español, preferí la latinoamericana** (`es-419` en la dirección) frente a la de España (`es-es`): el taller es para LATAM, y el mismo artículo puede estar traducido distinto en cada una;
   3. la página de un organismo oficial (autoridad de datos personales, UNESCO, OCDE).
+- **Si marcás `hay-version-en-espanol`, proponé esa versión.** Decir que existe y no proponerla deja el trabajo a medias. Si la buscaste y no la pudiste abrir, decilo en `motivo`.
 - **Si el tema lo trabaja la UNESCO** (ética de la IA, IA en educación, competencias en IA, datos personales, contenido sintético), buscá también en su biblioteca digital, UNESDOC, aunque la fuente actual no sea de la UNESCO: puede haber un documento oficial, en español y más sólido para respaldar el dato. Cómo buscar y qué enlace usar está en el apartado "Documentos de la UNESCO".
 - **Mismo producto y mismo plan.** La fuente tiene que hablar de la herramienta que nombra el taller (el asistente general, no una integración en otra aplicación) y del plan que el taller describe. Si la única fuente que encontraste habla de otro producto o plan, no la propongas como respaldo: decilo en `motivo`.
 - **Tenés que haberla leído en esta corrida** y copiar la frase que respalda el dato. Una URL que no abriste no se propone. La única excepción son los documentos de UNESDOC, con las condiciones del apartado "Documentos de la UNESCO".
@@ -97,5 +106,7 @@ Un único JSON, sin texto antes ni después:
 ```
 
 `fuentes_propuestas` va vacío (`[]`) cuando la fuente actual es acorde y el dato sigue vigente. Si hacía falta reemplazo y no encontraste ninguno, va vacío y `motivo` lo dice.
+
+La `sugerencia` no agrega datos que la fuente no pide corregir. En particular, no suma precios, límites de uso (cantidad de archivos, mensajes por día) ni nombres de modelos: el brief pide que esos datos no vayan en el texto principal, porque cambian todo el tiempo. Si el dato correcto depende de un límite, decilo en `motivo`, no en la sugerencia.
 
 La `sugerencia` sigue las convenciones del taller: español con voseo moderado, registro académico profesional, oraciones cortas, sin rayas largas ni "·".
