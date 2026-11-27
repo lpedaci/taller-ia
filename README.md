@@ -1,6 +1,60 @@
+<div align="center">
+
+<img src="assets/svg/logo.svg" width="72" height="72" alt="Logo de Taller - IA">
+
 # Taller - IA
 
-Entorno de aprendizaje para usar la inteligencia artificial generativa con criterio. Autora: Lourdes Pedaci, Experience Designer.
+**Entorno de aprendizaje para usar la inteligencia artificial generativa con criterio.**<br>
+Sitio estático y accesible, con un sistema de verificación de contenido automatizado con IA y revisado por personas.
+
+[![Sitio publicado](https://img.shields.io/badge/sitio-publicado-005eb1?logo=githubpages&logoColor=white)](https://lpedaci.github.io/taller-ia/)
+[![Verificación de fuentes](https://github.com/lpedaci/taller-ia/actions/workflows/verificacion-fuentes.yml/badge.svg)](https://github.com/lpedaci/taller-ia/actions/workflows/verificacion-fuentes.yml)
+[![Revisión de cambios](https://github.com/lpedaci/taller-ia/actions/workflows/revision-cambios.yml/badge.svg)](https://github.com/lpedaci/taller-ia/actions/workflows/revision-cambios.yml)
+![WCAG 2.2 AA](https://img.shields.io/badge/WCAG-2.2_AA-005eb1)
+![Sin build](https://img.shields.io/badge/build-sin_compilaci%C3%B3n-2ea44f)
+
+[**Ver el taller**](https://lpedaci.github.io/taller-ia/) &nbsp;|&nbsp; [Verificación con IA](#verificación-automática-con-ia) &nbsp;|&nbsp; [Ver en local](#ver-el-taller-en-tu-computadora) &nbsp;|&nbsp; [Decisiones](DECISIONES.md)
+
+Diseño y desarrollo: **Lourdes Pedaci**, Experience Designer enfocada en desarrollo web y automatización con IA.
+
+</div>
+
+| 21 | 9 | 46 | 2 | 87 |
+|:---:|:---:|:---:|:---:|:---:|
+| módulos con lección y actividades | animaciones propias | datos verificados por IA en su fuente | workflows de GitHub Actions | decisiones registradas |
+
+### Stack
+
+<p>
+  <img src="https://skillicons.dev/icons?i=html,css,js,nodejs,githubactions,github,md&theme=dark" alt="HTML, CSS, JavaScript, Node.js, GitHub Actions, GitHub y Markdown">
+</p>
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-663399?style=for-the-badge&logo=css&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![JSON](https://img.shields.io/badge/Contenido_en_JSON-000000?style=for-the-badge&logo=json&logoColor=white)
+![Material Design 3](https://img.shields.io/badge/Material_Design_3-757575?style=for-the-badge&logo=materialdesign&logoColor=white)
+![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222222?style=for-the-badge&logo=githubpages&logoColor=white)
+
+**Automatización y calidad**
+
+![Claude](https://img.shields.io/badge/Claude_Code-D97757?style=for-the-badge&logo=claude&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js_20+-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge)
+![axe-core](https://img.shields.io/badge/axe--core-663399?style=for-the-badge)
+![ffmpeg](https://img.shields.io/badge/ffmpeg-007808?style=for-the-badge&logo=ffmpeg&logoColor=white)
+
+### Metodologías
+
+![Human in the loop](https://img.shields.io/badge/Human_in_the_loop-la_IA_propone,_una_persona_decide-005eb1?style=flat-square)
+![Design system](https://img.shields.io/badge/Design_system-auditado_en_cada_cambio-005eb1?style=flat-square)
+![Accesibilidad](https://img.shields.io/badge/Accesibilidad-WCAG_2.2_AA-005eb1?style=flat-square)
+![Gagné](https://img.shields.io/badge/Dise%C3%B1o_instruccional-eventos_de_Gagn%C3%A9-005eb1?style=flat-square)
+![APA 7](https://img.shields.io/badge/Citas-APA_7-005eb1?style=flat-square)
+![Decisiones](https://img.shields.io/badge/Registro-de_decisiones-005eb1?style=flat-square)
+
+## Sobre el proyecto
 
 Es un sitio de HTML, CSS y JavaScript sin paso de compilación. Funciona publicado tal cual en GitHub Pages: no hay servidor, cuentas ni analítica. El progreso de cada persona se guarda en su navegador.
 
