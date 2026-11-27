@@ -2279,3 +2279,24 @@ Cualquiera de los tres implica guardar datos personales en un servidor de un ter
 - **Sin el nombre viejo:** ya no queda "Revisar a mano" en `scripts/`, `revision-ia/`, `.github/` ni `README.md`. La única coincidencia, "capturas para revisar a mano" en `scripts/galeria.mjs`, no tiene que ver con el informe.
 - **`node scripts/armar-informe.mjs armar --modo periodico`**, sin resultado de la IA: avisa "ATENCIÓN: el paso con IA no escribió su resultado. Quedaron sin revisar: 2." y muestra "Informe armado: 0 errores, 0 desactualizados, 0 mejoras, 0 fuentes propuestas, 0 para revisión manual, 0 vigentes, 0 para confirmar." El informe tiene la sección "## Revisión manual (0)".
 
+
+## D-087 | 2026-11-27 | Encabezado del README con stack, metodologías e íconos
+
+**Solicitado:** Lourdes pidió mejorar el README con la iconografía de las herramientas y metodologías usadas, y que la parte superior se vea profesional, de alguien de desarrollo web y automatización con IA.
+
+**Decisión y motivo:**
+- **Encabezado centrado:** logo del sitio (`assets/svg/logo.svg`), título, una línea de propuesta y accesos al sitio publicado, la verificación con IA, cómo verlo en local y este registro.
+- **Badges de estado:** sitio publicado, estado de los dos workflows (`verificacion-fuentes.yml` y `revision-cambios.yml`), WCAG 2.2 AA y "sin compilación". Los de los workflows los genera GitHub, así que muestran el estado real.
+- **Cifras clave:** 21 módulos, 9 animaciones, 46 datos verificados, 2 workflows y 87 decisiones.
+- **Stack:** íconos de skillicons.dev y badges de shields.io, separados en "sitio" y "automatización y calidad" (Claude Code, GitHub Actions, Node.js, Playwright, axe-core, ffmpeg).
+- **Metodologías:** human in the loop, design system auditado, WCAG 2.2 AA, eventos de Gagné, APA 7 y registro de decisiones. Se usa el azul primario del sitio (`#005eb1`).
+- **Autoría:** "Experience Designer enfocada en desarrollo web y automatización con IA".
+- El texto que estaba arriba pasa a la sección "Sobre el proyecto", sin cambios.
+
+**Archivos afectados:** `README.md` y este registro.
+
+**Verificación realizada:**
+- **Cifras:** 86 entradas previas en este registro (más esta), 21 módulos con `"leccion": true`, 9 animaciones en `js/animaciones/` sin contar `kit.js` y 46 datos según `vencimientos.mjs` (D-085). WCAG 2.2 AA es el nivel del brief.
+- **Imágenes:** todas las URL de badges e íconos responden 200, y los logos de shields.io existen. El de W3C no existe en shields.io, así que esos badges van sin logo.
+
+**Pendientes o riesgos:** las cifras del encabezado cambian con el proyecto (decisiones, datos verificados) y hay que actualizarlas a mano. Playwright y axe-core no tienen logo en shields.io.
